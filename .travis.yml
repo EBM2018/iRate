@@ -1,21 +1,19 @@
 language: node_js
 node_js:
   - node
+cache: npm
 
 before_script:
   - set -e
   - cd backend
-  - npm i
+  - npm ci
   - cd ../frontend
-  - npm i
+  - npm ci
   - npm i codecov
   - cd ..
 
 script:
   - set -e
-
-  # Environment variables
-  - export REPO_NAME=$(echo $TRAVIS_REPO_SLUG | awk -F/ '{ print tolower($2) }')
 
   # Frontend
   - cd frontend
