@@ -1,6 +1,7 @@
 Fil rouge Boilerplate
 =====================
 
+[![Build Status](https://travis-ci.com/EBM2018/filrouge-boilerplate.svg?branch=master)](https://travis-ci.com/EBM2018/filrouge-boilerplate)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e55bb909d165d1469344/maintainability)](https://codeclimate.com/github/EBM2018/filrouge-boilerplate/maintainability)
 
 Ce dépôt fournit les éléments de base pour les projets du fil rouge.
