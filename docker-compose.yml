@@ -1,7 +1,7 @@
 version: "3"
 services:
   web:
-    image: ebm2018travis/filrouge-boilerplate:${TAG}
+    image: ebm2018/filrouge-boilerplate:latest
     # depends_on:
     #   - mongodb
     environment:
