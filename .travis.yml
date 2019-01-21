@@ -3,6 +3,9 @@ node_js:
   - node
 cache: npm
 
+services:
+  - docker
+
 before_script:
   - set -e
   - cd backend
@@ -14,6 +17,9 @@ before_script:
 
 script:
   - set -e
+
+  # Environment variables
+  - export REPO_NAME=$(echo $TRAVIS_REPO_SLUG | awk -F/ '{ print tolower($2) }')
 
   # Frontend
   - cd frontend
@@ -27,6 +33,15 @@ script:
   - npm test
   - npm run apidoc
   - cd ..
+
+   # Build Docker
+  - docker build -t ebm2018/$REPO_NAME:latest .
+  - |
+    if [[ $TRAVIS_BRANCH == 'master' ]];
+      then
+        echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        docker push ebm2018/$REPO_NAME:latest
+    fi;
 
 deploy:
   provider: pages

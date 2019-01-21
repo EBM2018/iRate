@@ -1,0 +1,21 @@
+version: "3"
+services:
+  web:
+    image: ebm2018travis/filrouge-boilerplate:${TAG}
+    # depends_on:
+    #   - mongodb
+    environment:
+      - MONGODB_URI=mongodb://mongodb/filrouge-boilerplate
+    networks:
+      local:
+      ebm-filrouge:
+        aliases:
+          - filrouge-boilerplate
+  # mongodb:
+  #   image: mongo
+  #   networks:
+  #     - local
+networks:
+  local:
+  ebm-filrouge:
+    external: true
