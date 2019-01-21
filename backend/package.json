@@ -7,12 +7,18 @@
     "start": "dotenv nodemon src/index.js",
     "prod": "dotenv node src/index.js",
     "setup-env": "node -e \"(fs => fs.existsSync('.env') || fs.copyFileSync('.env.example', '.env'))(require('fs'))\"",
-    "test": "eslint src/"
+    "test": "eslint src/",
+    "apidoc": "apidoc -i src/ -o doc/"
   },
   "keywords": [
     "express",
     "boilerplate"
   ],
+  "apidoc": {
+    "title": "ApiDoc pour le projet Boilerplate",
+    "url": "/api",
+    "sampleUrl": "http://localhost:4000/api"
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {
@@ -23,6 +29,7 @@
     "serve-static": "^1.13.2"
   },
   "devDependencies": {
+    "apidoc": "^0.17.7",
     "eslint": "^5.12.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
