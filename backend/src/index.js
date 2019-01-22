@@ -2,10 +2,11 @@ const path = require('path');
 
 const express = require('express');
 const serveStatic = require('serve-static');
-const config = require('./config');
 
 const app = express();
 const server = require('http').Server(app);
+
+const config = require('./config');
 
 app.use('/api', require('./api'));
 
