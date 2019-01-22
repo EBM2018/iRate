@@ -14,5 +14,7 @@ Il comprend :
 3. Récupérer l'URL du projet, accessible depuis le bouton "Clone or download"
 4. `git remote add upstream https://github.com/EBM2018/fil-rouge-boilerplate.git`
 5. `git remote set-url origin <adresse de votre dépôt récupérée à l'étape 3>` (exemple : `git remote set-url origin https://github.com/EBM2018/mon-super-projet.git`)
+6. `cd filrouge-boilerplate && npm install` pour installer les dépendances
+7. `npm start` pour lancer à la fois le back et le front !
 
 N'hésitez pas à demander de l'aide ! Bonne chance :)
