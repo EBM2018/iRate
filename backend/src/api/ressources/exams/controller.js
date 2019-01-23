@@ -1,7 +1,7 @@
 /* eslint-disable no-trailing-spaces */
-const exam = require('./exam.model');
+const exam = require('../../../services/exam/model');
 
-const examController = {
+const controller = {
   getExams(req, res) {
     return res.status(200).send('It Worked...');
   },
@@ -38,9 +38,9 @@ const examController = {
   },
 
   editExam(req, res) {
-      if (req.body) {
-          return res.status(200).json(req.body);
-      } return res.status(400).send('Bad Request...');
+    if (req.body) {
+      return res.status(200).json(req.body);
+    } return res.status(400).send('Bad Request...');
   },
 
   newQuestionOfExercice(req, res) {
@@ -75,4 +75,4 @@ const examController = {
 
 };
 
-module.exports = examController;
+module.exports = controller;

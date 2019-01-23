@@ -1,7 +1,7 @@
 const { Router } = require('express');
 
 const router = new Router();
-const examController = require('./exam.controller.js');
+const examController = require('./controller.js');
 
 /**
  * @api {get} /exam Get all exams
