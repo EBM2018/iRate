@@ -1,0 +1,53 @@
+language: node_js
+node_js:
+  - node
+cache: npm
+
+services:
+  - docker
+
+before_script:
+  - set -e
+  - cd backend
+  - npm ci
+  - cd ../frontend
+  - npm ci
+  - npm i codecov
+  - cd ..
+
+script:
+  - set -e
+
+  # Environment variables
+  - export REPO_NAME=$(echo $TRAVIS_REPO_SLUG | awk -F/ '{ print tolower($2) }')
+
+  # Frontend
+  - cd frontend
+  - npm test -- --coverage
+  - ./node_modules/.bin/codecov
+  - npm run build
+  - cd ..
+
+  # Backend
+  - cd backend
+  - npm test
+  - npm run apidoc
+  - cd ..
+
+   # Build Docker
+  - docker build -t ebm2018/$REPO_NAME:latest .
+  - |
+    if [[ $TRAVIS_BRANCH == 'master' ]] && [[ $TRAVIS_PULL_REQUEST == 'false' ]];
+      then
+        echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        docker push "ebm2018/$REPO_NAME:latest"
+    fi;
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
+  keep-history: true
+  local-dir: backend/doc
+  on:
+    branch: master
