@@ -1,16 +1,16 @@
 version: "3"
 services:
   web:
-    image: ebm2018/filrouge-boilerplate:latest
+    image: ebm2018/irate:latest
     # depends_on:
     #   - mongodb
     environment:
-      - MONGODB_URI=mongodb://mongodb/filrouge-boilerplate
+      - MONGODB_URI=mongodb://mongodb/irate
     networks:
       local:
       ebm-filrouge:
         aliases:
-          - filrouge-boilerplate
+          - irate
   # mongodb:
   #   image: mongo
   #   networks:
