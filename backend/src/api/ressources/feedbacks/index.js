@@ -4,8 +4,8 @@ const router = new Router();
 const examController = require('./controller.js');
 
 /**
- * @api {get} /feedback/:questionId Get all feedbacks related to a question
- * @apiName GetFeedbacksByQuestion
+ * @api {get} /feedback/:questionId Get feedback from a question
+ * @apiName GetFeedbackByQuestion
  * @apiGroup Feedbacks
  * @apiDescription This URL display a JSON containing all the feedback of a question
  *
@@ -27,7 +27,7 @@ const examController = require('./controller.js');
  *  }
  *]
  */
-router.get('/:questionId', examController.getFeedbacksByQuestion);
+router.get('/:questionId', examController.getFeedbackByQuestion);
 router.post('/', examController.newFeedback);
 router.patch('/', examController.editFeedbackById);
 router.delete('/', examController.deleteFeedbackById);

@@ -2,7 +2,7 @@
 const feedback = require('../../../services/feedbacks/model');
 
 const controller = {
-    getFeedbacksByQuestion(req, res) {
+    getFeedbackByQuestion(req, res) {
         if (req.params.id) {
             return res.status(200).send(req.params.id);
         } return res.status(400).send('Bad Request...');
