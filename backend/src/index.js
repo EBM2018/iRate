@@ -8,6 +8,9 @@ const server = require('http').Server(app);
 
 const config = require('./config');
 
+// setup database connexion
+require('./config/mongoose');
+
 app.use('/api', require('./api'));
 
 app.use(serveStatic('./public'));

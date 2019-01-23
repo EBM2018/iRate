@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const CopySchema = new mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
   submissionTime: {
     type: Date,
     default: () => Date.now(),
