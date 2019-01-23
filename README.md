@@ -18,11 +18,13 @@ Il comprend :
 3. Récupérer l'URL du projet, accessible depuis le bouton "Clone or download"
 4. `git remote add upstream https://github.com/EBM2018/fil-rouge-boilerplate.git`
 5. `git remote set-url origin <adresse de votre dépôt récupérée à l'étape 3>` (exemple : `git remote set-url origin https://github.com/EBM2018/mon-super-projet.git`)
-6. Aller sur https://travis-ci.com/, se connecter avec son compte Github, et dans l'organisation EBM2018, cliquez sur le bouton "Settings" correspondant à projet Github.
-7. Générer un token Github pour l'APIDoc : Aller ici https://github.com/settings/tokens, cliquer sur "Generate new token" et cocher la case "public_repo". Choisissez un nom pour le token et cliquez sur "Generate token". Copiez en le token qui s'affiche.
-8. Retourner sur Travis CI sur la page des réglages de votre projet. Dans la page qui s'affiche, dans la section "Environment Variables", ajouter une nouvelle ligne avec comme nom `GITHUB_TOKEN` et comme valeur le token précédemment généré, en laissant le booléen à Off.
-9. Demander à Nymous de rajouter les variables d'environnement `DOCKER_USERNAME` et `DOCKER_PASSWORD`
-10. Modifier le fichier `docker-compose.yml` en suivant le guide ci-dessous.
+6. `cd filrouge-boilerplate && npm install` pour installer les dépendances
+7. `npm start` pour lancer à la fois le back et le front !
+8. Aller sur https://travis-ci.com/, se connecter avec son compte Github, et dans l'organisation EBM2018, cliquez sur le bouton "Settings" correspondant à projet Github.
+9. Générer un token Github pour l'APIDoc : Aller ici https://github.com/settings/tokens, cliquer sur "Generate new token" et cocher la case "public_repo". Choisissez un nom pour le token et cliquez sur "Generate token". Copiez en le token qui s'affiche.
+10. Retourner sur Travis CI sur la page des réglages de votre projet. Dans la page qui s'affiche, dans la section "Environment Variables", ajouter une nouvelle ligne avec comme nom `GITHUB_TOKEN` et comme valeur le token précédemment généré, en laissant le booléen à Off.
+11. Demander à Nymous de rajouter les variables d'environnement `DOCKER_USERNAME` et `DOCKER_PASSWORD`
+12. Modifier le fichier `docker-compose.yml` en suivant le guide ci-dessous.
 
 N'hésitez pas à demander de l'aide ! Bonne chance :)
 
