@@ -37,6 +37,12 @@ const examController = {
     } return res.status(400).send('Bad Request...');
   },
 
+  editExam(req, res) {
+      if (req.body) {
+          return res.status(200).json(req.body);
+      } return res.status(400).send('Bad Request...');
+  },
+
   newQuestionOfExercice(req, res) {
     if (req.body) {
       return res.status(200).json(req.body);
