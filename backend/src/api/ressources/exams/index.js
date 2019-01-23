@@ -9,7 +9,7 @@ router.post('/', examController.newExam);
 router.delete('/', examController.deleteExamById);
 
 router.post('/exercice', examController.newExerciceOfExam);
-router.patch('/exercie', examController.editExercice):
+router.patch('/exercie', examController.editExercice);
 router.delete('/exercice', examController.deleteExerciceById);
 
 router.post('/exercice/question', examController.newQuestionOfExercice);
