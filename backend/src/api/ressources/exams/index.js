@@ -113,18 +113,18 @@ router.get('/', examController.getExams);
  *    "__v": 0
  *  }
  */
-router.get('/:id', examController.getExamById);
-router.get('/correction/:id', examController.getCorrectionById);
+router.get('/:examId', examController.getExamById);
+router.get('/correction/:examId', examController.getCorrectionById);
 router.post('/', examController.newExam);
-router.patch('/', examController.editExam);
-router.delete('/', examController.deleteExamById);
+router.patch('/:examId', examController.editExam);
+router.delete('/:examId', examController.deleteExamById);
 
-router.post('/exercice', examController.newExerciceOfExam);
-router.patch('/exercice', examController.editExercice);
-router.delete('/exercice', examController.deleteExerciceById);
+router.post('/:examId/exercice', examController.newExerciceOfExam);
+router.patch('/:examId/exercice/:exerciceId', examController.editExercice);
+router.delete('/:examId/exercice/:exerciceId', examController.deleteExerciceById);
 
-router.post('/exercice/question', examController.newQuestionOfExercice);
-router.patch('/exercice/question', examController.editQuestionById);
-router.delete('/exercice/question', examController.deleteQuestionById);
+router.post('/:examId/exercice/:exerciceId/question', examController.newQuestionOfExercice);
+router.patch('/:examId/exercice/:exerciceId/question/:questionId', examController.editQuestionById);
+router.delete('/:examId/exercice/:exerciceId/question/:questionId', examController.deleteQuestionById);
 
 module.exports = router;
