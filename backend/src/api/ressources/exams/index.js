@@ -201,9 +201,39 @@ router.get('/correction/:examId', examController.getCorrectionById);
  *    "sessionId": "sqojfdoisqjdoiqj679089076",
  *   }
  *
+ * @apiSuccess (204) {null}
  */
 router.post('/', examController.newExam);
+
+/**
+ * @api {patch} /exam/:examId Edit an exam
+ * @apiName PatchExam
+ * @apiGroup Exams
+ * @apiDescription This URL edit an exam from its id.
+ *
+ * @apiSuccess (201) {String} "Created"
+ * @apiParam {json} an object with the information you want to edit.
+ * @apiParamExample {json} Request-Example:
+ *   {
+ *    "title": "Examen 3",
+ *    "instruction": "Je n'ai pas d'instructions spéciales, à vous de jouer !",
+ *    "reminders": "Tous documents interdit",
+ *    "authorId": "abcdefghjkqspdsqpjpijp86972",
+ *    "sessionId": "sqojfdoisqjdoiqj679089076",
+ *   }
+ *  
+ */
 router.patch('/:examId', examController.editExam);
+
+/**
+ * @api {delete} /exam/:examId Delete an exam
+ * @apiName DeleteExam
+ * @apiGroup Exams
+ * @apiDescription This URL deletes an exam from its id.
+ *
+ * @apiSuccess (201) {String} "Created"
+ *  
+ */
 router.delete('/:examId', examController.deleteExamById);
 
 router.post('/:examId/exercice', examController.newExerciceOfExam);
