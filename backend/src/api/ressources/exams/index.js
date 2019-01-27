@@ -221,8 +221,8 @@ router.post('/', examController.newExam);
  *    "authorId": "abcdefghjkqspdsqpjpijp86972",
  *    "sessionId": "sqojfdoisqjdoiqj679089076",
  *   }
- * 
- * @apiSuccess (201) {String} "Created"
+ *
+ * @apiSuccess (201) {json} a JSON object containing the edited document
  */
 router.patch('/:examId', examController.editExam);
 
@@ -232,8 +232,8 @@ router.patch('/:examId', examController.editExam);
  * @apiGroup Exams
  * @apiDescription This URL deletes an exam from its id.
  *
- * @apiSuccess (204) {null}
- *  
+ * @apiSuccess (204) {null} Empty date to return
+ *
  */
 router.delete('/:examId', examController.deleteExamById);
 
@@ -276,8 +276,8 @@ router.patch('/:examId/exercice/:exerciceId', examController.editExercice);
  * @apiGroup Exercice
  * @apiDescription This URL deletes an exercice of an exam based on both ids.
  *
- * @apiSuccess (204) {null}
- *  
+ * @apiSuccess (204) {null} Empty date to return
+ *
  */
 router.delete('/:examId/exercice/:exerciceId', examController.deleteExerciceById);
 
@@ -324,7 +324,7 @@ router.patch('/:examId/exercice/:exerciceId/question/:questionId', examControlle
  * @apiDescription This URL deletes a question from its id
  *
  *
- * @apiSuccess (204) {null}
+ * @apiSuccess (204) {null} Empty date to return
  */
 router.delete('/:examId/exercice/:exerciceId/question/:questionId', examController.deleteQuestionById);
 
