@@ -32,3 +32,15 @@ Une extension Visual Studio Code permet d'avoir de la complétion sur les propri
 --------
 
 <b id="f1">1.</b> L'explorateur Windows refuse de créer un fichier qui n'a qu'une extension sans avoir de nom. Par exemple, `coucou.env` marche, mais `.env` non. Là où c'est encore plus fort, c'est que ça marche très bien en ligne de commande... Pour vous épargner ça, le script `npm run setup-env` le fait pour vous (et marche aussi sur Linux et macOS, si jamais vous avez la flemme de le faire à la main vous aussi). [↩](#a1)
+
+
+
+
+## Mongo
+1. Install mongo on your computer : 
+- for mac : https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/ 
+- for linux : https://docs.mongodb.com/manual/administration/install-on-linux/ 
+
+2. In a first terminal, run `mongod`. Now you have mongod running on your computer. You can log in the mongo shell by opening a second terminal and typing : `mongo`. Then, type `use iRate` to create a database called iRate.
+3. Create your own `.env` file based on the `.env.example` 
+
