@@ -1,5 +1,7 @@
-/* eslint-disable no-trailing-spaces */
-const exam = require('../../../services/exam/model');
+// the line below is commented for now as we don't need
+// the model for now. Also note that as a convention, models start with
+// a capital letter.
+// const Exam = require('../../../services/exam/model');
 
 const controller = {
   getExams(req, res) {
