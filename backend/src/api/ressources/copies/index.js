@@ -1,10 +1,10 @@
 const { Router } = require('express');
 
 const router = new Router();
-const examController = require('./controller.js');
+const copyController = require('./controller.js');
 
 /**
- * @api {get} /copies/:examId Get all copies related to an exam
+ * @api {get} /copy/:examId Get all copies related to an exam
  * @apiName GetAllCopies
  * @apiGroup Copies
  * @apiDescription Returns a JSON containing all the copies for a given exam
@@ -13,112 +13,182 @@ const examController = require('./controller.js');
  *[
  *  {
  *    "_id": "5a9e7dc7717a690c53650ab1",
- *    "exam_id": "5pod76h7a690c53650ab1",
+ *    "type": "Copies"
+ *    "examId": "5pod76h7a690c53650ab1",
  *    "title": "Copies 1",
- *    "reminder": "- Les calculatrices sont interdites \n - Tout objet connecté est interdit"
  *    "author" : {
  *      "name": "Yolo",
  *      "surname": "Swag"
  *    }
  *    "answers": [
  *      {
+ *          "creationTime": "2018-03-06T11:38:47.160Z",
+ *          "content": "Voici une réponse à une question",
+ *          "_id": "5a9e7d55717a690c53650ab1",
+ *          "grade": 18,
+ *          "question": {
+ *            "_id": "5a9e7dlqskfa690c53650ab1",
+ *            "title": "Quelle est la somme de 2*8 ?",
+ *            "scale": 2,
+ *            "creationTime": "01/01/2019T07:15:31"
+ *          },
+ *          "feedback": [
+ *              {
+ *                  "_id": "5a9e7dlqskfa690c53650ab1",
+ *                  "content": "Votre réponse est bonne mais aurait pu être davantage élaborée",
+ *                  "creationTime": "01/01/2019T07:15:31"
+ *              }
+ *          ]
  *
  *      }
  *    ]
  *    "submissionTime": "2018-03-06T11:38:47.160Z",
  *    "creationTime": "2018-03-06T11:38:47.160Z",
  *    "__v": 0
- *  },
- *  {
- *    "_id": "5a9e7dc7717a690c57989ab1",
- *    "title": "Examen 2",
- *    "instruction": "Bon courage pour votre epreuve !",
- *    "reminder": "- Tout document autorisés"
- *    "author" : {
- *      "name": "Justin",
- *      "surname": "Bieber"
- *    }
- *    "session": {
- *      "startDate": "02/01/2019Z8:00:00"
- *      "endDate": "02/01/2019Z10:00:00"
- *    }
- *    "creationTime": "2018-04-06T11:38:47.160Z",
- *    "__v": 0
  *  }
  *]
  */
-router.get('/:examId', examController.getExams);
+router.get('/:examId', copyController.getCopies);
 
 /**
- * @api {get} /exam/:id Get an exam
- * @apiName GetExamById
- * @apiGroup Examens
- * @apiDescription Cette URL affiche un JSON contenant un examen en fonctionde son id
+ * @api {get} /copy/:copyId Get a specific copy
+ * @apiName GetCopyById
+ * @apiGroup Copies
+ * @apiDescription Returns a JSON containing a given copy ID
  *
  * @apiSuccessExample {json} Success-Response:
- *  *  {
+ *  {
  *    "_id": "5a9e7dc7717a690c53650ab1",
- *    "title": "Examen 1",
- *    "instruction": "A propos de cet examen, voici une formule qui peut vous intéresser: E=1/2mc²",
- *    "reminder": "- Les calculatrices sont interdites \n - Tout objet connecté est interdit",
+ *    "type": "Copies"
+ *    "examId": "5pod76h7a690c53650ab1",
+ *    "title": "Copies 1",
  *    "author" : {
  *      "name": "Yolo",
  *      "surname": "Swag"
- *    },
- *    "session": {
- *      "startDate": "01/01/2019T8:00:00"
- *      "endDate": "01/01/2019T12:00:00"
- *    },
- *    "exercices" : [
+ *    }
+ *    "answers": [
  *      {
- *        "_id": "5a9e7dc7832a690c53650ab1"
- *        "title": "Exercice 1",
- *        "estimatedTime": "01:00:00",
- *        "creationTime": "01/01/2019T07:00:00",
- *        "questions": [
- *          {
- *            "_id": "5a9e7dcjdkfa690c53650ab1",
- *            "title": "Quelle est la somme de 1+1 ?",
- *            "scale": 0.5,
- *            "creationTime": "01/01/2019T07:00:00"
- *          },
- *          {
- *            "_id": "5a9e7jekkfa690c53650ab1",
- *            "title": "Quelle est la somme de 2+2 ?",
- *            "scale": 0.75,
- *            "creationTime": "01/01/2019T07:00:00"
- *          }
- *        ],
- *      },
- *      {
- *        "_id": "5a9e7dc7832jfhdc53650ab1"
- *        "title": "Exercice 2",
- *        "estimatedTime": "00:30:00",
- *        "creationTime": "01/01/2019T07:15:00",
- *        "questions": [
- *          {
+ *          "creationTime": "2018-03-06T11:38:47.160Z",
+ *          "content": "Voici une réponse à une question",
+ *          "_id": "5a9e7d55717a690c53650ab1",
+ *          "grade": 18,
+ *          "question": {
  *            "_id": "5a9e7dlqskfa690c53650ab1",
  *            "title": "Quelle est la somme de 2*8 ?",
  *            "scale": 2,
  *            "creationTime": "01/01/2019T07:15:31"
  *          },
- *          {
- *            "_id": "5a9e7jsqifa690c53650ab1",
- *            "title": "Quelle est la somme de 4+8 ?",
- *            "scale": 2.25,
- *            "creationTime": "01/01/2019T07:16:05"
- *          }
- *        ],
+ *          "feedback": [
+ *              {
+ *                  "_id": "5a9e7dlqskfa690c53650ab1",
+ *                  "content": "Votre réponse est bonne mais aurait pu être davantage élaborée",
+ *                  "creationTime": "01/01/2019T07:15:31"
+ *              }
+ *          ]
+ *
  *      }
  *    ]
+ *    "submissionTime": "2018-03-06T11:38:47.160Z",
  *    "creationTime": "2018-03-06T11:38:47.160Z",
  *    "__v": 0
  *  }
  */
-router.get('/:copyId', examController.getExamById);
+router.get('/:copyId', copyController.getCopy);
 
-router.post('/:copyId/exercice', examController.newExerciceOfExam);
-router.patch('/:copyId', examController.editExercice);
-router.delete('/:copyId', examController.deleteExerciceById);
+/**
+ * @api {get} /copy/answer/:answerId Get a specific answer
+ * @apiName GetAnswerById
+ * @apiGroup Answers
+ * @apiDescription Returns a JSON containing a given answer ID
+ *
+ * @apiSuccessExample {json} Success-Response:
+ *  {
+ *    "_id": "5a9e7dc7717a690c53650ab1",
+ *    "copyId": "5pod76h7a690c53650ab1",
+ *    "type": "Answers",
+ *    "creationTime": "2018-03-06T11:38:47.160Z",
+ *    "content": "Voici une réponse à une question",
+ *    "grade": 18,
+ *    "question": {
+ *       "_id": "5a9e7dlqskfa690c53650ab1",
+ *       "title": "Quelle est la somme de 2*8 ?",
+ *       "scale": 2,
+ *       "creationTime": "01/01/2019T07:15:31"
+ *     },
+ *     "feedback": [
+ *        {
+ *          "_id": "5a9e7dlqskfa690c53650ab1",
+ *          "content": "Votre réponse est bonne mais aurait pu être davantage élaborée",
+ *          "creationTime": "01/01/2019T07:15:31"
+ *        }
+ *    ]
+ *  }
+ */
+router.get('/answer/:answerId', copyController.getAnswer);
+
+/**
+ * @api {post} /copy Create a new copy
+ * @apiName CreateCopy
+ * @apiGroup Copies
+ * @apiDescription This URL creates a new copy
+ *
+ * @apiParam {json} An object containing all the data necessary for its creation
+ * @apiParamExample {json} Request-Example:
+ *   {
+ *    "title": "Copies 1",
+ *    "authorId": "abcdefghjkqspdsqpjpijp86972",
+ *    "examId": "sqojfdoisqjdoiqj679089076",
+ *   }
+ *
+ * @apiSuccess (201) {json} a JSON object containing the created copy
+ */
+router.post('/', copyController.newCopy);
+
+/**
+ * @api {post} /copy/:copyId/answer Create a new answer associated with a copy
+ * @apiName CreateAnswer
+ * @apiGroup Answers
+ * @apiDescription This URL creates a new copy
+ *
+ * @apiParam {json} An object containing all the data necessary for its creation
+ * @apiParamExample {json} Request-Example:
+ *   {
+ *    "content": "Voici une réponse à une question",
+ *    "_id": "5a9e7d55717a690c53650ab1",
+ *    "grade": 18,
+ *    "questionId": "5slh7d55717a690c53650ab1",
+ *    "copyId": "5a9e7d55717a690c53650ajy",
+ *    "feedbackId": "5a9pou8717a690c53650ab1"
+ *   }
+ *
+ * @apiSuccess (201) {json} a JSON object containing the created answer
+ */
+router.post('/:copyId/answer', copyController.newAnswer);
+
+/**
+ * @api {patch} /copy/:copyId Edit a copy
+ * @apiName EditCopies
+ * @apiGroup Copies
+ * @apiDescription This URL edit a copy from its id
+ *
+ * @apiParam {json} An object with the information you want to edit.
+ * @apiParamExample {json} Request-Example:
+ *   {
+ *    "title": "Exercice 6",
+ *   }
+ *
+ * @apiSuccess (201) {json} a JSON object containing the edited copy
+ */
+router.patch('/:copyId', copyController.editCopy);
+
+/**
+ * @api {delete} /copy/:copyId Delete a copy
+ * @apiName DeleteCopyById
+ * @apiGroup Copies
+ * @apiDescription This deletes a copy
+ *
+ * @apiSuccess (204) {null}
+ */
+router.delete('/:copyId', copyController.deleteCopyById);
 
 module.exports = router;

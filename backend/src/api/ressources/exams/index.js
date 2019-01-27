@@ -221,7 +221,7 @@ router.post('/', examController.newExam);
  *    "authorId": "abcdefghjkqspdsqpjpijp86972",
  *    "sessionId": "sqojfdoisqjdoiqj679089076",
  *   }
- * 
+ *
  * @apiSuccess (201) {String} "Created"
  */
 router.patch('/:examId', examController.editExam);
@@ -233,7 +233,7 @@ router.patch('/:examId', examController.editExam);
  * @apiDescription This URL deletes an exam from its id.
  *
  * @apiSuccess (204) {null}
- *  
+ *
  */
 router.delete('/:examId', examController.deleteExamById);
 
@@ -277,7 +277,7 @@ router.patch('/:examId/exercice/:exerciceId', examController.editExercice);
  * @apiDescription This URL deletes an exercice of an exam based on both ids.
  *
  * @apiSuccess (204) {null}
- *  
+ *
  */
 router.delete('/:examId/exercice/:exerciceId', examController.deleteExerciceById);
 
