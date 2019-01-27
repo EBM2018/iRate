@@ -187,7 +187,7 @@ router.patch('/:copyId', copyController.editCopy);
  * @apiGroup Copies
  * @apiDescription This deletes a copy
  *
- * @apiSuccess (204) {null}
+ * @apiSuccess (204) {null} Empty data
  */
 router.delete('/:copyId', copyController.deleteCopyById);
 
