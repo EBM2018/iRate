@@ -114,7 +114,6 @@ router.get('/', examController.getExams);
  *  }
  */
 
-// TODO: Créer les commentaires pour l'API Doc (pour chaque routes !)
 router.get('/:examId', examController.getExamById);
 
 /**
@@ -192,7 +191,7 @@ router.get('/correction/:examId', examController.getCorrectionById);
  * @apiGroup Exams
  * @apiDescription This URL creates a new exam based on the body request
  *
- * @apiParam {json} An object containing all the data necessary for its creation
+ * @apiParam {json} exam an object containing all the data necessary for its creation
  * @apiParamExample {json} Request-Example:
  *   {
  *    "title": "Examen 3",
@@ -202,7 +201,7 @@ router.get('/correction/:examId', examController.getCorrectionById);
  *    "sessionId": "sqojfdoisqjdoiqj679089076",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the created document
+ * @apiSuccess (201) {json} exam a JSON object containing the created document
  */
 router.post('/', examController.newExam);
 
@@ -212,7 +211,7 @@ router.post('/', examController.newExam);
  * @apiGroup Exams
  * @apiDescription This URL edit an exam from its id.
  *
- * @apiParam {json} an object with the information you want to edit.
+ * @apiParam {json} exam an object with the information you want to edit.
  * @apiParamExample {json} Request-Example:
  *   {
  *    "title": "Examen 3",
@@ -222,7 +221,11 @@ router.post('/', examController.newExam);
  *    "sessionId": "sqojfdoisqjdoiqj679089076",
  *   }
  *
+<<<<<<< HEAD
+ * @apiSuccess (201) {json} exam a JSON object containing the edited document
+=======
  * @apiSuccess (201) {String} "Created"
+>>>>>>> 663c64d0ae06b527e918c59578d486fec5db2b81
  */
 router.patch('/:examId', examController.editExam);
 
@@ -232,7 +235,11 @@ router.patch('/:examId', examController.editExam);
  * @apiGroup Exams
  * @apiDescription This URL deletes an exam from its id.
  *
+<<<<<<< HEAD
+ * @apiSuccess (204) {null} null No data to return.
+=======
  * @apiSuccess (204) {null}
+>>>>>>> 663c64d0ae06b527e918c59578d486fec5db2b81
  *
  */
 router.delete('/:examId', examController.deleteExamById);
@@ -243,14 +250,14 @@ router.delete('/:examId', examController.deleteExamById);
  * @apiGroup Exercices
  * @apiDescription This URL creates a new exercice in the exam requested in the url
  *
- * @apiParam {json} An object containing all the data necessary for its creation
+ * @apiParam {json} exercice an object containing all the data necessary for its creation
  * @apiParamExample {json} Request-Example:
  *   {
  *    "title": "Exercice 1",
  *    "estimatedTime" : "00:45:00",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the created document
+ * @apiSuccess (201) {json} exercice a JSON object containing the created document
  */
 router.post('/:examId/exercice', examController.newExerciceOfExam);
 
@@ -260,23 +267,27 @@ router.post('/:examId/exercice', examController.newExerciceOfExam);
  * @apiGroup Exercices
  * @apiDescription This URL edit an exercice from its id
  *
- * @apiParam {json} An object with the information you want to edit.
+ * @apiParam {json} exercice an object with the information you want to edit.
  * @apiParamExample {json} Request-Example:
  *   {
  *    "title": "Exercice 6",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the edited document
+ * @apiSuccess (201) {json} exercice a JSON object containing the edited document
  */
 router.patch('/:examId/exercice/:exerciceId', examController.editExercice);
 
 /**
  * @api {delete} /exam/:examId/exercice/:exerciceId Delete an exercice
  * @apiName DeleteExercice
- * @apiGroup Exercice
+ * @apiGroup Exercices
  * @apiDescription This URL deletes an exercice of an exam based on both ids.
  *
+<<<<<<< HEAD
+ * @apiSuccess (204) {null} null No data to return
+=======
  * @apiSuccess (204) {null}
+>>>>>>> 663c64d0ae06b527e918c59578d486fec5db2b81
  *
  */
 router.delete('/:examId/exercice/:exerciceId', examController.deleteExerciceById);
@@ -287,7 +298,7 @@ router.delete('/:examId/exercice/:exerciceId', examController.deleteExerciceById
  * @apiGroup Questions
  * @apiDescription This URL creates a new question in the exercice requested
  *
- * @apiParam {json} An object containing all the data necessary for its creation
+ * @apiParam {json} question an object containing all the data necessary for its creation
  * @apiParamExample {json} Request-Example:
  *   {
  *    "title": "Combien vaut 2+2 ?",
@@ -295,7 +306,7 @@ router.delete('/:examId/exercice/:exerciceId', examController.deleteExerciceById
  *    "correction": "2+2 = 4",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the created document
+ * @apiSuccess (201) {json} question a JSON object containing the created document
  */
 router.post('/:examId/exercice/:exerciceId/question', examController.newQuestionOfExercice);
 
@@ -306,13 +317,13 @@ router.post('/:examId/exercice/:exerciceId/question', examController.newQuestion
  * @apiGroup Questions
  * @apiDescription This URL edit a question from its id
  *
- * @apiParam {json} An object containing all the data that you want to edit
+ * @apiParam {json} question an object containing all the data that you want to edit
  * @apiParamExample {json} Request-Example:
  *   {
  *    "title": "Combien vaut 4+8 ?",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the edited document
+ * @apiSuccess (201) {json} question a JSON object containing the edited document
  */
 router.patch('/:examId/exercice/:exerciceId/question/:questionId', examController.editQuestionById);
 
@@ -324,7 +335,7 @@ router.patch('/:examId/exercice/:exerciceId/question/:questionId', examControlle
  * @apiDescription This URL deletes a question from its id
  *
  *
- * @apiSuccess (204) {null}
+ * @apiSuccess (204) {null} null No data to return
  */
 router.delete('/:examId/exercice/:exerciceId/question/:questionId', examController.deleteQuestionById);
 
