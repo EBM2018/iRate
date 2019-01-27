@@ -1,5 +1,6 @@
 {
   "recommendations": [
-    "myax.appidocsnippets"
+    "myax.appidocsnippets",
+    "dbaeumer.vscode-eslint"
   ]
 }
