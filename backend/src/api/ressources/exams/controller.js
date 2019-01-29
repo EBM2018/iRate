@@ -1,5 +1,5 @@
 /* eslint-disable no-trailing-spaces */
-const exam = require('../../../services/exam/model');
+// const exam = require('../../../services/exam/model');
 
 const controller = {
   getExams(req, res) {
