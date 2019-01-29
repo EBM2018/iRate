@@ -20,7 +20,7 @@ const examController = require('./controller.js');
  *  },
  *  {
  *    "_id": "5a9e7dc7Gefjie823650ab1",
- *    "title": "Feedback 2,
+ *    "title": "Feedback 2",
  *    "content": "Très bien, la notion est assimilée",
  *    "creationTime": "2018-03-06T11:38:47.160Z",
  *    "__v": 0
@@ -38,7 +38,7 @@ router.get('/:questionId', examController.getFeedbackByQuestion);
  * @apiParamExample {json} Request-Example:
  *   {
  *    "_id": "5a9e7dcgrfeie823650ab1",
- *    "title": "Feedback 4,
+ *    "title": "Feedback 4",
  *    "content": "A revoir...",
  *    "creationTime": "2019-01-02T11:38:47.160Z",
  *   }
