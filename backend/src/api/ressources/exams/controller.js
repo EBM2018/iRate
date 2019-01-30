@@ -46,9 +46,17 @@ const controller = {
     return res.status(400).send('Bad Request...');
   },
 
-  editExercice(req, res) {
+  async editExercice(req, res, next) {
     if (req.body) {
-      return res.status(200).json(req.body);
+      try {
+        const result = await ExerciceData.update(req.params.exerciceId, req.body);
+        if (!result) {
+          return res.status(404).send('Not Found');
+        }
+        return res.status(200).json(result);
+      } catch (error) {
+        return next(error);
+      }
     } return res.status(400).send('Bad Request...');
   },
 

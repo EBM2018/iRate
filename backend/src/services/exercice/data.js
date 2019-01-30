@@ -9,4 +9,5 @@ module.exports = {
     return exercice;
   },
   getById: async id => Exercice.findById(id),
+  update: async (_id, exercice) => Exercice.findOneAndUpdate({ _id }, exercice),
 };
