@@ -4,7 +4,7 @@ const ExamData = require('../../../services/exam/data');
 
 const controller = {
   async getExams(req, res) {
-    const exams = await ExamData.getExams();
+    const exams = await ExamData.getAll();
     res.status(200).json(exams);
   },
 
