@@ -1,7 +1,7 @@
 {
   "name": "irate",
   "version": "1.0.0",
-  "description": "Une API qui gère des examens, des copies et des corrections",
+  "description": "An API that handle exams, copies and corrections",
   "main": "index.js",
   "scripts": {
     "start": "dotenv nodemon src/index.js",
@@ -15,7 +15,7 @@
     "boilerplate"
   ],
   "apidoc": {
-    "title": "ApiDoc pour le projet Boilerplate",
+    "title": "iRate API documentation",
     "url": "/api",
     "sampleUrl": "http://localhost:4000/api"
   },
