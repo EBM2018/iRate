@@ -8,4 +8,5 @@ module.exports = {
     await exercice.save();
     return question;
   },
+  update: async (_id, question) => Question.findOneAndUpdate({ _id }, question),
 };
