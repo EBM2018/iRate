@@ -1,5 +1,5 @@
 {
-  "name": "filrouge-boilerplate-backend",
+  "name": "iRate",
   "version": "1.0.0",
   "description": "Un squelette de projet backend pour le fil rouge de l'option EBM 2018-2019",
   "main": "index.js",
@@ -26,6 +26,7 @@
     "cors": "^2.8.5",
     "dotenv-cli": "^1.4.0",
     "express": "^4.16.4",
+    "mongodb": "^3.1.13",
     "serve-static": "^1.13.2"
   },
   "devDependencies": {
