@@ -53,7 +53,7 @@ const controller = {
       try {
         const result = await ExerciceData.update(req.params.exerciceId, req.body);
         if (!result) {
-          return res.status(404).send('Not Found');
+          return res.status(404).send('Exercice not Found');
         }
         return res.status(200).json(result);
       } catch (error) {
@@ -67,7 +67,7 @@ const controller = {
       try {
         const result = await ExamData.update(req.params.examId, req.body);
         if (!result) {
-          return res.status(404).send('Not Found');
+          return res.status(404).send('Exam not Found');
         }
         return res.status(200).json(result);
       } catch (error) {
