@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const AnswerSchema = new mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
   content: {
     type: String,
     required: false,
