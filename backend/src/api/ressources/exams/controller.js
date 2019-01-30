@@ -10,11 +10,7 @@ const controller = {
 
   // TODO: ATTENTION A NE PAS ENVOYER LA CORRECTION D'UNE QUESTION.
   async getExamById(req, res) {
-    if (req.params.examId) {
-      const exam = await ExamData.getById(req.params.examId);
-      if (!exam) { return res.status(404).send('Not found'); }
-      return res.status(200).send(exam);
-    } return res.status(400).send('Bad Request...');
+    return res.status(200).send(res.locals.exam);
   },
 
   getCorrectionById(req, res) {
@@ -37,8 +33,7 @@ const controller = {
   async newExerciceOfExam(req, res, next) {
     if (req.body) {
       try {
-        const exam = await ExamData.getById(req.params.examId);
-        if (!exam) { return res.status(404).send('Not found'); }
+        const { exam } = res.locals;
         const result = await ExerciceData.create(req.body, exam);
         return res.status(200).json(result);
       } catch (error) {

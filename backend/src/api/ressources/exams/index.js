@@ -2,6 +2,7 @@ const { Router } = require('express');
 
 const router = new Router();
 const examController = require('./controller.js');
+const examMiddlewares = require('./middlewares.js');
 
 /**
  * @api {get} /exam Get all exams
@@ -115,7 +116,7 @@ router.get('/', examController.getExams);
  */
 
 // TODO: Créer les commentaires pour l'API Doc (pour chaque routes !)
-router.get('/:examId', examController.getExamById);
+router.get('/:examId', examMiddlewares.findExamOrReturn, examController.getExamById);
 
 /**
  * @api {get} /exam/correction/:examId Get a correction
@@ -252,7 +253,7 @@ router.delete('/:examId', examController.deleteExamById);
  *
  * @apiSuccess (201) {json} Exercice a JSON object containing the created document
  */
-router.post('/:examId/exercice', examController.newExerciceOfExam);
+router.post('/:examId/exercice', examMiddlewares.findExamOrReturn, examController.newExerciceOfExam);
 
 /**
  * @api {patch} /exam/:examId/exercice/:exerciceId Edit an exercice
