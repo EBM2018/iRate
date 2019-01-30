@@ -17,10 +17,10 @@ services:
       - "traefik.port=4000"
       - "traefik.network=ebm-filrouge"
       - "com.centurylinklabs.watchtower.enable=true"
-  # mongodb:
-  #   image: mongo
-  #   networks:
-  #     - local
+  mongodb:
+    image: mongo
+    networks:
+      - local
 networks:
   local:
   ebm-filrouge:
