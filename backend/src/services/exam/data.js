@@ -7,4 +7,5 @@ module.exports = {
     const examToSave = new Exam(exam);
     return examToSave.save();
   },
+  update: async (_id, exam) => Exam.findOneAndUpdate({ _id }, exam),
 };
