@@ -2,14 +2,14 @@
   "title": "ApiDoc pour le projet Boilerplate",
   "url": "/api",
   "sampleUrl": "http://localhost:4000/api",
-  "name": "filrouge-boilerplate-backend",
+  "name": "irate",
   "version": "1.0.0",
-  "description": "Un squelette de projet backend pour le fil rouge de l'option EBM 2018-2019",
+  "description": "Une API qui gère des examens, des copies et des corrections",
   "defaultVersion": "0.0.0",
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2019-01-23T10:52:05.238Z",
+    "time": "2019-01-30T08:56:25.359Z",
     "url": "http://apidocjs.com",
     "version": "0.17.7"
   }
