@@ -1,5 +1,6 @@
 const ExamData = require('../../../services/exam/data');
 const ExerciceData = require('../../../services/exercice/data');
+const QuestionData = require('../../../services/question/data');
 
 const controller = {
   async getExams(req, res) {
@@ -55,10 +56,23 @@ const controller = {
     } return res.status(400).send('Bad Request...');
   },
 
-  newQuestionOfExercice(req, res) {
+  /**
+   * Add a new question to an existing exercice
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @param {Object} next
+   */
+  async newQuestionOfExercice(req, res, next) {
     if (req.body) {
-      return res.status(200).json(req.body);
-    } return res.status(400).send('Bad Request...');
+      try {
+        const result = await QuestionData.create(req.body, req.params.exerciceId);
+        return res.status(200).json(result);
+      } catch (error) {
+        return next(error);
+      }
+    }
+    return res.status(400).send('Bad Request...');
   },
 
   editQuestionById(req, res) {

@@ -10,4 +10,5 @@ module.exports = {
     await exam.save();
     return exercice;
   },
+  getById: async id => Exercice.findById(id),
 };
