@@ -35,7 +35,7 @@ router.get('/:questionId', examController.getFeedbackByQuestion);
  * @apiGroup Feedbacks
  * @apiDescription This URL creates a new feedback in the question requested
  *
- * @apiParam {json} An object containing all the data necessary for its creation
+ * @apiParam {json} feedback An object containing all the data necessary for its creation
  * @apiParamExample {json} Request-Example:
  *   {
  *    "_id": "5a9e7dcgrfeie823650ab1",
@@ -53,7 +53,7 @@ router.post('/', examController.newFeedback);
  * @apiGroup Feedbacks
  * @apiDescription This URL edit a feedback from its id
  *
- * @apiParam {json} An object containing all the data that you want to edit
+ * @apiParam {json} feedback An object containing all the data that you want to edit
  * @apiParamExample {json} Request-Example:
  *   {
  *    "content": "Le design pattern n'est pas assimilé",
@@ -67,7 +67,7 @@ router.patch('/:feedbackId', examController.editFeedbackById);
  * @apiName DeleteFeedback
  * @apiGroup Feedbacks
  * @apiDescription This URL deletes a question from its id
- * @apiSuccess (204) {null} Empty date to return
+ * @apiSuccess (204) {null} null Empty date to return
  */
 router.delete('/:feedbackId', examController.deleteFeedbackById);
 

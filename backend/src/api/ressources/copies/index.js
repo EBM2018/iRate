@@ -132,7 +132,7 @@ router.get('/answer/:answerId', copyController.getAnswer);
  * @apiGroup Copies
  * @apiDescription This URL creates a new copy
  *
- * @apiParam {json} An object containing all the data necessary for its creation
+ * @apiParam {json} copy An object containing all the data necessary for its creation
  * @apiParamExample {json} Request-Example:
  *   {
  *    "title": "Copies 1",
@@ -140,7 +140,7 @@ router.get('/answer/:answerId', copyController.getAnswer);
  *    "examId": "sqojfdoisqjdoiqj679089076",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the created copy
+ * @apiSuccess (201) {json} copy a JSON object containing the created copy
  */
 router.post('/', copyController.newCopy);
 
@@ -150,7 +150,7 @@ router.post('/', copyController.newCopy);
  * @apiGroup Answers
  * @apiDescription This URL creates a new copy
  *
- * @apiParam {json} An object containing all the data necessary for its creation
+ * @apiParam {json} answer An object containing all the data necessary for its creation
  * @apiParamExample {json} Request-Example:
  *   {
  *    "content": "Voici une réponse à une question",
@@ -161,7 +161,7 @@ router.post('/', copyController.newCopy);
  *    "feedbackId": "5a9pou8717a690c53650ab1"
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the created answer
+ * @apiSuccess (201) {json} copy a JSON object containing the created answer
  */
 router.post('/:copyId/answer', copyController.newAnswer);
 
@@ -171,13 +171,13 @@ router.post('/:copyId/answer', copyController.newAnswer);
  * @apiGroup Copies
  * @apiDescription This URL edit a copy from its id
  *
- * @apiParam {json} An object with the information you want to edit.
+ * @apiParam {json} copy An object with the information you want to edit.
  * @apiParamExample {json} Request-Example:
  *   {
  *    "title": "Exercice 6",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the edited copy
+ * @apiSuccess (201) {json} copy a JSON object containing the edited copy
  */
 router.patch('/:copyId', copyController.editCopy);
 
@@ -187,7 +187,7 @@ router.patch('/:copyId', copyController.editCopy);
  * @apiGroup Copies
  * @apiDescription This deletes a copy
  *
- * @apiSuccess (204) {null} Empty data
+ * @apiSuccess (204) {null} null Empty data
  */
 router.delete('/:copyId', copyController.deleteCopyById);
 
