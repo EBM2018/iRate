@@ -1,7 +1,11 @@
 {
+<<<<<<< HEAD
   "name": "iRate",
+=======
+  "name": "irate",
+>>>>>>> d487ef0c033deae88032d5da9043627dc3d217a0
   "version": "1.0.0",
-  "description": "Un squelette de projet backend pour le fil rouge de l'option EBM 2018-2019",
+  "description": "Une API qui gère des examens, des copies et des corrections",
   "main": "index.js",
   "scripts": {
     "start": "dotenv nodemon src/index.js",
@@ -26,7 +30,11 @@
     "cors": "^2.8.5",
     "dotenv-cli": "^1.4.0",
     "express": "^4.16.4",
+<<<<<<< HEAD
     "mongodb": "^3.1.13",
+=======
+    "mongoose": "^5.4.6",
+>>>>>>> d487ef0c033deae88032d5da9043627dc3d217a0
     "serve-static": "^1.13.2"
   },
   "devDependencies": {
