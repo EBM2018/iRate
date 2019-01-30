@@ -6,7 +6,11 @@ module.exports = {
       path: 'exercices',
       populate: { path: 'questions' },
     }),
-  getById: async id => Exam.findById(id),
+  getById: async id => Exam.findById(id)
+    .populate({
+      path: 'exercices',
+      populate: { path: 'questions' },
+    }),
   create: (exam) => {
     const examToSave = new Exam(exam);
     return examToSave.save();
