@@ -35,7 +35,9 @@ const controller = {
   async newExerciceOfExam(req, res, next) {
     if (req.body) {
       try {
-        const result = await ExerciceData.create(req.body, req.params.examId);
+        const exam = await ExamData.getById(req.params.examId);
+        if (!exam) { return res.status(404).send('Not found'); }
+        const result = await ExerciceData.create(req.body, exam);
         return res.status(200).json(result);
       } catch (error) {
         return next(error);
@@ -74,7 +76,11 @@ const controller = {
   async newQuestionOfExercice(req, res, next) {
     if (req.body) {
       try {
-        const result = await QuestionData.create(req.body, req.params.exerciceId);
+        const exercice = await ExerciceData.getById(req.params.exerciceId);
+        if (!exercice) {
+          return res.status(404).send('Not found');
+        }
+        const result = await QuestionData.create(req.body, exercice);
         return res.status(200).json(result);
       } catch (error) {
         return next(error);
