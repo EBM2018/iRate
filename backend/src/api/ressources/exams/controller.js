@@ -116,15 +116,28 @@ const controller = {
     return res.status(400).send('Bad Request...');
   },
 
-  deleteExamById(req, res) {
-    if (req.params.id) {
-      return res.status(200).send(req.params.id);
-    } return res.status(400).send('Bad Request...');
+  async deleteExamById(req, res, next) {
+    try {
+      res.locals.exam.remove();
+      res.status(204).send();
+    } catch (error) {
+      next(error);
+    }
   },
 
-  deleteExerciceById(req, res) {
-    if (req.params.id) {
-      return res.status(200).send(req.params.id);
+  deleteExerciceById(req, res, next) {
+    const { exerciceId } = req.params;
+    const { exam } = res.locals;
+    if (exerciceId) {
+      try {
+        const deletePromise = ExerciceData.delete(exerciceId);
+        exam.exercices = exam.exercices.filter(id => id !== exerciceId);
+        const savePromise = exam.save();
+        Promise.all([deletePromise, savePromise]);
+        return res.status(204).send();
+      } catch (error) {
+        next(error);
+      }
     } return res.status(400).send('Bad Request...');
   },
 

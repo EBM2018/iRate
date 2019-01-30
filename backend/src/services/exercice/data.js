@@ -10,4 +10,5 @@ module.exports = {
   },
   getById: async id => Exercice.findById(id),
   update: async (_id, exercice) => Exercice.findOneAndUpdate({ _id }, exercice),
+  delete: async _id => Exercice.findByIdAndDelete(_id),
 };

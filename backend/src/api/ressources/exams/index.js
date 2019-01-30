@@ -236,7 +236,7 @@ router.patch('/:examId', ExamController.editExam);
  * @apiSuccess (204) {null} Empty date to return
  *
  */
-router.delete('/:examId', ExamController.deleteExamById);
+router.delete('/:examId', ExamMiddlewares.findExamOrReturn, ExamController.deleteExamById);
 
 /**
  * @api {post} /exam/:examId/exercice Create a new exercice
@@ -280,7 +280,7 @@ router.patch('/:examId/exercice/:exerciceId', ExamController.editExercice);
  * @apiSuccess (204) {null} Empty date to return
  *
  */
-router.delete('/:examId/exercice/:exerciceId', ExamController.deleteExerciceById);
+router.delete('/:examId/exercice/:exerciceId', ExamMiddlewares.findExamOrReturn, ExamController.deleteExerciceById);
 
 /**
  * @api {post} /exam/:examId/exercice/:exerciceId/question Create a new question
