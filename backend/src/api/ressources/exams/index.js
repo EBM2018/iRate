@@ -202,7 +202,7 @@ router.get('/correction/:examId', examController.getCorrectionById);
  *    "sessionId": "sqojfdoisqjdoiqj679089076",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the created document
+ * @apiSuccess (201) {json} Exam a JSON object containing the created document
  */
 router.post('/', examController.newExam);
 
@@ -222,7 +222,7 @@ router.post('/', examController.newExam);
  *    "sessionId": "sqojfdoisqjdoiqj679089076",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the edited document
+ * @apiSuccess (201) {json} Exam a JSON object containing the edited document
  */
 router.patch('/:examId', examController.editExam);
 
@@ -266,7 +266,7 @@ router.post('/:examId/exercice', examController.newExerciceOfExam);
  *    "title": "Exercice 6",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the edited document
+ * @apiSuccess (201) {json} Exercice a JSON object containing the edited document
  */
 router.patch('/:examId/exercice/:exerciceId', examController.editExercice);
 
@@ -295,10 +295,9 @@ router.delete('/:examId/exercice/:exerciceId', examController.deleteExerciceById
  *    "correction": "2+2 = 4",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the created document
+ * @apiSuccess (201) {json} Question a JSON object containing the created document
  */
 router.post('/:examId/exercice/:exerciceId/question', examController.newQuestionOfExercice);
-
 
 /**
  * @api {patch} /exam/:examId/exercice/:exerciceId/question/:questionId Edit a question
@@ -312,7 +311,7 @@ router.post('/:examId/exercice/:exerciceId/question', examController.newQuestion
  *    "title": "Combien vaut 4+8 ?",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the edited document
+ * @apiSuccess (201) {json} Question a JSON object containing the edited document
  */
 router.patch('/:examId/exercice/:exerciceId/question/:questionId', examController.editQuestionById);
 
