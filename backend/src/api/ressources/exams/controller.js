@@ -1,9 +1,11 @@
 /* eslint-disable no-trailing-spaces */
 // const exam = require('../../../services/exam/model');
+const ExamData = require('../../../services/exam/data');
 
 const controller = {
-  getExams(req, res) {
-    return res.status(200).send('It Worked...');
+  async getExams(req, res) {
+    const exams = await ExamData.getExams();
+    res.status(200).json(exams);
   },
 
   // TODO: ATTENTION A NE PAS ENVOYER LA CORRECTION D'UNE QUESTION.
@@ -19,9 +21,14 @@ const controller = {
     } return res.status(400).send('Bad Request...');
   },
 
-  newExam(req, res) {
+  async newExam(req, res, next) {
     if (req.body) {
-      return res.status(200).json(req.body);
+      try {
+        const result = await ExamData.create(req.body);
+        return res.status(200).json(result);        
+      } catch (error) {
+        return next(error);
+      }
     } return res.status(400).send('Bad Request...');
   },
 
