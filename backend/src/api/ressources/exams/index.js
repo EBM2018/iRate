@@ -273,7 +273,7 @@ router.patch('/:examId/exercice/:exerciceId', examController.editExercice);
 /**
  * @api {delete} /exam/:examId/exercice/:exerciceId Delete an exercice
  * @apiName DeleteExercice
- * @apiGroup Exercice
+ * @apiGroup Exercices
  * @apiDescription This URL deletes an exercice of an exam based on both ids.
  *
  * @apiSuccess (204) {null} Empty date to return
