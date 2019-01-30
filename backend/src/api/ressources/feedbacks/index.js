@@ -44,7 +44,7 @@ router.get('/:questionId', examController.getFeedbackByQuestion);
  *    "creationTime": "2019-01-02T11:38:47.160Z",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the created document
+ * @apiSuccess (201) {json} Feedback a JSON object containing the created document
  */
 router.post('/', examController.newFeedback);
 /**
@@ -59,7 +59,7 @@ router.post('/', examController.newFeedback);
  *    "content": "Le design pattern n'est pas assimilé",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the edited document
+ * @apiSuccess (201) {json} Feedback a JSON object containing the edited document
  */
 router.patch('/:feedbackId', examController.editFeedbackById);
 /**
