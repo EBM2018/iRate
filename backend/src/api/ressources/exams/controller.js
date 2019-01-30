@@ -89,10 +89,26 @@ const controller = {
     return res.status(400).send('Bad Request...');
   },
 
-  editQuestionById(req, res) {
+  /**
+   * Edit a question based on the ID
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @param {Object} next
+   */
+  async editQuestionById(req, res, next) {
     if (req.body) {
-      return res.status(200).json(req.body);
-    } return res.status(400).send('Bad Request...');
+      try {
+        const result = await QuestionData.update(req.params.questionId, req.body);
+        if (!result) {
+          return res.status(404).send('Not Found');
+        }
+        return res.status(200).json(result);
+      } catch (error) {
+        return next(error);
+      }
+    }
+    return res.status(400).send('Bad Request...');
   },
 
   deleteExamById(req, res) {
