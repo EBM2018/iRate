@@ -250,7 +250,7 @@ router.delete('/:examId', examController.deleteExamById);
  *    "estimatedTime" : "00:45:00",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the created document
+ * @apiSuccess (201) {json} Exercice a JSON object containing the created document
  */
 router.post('/:examId/exercice', examController.newExerciceOfExam);
 

@@ -1,6 +1,5 @@
-/* eslint-disable no-trailing-spaces */
-// const exam = require('../../../services/exam/model');
 const ExamData = require('../../../services/exam/data');
+const ExerciceData = require('../../../services/exercice/data');
 
 const controller = {
   async getExams(req, res) {
@@ -25,17 +24,23 @@ const controller = {
     if (req.body) {
       try {
         const result = await ExamData.create(req.body);
-        return res.status(200).json(result);        
+        return res.status(200).json(result);
       } catch (error) {
         return next(error);
       }
     } return res.status(400).send('Bad Request...');
   },
 
-  newExerciceOfExam(req, res) {
+  async newExerciceOfExam(req, res, next) {
     if (req.body) {
-      return res.status(200).json(req.body);
-    } return res.status(400).send('Bad Request...');
+      try {
+        const result = await ExerciceData.create(req.body, req.params.examId);
+        return res.status(200).json(result);
+      } catch (error) {
+        return next(error);
+      }
+    }
+    return res.status(400).send('Bad Request...');
   },
 
   editExercice(req, res) {
