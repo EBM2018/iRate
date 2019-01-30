@@ -9,9 +9,11 @@ const controller = {
   },
 
   // TODO: ATTENTION A NE PAS ENVOYER LA CORRECTION D'UNE QUESTION.
-  getExamById(req, res) {
-    if (req.params.id) {
-      return res.status(200).send(req.params.id);
+  async getExamById(req, res) {
+    if (req.params.examId) {
+      const exam = await ExamData.getById(req.params.examId);
+      if (!exam) { return res.status(404).send('Not found'); }
+      return res.status(200).send(exam);
     } return res.status(400).send('Bad Request...');
   },
 
