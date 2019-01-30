@@ -13,8 +13,8 @@
             "group": "Parameter",
             "type": "json",
             "optional": false,
-            "field": "An",
-            "description": "<p>object containing all the data necessary for its creation</p>"
+            "field": "answer",
+            "description": "<p>An object containing all the data necessary for its creation</p>"
           }
         ]
       },
@@ -33,8 +33,8 @@
             "group": "201",
             "type": "json",
             "optional": false,
-            "field": "a",
-            "description": "<p>JSON object containing the created answer</p>"
+            "field": "copy",
+            "description": "<p>a JSON object containing the created answer</p>"
           }
         ]
       }
@@ -87,8 +87,8 @@
             "group": "Parameter",
             "type": "json",
             "optional": false,
-            "field": "An",
-            "description": "<p>object containing all the data necessary for its creation</p>"
+            "field": "copy",
+            "description": "<p>An object containing all the data necessary for its creation</p>"
           }
         ]
       },
@@ -107,8 +107,8 @@
             "group": "201",
             "type": "json",
             "optional": false,
-            "field": "a",
-            "description": "<p>JSON object containing the created copy</p>"
+            "field": "copy",
+            "description": "<p>a JSON object containing the created copy</p>"
           }
         ]
       }
@@ -136,8 +136,8 @@
             "group": "204",
             "type": "null",
             "optional": false,
-            "field": "Empty",
-            "description": "<p>data</p>"
+            "field": "null",
+            "description": "<p>Empty data</p>"
           }
         ]
       }
@@ -165,8 +165,8 @@
             "group": "Parameter",
             "type": "json",
             "optional": false,
-            "field": "An",
-            "description": "<p>object with the information you want to edit.</p>"
+            "field": "copy",
+            "description": "<p>An object with the information you want to edit.</p>"
           }
         ]
       },
@@ -185,8 +185,8 @@
             "group": "201",
             "type": "json",
             "optional": false,
-            "field": "a",
-            "description": "<p>JSON object containing the edited copy</p>"
+            "field": "copy",
+            "description": "<p>a JSON object containing the edited copy</p>"
           }
         ]
       }
@@ -264,8 +264,8 @@
             "group": "Parameter",
             "type": "json",
             "optional": false,
-            "field": "An",
-            "description": "<p>object containing all the data necessary for its creation</p>"
+            "field": "exam",
+            "description": "<p>An object containing all the data necessary for its creation</p>"
           }
         ]
       },
@@ -313,8 +313,8 @@
             "group": "204",
             "type": "null",
             "optional": false,
-            "field": "Empty",
-            "description": "<p>date to return</p>"
+            "field": "null",
+            "description": "<p>Empty date to return</p>"
           }
         ]
       }
@@ -417,8 +417,8 @@
             "group": "Parameter",
             "type": "json",
             "optional": false,
-            "field": "an",
-            "description": "<p>object with the information you want to edit.</p>"
+            "field": "exam",
+            "description": "<p>an object with the information you want to edit.</p>"
           }
         ]
       },
@@ -466,8 +466,8 @@
             "group": "Parameter",
             "type": "json",
             "optional": false,
-            "field": "An",
-            "description": "<p>object containing all the data necessary for its creation</p>"
+            "field": "exercice",
+            "description": "<p>An object containing all the data necessary for its creation</p>"
           }
         ]
       },
@@ -515,8 +515,8 @@
             "group": "204",
             "type": "null",
             "optional": false,
-            "field": "Empty",
-            "description": "<p>date to return</p>"
+            "field": "null",
+            "description": "<p>Empty date to return</p>"
           }
         ]
       }
@@ -544,8 +544,8 @@
             "group": "Parameter",
             "type": "json",
             "optional": false,
-            "field": "An",
-            "description": "<p>object with the information you want to edit.</p>"
+            "field": "exercice",
+            "description": "<p>An object with the information you want to edit.</p>"
           }
         ]
       },
@@ -564,8 +564,8 @@
             "group": "201",
             "type": "json",
             "optional": false,
-            "field": "a",
-            "description": "<p>JSON object containing the edited document</p>"
+            "field": "exercice",
+            "description": "<p>a JSON object containing the edited document</p>"
           }
         ]
       }
@@ -593,8 +593,8 @@
             "group": "Parameter",
             "type": "json",
             "optional": false,
-            "field": "An",
-            "description": "<p>object containing all the data necessary for its creation</p>"
+            "field": "feedback",
+            "description": "<p>An object containing all the data necessary for its creation</p>"
           }
         ]
       },
@@ -642,8 +642,8 @@
             "group": "204",
             "type": "null",
             "optional": false,
-            "field": "Empty",
-            "description": "<p>date to return</p>"
+            "field": "null",
+            "description": "<p>Empty date to return</p>"
           }
         ]
       }
@@ -671,8 +671,8 @@
             "group": "Parameter",
             "type": "json",
             "optional": false,
-            "field": "An",
-            "description": "<p>object containing all the data that you want to edit</p>"
+            "field": "feedback",
+            "description": "<p>An object containing all the data that you want to edit</p>"
           }
         ]
       },
@@ -745,8 +745,8 @@
             "group": "Parameter",
             "type": "json",
             "optional": false,
-            "field": "An",
-            "description": "<p>object containing all the data necessary for its creation</p>"
+            "field": "question",
+            "description": "<p>An object containing all the data necessary for its creation</p>"
           }
         ]
       },
@@ -765,8 +765,8 @@
             "group": "201",
             "type": "json",
             "optional": false,
-            "field": "a",
-            "description": "<p>JSON object containing the created document</p>"
+            "field": "question",
+            "description": "<p>a JSON object containing the created document</p>"
           }
         ]
       }
@@ -794,8 +794,8 @@
             "group": "204",
             "type": "null",
             "optional": false,
-            "field": "Empty",
-            "description": "<p>date to return</p>"
+            "field": "null",
+            "description": "<p>Empty date to return</p>"
           }
         ]
       }
@@ -823,8 +823,8 @@
             "group": "Parameter",
             "type": "json",
             "optional": false,
-            "field": "An",
-            "description": "<p>object containing all the data that you want to edit</p>"
+            "field": "question",
+            "description": "<p>An object containing all the data that you want to edit</p>"
           }
         ]
       },
@@ -843,8 +843,8 @@
             "group": "201",
             "type": "json",
             "optional": false,
-            "field": "a",
-            "description": "<p>JSON object containing the edited document</p>"
+            "field": "question",
+            "description": "<p>a JSON object containing the edited document</p>"
           }
         ]
       }
