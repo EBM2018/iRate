@@ -8,5 +8,6 @@ module.exports = {
     await exercice.save();
     return question;
   },
+  getById: async id => Question.findById(id),
   update: async (_id, question) => Question.findOneAndUpdate({ _id }, question),
 };

@@ -280,7 +280,7 @@ router.patch('/:examId/exercice/:exerciceId', ExamController.editExercice);
  * @apiSuccess (204) {null} Empty date to return
  *
  */
-router.delete('/:examId/exercice/:exerciceId', ExamMiddlewares.findExamOrReturn, ExamController.deleteExerciceById);
+router.delete('/:examId/exercice/:exerciceId', ExamMiddlewares.findExamOrReturn, ExamMiddlewares.findExerciceOrReturn, ExamController.deleteExerciceById);
 
 /**
  * @api {post} /exam/:examId/exercice/:exerciceId/question Create a new question
@@ -326,6 +326,6 @@ router.patch('/:examId/exercice/:exerciceId/question/:questionId', ExamControlle
  *
  * @apiSuccess (204) {null} Empty date to return
  */
-router.delete('/:examId/exercice/:exerciceId/question/:questionId', ExamController.deleteQuestionById);
+router.delete('/:examId/exercice/:exerciceId/question/:questionId', ExamMiddlewares.findExamOrReturn, ExamMiddlewares.findExerciceOrReturn, ExamMiddlewares.findQuestionOrReturn, ExamController.deleteQuestionById);
 
 module.exports = router;
