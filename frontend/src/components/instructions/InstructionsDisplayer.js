@@ -1,0 +1,72 @@
+import React, {Component} from 'react'
+
+export default class InstructionsDisplayer extends Component {
+    render() {
+        return (
+            <>
+                <div className="box notification is-info">
+                    <div className="content">
+                        <p className="title">Indiquez les détails du sujet</p>
+                    </div>
+                </div>
+                <div className="box">
+                    <div className="columns">
+                        <div className="column is-two-thirds">
+                            <span className="title is-5">Module de l'épreuve:</span>
+                        </div>
+                        <div className="column is-one-third has-text-right">
+                            <div className={this.props.dropdownModule ? "dropdown is-active is-right" : "dropdown is-right"} onClick={this.props.triggerDropdown("dropdownModule")}>
+                                <div className="dropdown-trigger">
+                                    <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                                        <span>Dropdown button</span>
+                                        <span className="icon is-small"><i className="fas fa-angle-down" aria-hidden="true"/></span>
+                                    </button>
+                                </div>
+                                <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                                    <div className="dropdown-content">
+                                        <a href="#" className="dropdown-item">test</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-two-thirds">
+                            <span className="title is-5">Sélectionner une séance:</span>
+                        </div>
+                        <div className="column is-one-third has-text-right">
+                            <div className={this.props.dropdownClass ? "dropdown is-active is-right" : "dropdown is-right"} onClick={this.props.triggerDropdown("dropdownClass")}>
+                                <div className="dropdown-trigger">
+                                    <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                                        <span>Choisir</span>
+                                        <span className="icon is-small"><i className="fas fa-angle-down" aria-hidden="true"/></span>
+                                    </button>
+                                </div>
+                                <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                                    <div className="dropdown-content">
+                                        <a href="#" className="dropdown-item">test</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-half"><span className="title is-5">Intitulé de l'examen:</span></div>
+                        <div className="column is-half"><input className="input" type="text"
+                                                               placeholder="Epreuve..."/></div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-half"><span className="title is-5">Rappels:</span></div>
+                        <div className="column is-half"><textarea className="textarea"
+                                                                  placeholder="Rappels..."/></div>
+                    </div>
+                    <div className="columns">
+                        <div className="column is-half"><span className="title is-5">Consignes:</span></div>
+                        <div className="column is-half"><textarea className="textarea"
+                                                                  placeholder="Consignes..."/></div>
+                    </div>
+                </div>
+            </>
+        );
+    }
+}
