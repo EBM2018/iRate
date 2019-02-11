@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React from 'react';
 
 const NextButton = (props) =>  (
             <div to={props.route} className="button is-rounded is-info is-large">
@@ -6,4 +6,3 @@ const NextButton = (props) =>  (
             </div>);
 
 export default NextButton;
-
