@@ -1,7 +1,13 @@
 import React, {Component} from 'react'
-import Exam from '../exam/Exam';
+import Exam from '../Exam/Exam';
+import {connect} from 'react-redux';
+import {getExams} from '../../../redux/exams/actions';
 
-export default class LayoutApp extends Component {
+class LayoutApp extends Component {
+
+    componentDidMount() {
+        this.props.fetchExams();
+    }
 
     render() {
         return (
@@ -11,3 +17,10 @@ export default class LayoutApp extends Component {
         );
     }
 }
+
+export default connect(state => ({
+    exams: state.exams.exams,
+    loading: state.exams.loading,
+}), dispatch => ({
+    fetchExams: () => dispatch(getExams()),
+}))(LayoutApp);
