@@ -32,7 +32,7 @@ export default class InstructionsDisplayer extends Component {
                                 </div>
                                 <div className="dropdown-menu" id="dropdown-menu" role="menu">
                                     <div className="dropdown-content">
-                                        <a href="#" className="dropdown-item">test</a>
+                                        <div className="dropdown-item">test</div>
                                     </div>
                                 </div>
                             </div>
@@ -52,7 +52,7 @@ export default class InstructionsDisplayer extends Component {
                                 </div>
                                 <div className="dropdown-menu" id="dropdown-menu" role="menu">
                                     <div className="dropdown-content">
-                                        <a href="#" className="dropdown-item">test</a>
+                                        <div className="dropdown-item">test</div>
                                     </div>
                                 </div>
                             </div>
