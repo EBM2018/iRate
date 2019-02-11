@@ -9,7 +9,6 @@ export default class Exam extends Component {
                 <div className="tile is-parent">
                     <div className="tile is-child">
                         <Instructions/>
-                        <NextButton route="test"/>
                     </div>
                 </div>
             </>
