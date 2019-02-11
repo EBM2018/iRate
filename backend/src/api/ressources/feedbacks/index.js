@@ -35,7 +35,7 @@ router.get('/:questionId', ExamController.getFeedbackByQuestion);
  * @apiGroup Feedbacks
  * @apiDescription This URL creates a new feedback in the question requested
  *
- * @apiParam {json} An object containing all the data necessary for its creation
+ * @apiParam {json} feedback An object containing all the data necessary for its creation
  * @apiParamExample {json} Request-Example:
  *   {
  *    "_id": "5a9e7dcgrfeie823650ab1",
@@ -44,7 +44,7 @@ router.get('/:questionId', ExamController.getFeedbackByQuestion);
  *    "creationTime": "2019-01-02T11:38:47.160Z",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the created document
+ * @apiSuccess (201) {json} Feedback a JSON object containing the created document
  */
 router.post('/', ExamController.newFeedback);
 /**
@@ -53,13 +53,13 @@ router.post('/', ExamController.newFeedback);
  * @apiGroup Feedbacks
  * @apiDescription This URL edit a feedback from its id
  *
- * @apiParam {json} An object containing all the data that you want to edit
+ * @apiParam {json} feedback An object containing all the data that you want to edit
  * @apiParamExample {json} Request-Example:
  *   {
  *    "content": "Le design pattern n'est pas assimilé",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the edited document
+ * @apiSuccess (201) {json} Feedback a JSON object containing the edited document
  */
 router.patch('/:feedbackId', ExamController.editFeedbackById);
 /**
@@ -67,7 +67,7 @@ router.patch('/:feedbackId', ExamController.editFeedbackById);
  * @apiName DeleteFeedback
  * @apiGroup Feedbacks
  * @apiDescription This URL deletes a question from its id
- * @apiSuccess (204) {null} Empty date to return
+ * @apiSuccess (204) {null} null Empty date to return
  */
 router.delete('/:feedbackId', ExamController.deleteFeedbackById);
 

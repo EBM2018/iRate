@@ -132,7 +132,7 @@ router.get('/answer/:answerId', CopyController.getAnswer);
  * @apiGroup Copies
  * @apiDescription This URL creates a new copy
  *
- * @apiParam {json} An object containing all the data necessary for its creation
+ * @apiParam {json} copy An object containing all the data necessary for its creation
  * @apiParamExample {json} Request-Example:
  *   {
  *    "title": "Copies 1",
@@ -150,7 +150,7 @@ router.post('/', CopyController.newCopy);
  * @apiGroup Answers
  * @apiDescription This URL creates a new copy
  *
- * @apiParam {json} An object containing all the data necessary for its creation
+ * @apiParam {json} answer An object containing all the data necessary for its creation
  * @apiParamExample {json} Request-Example:
  *   {
  *    "content": "Voici une réponse à une question",
@@ -171,7 +171,7 @@ router.post('/:copyId/answer', CopyController.newAnswer);
  * @apiGroup Copies
  * @apiDescription This URL edit a copy from its id
  *
- * @apiParam {json} An object with the information you want to edit.
+ * @apiParam {json} copy An object with the information you want to edit.
  * @apiParamExample {json} Request-Example:
  *   {
  *    "title": "Exercice 6",
@@ -187,7 +187,7 @@ router.patch('/:copyId', CopyController.editCopy);
  * @apiGroup Copies
  * @apiDescription This deletes a copy
  *
- * @apiSuccess (204) {null} Empty data
+ * @apiSuccess (204) {null} null Empty data
  */
 router.delete('/:copyId', CopyController.deleteCopyById);
 

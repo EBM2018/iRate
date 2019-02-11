@@ -114,8 +114,6 @@ router.get('/', ExamController.getExams);
  *    "__v": 0
  *  }
  */
-
-// TODO: Créer les commentaires pour l'API Doc (pour chaque routes !)
 router.get('/:examId', ExamMiddlewares.findExamOrReturn, ExamController.getExamById);
 
 /**
@@ -193,7 +191,7 @@ router.get('/correction/:examId', ExamController.getCorrectionById);
  * @apiGroup Exams
  * @apiDescription This URL creates a new exam based on the body request
  *
- * @apiParam {json} An object containing all the data necessary for its creation
+ * @apiParam {json} exam An object containing all the data necessary for its creation
  * @apiParamExample {json} Request-Example:
  *   {
  *    "title": "Examen 3",
@@ -213,7 +211,7 @@ router.post('/', ExamController.newExam);
  * @apiGroup Exams
  * @apiDescription This URL edit an exam from its id.
  *
- * @apiParam {json} an object with the information you want to edit.
+ * @apiParam {json} exam an object with the information you want to edit.
  * @apiParamExample {json} Request-Example:
  *   {
  *    "title": "Examen 3",
@@ -233,7 +231,7 @@ router.patch('/:examId', ExamController.editExam);
  * @apiGroup Exams
  * @apiDescription This URL deletes an exam from its id.
  *
- * @apiSuccess (204) {null} Empty date to return
+ * @apiSuccess (204) {null} null Empty date to return
  *
  */
 router.delete('/:examId', ExamMiddlewares.findExamOrReturn, ExamController.deleteExamById);
@@ -244,7 +242,7 @@ router.delete('/:examId', ExamMiddlewares.findExamOrReturn, ExamController.delet
  * @apiGroup Exercices
  * @apiDescription This URL creates a new exercice in the exam requested in the url
  *
- * @apiParam {json} An object containing all the data necessary for its creation
+ * @apiParam {json} exercice An object containing all the data necessary for its creation
  * @apiParamExample {json} Request-Example:
  *   {
  *    "title": "Exercice 1",
@@ -261,7 +259,7 @@ router.post('/:examId/exercice', ExamMiddlewares.findExamOrReturn, ExamControlle
  * @apiGroup Exercices
  * @apiDescription This URL edit an exercice from its id
  *
- * @apiParam {json} An object with the information you want to edit.
+ * @apiParam {json} exercice An object with the information you want to edit.
  * @apiParamExample {json} Request-Example:
  *   {
  *    "title": "Exercice 6",
@@ -277,7 +275,7 @@ router.patch('/:examId/exercice/:exerciceId', ExamController.editExercice);
  * @apiGroup Exercices
  * @apiDescription This URL deletes an exercice of an exam based on both ids.
  *
- * @apiSuccess (204) {null} Empty date to return
+ * @apiSuccess (204) {null} null Empty date to return
  *
  */
 router.delete('/:examId/exercice/:exerciceId', ExamMiddlewares.findExamOrReturn, ExamMiddlewares.findExerciceOrReturn, ExamController.deleteExerciceById);
@@ -288,7 +286,7 @@ router.delete('/:examId/exercice/:exerciceId', ExamMiddlewares.findExamOrReturn,
  * @apiGroup Questions
  * @apiDescription This URL creates a new question in the exercice requested
  *
- * @apiParam {json} An object containing all the data necessary for its creation
+ * @apiParam {json} question An object containing all the data necessary for its creation
  * @apiParamExample {json} Request-Example:
  *   {
  *    "title": "Combien vaut 2+2 ?",
@@ -306,7 +304,7 @@ router.post('/:examId/exercice/:exerciceId/question', ExamController.newQuestion
  * @apiGroup Questions
  * @apiDescription This URL edit a question from its id
  *
- * @apiParam {json} An object containing all the data that you want to edit
+ * @apiParam {json} question An object containing all the data that you want to edit
  * @apiParamExample {json} Request-Example:
  *   {
  *    "title": "Combien vaut 4+8 ?",
@@ -324,7 +322,7 @@ router.patch('/:examId/exercice/:exerciceId/question/:questionId', ExamControlle
  * @apiDescription This URL deletes a question from its id
  *
  *
- * @apiSuccess (204) {null} Empty date to return
+ * @apiSuccess (204) {null} null Empty date to return
  */
 router.delete('/:examId/exercice/:exerciceId/question/:questionId', ExamMiddlewares.findExamOrReturn, ExamMiddlewares.findExerciceOrReturn, ExamMiddlewares.findQuestionOrReturn, ExamController.deleteQuestionById);
 
