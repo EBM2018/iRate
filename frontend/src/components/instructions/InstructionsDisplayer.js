@@ -1,6 +1,14 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types';
 
 export default class InstructionsDisplayer extends Component {
+    static propTypes = {
+        triggerDropdown: PropTypes.func.isRequired,
+        dropdownModule: PropTypes.func.dropdownModule,
+        handleInput: PropTypes.func.handleInput,
+        dropdownClass: PropTypes.func.dropdownClass,
+    };
+
     render() {
         return (
             <>
