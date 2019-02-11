@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Instructions from "../instructions/Instructions";
+import Instructions from '../Instructions/Instructions';
 
 export default class Exam extends Component {
     render() {
