@@ -19,7 +19,7 @@ const ExamSchema = new mongoose.Schema({
   },
   exercices: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Exercice',
+    ref: 'ExerciceDisplayer',
   }],
   creationTime: {
     type: Date,

@@ -174,7 +174,7 @@ router.post('/:copyId/answer', copyController.newAnswer);
  * @apiParam {json} An object with the information you want to edit.
  * @apiParamExample {json} Request-Example:
  *   {
- *    "title": "Exercice 6",
+ *    "title": "ExerciceDisplayer 6",
  *   }
  *
  * @apiSuccess (201) {json} a JSON object containing the edited copy

@@ -70,7 +70,7 @@ router.get('/', examController.getExams);
  *    "exercices" : [
  *      {
  *        "_id": "5a9e7dc7832a690c53650ab1"
- *        "title": "Exercice 1",
+ *        "title": "ExerciceDisplayer 1",
  *        "estimatedTime": "01:00:00",
  *        "creationTime": "01/01/2019T07:00:00",
  *        "questions": [
@@ -90,7 +90,7 @@ router.get('/', examController.getExams);
  *      },
  *      {
  *        "_id": "5a9e7dc7832jfhdc53650ab1"
- *        "title": "Exercice 2",
+ *        "title": "ExerciceDisplayer 2",
  *        "estimatedTime": "00:30:00",
  *        "creationTime": "01/01/2019T07:15:00",
  *        "questions": [
@@ -140,7 +140,7 @@ router.get('/:examId', examController.getExamById);
  *    "exercices" : [
  *      {
  *        "_id": "5a9e7dc7832a690c53650ab1"
- *        "title": "Exercice 1",
+ *        "title": "ExerciceDisplayer 1",
  *        "estimatedTime": "01:00:00",
  *        "creationTime": "01/01/2019T07:00:00",
  *        "questions": [
@@ -162,7 +162,7 @@ router.get('/:examId', examController.getExamById);
  *      },
  *      {
  *        "_id": "5a9e7dc7832jfhdc53650ab1"
- *        "title": "Exercice 2",
+ *        "title": "ExerciceDisplayer 2",
  *        "estimatedTime": "00:30:00",
  *        "creationTime": "01/01/2019T07:15:00",
  *        "questions": [
@@ -246,7 +246,7 @@ router.delete('/:examId', examController.deleteExamById);
  * @apiParam {json} An object containing all the data necessary for its creation
  * @apiParamExample {json} Request-Example:
  *   {
- *    "title": "Exercice 1",
+ *    "title": "ExerciceDisplayer 1",
  *    "estimatedTime" : "00:45:00",
  *   }
  *
@@ -263,7 +263,7 @@ router.post('/:examId/exercice', examController.newExerciceOfExam);
  * @apiParam {json} An object with the information you want to edit.
  * @apiParamExample {json} Request-Example:
  *   {
- *    "title": "Exercice 6",
+ *    "title": "ExerciceDisplayer 6",
  *   }
  *
  * @apiSuccess (201) {json} a JSON object containing the edited document

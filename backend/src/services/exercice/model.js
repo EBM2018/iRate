@@ -13,7 +13,7 @@ const ExerciceSchema = new mongoose.Schema({
   },
   questions: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Question',
+    ref: 'QuestionDisplayer',
   }],
   creationTime: {
     type: Date,
@@ -21,4 +21,4 @@ const ExerciceSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Exercice', ExerciceSchema);
+module.exports = mongoose.model('ExerciceDisplayer', ExerciceSchema);
