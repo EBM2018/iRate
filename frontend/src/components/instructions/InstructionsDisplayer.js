@@ -52,17 +52,24 @@ export default class InstructionsDisplayer extends Component {
                     </div>
                     <div className="columns">
                         <div className="column is-half"><span className="title is-5">Intitulé de l'examen:</span></div>
-                        <div className="column is-half"><input className="input" type="text"
+                        <div className="column is-half"><input className="input"
+                                                               name="title"
+                                                               onChange={this.props.handleInput}
+                                                               type="text"
                                                                placeholder="Epreuve..."/></div>
                     </div>
                     <div className="columns">
                         <div className="column is-half"><span className="title is-5">Rappels:</span></div>
                         <div className="column is-half"><textarea className="textarea"
+                                                                  name="reminder"
+                                                                  onChange={this.props.handleInput}
                                                                   placeholder="Rappels..."/></div>
                     </div>
                     <div className="columns">
                         <div className="column is-half"><span className="title is-5">Consignes:</span></div>
                         <div className="column is-half"><textarea className="textarea"
+                                                                  name="instruction"
+                                                                  onChange={this.props.handleInput}
                                                                   placeholder="Consignes..."/></div>
                     </div>
                 </div>
