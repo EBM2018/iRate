@@ -14,7 +14,17 @@ require('./config/mongoose');
 app.use(bodyParser.urlencoded({
   extended: false,
 }));
+
 app.use(bodyParser.json());
+
+
+// Allow Cross-domain origin requests
+// TODO: check safety and make sure it's best way of doing it
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Orsigin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 app.use('/api', require('./api'));
 
