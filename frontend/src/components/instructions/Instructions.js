@@ -10,7 +10,7 @@ export default class Instructions extends Component {
     /**
      * trigger the boolean in state with str as input
      * @param str
-     * @returns {Function}
+     * @returns undefined
      */
     triggerDropdown = (str) => () => {
         this.setState({[str]: !this.state[str]})
@@ -18,7 +18,7 @@ export default class Instructions extends Component {
 
     /**
      * Put input value in state with name of the input as name of the variable
-     * @param e
+     * @param {Object} e
      */
     handleInput = (e) => {
         this.setState({[e.target.name]:e.target.value});
