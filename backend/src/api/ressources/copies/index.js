@@ -161,7 +161,7 @@ router.post('/', copyController.newCopy);
  *    "feedbackId": "5a9pou8717a690c53650ab1"
  *   }
  *
- * @apiSuccess (201) {json} copy a JSON object containing the created answer
+ * @apiSuccess (201) {json} Answer a JSON object containing the created answer
  */
 router.post('/:copyId/answer', copyController.newAnswer);
 

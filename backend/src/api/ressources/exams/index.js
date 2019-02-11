@@ -201,7 +201,7 @@ router.get('/correction/:examId', examController.getCorrectionById);
  *    "sessionId": "sqojfdoisqjdoiqj679089076",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the created document
+ * @apiSuccess (201) {json} Exam a JSON object containing the created document
  */
 router.post('/', examController.newExam);
 
@@ -221,7 +221,7 @@ router.post('/', examController.newExam);
  *    "sessionId": "sqojfdoisqjdoiqj679089076",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the edited document
+ * @apiSuccess (201) {json} Exam a JSON object containing the edited document
  */
 router.patch('/:examId', examController.editExam);
 
@@ -249,7 +249,7 @@ router.delete('/:examId', examController.deleteExamById);
  *    "estimatedTime" : "00:45:00",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the created document
+ * @apiSuccess (201) {json} Exercice a JSON object containing the created document
  */
 router.post('/:examId/exercice', examController.newExerciceOfExam);
 
