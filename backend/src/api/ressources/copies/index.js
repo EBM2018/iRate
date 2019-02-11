@@ -1,7 +1,7 @@
 const { Router } = require('express');
 
 const router = new Router();
-const copyController = require('./controller.js');
+const CopyController = require('./controller.js');
 
 /**
  * @api {get} /copy/:examId Get all copies related to an exam
@@ -48,7 +48,7 @@ const copyController = require('./controller.js');
  *  }
  *]
  */
-router.get('/:examId', copyController.getCopies);
+router.get('/:examId', CopyController.getCopies);
 
 /**
  * @api {get} /copy/:copyId Get a specific copy
@@ -93,7 +93,7 @@ router.get('/:examId', copyController.getCopies);
  *    "__v": 0
  *  }
  */
-router.get('/:copyId', copyController.getCopy);
+router.get('/:copyId', CopyController.getCopy);
 
 /**
  * @api {get} /copy/answer/:answerId Get a specific answer
@@ -124,7 +124,7 @@ router.get('/:copyId', copyController.getCopy);
  *    ]
  *  }
  */
-router.get('/answer/:answerId', copyController.getAnswer);
+router.get('/answer/:answerId', CopyController.getAnswer);
 
 /**
  * @api {post} /copy Create a new copy
@@ -140,9 +140,9 @@ router.get('/answer/:answerId', copyController.getAnswer);
  *    "examId": "sqojfdoisqjdoiqj679089076",
  *   }
  *
- * @apiSuccess (201) {json} copy a JSON object containing the created copy
+ * @apiSuccess (201) {json} Copy a JSON object containing the created copy
  */
-router.post('/', copyController.newCopy);
+router.post('/', CopyController.newCopy);
 
 /**
  * @api {post} /copy/:copyId/answer Create a new answer associated with a copy
@@ -161,9 +161,9 @@ router.post('/', copyController.newCopy);
  *    "feedbackId": "5a9pou8717a690c53650ab1"
  *   }
  *
- * @apiSuccess (201) {json} Answer a JSON object containing the created answer
+ * @apiSuccess (201) {json} Copy a JSON object containing the created answer
  */
-router.post('/:copyId/answer', copyController.newAnswer);
+router.post('/:copyId/answer', CopyController.newAnswer);
 
 /**
  * @api {patch} /copy/:copyId Edit a copy
@@ -177,9 +177,9 @@ router.post('/:copyId/answer', copyController.newAnswer);
  *    "title": "Exercice 6",
  *   }
  *
- * @apiSuccess (201) {json} copy a JSON object containing the edited copy
+ * @apiSuccess (201) {json} Copy a JSON object containing the edited copy
  */
-router.patch('/:copyId', copyController.editCopy);
+router.patch('/:copyId', CopyController.editCopy);
 
 /**
  * @api {delete} /copy/:copyId Delete a copy
@@ -189,6 +189,6 @@ router.patch('/:copyId', copyController.editCopy);
  *
  * @apiSuccess (204) {null} null Empty data
  */
-router.delete('/:copyId', copyController.deleteCopyById);
+router.delete('/:copyId', CopyController.deleteCopyById);
 
 module.exports = router;

@@ -1,7 +1,8 @@
 const { Router } = require('express');
 
 const router = new Router();
-const examController = require('./controller.js');
+const ExamController = require('./controller.js');
+const ExamMiddlewares = require('./middlewares.js');
 
 /**
  * @api {get} /exam Get all exams
@@ -45,7 +46,7 @@ const examController = require('./controller.js');
  *  }
  *]
  */
-router.get('/', examController.getExams);
+router.get('/', ExamController.getExams);
 
 /**
  * @api {get} /exam/:examId Get an exam
@@ -113,8 +114,7 @@ router.get('/', examController.getExams);
  *    "__v": 0
  *  }
  */
-
-router.get('/:examId', examController.getExamById);
+router.get('/:examId', ExamMiddlewares.findExamOrReturn, ExamController.getExamById);
 
 /**
  * @api {get} /exam/correction/:examId Get a correction
@@ -183,7 +183,7 @@ router.get('/:examId', examController.getExamById);
  *      }
  *    ]
  */
-router.get('/correction/:examId', examController.getCorrectionById);
+router.get('/correction/:examId', ExamController.getCorrectionById);
 
 /**
  * @api {post} /exam Create a new exam
@@ -203,7 +203,7 @@ router.get('/correction/:examId', examController.getCorrectionById);
  *
  * @apiSuccess (201) {json} Exam a JSON object containing the created document
  */
-router.post('/', examController.newExam);
+router.post('/', ExamController.newExam);
 
 /**
  * @api {patch} /exam/:examId Edit an exam
@@ -223,7 +223,7 @@ router.post('/', examController.newExam);
  *
  * @apiSuccess (201) {json} Exam a JSON object containing the edited document
  */
-router.patch('/:examId', examController.editExam);
+router.patch('/:examId', ExamController.editExam);
 
 /**
  * @api {delete} /exam/:examId Delete an exam
@@ -234,7 +234,7 @@ router.patch('/:examId', examController.editExam);
  * @apiSuccess (204) {null} null Empty date to return
  *
  */
-router.delete('/:examId', examController.deleteExamById);
+router.delete('/:examId', ExamMiddlewares.findExamOrReturn, ExamController.deleteExamById);
 
 /**
  * @api {post} /exam/:examId/exercice Create a new exercice
@@ -251,7 +251,7 @@ router.delete('/:examId', examController.deleteExamById);
  *
  * @apiSuccess (201) {json} Exercice a JSON object containing the created document
  */
-router.post('/:examId/exercice', examController.newExerciceOfExam);
+router.post('/:examId/exercice', ExamMiddlewares.findExamOrReturn, ExamController.newExerciceOfExam);
 
 /**
  * @api {patch} /exam/:examId/exercice/:exerciceId Edit an exercice
@@ -265,9 +265,9 @@ router.post('/:examId/exercice', examController.newExerciceOfExam);
  *    "title": "Exercice 6",
  *   }
  *
- * @apiSuccess (201) {json} exercice a JSON object containing the edited document
+ * @apiSuccess (201) {json} Exercice a JSON object containing the edited document
  */
-router.patch('/:examId/exercice/:exerciceId', examController.editExercice);
+router.patch('/:examId/exercice/:exerciceId', ExamController.editExercice);
 
 /**
  * @api {delete} /exam/:examId/exercice/:exerciceId Delete an exercice
@@ -278,7 +278,7 @@ router.patch('/:examId/exercice/:exerciceId', examController.editExercice);
  * @apiSuccess (204) {null} null Empty date to return
  *
  */
-router.delete('/:examId/exercice/:exerciceId', examController.deleteExerciceById);
+router.delete('/:examId/exercice/:exerciceId', ExamMiddlewares.findExamOrReturn, ExamMiddlewares.findExerciceOrReturn, ExamController.deleteExerciceById);
 
 /**
  * @api {post} /exam/:examId/exercice/:exerciceId/question Create a new question
@@ -294,10 +294,9 @@ router.delete('/:examId/exercice/:exerciceId', examController.deleteExerciceById
  *    "correction": "2+2 = 4",
  *   }
  *
- * @apiSuccess (201) {json} question a JSON object containing the created document
+ * @apiSuccess (201) {json} Question a JSON object containing the created document
  */
-router.post('/:examId/exercice/:exerciceId/question', examController.newQuestionOfExercice);
-
+router.post('/:examId/exercice/:exerciceId/question', ExamController.newQuestionOfExercice);
 
 /**
  * @api {patch} /exam/:examId/exercice/:exerciceId/question/:questionId Edit a question
@@ -311,9 +310,9 @@ router.post('/:examId/exercice/:exerciceId/question', examController.newQuestion
  *    "title": "Combien vaut 4+8 ?",
  *   }
  *
- * @apiSuccess (201) {json} question a JSON object containing the edited document
+ * @apiSuccess (201) {json} Question a JSON object containing the edited document
  */
-router.patch('/:examId/exercice/:exerciceId/question/:questionId', examController.editQuestionById);
+router.patch('/:examId/exercice/:exerciceId/question/:questionId', ExamController.editQuestionById);
 
 
 /**
@@ -325,6 +324,6 @@ router.patch('/:examId/exercice/:exerciceId/question/:questionId', examControlle
  *
  * @apiSuccess (204) {null} null Empty date to return
  */
-router.delete('/:examId/exercice/:exerciceId/question/:questionId', examController.deleteQuestionById);
+router.delete('/:examId/exercice/:exerciceId/question/:questionId', ExamMiddlewares.findExamOrReturn, ExamMiddlewares.findExerciceOrReturn, ExamMiddlewares.findQuestionOrReturn, ExamController.deleteQuestionById);
 
 module.exports = router;

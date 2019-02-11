@@ -1,7 +1,7 @@
 const { Router } = require('express');
 
 const router = new Router();
-const examController = require('./controller.js');
+const ExamController = require('./controller.js');
 
 /**
  * @api {get} /feedback/:questionId Get feedback from a question
@@ -28,7 +28,7 @@ const examController = require('./controller.js');
  *]
  */
 
-router.get('/:questionId', examController.getFeedbackByQuestion);
+router.get('/:questionId', ExamController.getFeedbackByQuestion);
 /**
  * @api {post} /feedback/ Create a new feedback
  * @apiName CreateFeedback
@@ -46,7 +46,7 @@ router.get('/:questionId', examController.getFeedbackByQuestion);
  *
  * @apiSuccess (201) {json} Feedback a JSON object containing the created document
  */
-router.post('/', examController.newFeedback);
+router.post('/', ExamController.newFeedback);
 /**
  * @api {patch} /feedback/:feedbackId Edit a feedback
  * @apiName EditFeedback
@@ -61,7 +61,7 @@ router.post('/', examController.newFeedback);
  *
  * @apiSuccess (201) {json} Feedback a JSON object containing the edited document
  */
-router.patch('/:feedbackId', examController.editFeedbackById);
+router.patch('/:feedbackId', ExamController.editFeedbackById);
 /**
  * @api {delete} /feedback/:feedbackId Delete a feedback
  * @apiName DeleteFeedback
@@ -69,6 +69,6 @@ router.patch('/:feedbackId', examController.editFeedbackById);
  * @apiDescription This URL deletes a question from its id
  * @apiSuccess (204) {null} null Empty date to return
  */
-router.delete('/:feedbackId', examController.deleteFeedbackById);
+router.delete('/:feedbackId', ExamController.deleteFeedbackById);
 
 module.exports = router;
