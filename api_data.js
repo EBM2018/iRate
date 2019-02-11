@@ -33,7 +33,7 @@ define({ "api": [
             "group": "201",
             "type": "json",
             "optional": false,
-            "field": "copy",
+            "field": "Answer",
             "description": "<p>a JSON object containing the created answer</p>"
           }
         ]
@@ -284,8 +284,8 @@ define({ "api": [
             "group": "201",
             "type": "json",
             "optional": false,
-            "field": "a",
-            "description": "<p>JSON object containing the created document</p>"
+            "field": "Exam",
+            "description": "<p>a JSON object containing the created document</p>"
           }
         ]
       }
@@ -437,8 +437,8 @@ define({ "api": [
             "group": "201",
             "type": "json",
             "optional": false,
-            "field": "a",
-            "description": "<p>JSON object containing the edited document</p>"
+            "field": "Exam",
+            "description": "<p>a JSON object containing the edited document</p>"
           }
         ]
       }
@@ -486,8 +486,8 @@ define({ "api": [
             "group": "201",
             "type": "json",
             "optional": false,
-            "field": "a",
-            "description": "<p>JSON object containing the created document</p>"
+            "field": "Exercice",
+            "description": "<p>a JSON object containing the created document</p>"
           }
         ]
       }
@@ -613,8 +613,8 @@ define({ "api": [
             "group": "201",
             "type": "json",
             "optional": false,
-            "field": "a",
-            "description": "<p>JSON object containing the created document</p>"
+            "field": "Feedback",
+            "description": "<p>a JSON object containing the created document</p>"
           }
         ]
       }
@@ -691,8 +691,8 @@ define({ "api": [
             "group": "201",
             "type": "json",
             "optional": false,
-            "field": "a",
-            "description": "<p>JSON object containing the edited document</p>"
+            "field": "Feedback",
+            "description": "<p>a JSON object containing the edited document</p>"
           }
         ]
       }
