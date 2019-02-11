@@ -140,7 +140,7 @@ router.get('/answer/:answerId', CopyController.getAnswer);
  *    "examId": "sqojfdoisqjdoiqj679089076",
  *   }
  *
- * @apiSuccess (201) {json} a JSON object containing the created copy
+ * @apiSuccess (201) {json} Copy a JSON object containing the created copy
  */
 router.post('/', CopyController.newCopy);
 
@@ -161,7 +161,7 @@ router.post('/', CopyController.newCopy);
  *    "feedbackId": "5a9pou8717a690c53650ab1"
  *   }
  *
- * @apiSuccess (201) {json} Answer a JSON object containing the created answer
+ * @apiSuccess (201) {json} Copy a JSON object containing the created answer
  */
 router.post('/:copyId/answer', CopyController.newAnswer);
 
