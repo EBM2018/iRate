@@ -33,7 +33,7 @@ define({ "api": [
             "group": "201",
             "type": "json",
             "optional": false,
-            "field": "Answer",
+            "field": "Copy",
             "description": "<p>a JSON object containing the created answer</p>"
           }
         ]
@@ -107,7 +107,7 @@ define({ "api": [
             "group": "201",
             "type": "json",
             "optional": false,
-            "field": "copy",
+            "field": "Copy",
             "description": "<p>a JSON object containing the created copy</p>"
           }
         ]
@@ -185,7 +185,7 @@ define({ "api": [
             "group": "201",
             "type": "json",
             "optional": false,
-            "field": "copy",
+            "field": "Copy",
             "description": "<p>a JSON object containing the edited copy</p>"
           }
         ]
@@ -564,7 +564,7 @@ define({ "api": [
             "group": "201",
             "type": "json",
             "optional": false,
-            "field": "exercice",
+            "field": "Exercice",
             "description": "<p>a JSON object containing the edited document</p>"
           }
         ]
@@ -765,7 +765,7 @@ define({ "api": [
             "group": "201",
             "type": "json",
             "optional": false,
-            "field": "question",
+            "field": "Question",
             "description": "<p>a JSON object containing the created document</p>"
           }
         ]
@@ -843,7 +843,7 @@ define({ "api": [
             "group": "201",
             "type": "json",
             "optional": false,
-            "field": "question",
+            "field": "Question",
             "description": "<p>a JSON object containing the edited document</p>"
           }
         ]
