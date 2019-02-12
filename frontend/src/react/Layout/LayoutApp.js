@@ -14,6 +14,10 @@ class LayoutApp extends Component {
         return (
                 <div className="hero is-fullheight">
                     <CreateExam/>
+                    {
+                        this.props.loading &&
+                        `loading`
+                    }
                 </div>
         );
     }

@@ -2,7 +2,8 @@ import {ACTIONS} from './actions/get';
 import {combineReducers} from 'redux';
 
 const initialState = {
-  exams: []
+  exams: [],
+  loading: false
 };
 
 export default combineReducers({
@@ -13,7 +14,12 @@ export default combineReducers({
       case ACTIONS.SET_POST_EXAM_SUCCESS:
         return {
           ...state,
-          //[action.exams]: ..,
+          exams: [
+            ...state.exams,
+            {
+              title: action.title,
+            }
+          ]
         };
       default:
         return state;
