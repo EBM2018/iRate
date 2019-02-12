@@ -1,7 +1,7 @@
 import React from 'react'
 import ExerciceListDisplayer from './ExerciceListDisplayer';
 
-export default class ExerciceList extends React.PureComponent {
+export default class ExerciceList extends React.Component {
   state = {
     exercices: [1]
   };

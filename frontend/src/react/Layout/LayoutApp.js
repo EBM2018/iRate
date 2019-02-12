@@ -1,24 +1,19 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
 
-import CreateExam from '../Exam/CreateExam';
 import {getExams} from '../../redux/exams/actions/get';
+import Router from "../Router/Router";
 
 class LayoutApp extends Component {
-
     componentDidMount() {
         this.props.fetchExams();
     }
 
     render() {
         return (
-                <div className="hero is-fullheight">
-                    <CreateExam/>
-                    {
-                        this.props.loading &&
-                        `loading`
-                    }
-                </div>
+            <div className="hero is-fullheight">
+                coucou
+            </div>
         );
     }
 }
