@@ -1,8 +1,7 @@
 import React from 'react'
-import {Switch,Route} from 'react-router';
+import {Route, Switch as RouterSwitch} from 'react-router';
 import Instructions from "../Instructions/Instructions";
 import CreateExam from "../Exam/CreateExam";
-import {Switch as RouterSwitch} from "react-router-dom";
 
 const Router = () => (
             <div className="hero is-fullheight">

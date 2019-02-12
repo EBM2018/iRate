@@ -22,7 +22,7 @@ export default class ExerciceDisplayer extends React.Component {
                 <p className="title">Exercice {this.props.index + 1}</p>
               </div>
               <div className="column is-1">
-                <a className="delete is-large"></a>
+                <div className="delete is-large"/>
               </div>
             </div>
           </div>
