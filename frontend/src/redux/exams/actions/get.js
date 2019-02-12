@@ -1,18 +1,10 @@
 import * as ExamsRepository from '../../../repository/exams';
 
 export const ACTIONS = {
-    GET_EXAMS: 'EXAMS/GET_EXAMS',
-
     SET_GET_EXAMS_START: 'EXAMS/SET_GET_EXAMS_START',
     SET_GET_EXAMS_SUCCESS: 'EXAMS/SET_GET_EXAMS_SUCCESS',
     SET_GET_EXAMS_FAILURE: 'EXAMS/SET_GET_EXAMS_FAILURE',
 };
-
-export const GET_EXAMS = exams => ({
-    type: ACTIONS.GET_EXAMS,
-    exams,
-});
-
 export const SET_GET_EXAMS_START = () => ({
     type: ACTIONS.SET_GET_EXAMS_START,
 });
