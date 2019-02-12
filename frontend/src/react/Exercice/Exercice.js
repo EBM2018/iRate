@@ -1,5 +1,5 @@
 import React from 'react';
-import ExerciceDisplayer from "./ExerciceDisplayer";
+import ExerciceDisplayer from './ExerciceDisplayer';
 
 export default class Exercice extends React.PureComponent {
 

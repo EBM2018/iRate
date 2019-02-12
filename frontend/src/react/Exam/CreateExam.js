@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import ExerciceList from '../ExerciceList/ExerciceList';
+import React, {Component} from 'react'
+import ExerciceList from "../ExerciceList/ExerciceList";
 
-export default class Exam extends Component {
+export default class CreateExam extends Component {
     render() {
         return (
             <>

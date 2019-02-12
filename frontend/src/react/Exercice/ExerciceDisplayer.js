@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Exercice from "./Exercice";
-import Question from "../question/Question";
+import Question from '../Question/Question';
 
 export default class ExerciceDisplayer extends React.PureComponent {
   static propTypes = {

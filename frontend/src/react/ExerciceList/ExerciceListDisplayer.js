@@ -1,9 +1,8 @@
 import React from 'react'
-import Exercice from "../exercice/Exercice";
-import PropTypes from "prop-types";
+import Exercice from '../Exercice/Exercice';
+import PropTypes from 'prop-types';
 
 export default class ExerciceListDisplayer extends React.PureComponent {
-
 
   render() {
     return (

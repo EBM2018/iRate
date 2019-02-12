@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import Exam from '../Exam/Exam';
 import {connect} from 'react-redux';
-import {getExams} from '../../../redux/exams/actions';
+
+import CreateExam from '../Exam/CreateExam';
+import {getExams} from '../../redux/exams/actions/get';
 
 class LayoutApp extends Component {
 
@@ -12,7 +13,7 @@ class LayoutApp extends Component {
     render() {
         return (
                 <div className="hero is-fullheight">
-                    <Exam/>
+                    <CreateExam/>
                 </div>
         );
     }

@@ -1,5 +1,5 @@
 import React from 'react'
-import ExerciceListDisplayer from "./ExerciceListDisplayer";
+import ExerciceListDisplayer from './ExerciceListDisplayer';
 
 export default class ExerciceList extends React.PureComponent {
   state = {

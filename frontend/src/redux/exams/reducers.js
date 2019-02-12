@@ -1,4 +1,4 @@
-import {ACTIONS} from './actions';
+import {ACTIONS} from './actions/get';
 import {combineReducers} from 'redux';
 
 const initialState = {
@@ -8,13 +8,13 @@ const initialState = {
 export default combineReducers({
   exams: (state = initialState, action) => {
     switch (action.type) {
-    //   case ACTIONS.GET_EXAMS:
-    //     return {
-    //         ...state,
-    //         [action.exams]: action.exams
-    //     };
       case ACTIONS.SET_GET_EXAMS_SUCCESS:
         return action.exams;
+      case ACTIONS.SET_POST_EXAM_SUCCESS:
+        return {
+          ...state,
+          //[action.exams]: ..,
+        };
       default:
         return state;
     }

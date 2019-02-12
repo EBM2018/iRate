@@ -1,4 +1,4 @@
-import * as ExamsRepository from '../../repository/exams';
+import * as ExamsRepository from '../../../repository/exams';
 
 export const ACTIONS = {
     GET_EXAMS: 'EXAMS/GET_EXAMS',
