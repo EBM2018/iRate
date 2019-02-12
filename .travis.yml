@@ -23,8 +23,6 @@ script:
 
   # Frontend
   - cd frontend
-  - npm test -- --coverage
-  - ./node_modules/.bin/codecov
   - npm run build
   - cd ..
 
