@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export const getExams = async () => {
-    const exams = await axios.get('http://localhost:4000/api/exams');
-    return exams;
+    const { data } = await axios.get('http://localhost:4000/api/exams');
+    return data;
 };
 
 export const postExam = async (exam) => {

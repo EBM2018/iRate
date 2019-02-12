@@ -16,15 +16,12 @@ export default combineReducers({
         return action.exams;
       case ACTIONS.SET_POST_EXAM_SUCCESS:
         console.log(state);
-        return {
-          ...state,
-          exams: [
-            ...state.exams.exams,
+        return [
+            ...state,
             {
               title: action.exam.title,
             }
-          ]
-        };
+          ];
       default:
         return state;
     }
