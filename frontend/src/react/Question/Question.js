@@ -2,7 +2,7 @@ import React from 'react';
 import QuestionDisplayer from "./QuestionDisplayer";
 import PropTypes from "prop-types";
 
-export default class Question extends React.PureComponent {
+export default class Question extends React.Component {
 
   static propTypes = {
     exercices: PropTypes.array,

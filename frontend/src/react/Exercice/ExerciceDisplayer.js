@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Question from '../Question/Question';
 
-export default class ExerciceDisplayer extends React.PureComponent {
+export default class ExerciceDisplayer extends React.Component {
   static propTypes = {
     handleInput: PropTypes.func.isRequired
   };

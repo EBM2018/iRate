@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class QuestionDisplayer extends React.PureComponent {
+export default class QuestionDisplayer extends React.Component {
   static propTypes = {
     /*number: PropTypes.number,
     intitule: PropTypes.str,

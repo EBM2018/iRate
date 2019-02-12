@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Provider} from 'react-redux';
+import {Provider, history} from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
 
 import './App.css';
 import LayoutApp from '../Layout/LayoutApp';
@@ -10,11 +11,13 @@ class App extends Component {
         return (
             <Provider store={store}>
                 <div className="App">
-                    <LayoutApp/>
+                    <BrowserRouter>
+                        <LayoutApp/>
+                    </BrowserRouter>
                 </div>
             </Provider>
         );
     }
 }
 
-export default App;
+export default App
