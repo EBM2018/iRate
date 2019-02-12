@@ -5,10 +5,7 @@ import CreateExam from "../Exam/CreateExam";
 
 const Router = () => (
             <div>
-                <Switch>
-                    <Route path='/' Component={Instructions}/>
-                    <Route exact path='newexam/exercices' Component={CreateExam}/>
-                </Switch>
+
             </div>
         );
 
