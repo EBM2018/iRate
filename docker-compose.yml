@@ -21,7 +21,11 @@ services:
     image: mongo
     networks:
       - local
+    volumes:
+      - mongo-volume:/data/db
 networks:
   local:
   ebm-filrouge:
     external: true
+volumes:
+  mongo-volume:
