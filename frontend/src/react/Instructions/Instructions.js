@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import InstructionsDisplayer from "./InstructionsDisplayer";
+import InstructionsDisplayer from './InstructionsDisplayer';
 
 export default class Instructions extends Component {
     state = {

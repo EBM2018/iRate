@@ -1,3 +1,4 @@
+const cors = require('cors');
 const express = require('express');
 const serveStatic = require('serve-static');
 const bodyParser = require('body-parser');
@@ -7,14 +8,17 @@ const server = require('http').Server(app);
 
 const config = require('./config');
 
-// setup database connexion
 require('./config/mongoose');
-
 
 app.use(bodyParser.urlencoded({
   extended: false,
 }));
+
 app.use(bodyParser.json());
+
+// Enable CORS
+// TODO: implement corsoptions to secure the app
+app.use(cors());
 
 app.use('/api', require('./api'));
 

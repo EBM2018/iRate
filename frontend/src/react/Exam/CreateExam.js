@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
-import Instructions from "../instructions/Instructions";
+import ExerciceList from "../ExerciceList/ExerciceList";
 
-export default class Exam extends Component {
+export default class CreateExam extends Component {
     render() {
         return (
             <>
                 <div className="tile is-parent">
                     <div className="tile is-child">
-                        <Instructions/>
+                        <ExerciceList/>
                     </div>
                 </div>
             </>
