@@ -4,17 +4,27 @@ import Question from '../Question/Question';
 
 export default class ExerciceDisplayer extends React.PureComponent {
   static propTypes = {
-    handleInput: PropTypes.func.isRequired
+    handleInput: PropTypes.func.isRequired,
+    delQuestion: PropTypes.func.isRequired,
+    question: PropTypes.array.isRequired,
   };
 
   static defaultProps = {};
 
   render() {
+    console.log(this.props.question);
     return (
       <div className="section">
         <div className="box notification is-info">
           <div className="content">
-            <p className="title">Exercice {this.props.index + 1}</p>
+            <div className="columns">
+              <div className="column is-11">
+                <p className="title">Exercice {this.props.index + 1}</p>
+              </div>
+              <div className="column is-1">
+                <a className="delete is-large"></a>
+              </div>
+            </div>
           </div>
         </div>
         <div className="box">
@@ -34,7 +44,7 @@ export default class ExerciceDisplayer extends React.PureComponent {
                                                    type="text"/></div>
           </div>
         </div>
-        {this.props.question.map((value,idx) => <Question key={Date.now()} index={idx}/>)}
+        {this.props.question.map((value,idx) => <Question key={idx} id={idx} question={value} index={idx} delQuestion={this.props.delQuestion}/>)}
         <button className="button is-info is-medium" onClick={this.props.addQuestion}>Nouvelle Question</button>
       </div>
     );
