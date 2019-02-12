@@ -15,7 +15,6 @@ export default combineReducers({
       case ACTIONS.SET_GET_EXAMS_SUCCESS:
         return action.exams;
       case ACTIONS.SET_POST_EXAM_SUCCESS:
-        console.log(state);
         return [
             ...state,
             {
