@@ -1,12 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
 
-import CreateExam from '../Exam/CreateExam';
 import {getExams} from '../../redux/exams/actions/get';
 import {postExam} from '../../redux/exams/actions/post';
 
 class LayoutApp extends Component {
-
     componentDidMount() {
         this.props.fetchExams();
     }

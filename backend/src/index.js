@@ -7,7 +7,7 @@ const app = express();
 const server = require('http').Server(app);
 
 const config = require('./config');
-
+// setup database connexion
 require('./config/mongoose');
 
 app.use(bodyParser.urlencoded({

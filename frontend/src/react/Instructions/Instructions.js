@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import InstructionsDisplayer from './InstructionsDisplayer';
+import NextButton from "../NextButton/NextButton";
+import FooterExam from "../FooterExam/FooterExam";
 
 export default class Instructions extends Component {
     state = {
@@ -26,10 +28,16 @@ export default class Instructions extends Component {
 
     render() {
         return (
-            <InstructionsDisplayer triggerDropdown={this.triggerDropdown}
-                                   dropdownModule={this.state.dropdownModule}
-                                   handleInput={this.handleInput}
-                                   dropdownClass={this.state.dropdownClass}/>
+            <>
+                <div className="tile is-child">
+                    <InstructionsDisplayer triggerDropdown={this.triggerDropdown}
+                                           dropdownModule={this.state.dropdownModule}
+                                           handleInput={this.handleInput}
+                                           dropdownClass={this.state.dropdownClass}/>
+                        <NextButton route={'/newexam/exercices'}/>
+                </div>
+                <FooterExam/>
+            </>
         );
     }
 }

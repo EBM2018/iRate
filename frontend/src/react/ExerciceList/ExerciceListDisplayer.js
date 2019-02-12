@@ -1,7 +1,7 @@
 import React from 'react'
 import Exercice from '../Exercice/Exercice';
 
-export default class ExerciceListDisplayer extends React.PureComponent {
+export default class ExerciceListDisplayer extends React.Component{
 
   render() {
     return (

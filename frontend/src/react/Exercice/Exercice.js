@@ -1,10 +1,12 @@
 import React from 'react';
 import ExerciceDisplayer from './ExerciceDisplayer';
 
-export default class Exercice extends React.PureComponent {
+export default class Exercice extends React.Component {
 
   state = {
-    question: [1]
+    question:[
+      {"questionTitle": '', "questionScale": null, "questionContent": ''},
+    ]
   };
 
   /**
@@ -17,7 +19,14 @@ export default class Exercice extends React.PureComponent {
 
   addQuestion = () => {
     const question = [...this.state.question];
-    question.push(1);
+    question.push({"questionTitle": '', "questionScale": null, "questionContent": ''});
+    this.setState({question});
+  };
+
+  delQuestion = (v) => {
+    console.log(v.target.value);
+    const question = [...this.state.question];
+    delete question[v.target.value];
     this.setState({question});
   };
 
@@ -25,6 +34,7 @@ export default class Exercice extends React.PureComponent {
     return (
       <ExerciceDisplayer handleInput={this.handleInput}
                          addQuestion={this.addQuestion}
+                         delQuestion={this.delQuestion}
                          question={this.state.question}
                          index={this.props.index}/>
     );
