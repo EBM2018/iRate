@@ -1,3 +1,4 @@
+const cors = require('cors');
 const express = require('express');
 const serveStatic = require('serve-static');
 const bodyParser = require('body-parser');
@@ -9,21 +10,15 @@ const config = require('./config');
 // setup database connexion
 require('./config/mongoose');
 
-
 app.use(bodyParser.urlencoded({
   extended: false,
 }));
 
 app.use(bodyParser.json());
 
-
-// Allow Cross-domain origin requests
-// TODO: check safety and make sure it's best way of doing it
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Orsigin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
+// Enable CORS
+// TODO: implement corsoptions to secure the app
+app.use(cors());
 
 app.use('/api', require('./api'));
 
