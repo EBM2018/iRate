@@ -22,7 +22,10 @@ app.use(cors());
 
 app.use('/api', require('./api'));
 
-app.use((err, req, res) => {
+// Disable ESLint for this line because of the issue listed here :
+// https://github.com/expressjs/generator/issues/78
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
   // Log error message in our server's console
   console.error(err.message);
   // If err has no specified error code, set error code to 'Internal Server Error (500)'
