@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import Instructions from '../Instructions/Instructions';
+import React, {Component} from 'react';
+import ExerciceList from '../ExerciceList/ExerciceList';
 
 export default class Exam extends Component {
     render() {
@@ -7,7 +7,7 @@ export default class Exam extends Component {
             <>
                 <div className="tile is-parent">
                     <div className="tile is-child">
-                        <Instructions/>
+                        <ExerciceList/>
                     </div>
                 </div>
             </>
