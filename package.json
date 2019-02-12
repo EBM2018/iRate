@@ -1,7 +1,7 @@
 {
-  "name": "filrouge-boilerplate",
+  "name": "fil-rouge-irate",
   "version": "1.0.0",
-  "description": "Fil rouge Boilerplate =====================",
+  "description": "Project for Centrale Lille",
   "main": "index.js",
   "scripts": {
     "start": "concurrently --kill-others \"cd backend && npm start\" \"mongod\" \"cd frontend && npm start\"",
@@ -10,19 +10,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EBM2018/filrouge-boilerplate.git"
+    "url": "git+https://github.com/EBM2018/iRate.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/EBM2018/filrouge-boilerplate/issues"
+    "url": "https://github.com/EBM2018/iRate/issues"
   },
-  "homepage": "https://github.com/EBM2018/filrouge-boilerplate#readme",
+  "homepage": "https://github.com/EBM2018/iRate",
   "devDependencies": {
     "concurrently": "^4.1.0"
-  },
-  "dependencies": {
-    "mongodb": "^3.1.13"
   }
 }

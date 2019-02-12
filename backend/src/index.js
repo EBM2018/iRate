@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // Enable CORS
+// TODO: implement corsoptions to secure the app
 app.use(cors());
 
 app.use('/api', require('./api'));
