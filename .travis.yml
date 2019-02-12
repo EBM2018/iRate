@@ -23,14 +23,12 @@ script:
 
   # Frontend
   - cd frontend
-  - npm test -- --coverage
   - ./node_modules/.bin/codecov
   - npm run build
   - cd ..
 
   # Backend
   - cd backend
-  - npm test
   - npm run apidoc
   - cd ..
 
