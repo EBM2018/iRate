@@ -1,40 +1,30 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
-import {getExams} from '../../redux/exams/actions/get';
-import {postExam} from '../../redux/exams/actions/post';
+import Navbar from './Navbar';
 
-class LayoutApp extends Component {
-    componentDidMount() {
-        this.props.fetchExams();
-    }
+export default class LayoutApp extends Component {
 
-    createExam = () => {
-        this.props.postExam({
-            title: 'This is a title from Redux',
-            'reminders': 'This is a reminder from Redux',
-            'instruction': 'These are some instructions'
-        });
-    }
+    static propTypes = {
+        component: PropTypes.func.isRequired,
+        title: PropTypes.string.isRequired
+    };
 
     render() {
+        const Component = this.props.component;
+        const { title } = this.props;
+
         return (
-                <div className="hero is-fullheight">
-                    <CreateExam/>
+                <div className="layout">
+                    {/** This navbar can be extended and use as a menu, we can also add sidebar */}
+                    <Navbar title={title}></Navbar>
+                    <Component/>
                     {
                         this.props.loading &&
                         `loading`
                     }
-                    <button onClick={this.createExam}>Click me to add a new one</button>
+                    {/** We can add footer here */}
                 </div>
         );
     }
 }
-
-export default connect(state => ({
-    exams: state.exams.exams,
-    loading: state.exams.loading,
-}), dispatch => ({
-    fetchExams: () => dispatch(getExams()),
-    postExam: (exam) => dispatch(postExam(exam)),
-}))(LayoutApp);

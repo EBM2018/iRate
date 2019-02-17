@@ -11,12 +11,7 @@ export default class InstructionsDisplayer extends Component {
 
     render() {
         return (
-            <>
-                <div className="box notification is-info">
-                    <div className="content">
-                        <p className="title">Indiquez les détails du sujet</p>
-                    </div>
-                </div>
+            <section className="section">
                 <div className="box">
                     <div className="columns">
                         <div className="column is-two-thirds">
@@ -81,7 +76,7 @@ export default class InstructionsDisplayer extends Component {
                                                                   placeholder="Consignes..."/></div>
                     </div>
                 </div>
-            </>
+            </section>
         );
     }
 }
