@@ -125,14 +125,14 @@ const controller = {
     }
   },
 
-  deleteExerciceById(req, res, next) {
+  async deleteExerciceById(req, res, next) {
     const { exercice, exam } = res.locals;
     if (exercice) {
       try {
         const deletePromise = exercice.delete();
         exam.exercices = exam.exercices.filter(id => id !== exercice.id);
         const savePromise = exam.save();
-        Promise.all([deletePromise, savePromise]);
+        await Promise.all([deletePromise, savePromise]);
         return res.status(204).send();
       } catch (error) {
         next(error);
@@ -140,14 +140,14 @@ const controller = {
     } return res.status(400).send('Bad Request...');
   },
 
-  deleteQuestionById(req, res, next) {
+  async deleteQuestionById(req, res, next) {
     const { exercice, question } = res.locals;
     if (question) {
       try {
         const deletePromise = question.delete();
         exercice.questions = exercice.questions.filter(id => id !== question.id);
         const savePromise = exercice.save();
-        Promise.all([deletePromise, savePromise]);
+        await Promise.all([deletePromise, savePromise]);
         return res.status(204).send();
       } catch (error) {
         next(error);
