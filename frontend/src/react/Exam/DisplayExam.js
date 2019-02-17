@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {getExams} from '../../redux/exams/actions/get';
@@ -8,11 +8,12 @@ import {postExam} from '../../redux/exams/actions/post';
 class DisplayExam extends Component {
 
     static propTypes = {
-        //
+
     };
 
     componentDidMount() {
         const { id } = this.props.route.match.params;
+        console.log(id);
         //TODO: get single Exam: this.props.fetchExam();
     }
 
