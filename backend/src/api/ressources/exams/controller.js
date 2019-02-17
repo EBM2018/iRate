@@ -44,13 +44,12 @@ const controller = {
   },
 
   async editExercice(req, res, next) {
+    const { exercice } = res.locals;
     if (req.body) {
       try {
-        const result = await ExerciceData.update(req.params.exerciceId, req.body);
-        if (!result) {
-          return res.status(404).send('Exercice not Found');
-        }
-        return res.status(200).json(result);
+        exercice.update(req.body);
+        exercice.save();
+        return res.status(200).json(req.body);
       } catch (error) {
         return next(error);
       }
@@ -58,13 +57,12 @@ const controller = {
   },
 
   async editExam(req, res, next) {
+    const { exam } = res.locals;
     if (req.body) {
       try {
-        const result = await ExamData.update(req.params.examId, req.body);
-        if (!result) {
-          return res.status(404).send('Exam not Found');
-        }
-        return res.status(200).json(result);
+        exam.update(req.body);
+        await exam.save();
+        return res.status(200).json(req.body);
       } catch (error) {
         return next(error);
       }
@@ -102,13 +100,12 @@ const controller = {
    * @param {Object} next
    */
   async editQuestionById(req, res, next) {
+    const { question } = res.locals;
     if (req.body) {
       try {
-        const result = await QuestionData.update(req.params.questionId, req.body);
-        if (!result) {
-          return res.status(404).send('Not Found');
-        }
-        return res.status(200).json(result);
+        await question.updateOne(req.body);
+        await question.save();
+        return res.status(200).json(req.body);
       } catch (error) {
         return next(error);
       }

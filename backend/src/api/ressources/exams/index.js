@@ -223,7 +223,7 @@ router.post('/', ExamController.newExam);
  *
  * @apiSuccess (201) {json} Exam a JSON object containing the edited document
  */
-router.patch('/:examId', ExamController.editExam);
+router.patch('/:examId', ExamMiddlewares.findExamOrReturn, ExamController.editExam);
 
 /**
  * @api {delete} /exam/:examId Delete an exam
@@ -267,7 +267,7 @@ router.post('/:examId/exercices', ExamMiddlewares.findExamOrReturn, ExamControll
  *
  * @apiSuccess (201) {json} Exercice a JSON object containing the edited document
  */
-router.patch('/:examId/exercices/:exerciceId', ExamController.editExercice);
+router.patch('/:examId/exercices/:exerciceId', ExamMiddlewares.findExamOrReturn, ExamMiddlewares.findExerciceOrReturn, ExamController.editExercice);
 
 /**
  * @api {delete} /exam/:examId/exercices/:exerciceId Delete an exercice
@@ -312,7 +312,7 @@ router.post('/:examId/exercices/:exerciceId/questions', ExamController.newQuesti
  *
  * @apiSuccess (201) {json} Question a JSON object containing the edited document
  */
-router.patch('/:examId/exercices/:exerciceId/questions/:questionId', ExamController.editQuestionById);
+router.patch('/:examId/exercices/:exerciceId/questions/:questionId', ExamMiddlewares.findExamOrReturn, ExamMiddlewares.findExerciceOrReturn, ExamMiddlewares.findQuestionOrReturn, ExamController.editQuestionById);
 
 
 /**
