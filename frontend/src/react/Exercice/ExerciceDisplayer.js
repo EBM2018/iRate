@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Question from '../Question/Question';
 
-export default class ExerciceDisplayer extends React.Component {
+export default class ExerciceDisplayer extends Component {
   static propTypes = {
     handleInput: PropTypes.func.isRequired,
     delQuestion: PropTypes.func.isRequired,
