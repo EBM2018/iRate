@@ -10,10 +10,6 @@ const config = require('./config');
 // setup database connexion
 require('./config/mongoose');
 
-app.use(bodyParser.urlencoded({
-  extended: false,
-}));
-
 app.use(bodyParser.json());
 
 // Enable CORS
