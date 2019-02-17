@@ -12,13 +12,13 @@ export default class LayoutApp extends Component {
 
     render() {
         const Component = this.props.component;
-        const { title } = this.props;
+        const { title, route } = this.props;
 
         return (
                 <div className="layout">
                     {/** This navbar can be extended and use as a menu, we can also add sidebar */}
                     <Navbar title={title}></Navbar>
-                    <Component/>
+                    <Component route={route}/>
                     {
                         this.props.loading &&
                         `loading`
