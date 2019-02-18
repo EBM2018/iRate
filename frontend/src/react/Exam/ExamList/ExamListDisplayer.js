@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 
-class DisplayExamDisplayer extends Component {
+class ExamListDisplayer extends Component {
     render() {
         return (
             <div className="columns is-variable is-multiline is-8">
@@ -14,10 +15,12 @@ class DisplayExamDisplayer extends Component {
                                         <p className="content">{exam.instruction || "Vous n'avez pas mis de consignes"}</p>
                                         <p className="subtitle">Rappels</p>
                                         <p className="content">{exam.reminder || "Vous n'avez pas mis de rappels"}</p>
+                                        <p className="content">Barème: /{exam.scale}</p>
+                                        <p className="content">Temps estimé: /{exam.scale}</p>
                                     </div>
                                 </div>
                                 <footer className="card-footer">
-                                    <div className="card-footer-item">Modifier</div>
+                                    <div className="card-footer-item"><Link to={`/newexam/${exam._id}/instructions`}>Modifier</Link></div>
                                     <div className="card-footer-item">Finaliser</div>
                                 </footer>
                             </div>
@@ -28,4 +31,4 @@ class DisplayExamDisplayer extends Component {
     }
 }
 
-export default DisplayExamDisplayer;
+export default ExamListDisplayer;

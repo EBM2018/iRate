@@ -29,3 +29,13 @@ export const getExams = () => async dispatch => {
         dispatch(SET_GET_EXAMS_FAILURE(err));
     }
 };
+
+export const getExamsWithScale = () => async dispatch => {
+    dispatch(SET_GET_EXAMS_START());
+    try {
+        const exams = await ExamsRepository.getExamsWithScale();
+        dispatch(SET_GET_EXAMS_SUCCESS(exams));
+    } catch (err) {
+        dispatch(SET_GET_EXAMS_FAILURE(err));
+    }
+};
