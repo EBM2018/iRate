@@ -16,7 +16,7 @@ class ExamListDisplayer extends Component {
                                         <p className="subtitle">Rappels</p>
                                         <p className="content">{exam.reminder || "Vous n'avez pas mis de rappels"}</p>
                                         <p className="content">Barème: /{exam.scale}</p>
-                                        <p className="content">Temps estimé: /{exam.scale}</p>
+                                        <p className="content">Temps estimé: {exam.estimatedTime}</p>
                                     </div>
                                 </div>
                                 <footer className="card-footer">

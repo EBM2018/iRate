@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import ExamListDisplayer from "./ExamListDisplayer";
 import connect from "react-redux/es/connect/connect";
-import {getExamsWithScale} from "../../../redux/exams/actions/get";
+import {getExamsWithScaleAndTime} from "../../../redux/exams/actions/get";
 
 class ExamList extends Component {
 
     async componentDidMount() {
-        this.props.fetchExamsWithScale();
+        await this.props.fetchExamsWithScale();
     }
 
     render() {
@@ -26,5 +26,5 @@ export default connect(state => ({
     exams: state.exams.exams,
     loading: state.exams.loading,
 }), dispatch => ({
-    fetchExamsWithScale: () => dispatch(getExamsWithScale())
+    fetchExamsWithScale: () => dispatch(getExamsWithScaleAndTime())
 }))(ExamList);

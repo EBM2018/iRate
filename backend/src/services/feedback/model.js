@@ -9,11 +9,6 @@ const FeedbackSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  estimatedTime: {
-    type: Number,
-    required: false,
-    trim: true,
-  },
   creationTime: {
     type: Date,
     default: () => Date.now(),
