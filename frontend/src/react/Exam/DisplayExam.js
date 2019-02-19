@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 //import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {getExams} from '../../redux/exams/actions/get';
-import {postExam} from '../../redux/exams/actions/post';
+import {getExam} from '../../redux/exams/actions/getSingle';
+import Error from '../utils/Error';
 
 class DisplayExam extends Component {
 
@@ -12,9 +12,7 @@ class DisplayExam extends Component {
     };
 
     componentDidMount() {
-        const { id } = this.props.route.match.params;
-        console.log(id);
-        //TODO: get single Exam: this.props.fetchExam();
+        this.props.fetchExam();
     }
 
     /*createExam = () => {
@@ -27,42 +25,62 @@ class DisplayExam extends Component {
 
     render() {
         const { id } = this.props.route.match.params;
-
+        const { err, exam } = this.props;
         return(
-            <section id={`exam-${id}`} className="section">
-                <div className="box">
-                    <div className="columns">
-                        <div className="column is-two-thirds">
-                            <span className="title is-5">Module de l'épreuve:</span>
-                        </div>
-                        <div className="column is-one-third has-text-right">
-                            <div>
-                                <div className="dropdown-trigger">
-                                    <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                                        <span>Dropdown button</span>
-                                        <span className="icon is-small"><i className="fas fa-angle-down" aria-hidden="true"/></span>
-                                    </button>
+            <>
+                {(err||!exam) &&
+                    <Error errors={err} />
+                }
+                <h1>{exam.title}</h1>
+                <section id={`exam-${id}`} className="section">
+                    <div className="box is-paddingless">
+                        <div className="columns px-1">
+                            <div className="column is-two-thirds">
+                                <span className="title is-5">Module de l'épreuve:</span>
+                            </div>
+                            <div className="column is-one-third has-text-right">
+                                <div>
+                                    <div>
+                                        <button className="button">
+                                            <span>Dropdown button</span>
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className="dropdown-menu" id="dropdown-menu" role="menu">
-                                    <div className="dropdown-content">
-                                        <div className="dropdown-item">test</div>
+                            </div>
+                        </div>
+                        <div className="level has-background-light py-1 px-1">
+                            <div className="level-left">
+                                Left
+                            </div>
+                            <div className="level-right">
+                                right
+                            </div>
+                        </div>
+                        <div className="columns px-1">
+                            <div className="column is-two-thirds">
+                            </div>
+                            <div className="column is-one-third has-text-right">
+                                <div>
+                                    <div>
+                                        <button className="button">
+                                            <span>Répondre</span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </>
         )
     }
 
 }
 
-// This is an example for now
-export default connect(state => ({
-    exams: state.exams.exams,
+export default connect((state, ownProps) => ({
+    exam: state.exams.exams,
     loading: state.exams.loading,
-}), dispatch => ({
-    fetchExams: () => dispatch(getExams()),
-    postExam: (exam) => dispatch(postExam(exam)),
+    err: state.exams.errorMessage
+}), (dispatch, ownProps) => ({
+    fetchExam: () => dispatch(getExam(ownProps.route.match.params.id))
 }))(DisplayExam);
