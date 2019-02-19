@@ -16,7 +16,7 @@ const privateRoutes = {
     CreateExam: {
         path: '/newexam/exercices',
         component: CreateExam,
-        title: 'Créer votre examen'
+        title: 'Créez votre examen'
     },
     DisplayExam: {
         path: '/exam/:id',
