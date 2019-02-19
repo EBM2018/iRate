@@ -17,10 +17,9 @@
 //@import "node_modules/bulma-extensions/bulma-timeline/src/sass/index.sass";
 @import "node_modules/bulma-extensions/bulma-tooltip/src/sass/index.sass";
 
+@import "helpers.scss";
+
+// TODO: find a better way of handling that through SCSS variable
 .box {
     box-shadow: 0 7px 14px 0 rgba(60,66,87, 0.1), 0 3px 6px 0 rgba(0, 0, 0, .07);
-}
-
-.pb-0 {
-    padding-bottom: 0;
 }
