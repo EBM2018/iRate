@@ -44,13 +44,12 @@ const controller = {
   },
 
   async editExercice(req, res, next) {
+    const { exercice } = res.locals;
     if (req.body) {
       try {
-        const result = await ExerciceData.update(req.params.exerciceId, req.body);
-        if (!result) {
-          return res.status(404).send('Exercice not Found');
-        }
-        return res.status(200).json(result);
+        exercice.update(req.body);
+        exercice.save();
+        return res.status(200).json(req.body);
       } catch (error) {
         return next(error);
       }
@@ -58,13 +57,12 @@ const controller = {
   },
 
   async editExam(req, res, next) {
+    const { exam } = res.locals;
     if (req.body) {
       try {
-        const result = await ExamData.update(req.params.examId, req.body);
-        if (!result) {
-          return res.status(404).send('Exam not Found');
-        }
-        return res.status(200).json(result);
+        exam.update(req.body);
+        await exam.save();
+        return res.status(200).json(req.body);
       } catch (error) {
         return next(error);
       }
@@ -102,13 +100,12 @@ const controller = {
    * @param {Object} next
    */
   async editQuestionById(req, res, next) {
+    const { question } = res.locals;
     if (req.body) {
       try {
-        const result = await QuestionData.update(req.params.questionId, req.body);
-        if (!result) {
-          return res.status(404).send('Not Found');
-        }
-        return res.status(200).json(result);
+        await question.updateOne(req.body);
+        await question.save();
+        return res.status(200).json(req.body);
       } catch (error) {
         return next(error);
       }
@@ -125,14 +122,14 @@ const controller = {
     }
   },
 
-  deleteExerciceById(req, res, next) {
+  async deleteExerciceById(req, res, next) {
     const { exercice, exam } = res.locals;
     if (exercice) {
       try {
         const deletePromise = exercice.delete();
         exam.exercices = exam.exercices.filter(id => id !== exercice.id);
         const savePromise = exam.save();
-        Promise.all([deletePromise, savePromise]);
+        await Promise.all([deletePromise, savePromise]);
         return res.status(204).send();
       } catch (error) {
         next(error);
@@ -140,14 +137,14 @@ const controller = {
     } return res.status(400).send('Bad Request...');
   },
 
-  deleteQuestionById(req, res, next) {
+  async deleteQuestionById(req, res, next) {
     const { exercice, question } = res.locals;
     if (question) {
       try {
         const deletePromise = question.delete();
         exercice.questions = exercice.questions.filter(id => id !== question.id);
         const savePromise = exercice.save();
-        Promise.all([deletePromise, savePromise]);
+        await Promise.all([deletePromise, savePromise]);
         return res.status(204).send();
       } catch (error) {
         next(error);

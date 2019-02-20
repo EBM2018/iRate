@@ -223,7 +223,7 @@ router.post('/', ExamController.newExam);
  *
  * @apiSuccess (201) {json} Exam a JSON object containing the edited document
  */
-router.patch('/:examId', ExamController.editExam);
+router.patch('/:examId', ExamMiddlewares.findExamOrReturn, ExamController.editExam);
 
 /**
  * @api {delete} /exam/:examId Delete an exam
@@ -237,7 +237,7 @@ router.patch('/:examId', ExamController.editExam);
 router.delete('/:examId', ExamMiddlewares.findExamOrReturn, ExamController.deleteExamById);
 
 /**
- * @api {post} /exam/:examId/exercice Create a new exercice
+ * @api {post} /exam/:examId/exercices Create a new exercice
  * @apiName CreateExercice
  * @apiGroup Exercices
  * @apiDescription This URL creates a new exercice in the exam requested in the url
@@ -251,10 +251,10 @@ router.delete('/:examId', ExamMiddlewares.findExamOrReturn, ExamController.delet
  *
  * @apiSuccess (201) {json} Exercice a JSON object containing the created document
  */
-router.post('/:examId/exercice', ExamMiddlewares.findExamOrReturn, ExamController.newExerciceOfExam);
+router.post('/:examId/exercices', ExamMiddlewares.findExamOrReturn, ExamController.newExerciceOfExam);
 
 /**
- * @api {patch} /exam/:examId/exercice/:exerciceId Edit an exercice
+ * @api {patch} /exam/:examId/exercices/:exerciceId Edit an exercice
  * @apiName EditExercice
  * @apiGroup Exercices
  * @apiDescription This URL edit an exercice from its id
@@ -267,10 +267,10 @@ router.post('/:examId/exercice', ExamMiddlewares.findExamOrReturn, ExamControlle
  *
  * @apiSuccess (201) {json} Exercice a JSON object containing the edited document
  */
-router.patch('/:examId/exercice/:exerciceId', ExamController.editExercice);
+router.patch('/:examId/exercices/:exerciceId', ExamMiddlewares.findExamOrReturn, ExamMiddlewares.findExerciceOrReturn, ExamController.editExercice);
 
 /**
- * @api {delete} /exam/:examId/exercice/:exerciceId Delete an exercice
+ * @api {delete} /exam/:examId/exercices/:exerciceId Delete an exercice
  * @apiName DeleteExercice
  * @apiGroup Exercices
  * @apiDescription This URL deletes an exercice of an exam based on both ids.
@@ -278,10 +278,10 @@ router.patch('/:examId/exercice/:exerciceId', ExamController.editExercice);
  * @apiSuccess (204) {null} null Empty date to return
  *
  */
-router.delete('/:examId/exercice/:exerciceId', ExamMiddlewares.findExamOrReturn, ExamMiddlewares.findExerciceOrReturn, ExamController.deleteExerciceById);
+router.delete('/:examId/exercices/:exerciceId', ExamMiddlewares.findExamOrReturn, ExamMiddlewares.findExerciceOrReturn, ExamController.deleteExerciceById);
 
 /**
- * @api {post} /exam/:examId/exercice/:exerciceId/question Create a new question
+ * @api {post} /exam/:examId/exercices/:exerciceId/questions Create a new question
  * @apiName CreateQuestion
  * @apiGroup Questions
  * @apiDescription This URL creates a new question in the exercice requested
@@ -296,10 +296,10 @@ router.delete('/:examId/exercice/:exerciceId', ExamMiddlewares.findExamOrReturn,
  *
  * @apiSuccess (201) {json} Question a JSON object containing the created document
  */
-router.post('/:examId/exercice/:exerciceId/question', ExamController.newQuestionOfExercice);
+router.post('/:examId/exercices/:exerciceId/questions', ExamController.newQuestionOfExercice);
 
 /**
- * @api {patch} /exam/:examId/exercice/:exerciceId/question/:questionId Edit a question
+ * @api {patch} /exam/:examId/exercices/:exerciceId/questions/:questionId Edit a question
  * @apiName EditQuestion
  * @apiGroup Questions
  * @apiDescription This URL edit a question from its id
@@ -312,11 +312,11 @@ router.post('/:examId/exercice/:exerciceId/question', ExamController.newQuestion
  *
  * @apiSuccess (201) {json} Question a JSON object containing the edited document
  */
-router.patch('/:examId/exercice/:exerciceId/question/:questionId', ExamController.editQuestionById);
+router.patch('/:examId/exercices/:exerciceId/questions/:questionId', ExamMiddlewares.findExamOrReturn, ExamMiddlewares.findExerciceOrReturn, ExamMiddlewares.findQuestionOrReturn, ExamController.editQuestionById);
 
 
 /**
- * @api {delete} /exam/:examId/exercice/:exerciceId/question/:questionId Delete a question
+ * @api {delete} /exam/:examId/exercices/:exerciceId/questions/:questionId Delete a question
  * @apiName DeleteQuestion
  * @apiGroup Questions
  * @apiDescription This URL deletes a question from its id
@@ -324,6 +324,6 @@ router.patch('/:examId/exercice/:exerciceId/question/:questionId', ExamControlle
  *
  * @apiSuccess (204) {null} null Empty date to return
  */
-router.delete('/:examId/exercice/:exerciceId/question/:questionId', ExamMiddlewares.findExamOrReturn, ExamMiddlewares.findExerciceOrReturn, ExamMiddlewares.findQuestionOrReturn, ExamController.deleteQuestionById);
+router.delete('/:examId/exercices/:exerciceId/questions/:questionId', ExamMiddlewares.findExamOrReturn, ExamMiddlewares.findExerciceOrReturn, ExamMiddlewares.findQuestionOrReturn, ExamController.deleteQuestionById);
 
 module.exports = router;

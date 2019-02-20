@@ -2,6 +2,7 @@ const cors = require('cors');
 const express = require('express');
 const serveStatic = require('serve-static');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 const server = require('http').Server(app);
@@ -9,10 +10,6 @@ const server = require('http').Server(app);
 const config = require('./config');
 // setup database connexion
 require('./config/mongoose');
-
-app.use(bodyParser.urlencoded({
-  extended: false,
-}));
 
 app.use(bodyParser.json());
 
@@ -38,4 +35,8 @@ app.use(serveStatic('./public'));
 server.listen(config.app.port, (err) => {
   if (err) console.error(err);
   else console.log(`Listening on port ${config.app.port}`);
+});
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
