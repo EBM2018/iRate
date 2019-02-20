@@ -2,11 +2,12 @@ import React, {Component} from 'react'
 import ExamListDisplayer from "./ExamListDisplayer";
 import connect from "react-redux/es/connect/connect";
 import {getExamsWithScaleAndTime} from "../../../redux/exams/actions/get";
-import FinaliseExam from "../FinaliseExam/FinaliseExam";
+import FinaliseExamDisplayer from "../FinaliseExam/FinaliseExamDisplayer";
 
 class ExamList extends Component {
     state = {
         shouldFinaliseRender: false,
+        didChecked: false,
         examId: '',
     };
 
@@ -18,6 +19,10 @@ class ExamList extends Component {
         this.setState({shouldFinaliseRender: !this.state.shouldFinaliseRender, examId: id})
     };
 
+    toggleCheckScale = () => {
+        this.setState({didChecked: !this.state.didChecked});
+    };
+
     render() {
         return (
             <>
@@ -26,7 +31,10 @@ class ExamList extends Component {
                     `loading`
                 }
                 {this.props.exams ? <ExamListDisplayer exams={this.props.exams} toggleFinalise={this.toggleFinalise}/> : 'waiting'}
-                {this.state.shouldFinaliseRender ? <FinaliseExam toggleFinalise={this.toggleFinalise} id={this.state.examId}/> : null}
+                {this.state.shouldFinaliseRender ? <FinaliseExamDisplayer toggleFinalise={this.toggleFinalise}
+                                                                          id={this.state.examId}
+                                                                          toggleScaleCheck={this.toggleCheckScale}
+                                                                          didChecked={this.state.didChecked}/> : null}
             </>
         );
     }
