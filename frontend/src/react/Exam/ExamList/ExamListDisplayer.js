@@ -6,7 +6,7 @@ class ExamListDisplayer extends Component {
         return (
             <div className="columns is-variable is-multiline is-8">
                 {this.props.exams.length && this.props.exams.map((exam) =>
-                        <div className="column is-one-third">
+                        <div key={exam._id} className="column is-one-third">
                             <div className="card">
                                 <header className="card-header is-info"><p className="card-header-title">Examen: {exam.title}</p></header>
                                 <div className="card-content">
@@ -21,7 +21,7 @@ class ExamListDisplayer extends Component {
                                 </div>
                                 <footer className="card-footer">
                                     <div className="card-footer-item"><Link to={`/newexam/${exam._id}/instructions`}>Modifier</Link></div>
-                                    <div className="card-footer-item">Finaliser</div>
+                                    <div className="card-footer-item is-a-link" onClick={this.props.toggleFinalise(exam._id)}>Finaliser</div>
                                 </footer>
                             </div>
                         </div>
