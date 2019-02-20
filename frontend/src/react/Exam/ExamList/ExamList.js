@@ -11,8 +11,14 @@ class ExamList extends Component {
         examId: '',
     };
 
-    componentDidMount() {
-        this.props.fetchExamsWithScale();
+    async componentDidMount() {
+        await this.props.fetchExamsWithScale();
+        if(this.props.exams) {
+            const examsNotFinalised = this.props.exams.filter((exam) => {
+                return !exam.isFinalised
+            });
+            this.setState({exams: examsNotFinalised});
+        }
     }
 
     toggleFinalise = (id) => () => {
@@ -30,7 +36,7 @@ class ExamList extends Component {
                     this.props.loading &&
                     `loading`
                 }
-                {this.props.exams ? <ExamListDisplayer exams={this.props.exams} toggleFinalise={this.toggleFinalise}/> : 'waiting'}
+                {this.state.exams ? <ExamListDisplayer exams={this.state.exams} toggleFinalise={this.toggleFinalise}/> : 'waiting'}
                 {this.state.shouldFinaliseRender ? <FinaliseExamDisplayer toggleFinalise={this.toggleFinalise}
                                                                           id={this.state.examId}
                                                                           toggleScaleCheck={this.toggleCheckScale}
