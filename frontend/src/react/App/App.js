@@ -4,7 +4,7 @@ import {BrowserRouter} from 'react-router-dom';
 
 import './App.css';
 import store from '../../redux/store';
-import Router from "../Router/Router";
+import Router from '../Router/Router';
 
 class App extends Component {
     render() {
