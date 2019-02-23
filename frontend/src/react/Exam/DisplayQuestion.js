@@ -7,13 +7,14 @@ export default class DisplayQuestion extends Component {
     };
 
     render() {
+        const { question } = this.props;
         return (
             <div className="level has-background-light py-1 px-1 is-marginless border-bottom">
                 <div className="level-left">
-                    question goes here
+                    {question.title}
                 </div>
                 <div className="level-right">
-                    something more
+                    Echelle: {question.scale}
                 </div>
             </div>
         );
