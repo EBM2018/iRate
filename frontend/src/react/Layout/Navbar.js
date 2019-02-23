@@ -10,25 +10,26 @@ export default class Navbar extends Component {
     render() {
         //const { title } = this.props;
         return (
-            <nav className="navbar" role="navigation" aria-label="main navigation">
-                <div className="navbar-brand">
-                    <a className="navbar-item" href="https://bulma.io">
-                        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" alt="logo" />
-                    </a>
-                </div>
+            <nav id="navbar" className="navbar has-shadow is-spaced">
+                <div className="container">
+                    <div className="navbar-brand">
+                        <a className="navbar-item" href="/">iRate</a>
+                    </div>
 
-                <div id="navbarBasicExample" className="navbar-menu">
-                    <div className="navbar-start">
-
+                    <div id="navMenuDocumentation" className="navbar-menu">
+                        <div className="navbar-start">Nav</div>
                     </div>
 
                     <div className="navbar-end">
                         <div className="navbar-item">
-                            <div className="buttons">
+                            <div className="field is-grouped is-grouped-multiline">
+                                <p className="control">
 
+                                </p>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </nav>
         )

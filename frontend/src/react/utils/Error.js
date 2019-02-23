@@ -1,19 +1,37 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+
 export default class Error extends Component {
-    static propTypes = {
-        errors: PropTypes.object
+
+    state = {
+        errorMessage: ''
     };
 
+    static propTypes = {
+        errors: PropTypes.object,
+        close: PropTypes.func.isRequired
+    };
+
+    componentDidMount() {
+        this.parseError();
+    }
+
+    parseError = () => {
+        const { message } = this.props.errors;
+        this.setState({ errorMessage: message });
+    }
+
+    close = () => {
+        this.props.close();
+    }
+
     render() {
-        const { errors } = this.props;
-        console.log(errors);
+        const { errorMessage } = this.state;
         // TODO: make it looks better and handle closing/fade out
         return (
             <div className="notification is-danger">
-                <button className="delete"></button>
-                Primar lorem ipsum dolor sit amet, consectetur
-                adipiscing elit lorem ipsum dolor.
+                <button className="delete" onClick={this.close}></button>
+                {errorMessage}
             </div>
         )
     }

@@ -8,8 +8,17 @@
     padding-bottom: 1.25rem;
 }
 
-border-bottom {
-   // border-bottom: 1px solid $grey-lighter;
+.pt-1 {
+    padding-top: 1.25rem;
+}
+
+.py-2 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+
+.border-bottom {
+   border-bottom: 1px solid rgba(193, 201, 210, .5);
 }
 
 .pb-0 {
