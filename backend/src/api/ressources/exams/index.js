@@ -49,7 +49,7 @@ const ExamMiddlewares = require('./middlewares.js');
 router.get('/', ExamController.getExams);
 
 /**
- * @api {get} /exam/:examId Get an exam
+ * @api {get} /exams/:examId Get an exam
  * @apiName GetExamById
  * @apiGroup Exams
  * @apiDescription This URL displays a JSON containing an exam from its id
@@ -117,7 +117,7 @@ router.get('/', ExamController.getExams);
 router.get('/:examId', ExamMiddlewares.findExamOrReturn, ExamController.getExamById);
 
 /**
- * @api {get} /exam/correction/:examId Get a correction
+ * @api {get} /exams/correction/:examId Get a correction
  * @apiName GetCorrectionById
  * @apiGroup Exams
  * @apiDescription This URL displays a JSON containing a correction for an exam
@@ -206,7 +206,7 @@ router.get('/correction/:examId', ExamController.getCorrectionById);
 router.post('/', ExamController.newExam);
 
 /**
- * @api {patch} /exam/:examId Edit an exam
+ * @api {patch} /exams/:examId Edit an exam
  * @apiName PatchExam
  * @apiGroup Exams
  * @apiDescription This URL edit an exam from its id.
@@ -226,7 +226,7 @@ router.post('/', ExamController.newExam);
 router.patch('/:examId', ExamController.editExam);
 
 /**
- * @api {delete} /exam/:examId Delete an exam
+ * @api {delete} /exams/:examId Delete an exam
  * @apiName DeleteExam
  * @apiGroup Exams
  * @apiDescription This URL deletes an exam from its id.
@@ -237,7 +237,7 @@ router.patch('/:examId', ExamController.editExam);
 router.delete('/:examId', ExamMiddlewares.findExamOrReturn, ExamController.deleteExamById);
 
 /**
- * @api {post} /exam/:examId/exercice Create a new exercice
+ * @api {post} /exams/:examId/exercice Create a new exercice
  * @apiName CreateExercice
  * @apiGroup Exercices
  * @apiDescription This URL creates a new exercice in the exam requested in the url
@@ -254,7 +254,7 @@ router.delete('/:examId', ExamMiddlewares.findExamOrReturn, ExamController.delet
 router.post('/:examId/exercice', ExamMiddlewares.findExamOrReturn, ExamController.newExerciceOfExam);
 
 /**
- * @api {patch} /exam/:examId/exercice/:exerciceId Edit an exercice
+ * @api {patch} /exams/:examId/exercice/:exerciceId Edit an exercice
  * @apiName EditExercice
  * @apiGroup Exercices
  * @apiDescription This URL edit an exercice from its id
@@ -270,7 +270,7 @@ router.post('/:examId/exercice', ExamMiddlewares.findExamOrReturn, ExamControlle
 router.patch('/:examId/exercice/:exerciceId', ExamController.editExercice);
 
 /**
- * @api {delete} /exam/:examId/exercice/:exerciceId Delete an exercice
+ * @api {delete} /exams/:examId/exercice/:exerciceId Delete an exercice
  * @apiName DeleteExercice
  * @apiGroup Exercices
  * @apiDescription This URL deletes an exercice of an exam based on both ids.
@@ -281,7 +281,7 @@ router.patch('/:examId/exercice/:exerciceId', ExamController.editExercice);
 router.delete('/:examId/exercice/:exerciceId', ExamMiddlewares.findExamOrReturn, ExamMiddlewares.findExerciceOrReturn, ExamController.deleteExerciceById);
 
 /**
- * @api {post} /exam/:examId/exercice/:exerciceId/question Create a new question
+ * @api {post} /exams/:examId/exercice/:exerciceId/question Create a new question
  * @apiName CreateQuestion
  * @apiGroup Questions
  * @apiDescription This URL creates a new question in the exercice requested
@@ -299,7 +299,7 @@ router.delete('/:examId/exercice/:exerciceId', ExamMiddlewares.findExamOrReturn,
 router.post('/:examId/exercice/:exerciceId/question', ExamController.newQuestionOfExercice);
 
 /**
- * @api {patch} /exam/:examId/exercice/:exerciceId/question/:questionId Edit a question
+ * @api {patch} /exams/:examId/exercice/:exerciceId/question/:questionId Edit a question
  * @apiName EditQuestion
  * @apiGroup Questions
  * @apiDescription This URL edit a question from its id
@@ -316,7 +316,7 @@ router.patch('/:examId/exercice/:exerciceId/question/:questionId', ExamControlle
 
 
 /**
- * @api {delete} /exam/:examId/exercice/:exerciceId/question/:questionId Delete a question
+ * @api {delete} /exams/:examId/exercice/:exerciceId/question/:questionId Delete a question
  * @apiName DeleteQuestion
  * @apiGroup Questions
  * @apiDescription This URL deletes a question from its id

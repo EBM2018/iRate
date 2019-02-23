@@ -18,11 +18,15 @@ export default class LayoutApp extends Component {
                 <div className="layout">
                     {/** This navbar can be extended and use as a menu, we can also add sidebar */}
                     <Navbar title={title}></Navbar>
-                    <Component route={route}/>
-                    {
-                        this.props.loading &&
-                        `loading`
-                    }
+                    <main>
+                        <div className="container py-1">
+                            <Component route={route}/>
+                            {
+                                this.props.loading &&
+                                `loading`
+                            }
+                        </div>
+                    </main>
                     {/** We can add footer here */}
                 </div>
         );
