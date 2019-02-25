@@ -3,7 +3,8 @@ const Exercice = require('./model');
 module.exports = {
   create: async (request, exam) => {
     const exerciceToSave = new Exercice(request);
-    exerciceToSave.order = exerciceToSave.order || exam.exercices.length;
+    const maxOrder = Math.max(...exam.exercices.map(ex => ex.order));
+    exerciceToSave.order = exerciceToSave.order || maxOrder + 1;
     const exercice = await exerciceToSave.save();
     exam.exercices.push(exercice._id);
     await exam.save();
