@@ -3,12 +3,8 @@ import PropTypes from 'prop-types';
 
 export default class QuestionDisplayer extends React.Component {
   static propTypes = {
-    /*number: PropTypes.number,
-    intitule: PropTypes.str,
-    contenu: PropTypes.str,
-    fctSave: PropTypes.function,*/
     handleInput: PropTypes.func.isRequired,
-    delQuestion: PropTypes.func.isRequired,
+    deleteQuestion: PropTypes.func.isRequired,
     question: PropTypes.array.isRequired,
     id: PropTypes.number.isRequired,
   };
@@ -49,7 +45,7 @@ export default class QuestionDisplayer extends React.Component {
             </div>
           </div>
           <div className="column is-1">
-            <button className="delete is-large" value={this.props.id} onClick={this.props.delQuestion}/>
+            <button className="delete is-large" value={this.props.id} onClick={this.props.deleteQuestion}/>
           </div>
         </div>
       </div>
