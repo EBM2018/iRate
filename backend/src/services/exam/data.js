@@ -9,6 +9,9 @@ module.exports = {
   getById: async id => Exam.findById(id)
     .populate({
       path: 'exercices',
+      options: {
+        sort: { order: +1 },
+      },
       populate: { path: 'questions' },
     }),
   create: (exam) => {
