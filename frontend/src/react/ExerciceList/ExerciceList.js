@@ -8,7 +8,6 @@ export default class ExerciceList extends React.PureComponent {
     id: PropTypes.number,
   };
 
->>>>>>> Delete question & Delete Exercice Done
   state = {
     exercices: [
       {"exerciceTitle": '', "estimatedTime": ''},
