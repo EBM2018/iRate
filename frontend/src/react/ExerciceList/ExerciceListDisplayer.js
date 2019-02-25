@@ -1,5 +1,10 @@
 import React from 'react'
 import Exercice from '../Exercice/Exercice';
+<<<<<<< HEAD
+=======
+import PropTypes from 'prop-types';
+let uniqid = require('uniqid');
+>>>>>>> Impoving "Add Exercice" & "Delete Exercice"
 
 export default class ExerciceListDisplayer extends React.Component{
 
@@ -13,7 +18,7 @@ export default class ExerciceListDisplayer extends React.Component{
     console.log(this.props.exercices);
     return (
       <>
-        {this.props.exercices.map((value,idx) => <Exercice key={Date.now()} id={idx} exercices={value} index={idx} deleteExercice={this.props.deleteExercice} />)}
+        {this.props.exercices.map((value,idx) => <Exercice key={uniqid()} id={idx} exercices={value} index={idx} deleteExercice={this.props.deleteExercice} />)}
         <button className="button is-info is-medium" onClick={this.props.addExercice}>Nouvel Exercice</button>
       </>
     );
