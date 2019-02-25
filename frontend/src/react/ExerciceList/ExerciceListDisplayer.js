@@ -9,6 +9,12 @@ export default class ExerciceListDisplayer extends React.Component{
     id: PropTypes.number
   };
 
+  static propTypes = {
+    deleteExercice: PropTypes.func,
+    exercices: PropTypes.array,
+    id: PropTypes.number
+  };
+
   render() {
     console.log(this.props.exercices);
     return (

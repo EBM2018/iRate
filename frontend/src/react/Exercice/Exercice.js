@@ -9,6 +9,11 @@ export default class Exercice extends React.Component {
     id: PropTypes.number,
   };
 
+  static propTypes = {
+    exercices: PropTypes.array,
+    id: PropTypes.number,
+  };
+
   state = {
     question:[
       {"questionTitle": '', "questionScale": null, "questionContent": ''},
