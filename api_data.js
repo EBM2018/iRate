@@ -301,7 +301,7 @@ define({ "api": [
   },
   {
     "type": "delete",
-    "url": "/exam/:examId",
+    "url": "/exams/:examId",
     "title": "Delete an exam",
     "name": "DeleteExam",
     "group": "Exams",
@@ -324,7 +324,7 @@ define({ "api": [
     "groupTitle": "Exams",
     "sampleRequest": [
       {
-        "url": "http://localhost:4000/api/exam/:examId"
+        "url": "http://localhost:4000/api/exams/:examId"
       }
     ]
   },
@@ -355,7 +355,7 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/exam/correction/:examId",
+    "url": "/exams/correction/:examId",
     "title": "Get a correction",
     "name": "GetCorrectionById",
     "group": "Exams",
@@ -374,13 +374,13 @@ define({ "api": [
     "groupTitle": "Exams",
     "sampleRequest": [
       {
-        "url": "http://localhost:4000/api/exam/correction/:examId"
+        "url": "http://localhost:4000/api/exams/correction/:examId"
       }
     ]
   },
   {
     "type": "get",
-    "url": "/exam/:examId",
+    "url": "/exams/:examId",
     "title": "Get an exam",
     "name": "GetExamById",
     "group": "Exams",
@@ -399,13 +399,13 @@ define({ "api": [
     "groupTitle": "Exams",
     "sampleRequest": [
       {
-        "url": "http://localhost:4000/api/exam/:examId"
+        "url": "http://localhost:4000/api/exams/:examId"
       }
     ]
   },
   {
     "type": "patch",
-    "url": "/exam/:examId",
+    "url": "/exams/:examId",
     "title": "Edit an exam",
     "name": "PatchExam",
     "group": "Exams",
@@ -448,13 +448,13 @@ define({ "api": [
     "groupTitle": "Exams",
     "sampleRequest": [
       {
-        "url": "http://localhost:4000/api/exam/:examId"
+        "url": "http://localhost:4000/api/exams/:examId"
       }
     ]
   },
   {
     "type": "post",
-    "url": "/exam/:examId/exercices",
+    "url": "/exams/:examId/exercices",
     "title": "Create a new exercice",
     "name": "CreateExercice",
     "group": "Exercices",
@@ -497,13 +497,13 @@ define({ "api": [
     "groupTitle": "Exercices",
     "sampleRequest": [
       {
-        "url": "http://localhost:4000/api/exam/:examId/exercices"
+        "url": "http://localhost:4000/api/exams/:examId/exercices"
       }
     ]
   },
   {
     "type": "delete",
-    "url": "/exam/:examId/exercices/:exerciceId",
+    "url": "/exams/:examId/exercices/:exerciceId",
     "title": "Delete an exercice",
     "name": "DeleteExercice",
     "group": "Exercices",
@@ -526,13 +526,13 @@ define({ "api": [
     "groupTitle": "Exercices",
     "sampleRequest": [
       {
-        "url": "http://localhost:4000/api/exam/:examId/exercices/:exerciceId"
+        "url": "http://localhost:4000/api/exams/:examId/exercices/:exerciceId"
       }
     ]
   },
   {
     "type": "patch",
-    "url": "/exam/:examId/exercices/:exerciceId",
+    "url": "/exams/:examId/exercices/:exerciceId",
     "title": "Edit an exercice",
     "name": "EditExercice",
     "group": "Exercices",
@@ -575,7 +575,7 @@ define({ "api": [
     "groupTitle": "Exercices",
     "sampleRequest": [
       {
-        "url": "http://localhost:4000/api/exam/:examId/exercices/:exerciceId"
+        "url": "http://localhost:4000/api/exams/:examId/exercices/:exerciceId"
       }
     ]
   },
@@ -733,7 +733,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/exam/:examId/exercices/:exerciceId/questions",
+    "url": "/exams/:examId/exercices/:exerciceId/questions",
     "title": "Create a new question",
     "name": "CreateQuestion",
     "group": "Questions",
@@ -776,13 +776,13 @@ define({ "api": [
     "groupTitle": "Questions",
     "sampleRequest": [
       {
-        "url": "http://localhost:4000/api/exam/:examId/exercices/:exerciceId/questions"
+        "url": "http://localhost:4000/api/exams/:examId/exercices/:exerciceId/questions"
       }
     ]
   },
   {
     "type": "delete",
-    "url": "/exam/:examId/exercices/:exerciceId/questions/:questionId",
+    "url": "/exams/:examId/exercices/:exerciceId/questions/:questionId",
     "title": "Delete a question",
     "name": "DeleteQuestion",
     "group": "Questions",
@@ -805,13 +805,13 @@ define({ "api": [
     "groupTitle": "Questions",
     "sampleRequest": [
       {
-        "url": "http://localhost:4000/api/exam/:examId/exercices/:exerciceId/questions/:questionId"
+        "url": "http://localhost:4000/api/exams/:examId/exercices/:exerciceId/questions/:questionId"
       }
     ]
   },
   {
     "type": "patch",
-    "url": "/exam/:examId/exercices/:exerciceId/questions/:questionId",
+    "url": "/exams/:examId/exercices/:exerciceId/questions/:questionId",
     "title": "Edit a question",
     "name": "EditQuestion",
     "group": "Questions",
@@ -854,7 +854,7 @@ define({ "api": [
     "groupTitle": "Questions",
     "sampleRequest": [
       {
-        "url": "http://localhost:4000/api/exam/:examId/exercices/:exerciceId/questions/:questionId"
+        "url": "http://localhost:4000/api/exams/:examId/exercices/:exerciceId/questions/:questionId"
       }
     ]
   }
