@@ -101,12 +101,13 @@ const controller = {
    * @param {Object} next
    */
   async editQuestionById(req, res, next) {
-    const { question } = res.locals;
+    const { exercice, question } = res.locals;
     if (req.body) {
       try {
-        await question.updateOne(req.body);
-        await question.save();
-        return res.status(200).json(req.body);
+        await QuestionData.updateOrderOfOtherQuestionsIfNeeded(exercice, question, req.body.order);
+        await QuestionData.update(question._id, req.body);
+        const result = await QuestionData.getById(question._id);
+        return res.status(200).json(result);
       } catch (error) {
         return next(error);
       }

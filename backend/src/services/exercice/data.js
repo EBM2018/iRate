@@ -10,7 +10,7 @@ module.exports = {
     await exam.save();
     return exercice;
   },
-  getById: async id => Exercice.findById(id),
+  getById: async id => Exercice.findById(id).populate('questions'),
   update: async (_id, exercice) => Exercice.findOneAndUpdate({ _id }, exercice),
   delete: async _id => Exercice.findByIdAndDelete(_id),
 
