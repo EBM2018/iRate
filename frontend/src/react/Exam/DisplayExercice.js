@@ -26,7 +26,7 @@ export default class DisplayExercice extends Component {
                 {exercice.questions && exercice.questions.map(question =>
                     <DisplayQuestion key={question._id} question={question} />
                 )}
-                <div className="columns px-1 pt-1">
+                <div className="columns px-1 pt-1 no-print">
                     <div className="column is-two-thirds">
                     </div>
                     <div className="column is-one-third has-text-right">

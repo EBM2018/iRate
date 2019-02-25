@@ -18,19 +18,15 @@ class DisplayExam extends Component {
 
     componentDidMount() {
         this.props.fetchExam();
-    }
+    };
 
     closeError = () => {
         this.setState({ displayError: false });
-    }
+    };
 
-    /*createExam = () => {
-        this.props.postExam({
-            title: 'This is a title from Redux',
-            'reminders': 'This is a reminder from Redux',
-            'instruction': 'These are some instructions'
-        });
-    }*/
+    print = () => {
+        window.print();
+    };
 
     render() {
         const { id } = this.props.route.match.params;
@@ -39,11 +35,10 @@ class DisplayExam extends Component {
         return(
             <>
                 {(err||!exam)  ?
-                    (displayError && <Error errors={err} close={this.closeError}/>)
-                    // TODO: we can add a 404 component here
+                    (displayError && <Error errors={err} close={this.closeError} status={err.response.status}/>)
                 : (
                     <>
-                    <header>
+                    <header className="box has-background-white-ter">
                         <div className="columns">
                             <div className="column is-three-quarters">
                                 <h1 className="title">{exam.title}</h1>
@@ -55,11 +50,11 @@ class DisplayExam extends Component {
                                 </p>
                             </div>
                             <div className="column">
-                                <button className="button is-pulled-right is-info">Télécharger la version PDF</button>
+                                <button className="button is-pulled-right is-info no-print" onClick={this.print}>Télécharger la version PDF</button>
                             </div>
                         </div>
                     </header>
-                    <section id={`exam-${id}`} className="py-2">
+                    <section id={`exam-${id}`} className="py-2 exam">
                         { exam.exercices && exam.exercices.map((exercice, index) => {
                             return (
                                 <DisplayExercice exercice={exercice} key={exercice._id} />

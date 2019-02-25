@@ -5,6 +5,7 @@ import Instructions from '../Instructions/Instructions';
 import CreateExam from '../Exam/CreateExam';
 import DisplayExam from '../Exam/DisplayExam';
 import LayoutApp from '../Layout/LayoutApp';
+import NotFound from '../utils/NotFound';
 
 // TODO: move this guy in his own file
 const privateRoutes = {
@@ -45,6 +46,7 @@ const Router = () => (
                             />
                         )
                     })}
+                    <Route render={(props) => <NotFound {...props} />} />
                 </RouterSwitch>
             </>
         );
