@@ -6,6 +6,8 @@ module.exports = {
       path: 'exercices',
       populate: { path: 'questions' },
     }),
+  // TODO: handle case not valid ObjectID
+  // link: https://stackoverflow.com/questions/17223517/mongoose-casterror-cast-to-objectid-failed-for-value-object-object-at-path
   getById: async id => Exam.findById(id)
     .populate({
       path: 'exercices',
