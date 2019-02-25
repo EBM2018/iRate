@@ -6,6 +6,12 @@ export const getExams = async () => {
     return data;
 };
 
+export const getExam = async (id) => {
+            if (!id) return;
+            const { data } = await axios.get(`http://localhost:4000/api/exams/${id}`);
+            return data;
+};
+
 export const getExamsWithScaleAndTime = async () => {
     const {data} = await axios.get('http://localhost:4000/api/exams');
     let examScale = 0;
