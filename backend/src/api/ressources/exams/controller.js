@@ -44,12 +44,13 @@ const controller = {
   },
 
   async editExercice(req, res, next) {
-    const { exercice } = res.locals;
+    const { exam, exercice } = res.locals;
     if (req.body) {
       try {
-        exercice.update(req.body);
-        exercice.save();
-        return res.status(200).json(req.body);
+        await ExerciceData.updateOrderOfOtherExercicesIfNeeded(exam, exercice, req.body.order);
+        await ExerciceData.update(exercice._id, req.body);
+        const result = await ExerciceData.getById(req.body._id);
+        return res.status(200).json(result);
       } catch (error) {
         return next(error);
       }
