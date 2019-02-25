@@ -10,6 +10,11 @@ const ExerciceSchema = new mongoose.Schema({
     required: false,
     trim: true,
   },
+  order: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
   questions: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Question',
