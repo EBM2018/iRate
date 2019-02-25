@@ -12,7 +12,12 @@ module.exports = {
       options: {
         sort: { order: +1 },
       },
-      populate: { path: 'questions' },
+      populate: {
+        path: 'questions',
+        options: {
+          sort: { order: +1 },
+        },
+      },
     }),
   create: (exam) => {
     const examToSave = new Exam(exam);
