@@ -1,13 +1,13 @@
 import React from 'react'
 
-const FinaliseExamDisplayer = ({toggleFinalise,id,toggleScaleCheck,didChecked}) => {
+const FinaliseExamDisplayer = ({toggleFinalise,id,toggleScaleCheck,didChecked,finaliseExam}) => {
     return (
         <div className="modal is-active">
-            <div className="modal-background"/>
+            <div className="modal-background" onClick={toggleFinalise('')}/>
             <div className="modal-card">
                 <header className="modal-card-head">
                     <p className="modal-card-title">Finaliser l'examen</p>
-                    <button className="delete" aria-label="close"/>
+                    <button className="delete" onClick={toggleFinalise('')} aria-label="close"/>
                 </header>
                 <section className="modal-card-body">
                     <p className="content">
@@ -15,12 +15,12 @@ const FinaliseExamDisplayer = ({toggleFinalise,id,toggleScaleCheck,didChecked}) 
                         Attention ! Cette opération bloquera toute modification possible de celui-ci, vérifiez bien toutes les questions de votre examen avant de continuer.
                     </p>
                     <div className="field" onClick={toggleScaleCheck}>
-                        <input type="checkbox" name="switchScale" className="switch is-info" checked={didChecked}/>
+                        <input type="checkbox" name="switchScale" className="switch is-info" onChange={toggleScaleCheck} checked={didChecked}/>
                             <label>Souhaitez-vous afficher le barème ?</label>
                     </div>
                 </section>
                 <footer className="modal-card-foot">
-                    <button className="button is-success">Finaliser l'examen</button>
+                    <button className="button is-success" onClick={finaliseExam(id)}>Finaliser l'examen</button>
                     <button onClick={toggleFinalise('')} className="button">Annuler</button>
                 </footer>
             </div>

@@ -25,6 +25,14 @@ export const getExamsWithScaleAndTime = async () => {
     return data;
 };
 
+export const patchExam = async (exam) => {
+    console.log(exam);
+    const { data } = await axios.patch('http://localhost:4000/api/exams/' + exam._id, {
+        ...exam
+    });
+    return data;
+};
+
 export const postExam = async (exam) => {
     const { data } = await axios.post('http://localhost:4000/api/exams', {
         ...exam
