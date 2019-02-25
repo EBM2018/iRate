@@ -13,13 +13,22 @@ export default class ExerciceList extends React.PureComponent {
       {"exerciceTitle": '', "estimatedTime": ''},
     ]
   };
-
+  /**
+   * Add a new exercice in the exam creation page.
+   */
   addExercice = () => {
     const exercices = [...this.state.exercices];
     exercices.push({"exerciceTitle": '', "estimatedTime": ''});
     this.setState({exercices});
   };
 
+  /**
+   * Delete an exercice in the exam creation page.
+   *
+   * We can't delete the first exercice.
+   *
+   * @param {Object} v
+   */
   deleteExercice = (v) => {
     let idExercice = v.target.value;
     console.log(idExercice);

@@ -23,12 +23,22 @@ export default class Exercice extends React.PureComponent {
     this.setState({[e.target.name]:e.target.value});
   };
 
+  /**
+   * Add a new question related to an exercice.
+   */
   addQuestion = () => {
     const question = [...this.state.question];
     question.push({"questionTitle": '', "questionScale": null, "questionContent": ''});
     this.setState({question});
   };
 
+  /**
+   * Delete a question related to an exercice.
+   *
+   * We can't delete the first question.
+   *
+   * @param {Object} v
+   */
   deleteQuestion = (v) => {
     let idQuestion = v.target.value;
     console.log(idQuestion);
