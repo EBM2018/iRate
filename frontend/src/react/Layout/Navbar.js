@@ -8,7 +8,6 @@ export default class Navbar extends Component {
     };
 
     render() {
-        //const { title } = this.props;
         return (
             <nav id="navbar" className="navbar has-shadow is-spaced">
                 <div className="container">

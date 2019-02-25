@@ -20,14 +20,15 @@ export default class Error extends Component {
     parseError = () => {
         const { message, response } = this.props.errors;
         this.setState({
+            ...this.state,
             errorMessage: message ? message : 'Not found',
             status: response ? response.status : '404'
         });
-    }
+    };
 
     close = () => {
         this.props.close();
-    }
+    };
 
     render() {
         const { errorMessage, status } = this.state;

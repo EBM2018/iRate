@@ -52,6 +52,11 @@ export default combineReducers({
     }
   },
 
+  /**
+   * Updates error message to notify about the failed fetches
+   * By default: Redux doesn't return the error, it gets stuck
+   * @link https://stackoverflow.com/a/34482258
+   */
   errorMessage: (state = null, action) => {
     const { type, err } = action;
 
