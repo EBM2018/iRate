@@ -1,7 +1,13 @@
 import React from 'react';
 import ExerciceDisplayer from './ExerciceDisplayer';
+import PropTypes from "prop-types";
 
 export default class Exercice extends React.PureComponent {
+
+  static propTypes = {
+    exercices: PropTypes.array,
+    id: PropTypes.number,
+  };
 
   state = {
     question:[
@@ -23,20 +29,26 @@ export default class Exercice extends React.PureComponent {
     this.setState({question});
   };
 
-  delQuestion = (v) => {
-    console.log(v.target.value);
-    const question = [...this.state.question];
-    delete question[v.target.value];
-    this.setState({question});
+  deleteQuestion = (v) => {
+    let idQuestion = v.target.value;
+    console.log(idQuestion);
+    if (idQuestion === '0') return;
+    else {
+      const question = [...this.state.question];
+      question.splice(idQuestion, 1);
+      this.setState({question});
+    }
   };
 
   render() {
     return (
       <ExerciceDisplayer handleInput={this.handleInput}
                          addQuestion={this.addQuestion}
-                         delQuestion={this.delQuestion}
+                         deleteQuestion={this.deleteQuestion}
+                         deleteExercice={this.props.deleteExercice}
                          question={this.state.question}
-                         index={this.props.index}/>
+                         index={this.props.index}
+                         id={this.props.id}/>
     );
   }
 }
