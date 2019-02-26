@@ -20,7 +20,7 @@ module.exports = {
    * @param {Question} question the question that's being dragged and dropped
    * @param {number} newQuestionOrder the new order of the question that's being dragged and dropped
    */
-  async updateOrderOfOtherQuestionsIfNeeded(exercice, question, newQuestionOrder) {
+  async updateOrderOfOtherQuestions(exercice, question, newQuestionOrder) {
     const promisesUpdateOrder = exercice.questions.map(async (syblingQuestion) => {
       // if it is a different question than the one we are updating
       // and if it has a higher order

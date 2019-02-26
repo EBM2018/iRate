@@ -47,7 +47,7 @@ const controller = {
     const { exam, exercice } = res.locals;
     if (req.body) {
       try {
-        await ExerciceData.updateOrderOfOtherExercicesIfNeeded(exam, exercice, req.body.order);
+        await ExerciceData.updateOrderOfOtherExercices(exam, exercice, req.body.order);
         await ExerciceData.update(exercice._id, req.body);
         const result = await ExerciceData.getById(req.body._id);
         return res.status(200).json(result);
@@ -104,7 +104,7 @@ const controller = {
     const { exercice, question } = res.locals;
     if (req.body) {
       try {
-        await QuestionData.updateOrderOfOtherQuestionsIfNeeded(exercice, question, req.body.order);
+        await QuestionData.updateOrderOfOtherQuestions(exercice, question, req.body.order);
         await QuestionData.update(question._id, req.body);
         const result = await QuestionData.getById(question._id);
         return res.status(200).json(result);

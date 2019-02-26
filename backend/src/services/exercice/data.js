@@ -22,7 +22,7 @@ module.exports = {
    * @param {Exercice} exercice the exercice that's being dragged and dropped
    * @param {number} newExerciceOrder the new order of the exercice that's being dragged and dropped
    */
-  async updateOrderOfOtherExercicesIfNeeded(exam, exercice, newExerciceOrder) {
+  async updateOrderOfOtherExercices(exam, exercice, newExerciceOrder) {
     const promisesUpdateOrder = exam.exercices.map(async (syblingExercice) => {
       // if it is a different exercice than the one we are updating
       // and if it has a higher order
