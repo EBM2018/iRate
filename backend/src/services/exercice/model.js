@@ -5,11 +5,6 @@ const ExerciceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  estimatedTime: {
-    type: Number,
-    required: false,
-    trim: true,
-  },
   order: {
     type: Number,
     required: true,

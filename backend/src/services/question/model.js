@@ -5,15 +5,20 @@ const QuestionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  order: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
   scale: {
     type: Number,
     required: true,
     trim: true,
   },
-  order: {
+  estimatedTime: {
     type: Number,
-    required: true,
-    default: 0,
+    required: false,
+    trim: true,
   },
   correction: {
     type: String,

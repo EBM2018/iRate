@@ -1,3 +1,6 @@
+$card-header-background-color: #209cee;
+$card-header-color: #FFFFFF;
+
 @import "node_modules/bulma/bulma.sass";
 //@import "node_modules/bulma-extensions/bulma-accordion/src/sass/index.sass";
 //@import "node_modules/bulma-extensions/bulma-badge/src/sass/index.sass";
@@ -17,10 +20,39 @@
 //@import "node_modules/bulma-extensions/bulma-timeline/src/sass/index.sass";
 @import "node_modules/bulma-extensions/bulma-tooltip/src/sass/index.sass";
 
+@import "helpers.scss";
+
+// TODO: find a better way of handling that through SCSS variable
 .box {
     box-shadow: 0 7px 14px 0 rgba(60,66,87, 0.1), 0 3px 6px 0 rgba(0, 0, 0, .07);
 }
 
-.pb-0 {
-    padding-bottom: 0;
+@media print {
+    .navbar, footer, .no-print {
+        display: none !important;
+    }
+
+    @page {
+        margin-top: 2cm;
+        margin-bottom: 2cm;
+        margin-left: 2cm;
+        margin-right: 2cm;
+    }
+
+    // Avoid image break in the middle (assuming images are inside a p)
+    p {
+        page-break-inside: avoid;
+    }
+
+    .exam {
+        .box {
+            box-shadow: none;
+            margin: 3em 1em;
+        }
+    }
+
+    header {
+        box-shadow: none;
+        background-color: whitesmoke !important;
+    }
 }

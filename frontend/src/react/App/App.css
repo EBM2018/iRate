@@ -1,3 +1,13 @@
 body {
   background: #ECF0F3;
 }
+
+.is-a-link {
+  color: #3273dc;
+  cursor: pointer;
+  text-decoration: none;
+}
+.is-a-link strong {
+  color: currentColor; }
+.is-a-link:hover {
+  color: #363636; }

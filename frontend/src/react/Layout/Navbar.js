@@ -1,27 +1,36 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+
 export default class Navbar extends Component {
+
     static propTypes = {
         title: PropTypes.string.isRequired
     };
 
     render() {
-        const { title } = this.props;
         return (
-            <div className="navbar">
-                <div className="hero">
-                    <div className="hero-body pb-0">
-                        <div className="container">
-                            <h1 className="title">
-                                {title}
-                            </h1>
-                            <h2 className="subtitle">
-                                Hero subtitle
-                            </h2>
+            <nav id="navbar" className="navbar has-shadow is-spaced">
+                <div className="container">
+                    <div className="navbar-brand">
+                        <a className="navbar-item" href="/">iRate</a>
+                    </div>
+
+                    <div id="navMenuDocumentation" className="navbar-menu">
+                        <div className="navbar-start">Nav</div>
+                    </div>
+
+                    <div className="navbar-end">
+                        <div className="navbar-item">
+                            <div className="field is-grouped is-grouped-multiline">
+                                <p className="control">
+
+                                </p>
+                            </div>
                         </div>
                     </div>
+
                 </div>
-            </div>
+            </nav>
         )
     }
 }

@@ -5,6 +5,8 @@ import Instructions from '../Instructions/Instructions';
 import CreateExam from '../Exam/CreateExam';
 import DisplayExam from '../Exam/DisplayExam';
 import LayoutApp from '../Layout/LayoutApp';
+import NotFound from '../utils/NotFound';
+import ExamList from '../Exam/ExamList/ExamList';
 
 // TODO: move this guy in his own file
 const privateRoutes = {
@@ -17,6 +19,11 @@ const privateRoutes = {
         path: '/newexam/exercices',
         component: CreateExam,
         title: 'Créez votre examen'
+    },
+    ExamList: {
+        path: '/exams',
+        component: ExamList,
+        title: 'Afficher tous les examens'
     },
     DisplayExam: {
         path: '/exam/:id',
@@ -45,6 +52,7 @@ const Router = () => (
                             />
                         )
                     })}
+                    <Route render={(props) => <NotFound {...props} />} />
                 </RouterSwitch>
             </>
         );
