@@ -1,10 +1,7 @@
 import React from 'react'
 import Exercice from '../Exercice/Exercice';
-<<<<<<< HEAD
-=======
 import PropTypes from 'prop-types';
 let uniqid = require('uniqid');
->>>>>>> Impoving "Add Exercice" & "Delete Exercice"
 
 export default class ExerciceListDisplayer extends React.Component{
 
