@@ -62,7 +62,6 @@ export default class Exercice extends React.Component {
         }
     };
 
-
     /**
      * Delete a question related to an exercice.
      *
@@ -97,3 +96,4 @@ export default class Exercice extends React.Component {
         );
     }
 }
+
