@@ -2,7 +2,7 @@ import {ACTIONS as ACTIONS_POST} from './actions/post';
 import {combineReducers} from 'redux';
 
 const initialState = {
-    exercice: []
+    exercices: []
 };
 
 const ACTIONS = {
@@ -11,16 +11,11 @@ const ACTIONS = {
 };
 
 export default combineReducers({
-  exercice: (state = initialState, action) => {
+  exercices: (state = initialState, action) => {
     switch (action.type) {
       case ACTIONS.SET_POST_EXERCICE_SUCCESS:
-        return [
-            ...state,
-            {
-              exercice: action.exercice,
-            }
-          ];
-      default:
+          return action.exercices;
+        default:
         return state;
     }
   },
