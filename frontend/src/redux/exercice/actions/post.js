@@ -10,9 +10,9 @@ export const SET_POST_EXERCICE_START = () => ({
     type: ACTIONS.SET_POST_EXERCICE_START,
 });
 
-export const SET_POST_EXERCICE_SUCCESS = exam => ({
+export const SET_POST_EXERCICE_SUCCESS = exercice => ({
     type: ACTIONS.SET_POST_EXERCICE_SUCCESS,
-    exam,
+    exercice,
 });
 
 export const SET_POST_EXERCICE_FAILURE = err => ({

@@ -8,7 +8,7 @@ export default class CreateExam extends Component {
             <>
                 <div className="tile is-parent">
                     <div className="tile is-child">
-                        <ExerciceList/>
+                        <ExerciceList id={this.props.route.match.params.id}/>
                     </div>
                 </div>
                 <FooterExam/>
