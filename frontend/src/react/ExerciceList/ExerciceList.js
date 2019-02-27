@@ -2,10 +2,6 @@ import React from 'react'
 import ExerciceListDisplayer from './ExerciceListDisplayer';
 import PropTypes from "prop-types";
 
-
-export default class ExerciceList extends React.Component {
-  state = {
-    exercices: [1]
 export default class ExerciceList extends React.PureComponent {
 
   static propTypes = {
