@@ -8,13 +8,13 @@ class ExerciceList extends React.PureComponent {
 
     static propTypes = {
         id: PropTypes.number,
-        exercice: PropTypes.object.isRequired
+        exercice: PropTypes.object.isRequired,
     };
 
     state = {
         exercices: [
             {"title": 'coucou', "estimatedTime": '00:00:00'},
-        ]
+        ],
     };
     /**
      * Add a new exercice in the exam creation page.
@@ -51,17 +51,21 @@ class ExerciceList extends React.PureComponent {
     };
 
     saveExercice = () => {
-        this.props.fetchExercice(this.props.id, this.state.exercices)
+        for(let i in this.state.exercices)
+        {
+            console.log(this.state.exercices[i]);
+            this.props.fetchExercice(this.props.id, this.state.exercices[i]);
+        }
     };
 
     render() {
-        console.log(this.state.exercices);
         return (
             <div>
                 <ExerciceListDisplayer addExercice={this.addExercice}
                                        deleteExercice={this.deleteExercice}
                                        exercices={this.state.exercices}
                                        index={this.props.index}
+                                       idExercice={this.state.idExercice}
                                        handleInput={this.handleInput}
                                        id={this.props.id}/>
                 <button onClick={this.saveExercice}>Save</button>
