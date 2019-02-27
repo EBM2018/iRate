@@ -13,9 +13,33 @@ class ExerciceList extends React.PureComponent {
 
     state = {
         exercices: [
-            {"title": 'coucou', "estimatedTime": '00:00:00'},
+            {"title": '', "estimatedTime": ''},
         ],
     };
+
+    /**
+     * Put input value in state with name of the input as name of the variable
+     * @param {Object} e
+     */
+    handleInputExercice = (e) => {
+        let exercices = this.state.exercices;
+        let name = e.target.name;
+        let id = e.target.id;
+        console.log(e.target.id);
+        switch (name) {
+            case 'title':
+                exercices[id].title = e.target.value;
+                this.setState({exercices: exercices});
+                break;
+            case 'estimatedTime':
+                exercices[id].estimatedTime = e.target.value;
+                this.setState({exercices: exercices});
+                break;
+        }
+        console.log(this.state.exercices);
+
+    };
+
     /**
      * Add a new exercice in the exam creation page.
      */
@@ -23,13 +47,6 @@ class ExerciceList extends React.PureComponent {
         const exercices = [...this.state.exercices];
         exercices.push({"title": '', "estimatedTime": ''});
         this.setState({exercices});
-    };
-
-    /**
-     * handle inputs to update state value.
-     */
-    handleInput = (e) => {
-        this.setState({[e.target.name]: e.target.value});
     };
 
     /**
@@ -64,9 +81,9 @@ class ExerciceList extends React.PureComponent {
                 <ExerciceListDisplayer addExercice={this.addExercice}
                                        deleteExercice={this.deleteExercice}
                                        exercices={this.state.exercices}
+                                       handleInputExercice={this.handleInputExercice}
                                        index={this.props.index}
                                        idExercice={this.state.idExercice}
-                                       handleInput={this.handleInput}
                                        id={this.props.id}/>
                 <button onClick={this.saveExercice}>Save</button>
             </div>
