@@ -11,7 +11,7 @@ export default class Exercice extends React.Component {
 
   state = {
     question:[
-      {"questionTitle": '', "questionScale": null, "questionContent": ''},
+      {"questionTitle": '', "questionScale": null, "questionContent": '', "order": 1},
     ]
   };
 
@@ -27,8 +27,9 @@ export default class Exercice extends React.Component {
    * Add a new question related to an exercice.
    */
   addQuestion = () => {
-    const question = [...this.state.question];
-    question.push({"questionTitle": '', "questionScale": null, "questionContent": ''});
+    let question = [...this.state.question];
+    const maxOrder = Math.max(...question.map(qu => qu.order));
+    question.push({"questionTitle": '', "questionScale": null, "questionContent": '', "order" : maxOrder + 1});
     this.setState({question});
   };
 
@@ -41,7 +42,6 @@ export default class Exercice extends React.Component {
    */
   deleteQuestion = (v) => {
     let idQuestion = v.target.value;
-    console.log(idQuestion);
     if (idQuestion === '0') return;
     else {
       const question = [...this.state.question];
@@ -50,12 +50,25 @@ export default class Exercice extends React.Component {
     }
   };
 
+  moveQuestion = (dragIndex, hoverIndex) => {
+    const {question} = this.state;
+    const dragQuestion = question[dragIndex];
+
+    this.setState({
+      ...this.state,
+      question: {
+          $splice: [[dragIndex, 1], [hoverIndex, 0, dragQuestion]],
+        },
+      });
+  };
+
   render() {
     return (
       <ExerciceDisplayer handleInput={this.handleInput}
                          addQuestion={this.addQuestion}
                          deleteQuestion={this.deleteQuestion}
                          deleteExercice={this.props.deleteExercice}
+                         moveQuestion={this.moveQuestion}
                          question={this.state.question}
                          index={this.props.index}
                          id={this.props.id}/>

@@ -11,7 +11,8 @@ export default class ExerciceList extends React.PureComponent {
   state = {
     exercices: [
       {"exerciceTitle": '', "estimatedTime": ''},
-    ]
+    ],
+    isExtended: true,
   };
   /**
    * Add a new exercice in the exam creation page.
@@ -40,13 +41,23 @@ export default class ExerciceList extends React.PureComponent {
     }
   };
 
+  toggleExtend = () => {
+    const extend = !this.state.isExtended;
+    console.log(!this.state.isExtended);
+    this.setState({
+      isExtended: extend,
+    })
+  };
+
   render() {
     return (
       <ExerciceListDisplayer addExercice={this.addExercice}
                              deleteExercice={this.deleteExercice}
                              exercices={this.state.exercices}
                              index={this.props.index}
-                             id={this.props.id}/>
+                             id={this.props.id}
+                             toggleExtend={this.toggleExtend}
+                             isExtended={this.state.isExtended}/>
     );
   }
 }

@@ -15,7 +15,6 @@ export default class ExerciceDisplayer extends Component {
   static defaultProps = {};
 
   render() {
-    //console.log(this.props.question);
     return (
       <div className="section">
         <div className="box notification is-info">
