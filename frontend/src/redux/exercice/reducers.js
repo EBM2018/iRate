@@ -14,7 +14,10 @@ export default combineReducers({
   exercices: (state = initialState, action) => {
     switch (action.type) {
       case ACTIONS.SET_POST_EXERCICE_SUCCESS:
-          return action.exercices;
+          return {
+              ...state,
+              exercices: action.result
+          };
         default:
         return state;
     }
