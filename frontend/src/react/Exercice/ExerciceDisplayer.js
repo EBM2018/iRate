@@ -24,7 +24,6 @@ export default class ExerciceDisplayer extends Component {
                 <p className="title">Exercice {this.props.index + 1}</p>
               </div>
               <div className="column is-1">
-                <div className="delete is-large"/>
                 <button className="delete is-large" value={this.props.id} onClick={this.props.deleteExercice}/>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Exercice from '../Exercice/Exercice';
+import Exercice from '../Exercice';
 
 import PropTypes from 'prop-types';
 let uniqid = require('uniqid');
@@ -13,7 +13,6 @@ export default class ExerciceListDisplayer extends React.Component{
   };
 
   render() {
-    console.log(this.props.exercices);
     return (
       <>
         {this.props.exercices.map((value,idx) => <Exercice key={uniqid()} id={idx} exercices={value} index={idx} deleteExercice={this.props.deleteExercice} />)}
