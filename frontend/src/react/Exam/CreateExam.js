@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import ExerciceList from "../ExerciceList/ExerciceList";
+import ExerciceList from "../Exercice/ExerciceList/ExerciceList";
 import FooterExam from "../FooterExam/FooterExam";
 
 export default class CreateExam extends Component {
