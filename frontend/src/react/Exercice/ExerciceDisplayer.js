@@ -5,8 +5,11 @@ import Question from '../Question/Question';
 export default class ExerciceDisplayer extends Component {
   static propTypes = {
     handleInput: PropTypes.func.isRequired,
-    delQuestion: PropTypes.func.isRequired,
+    deleteQuestion: PropTypes.func.isRequired,
+    deleteExercice: PropTypes.func.isRequired,
     question: PropTypes.array.isRequired,
+    exercices: PropTypes.array.isRequired,
+    id: PropTypes.number.isRequired,
   };
 
   static defaultProps = {};
@@ -22,6 +25,7 @@ export default class ExerciceDisplayer extends Component {
               </div>
               <div className="column is-1">
                 <div className="delete is-large"/>
+                <button className="delete is-large" value={this.props.id} onClick={this.props.deleteExercice}/>
               </div>
             </div>
           </div>
@@ -43,7 +47,7 @@ export default class ExerciceDisplayer extends Component {
                                                    type="text"/></div>
           </div>
         </div>
-        {this.props.question.map((value,idx) => <Question key={idx} id={idx} question={value} index={idx} delQuestion={this.props.delQuestion}/>)}
+        {this.props.question.map((value,idx) => <Question key={idx} id={idx} question={value} index={idx} deleteQuestion={this.props.deleteQuestion}/>)}
         <button className="button is-info is-medium" onClick={this.props.addQuestion}>Nouvelle Question</button>
       </div>
     );
