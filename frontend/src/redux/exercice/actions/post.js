@@ -17,6 +17,7 @@ export const SET_POST_EXERCICE_START = () => ({
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 export const SET_POST_EXERCICE_SUCCESS = exercice => ({
     type: ACTIONS.SET_POST_EXERCICE_SUCCESS,
     exercice,
@@ -25,6 +26,11 @@ export const SET_POST_EXERCICE_SUCCESS = exam => ({
     type: ACTIONS.SET_POST_EXERCICE_SUCCESS,
     exam,
 >>>>>>> fetch master
+=======
+export const SET_POST_EXERCICE_SUCCESS = exercice => ({
+    type: ACTIONS.SET_POST_EXERCICE_SUCCESS,
+    exercice,
+>>>>>>> start rdux for exercice
 });
 
 export const SET_POST_EXERCICE_FAILURE = err => ({
