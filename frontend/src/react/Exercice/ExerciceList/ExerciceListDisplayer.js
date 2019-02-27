@@ -9,8 +9,8 @@ export default class ExerciceListDisplayer extends React.Component {
 
     static propTypes = {
         deleteExercice: PropTypes.func,
-        handleInput: PropTypes.func,
         exercices: PropTypes.array,
+        handleInputExercice: PropTypes.func,
         id: PropTypes.number,
         idExercice: PropTypes.number
     };
@@ -21,7 +21,7 @@ export default class ExerciceListDisplayer extends React.Component {
                 {this.props.exercices.map((value, idx) => <Exercice key={uniqid()} id={idx} exercices={value}
                                                                     index={idx}
                                                                     deleteExercice={this.props.deleteExercice}
-                                                                    handleInput={this.props.handleInput}/>)}
+                                                                    handleInputExercice={this.props.handleInputExercice}/>)}
                 <button className="button is-info is-medium" onClick={this.props.addExercice}>Nouvel Exercice</button>
             </>
         );

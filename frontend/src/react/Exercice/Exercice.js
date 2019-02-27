@@ -6,22 +6,14 @@ export default class Exercice extends React.Component {
 
     static propTypes = {
         exercices: PropTypes.array,
-        handleInput: PropTypes.func,
+        handleInputExercice: PropTypes.func,
         id: PropTypes.number,
     };
 
     state = {
         question: [
             {"questionTitle": '', "questionScale": null, "questionContent": ''},
-        ]
-    };
-
-    /**
-     * Put input value in state with name of the input as name of the variable
-     * @param {Object} e
-     */
-    handleInput = (e) => {
-        this.setState({[e.target.name]: e.target.value});
+        ],
     };
 
     /**
@@ -34,6 +26,31 @@ export default class Exercice extends React.Component {
     };
 
     /**
+     * Put input value in state with name of the input as name of the variable
+     * @param {Object} e
+     */
+    handleInputQuestion = (e) => {
+        let questions = this.state.question;
+        let name = e.target.name;
+        let id = e.target.id;
+        console.log(e.target.id);
+        switch (name) {
+            case 'questionTitle':
+                questions[id].questionTitle = e.target.value;
+                this.setState({question: questions});
+                break;
+            case 'questionScale':
+                questions[id].questionScale = e.target.value;
+                this.setState({question: questions});
+                break;
+            case 'questionContent':
+                questions[id].questionContent = e.target.value;
+                this.setState({question: questions});
+        }
+    };
+
+
+    /**
      * Delete a question related to an exercice.
      *
      * We can't delete the first question.
@@ -42,7 +59,6 @@ export default class Exercice extends React.Component {
      */
     deleteQuestion = (v) => {
         let idQuestion = v.target.value;
-        console.log(idQuestion);
         if (idQuestion === '0') return;
         else {
             const question = [...this.state.question];
@@ -54,8 +70,10 @@ export default class Exercice extends React.Component {
     render() {
         return (
             <div>
-                <ExerciceDisplayer handleInput={this.handleInput}
+                <ExerciceDisplayer handleInputQuestion={this.handleInputQuestion}
+                                   handleInputExercice={this.props.handleInputExercice}
                                    addQuestion={this.addQuestion}
+                                   exercices={this.props.exercices}
                                    deleteQuestion={this.deleteQuestion}
                                    deleteExercice={this.props.deleteExercice}
                                    question={this.state.question}
