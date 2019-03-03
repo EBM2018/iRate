@@ -1,12 +1,17 @@
 import React, {Component} from 'react'
 import InstructionsDisplayer from './InstructionsDisplayer';
-import NextButton from "../NextButton/NextButton";
-import FooterExam from "../FooterExam/FooterExam";
+import {Redirect} from 'react-router-dom'
+import connect from "react-redux/es/connect/connect";
+import {postExam} from "../../redux/exams/actions/post";
 
-export default class Instructions extends Component {
+class Instructions extends Component {
     state = {
         dropdownModule: false,
         dropdownClass: false,
+        title: '',
+        reminder: '',
+        instruction: '',
+        redirectExercices: false,
     };
 
     /**
@@ -26,6 +31,28 @@ export default class Instructions extends Component {
         this.setState({[e.target.name]:e.target.value});
     };
 
+    /**
+     * Send an exam to the API and redirect to /newexam/:examId/exercices if success
+     * @return undefined
+     */
+    addExamAndRedirect = async () => {
+        const { title,
+                reminder,
+                instruction} = this.state;
+        const examData = {
+            title,
+            reminder,
+            instruction
+        };
+
+        await this.props.createExam(examData);
+        if (this.props.exams.exam._id) {
+            this.setState({
+                idRedirect: this.props.exams.exam._id,
+                redirectExercices: true})
+        }
+    };
+
     render() {
         return (
             <>
@@ -34,10 +61,17 @@ export default class Instructions extends Component {
                                            dropdownModule={this.state.dropdownModule}
                                            handleInput={this.handleInput}
                                            dropdownClass={this.state.dropdownClass}/>
-                        <NextButton route={'/newexam/exercices'}/>
+                    <button className="box button is-medium" onClick={this.addExamAndRedirect}>Suivant</button>
+                    {this.state.redirectExercices ? <Redirect to={`/newexam/${this.state.idRedirect}/exercices`}/> : null}
                 </div>
-                <FooterExam/>
             </>
         );
     }
 }
+
+export default connect(state => ({
+    exams: state.exams.exams,
+    loading: state.exams.loading,
+}), dispatch => ({
+    createExam: (examData) => dispatch(postExam(examData)),
+}))(Instructions);

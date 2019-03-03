@@ -20,7 +20,7 @@ class ExamListDisplayer extends Component {
                                     </div>
                                 </div>
                                 <footer className="card-footer">
-                                    <div className="card-footer-item"><Link to={`/newexam/${exam._id}/instructions`}>Modifier</Link></div>
+                                    <div className="card-footer-item"><Link to={`/newexam/${exam._id}/exercices`}>Modifier</Link></div>
                                     <div className="card-footer-item is-a-link" onClick={this.props.toggleFinalise(exam._id)}>Finaliser</div>
                                 </footer>
                             </div>

@@ -1,7 +1,9 @@
 body {
   background: #ECF0F3;
 }
-
+.is-white-important {
+  background: white !important;
+}
 .is-a-link {
   color: #3273dc;
   cursor: pointer;

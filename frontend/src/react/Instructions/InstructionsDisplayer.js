@@ -4,14 +4,15 @@ import PropTypes from 'prop-types';
 export default class InstructionsDisplayer extends Component {
     static propTypes = {
         triggerDropdown: PropTypes.func.isRequired,
-        dropdownModule: PropTypes.func.dropdownModule,
+        dropdownModule: PropTypes.bool,
         handleInput: PropTypes.func.handleInput,
-        dropdownClass: PropTypes.func.dropdownClass,
+        dropdownClass: PropTypes.bool,
     };
 
     render() {
         return (
             <section className="section">
+                <div className="box notification is-info"><p className="title">Instructions</p></div>
                 <div className="box">
                     <div className="columns">
                         <div className="column is-two-thirds">

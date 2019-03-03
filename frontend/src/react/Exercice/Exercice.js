@@ -24,7 +24,6 @@ export default class Exercice extends React.Component {
   };
 
   delQuestion = (v) => {
-    console.log(v.target.value);
     const question = [...this.state.question];
     delete question[v.target.value];
     this.setState({question});
