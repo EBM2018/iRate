@@ -15,10 +15,10 @@ export default class InstructionsDisplayer extends Component {
                 <div className="box notification is-info"><p className="title">Instructions</p></div>
                 <div className="box">
                     <div className="columns">
-                        <div className="column is-two-thirds">
-                            <span className="title is-5">Module de l'épreuve:</span>
+                        <div className="column is-one-third">
+                            <span className="title is-5">Module et séance:</span>
                         </div>
-                        <div className="column is-one-third has-text-right">
+                        <div className="column is-two-thirds has-text-right">
                             <div className="columns">
                                 <div className="column is-half">
                                     <div className="dropdown is-right is-hoverable">
@@ -60,24 +60,26 @@ export default class InstructionsDisplayer extends Component {
                         </div>
                     </div>
                     <div className="columns">
-                        <div className="column is-half"><span className="title is-5">Intitulé de l'examen:</span></div>
-                        <div className="column is-half"><input className="input"
+                        <div className="column is-one-third"><span className="title is-5">Intitulé de l'examen:</span></div>
+                        <div className="column is-two-thirds"><input className="input"
                                                                name="title"
                                                                onChange={this.props.handleInput}
                                                                type="text"
                                                                placeholder="Epreuve..."/></div>
                     </div>
                     <div className="columns">
-                        <div className="column is-half"><span className="title is-5">Rappels:</span></div>
-                        <div className="column is-half"><textarea className="textarea"
+                        <div className="column is-one-third"><span className="title is-5">Rappels:</span></div>
+                        <div className="column is-two-thirds"><textarea className="textarea"
                                                                   name="reminder"
+                                                                  rows="6"
                                                                   onChange={this.props.handleInput}
                                                                   placeholder="Rappels..."/></div>
                     </div>
                     <div className="columns">
-                        <div className="column is-half"><span className="title is-5">Consignes:</span></div>
-                        <div className="column is-half"><textarea className="textarea"
+                        <div className="column is-one-third"><span className="title is-5">Consignes:</span></div>
+                        <div className="column is-two-thirds"><textarea className="textarea"
                                                                   name="instruction"
+                                                                  rows="10"
                                                                   onChange={this.props.handleInput}
                                                                   placeholder="Consignes..."/></div>
                     </div>
