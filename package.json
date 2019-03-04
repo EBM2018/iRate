@@ -21,14 +21,5 @@
   "homepage": "https://github.com/EBM2018/iRate",
   "devDependencies": {
     "concurrently": "^4.1.0"
-  },
-  "dependencies": {
-<<<<<<< Updated upstream
-=======
-    "https-proxy-agent": "^2.2.1",
-    "jsonwebtoken": "^8.5.0",
-    "node-fetch": "^2.3.0",
->>>>>>> Stashed changes
-    "qs": "^6.6.0"
   }
 }
