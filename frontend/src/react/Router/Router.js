@@ -7,6 +7,7 @@ import DisplayExam from '../Exam/DisplayExam';
 import LayoutApp from '../Layout/LayoutApp';
 import NotFound from '../utils/NotFound';
 import ExamList from '../Exam/ExamList/ExamList';
+import ExerciceList from "../ExerciceList/ExerciceList";
 
 // TODO: move this guy in his own file
 const privateRoutes = {
@@ -19,6 +20,11 @@ const privateRoutes = {
         path: '/newexam/exercices',
         component: CreateExam,
         title: 'Créez votre examen'
+    },
+    EditExam: {
+        path: '/newexam/:id/exercices',
+        component: ExerciceList,
+        title: 'Modifiez votre examen'
     },
     ExamList: {
         path: '/exams',
