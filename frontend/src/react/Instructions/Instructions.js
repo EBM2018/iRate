@@ -15,15 +15,6 @@ class Instructions extends Component {
     };
 
     /**
-     * trigger the boolean in state with str as input
-     * @param str
-     * @returns undefined
-     */
-    triggerDropdown = (str) => (e) => {
-
-    };
-
-    /**
      * Put input value in state with name of the input as name of the variable
      * @param {Object} e
      */
@@ -58,7 +49,7 @@ class Instructions extends Component {
     };
 
     triggerInactive = (e) => {
-        e.target.className = e.target.className.substr(0, e.target.className.length - 10);
+        e.target.className = e.target.className.replace(' is-active', '');;
     };
 
     handleSelect = (select,dropdownType) => () => {
