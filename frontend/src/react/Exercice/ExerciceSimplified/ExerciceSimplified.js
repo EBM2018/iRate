@@ -11,6 +11,7 @@ const ExerciceSimplified = (props) => {
       exercices: arrayMove(this.props.exercices, oldIndex, newIndex),
     }));
   };
+
   const handleInput = (e) => {
     this.setState({[e.target.name]:e.target.value});
   };

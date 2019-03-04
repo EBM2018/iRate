@@ -7,7 +7,7 @@ import DisplayExam from '../Exam/DisplayExam';
 import LayoutApp from '../Layout/LayoutApp';
 import NotFound from '../utils/NotFound';
 import ExamList from '../Exam/ExamList/ExamList';
-import ExerciceList from "../ExerciceList/ExerciceList";
+import ExerciceList from "../Exercice/ExerciceList/ExerciceList";
 
 // TODO: move this guy in his own file
 const privateRoutes = {

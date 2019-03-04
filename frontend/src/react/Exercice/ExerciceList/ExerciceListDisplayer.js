@@ -7,7 +7,7 @@ import {sortableContainer, sortableElement} from "react-sortable-hoc";
 let uniqid = require('uniqid');
 
 const SortableContainer = sortableContainer(({children}) => {
-  return <ul>{children}</ul>;
+    return <ul>{children}</ul>;
 });
 
 export default class ExerciceListDisplayer extends React.Component {
@@ -33,13 +33,13 @@ export default class ExerciceListDisplayer extends React.Component {
                 </div>
                 <SortableContainer onSortEnd={this.onSortEnd}>
 
-                {this.props.exercices.map((value, idx) => this.props.isExtended ?
-                    <Exercice key={uniqid()} id={idx} exercices={value}
-                              index={idx}
-                              deleteExercice={this.props.deleteExercice}
-                              handleInputExercice={this.props.handleInputExercice}/> :
-                    <ExerciceSimplified key={uniqid()} id={idx} exercices={value} index={idx}
-                                        deleteExercice={this.props.deleteExercice}/>)}
+                    {this.props.exercices.map((value, idx) => this.props.isExtended ?
+                        <Exercice key={uniqid()} id={idx} exercices={value}
+                                  index={idx}
+                                  deleteExercice={this.props.deleteExercice}
+                                  handleInputExercice={this.props.handleInputExercice}/> :
+                        <ExerciceSimplified key={uniqid()} id={idx} exercices={value} index={idx}
+                                            deleteExercice={this.props.deleteExercice}/>)}
                 </SortableContainer>
                 <button className="button is-info is-medium" onClick={this.props.addExercice}>Nouvel Exercice</button>
             </>

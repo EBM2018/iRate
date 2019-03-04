@@ -20,9 +20,10 @@ class ExerciceList extends React.PureComponent {
     };
 
     async componentDidMount() {
-        await this.props.fetchExam(this.props.id);
+        await this.props.fetchExam(this.props.route.match.params.id);
         if (this.state.exercices.length === 0) {
             this.setState({exercices: this.props.exam.exercices});
+            console.log(this.state.exercices);
         }
     };
 
@@ -86,7 +87,7 @@ class ExerciceList extends React.PureComponent {
     saveNewExercice = () => {
         for (let i in this.state.exercices) {
             if (typeof this.state.exercices[i]._id !== 'undefined') {
-                this.props.patchExercice(this.props.id, this.state.exercices[i]._id, this.state.exercices);
+                this.props.patchExercice(this.props.route.match.params.id, this.state.exercices[i]._id, this.state.exercices[i]);
             } else {
                 this.props.fetchNewExercice(this.props.id, this.state.exercices);
             }
