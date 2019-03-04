@@ -1,13 +1,33 @@
 body {
   background: #ECF0F3;
 }
-
+.is-white-important {
+  background: white !important;
+}
 .is-a-link {
   color: #3273dc;
   cursor: pointer;
   text-decoration: none;
+  border: none;
+}
+.is-a-link-custom{
+  color: #363636;
+  background-color: white;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
 }
 .is-a-link strong {
   color: currentColor; }
-.is-a-link:hover {
-  color: #363636; }
+.is-a-link-custom:hover {
+  color: white;
+  background-color: #209cee;}
+.link-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline;
+  margin: 0;
+  padding: 0;
+}

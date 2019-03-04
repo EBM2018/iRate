@@ -1,7 +1,9 @@
 import {ACTIONS as ACTIONS_GET} from './actions/get';
 import {ACTIONS as ACTIONS_POST} from './actions/post';
 import {ACTIONS as ACTIONS_GET_SINGLE} from './actions/getSingle';
+import {ACTIONS as ACTIONS_PATCH} from './actions/patch'
 import {combineReducers} from 'redux';
+//import {SET_PATCH_EXAMS_START} from "./actions/patch";
 
 const initialState = {
   exams: []
@@ -11,6 +13,7 @@ const ACTIONS = {
   ...ACTIONS_GET,
   ...ACTIONS_POST,
   ...ACTIONS_GET_SINGLE,
+  ...ACTIONS_PATCH,
   'RESET_ERROR_MESSAGE': 'RESET_ERROR_MESSAGE'
 };
 
@@ -21,13 +24,20 @@ export default combineReducers({
         return action.exams;
       case ACTIONS.SET_GET_EXAM_SUCCESS:
         return action.exam;
-      case ACTIONS.SET_POST_EXAM_SUCCESS:
-        return [
+      case ACTIONS.SET_PATCH_EXAMS_SUCCESS:
+        return action.exams;
+        case ACTIONS.SET_POST_EXAM_SUCCESS:
+        return state.exams.length ? {
             ...state,
-            {
-              title: action.exam.title,
-            }
-          ];
+            exam: action.exam,
+            exams: [
+                ...state.exams,
+                action.exam
+            ]
+        } : {
+            ...state,
+            exam: action.exam,
+        };
       default:
         return state;
     }
@@ -38,6 +48,7 @@ export default combineReducers({
       case ACTIONS.SET_GET_EXAMS_START:
       case ACTIONS.SET_GET_EXAM_START:
       case ACTIONS.SET_POST_EXAM_START:
+      case ACTIONS.SET_PATCH_EXAMS_START:
         return true;
       case ACTIONS.SET_GET_EXAMS_SUCCESS:
       case ACTIONS.SET_GET_EXAM_SUCCESS:
@@ -45,6 +56,8 @@ export default combineReducers({
       case ACTIONS.SET_GET_EXAMS_FAILURE:
       case ACTIONS.SET_GET_EXAM_FAILURE:
       case ACTIONS.SET_POST_EXAM_FAILURE:
+      case ACTIONS.SET_PATCH_EXAMS_FAILURE:
+      case ACTIONS.SET_PATCH_EXAMS_SUCCESS:
         return false;
 
       default:

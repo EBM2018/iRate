@@ -11,7 +11,15 @@ module.exports = {
   getById: async id => Exam.findById(id)
     .populate({
       path: 'exercices',
-      populate: { path: 'questions' },
+      options: {
+        sort: { order: +1 },
+      },
+      populate: {
+        path: 'questions',
+        options: {
+          sort: { order: +1 },
+        },
+      },
     }),
   create: (exam) => {
     const examToSave = new Exam(exam);

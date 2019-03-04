@@ -5,7 +5,6 @@ import {privateRoutes} from '../../services/routes';
 import LayoutApp from '../Layout/LayoutApp';
 import NotFound from '../utils/NotFound';
 
-
 const Router = () => (
             <>
                 <RouterSwitch>
