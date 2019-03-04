@@ -1,4 +1,4 @@
-//import { getAuthHeaders, checkAuthResponse } from './auth';
+import { checkAuthResponse } from './auth';
 import axios from 'axios';
 
 const apiInstance = axios.create({
@@ -25,6 +25,6 @@ export const apiRequest = async (url, type, options = {}) => {
         //headers: getAuthHeaders(options.headers),
         ...options
     });
-    //const response = await checkAuthResponse(dataRequest);
-    return handleResponse(dataRequest);
+    const response = await checkAuthResponse(dataRequest);
+    return handleResponse(response);
 };
