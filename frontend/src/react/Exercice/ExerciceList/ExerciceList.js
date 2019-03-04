@@ -15,6 +15,7 @@ class ExerciceList extends React.PureComponent {
         exercices: [
             {"title": '', "estimatedTime": ''},
         ],
+         isExtended: true,
     };
 
     /**
@@ -38,6 +39,14 @@ class ExerciceList extends React.PureComponent {
         }
         console.log(this.state.exercices);
 
+    };
+
+    toggleExtend = () => {
+        const extend = !this.state.isExtended;
+        console.log(!this.state.isExtended);
+        this.setState({
+            isExtended: extend,
+        })
     };
 
     /**
@@ -84,6 +93,8 @@ class ExerciceList extends React.PureComponent {
                                        handleInputExercice={this.handleInputExercice}
                                        index={this.props.index}
                                        idExercice={this.state.idExercice}
+                                       toggleExtend={this.toggleExtend}
+                                       isExtended={this.state.isExtended}
                                        id={this.props.id}/>
                 <button onClick={this.saveExercice}>Save</button>
             </div>
