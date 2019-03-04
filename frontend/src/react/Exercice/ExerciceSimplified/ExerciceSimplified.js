@@ -1,28 +1,27 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import ExerciceSimplifiedDisplayer from "./ExerciceSimplifiedDisplayer";
+import {arrayMove} from 'array-move';
+import {SortableElement} from "react-sortable-hoc";
 
-export default class ExerciceSimplified extends React.PureComponent {
 
-  static propTypes = {
-    exercices: PropTypes.array,
-    id: PropTypes.number,
+const ExerciceSimplified = (props) => {
+  const onSortEnd = ({oldIndex, newIndex}) => {
+    this.setState(({exercices}) => ({
+      exercices: arrayMove(this.props.exercices, oldIndex, newIndex),
+    }));
   };
-
-  /**
-   * Put input value in state with name of the input as name of the variable
-   * @param {Object} e
-   */
-  handleInput = (e) => {
+  const handleInput = (e) => {
     this.setState({[e.target.name]:e.target.value});
   };
+  return (
+    <ExerciceSimplifiedDisplayer handleInput={handleInput}
+                                 deleteExercice={props.deleteExercice}
+                                 id={props.id}
+                                 onSortEnd={onSortEnd}
+                                 exercices={props.exercices}
+                                 index={props.id}/>
+  );
+};
 
-  render() {
-    return (
-      <ExerciceSimplifiedDisplayer handleInput={this.handleInput}
-                                   deleteExercice={this.props.deleteExercice}
-                                   id={this.props.id}
-                                   index={this.props.index}/>
-    );
-  }
-}
+export default SortableElement((props) => ExerciceSimplified(props));

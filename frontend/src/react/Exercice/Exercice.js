@@ -21,21 +21,11 @@ export default class Exercice extends React.Component {
      */
     addQuestion = () => {
         let question = [...this.state.question];
+        console.log(question);
         const maxOrder = Math.max(...question.map(qu => qu.order));
         question.push({"questionTitle": '', "questionScale": null, "questionContent": '', "order" : maxOrder + 1});
     };
 
-    moveQuestion = (dragIndex, hoverIndex) => {
-        const {question} = this.state;
-        const dragQuestion = question[dragIndex];
-
-        this.setState({
-            ...this.state,
-            question: {
-                $splice: [[dragIndex, 1], [hoverIndex, 0, dragQuestion]],
-            },
-        });
-    };
 
     /**
      * Put input value in state with name of the input as name of the variable
@@ -87,7 +77,6 @@ export default class Exercice extends React.Component {
                                    addQuestion={this.addQuestion}
                                    exercices={this.props.exercices}
                                    deleteQuestion={this.deleteQuestion}
-                                   moveQuestion={this.moveQuestion}
                                    deleteExercice={this.props.deleteExercice}
                                    question={this.state.question}
                                    index={this.props.index}
@@ -96,3 +85,4 @@ export default class Exercice extends React.Component {
         );
     }
 }
+

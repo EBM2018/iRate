@@ -91,7 +91,7 @@ class ExerciceList extends React.PureComponent {
                                        deleteExercice={this.deleteExercice}
                                        exercices={this.state.exercices}
                                        handleInputExercice={this.handleInputExercice}
-                                       index={this.props.index}
+                                       index={this.props.id}
                                        idExercice={this.state.idExercice}
                                        toggleExtend={this.toggleExtend}
                                        isExtended={this.state.isExtended}
