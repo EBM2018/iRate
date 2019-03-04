@@ -1,19 +1,26 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Question from '../Question/Question';
+import {sortableContainer, sortableElement} from "react-sortable-hoc";
+
+let uniqid = require('uniqid');
+
+const SortableContainer = sortableContainer(({children}) => {
+  return <ul>{children}</ul>;
+});
 
 export default class ExerciceDisplayer extends Component {
-
-    static propTypes = {
-        handleInputExercice: PropTypes.func.isRequired,
-        handleInputQuestion: PropTypes.func,
-        deleteQuestion: PropTypes.func.isRequired,
-        deleteExercice: PropTypes.func.isRequired,
-        question: PropTypes.array.isRequired,
-        exercices: PropTypes.array.isRequired,
-        id: PropTypes.number.isRequired,
-    };
-
+  static propTypes = {
+    handleInputExercice: PropTypes.func.isRequired,
+    handleInputQuestion: PropTypes.func,
+    deleteQuestion: PropTypes.func.isRequired,
+    addQuestion: PropTypes.func.isRequired,
+    deleteExercice: PropTypes.func.isRequired,
+    question: PropTypes.array.isRequired,
+    exercices: PropTypes.array.isRequired,
+    id: PropTypes.number.isRequired,
+    index: PropTypes.number.isRequired
+  };
     static defaultProps = {};
 
     render() {
@@ -54,9 +61,12 @@ export default class ExerciceDisplayer extends Component {
                                                                type="text"/></div>
                     </div>
                 </div>
-                {this.props.question.map((value, idx) => <Question key={idx} id={idx} question={value} index={idx}
-                                                                   deleteQuestion={this.props.deleteQuestion} handleInputQuestion={this.props.handleInputQuestion}/>)}
-                <button className="button is-info is-medium" onClick={this.props.addQuestion}>Nouvelle Question</button>
+          <SortableContainer onSortEnd={this.onSortEnd}>
+          {this.props.question.map((value, idx) => <Question key={uniqid()} id={idx} question={value} index={idx}
+                                                             deleteQuestion={this.props.deleteQuestion}
+                                                             handleInputQuestion={this.props.handleInputQuestion} />)}
+        </SortableContainer>
+               <button className="button is-info is-medium" onClick={this.props.addQuestion}>Nouvelle Question</button>
             </div>
         );
     }

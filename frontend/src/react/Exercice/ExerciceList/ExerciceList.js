@@ -30,6 +30,7 @@ class ExerciceList extends React.PureComponent {
      * Put input value in state with name of the input as name of the variable
      * @param {Object} e
      */
+
     handleInputExercice = async (e) => {
         const { exercices } = this.state;
         const { name, id }= e.target;
@@ -89,6 +90,7 @@ class ExerciceList extends React.PureComponent {
             } else {
                 this.props.fetchNewExercice(this.props.id, this.state.exercices);
             }
+
         }
     };
 
@@ -99,7 +101,7 @@ class ExerciceList extends React.PureComponent {
                                        deleteExercice={this.deleteExercice}
                                        exercices={this.state.exercices}
                                        handleInputExercice={this.handleInputExercice}
-                                       index={this.props.index}
+                                       index={this.props.id}
                                        idExercice={this.state.idExercice}
                                        toggleExtend={this.toggleExtend}
                                        isExtended={this.state.isExtended}

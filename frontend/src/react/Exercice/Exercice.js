@@ -21,9 +21,9 @@ export default class Exercice extends React.Component {
      */
     addQuestion = () => {
         let question = [...this.state.question];
+        console.log(question);
         const maxOrder = Math.max(...question.map(qu => qu.order));
         question.push({"questionTitle": '', "questionScale": null, "questionContent": '', "order" : maxOrder + 1});
-        this.setState({question});
     };
 
     moveQuestion = (dragIndex, hoverIndex) => {
@@ -97,3 +97,4 @@ export default class Exercice extends React.Component {
         );
     }
 }
+

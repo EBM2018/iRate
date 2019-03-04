@@ -1,23 +1,25 @@
 import React from 'react';
 import QuestionDisplayer from "./QuestionDisplayer";
-import PropTypes from "prop-types";
+import {arrayMove} from "array-move";
+import {SortableElement} from "react-sortable-hoc";
 
-export default class Question extends React.Component {
+const Question = (props) => {
+  const onSortEnd = ({oldIndex, newIndex}) => {
+    this.setState(({question}) => ({
+      question: arrayMove(this.props.question, oldIndex, newIndex),
+    }));
+  };
+  const handleInput = (e) => {
+    this.setState({[e.target.name]:e.target.value});
+  };
+  return (
+    <QuestionDisplayer handleInput={handleInput}
+                       deleteExercice={props.deleteExercice}
+                       id={props.id}
+                       onSortEnd={onSortEnd}
+                       exercices={props.exercices}
+                       index={props.id}/>
+  );
+};
 
-    static propTypes = {
-        exercices: PropTypes.array,
-        handleInputQuestion: PropTypes.func,
-        deleteQuestion: PropTypes.func,
-        question: PropTypes.array,
-        id: PropTypes.number,
-    };
-
-    render() {
-        return (
-            <QuestionDisplayer handleInput={this.props.handleInputQuestion}
-                               deleteQuestion={this.props.deleteQuestion}
-                               question={this.props.question}
-                               id={this.props.id}/>
-        );
-    }
-}
+export default SortableElement((props) => Question(props));
