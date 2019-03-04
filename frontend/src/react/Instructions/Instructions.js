@@ -3,6 +3,7 @@ import InstructionsDisplayer from './InstructionsDisplayer';
 import {Redirect} from 'react-router-dom'
 import connect from "react-redux/es/connect/connect";
 import {postExam} from "../../redux/exams/actions/post";
+import {triggerActive,triggerInactive} from "../../helpers/activeClass";
 
 class Instructions extends Component {
     state = {
@@ -44,14 +45,6 @@ class Instructions extends Component {
         }
     };
 
-    triggerActive = (e) => {
-        e.target.className = e.target.className + " is-active";
-    };
-
-    triggerInactive = (e) => {
-        e.target.className = e.target.className.replace(' is-active', '');;
-    };
-
     handleSelect = (select,dropdownType) => () => {
         this.setState({[dropdownType]: select});
     };
@@ -64,8 +57,8 @@ class Instructions extends Component {
                                            dropdownModule={this.state.dropdownModule}
                                            dropdownClass={this.state.dropdownClass}
                                            handleInput={this.handleInput}
-                                           triggerActive={this.triggerActive}
-                                           triggerInactive={this.triggerInactive}
+                                           triggerActive={triggerActive}
+                                           triggerInactive={triggerInactive}
                                            handleSelect={this.handleSelect}/>
                     <button className="box button is-medium" onClick={this.addExamAndRedirect}>Suivant</button>
                     {this.state.redirectExercices ? <Redirect to={`/newexam/${this.state.idRedirect}/exercices`}/> : null}
