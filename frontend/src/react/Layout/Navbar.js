@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+import iRateLogo from '../../images/logo.png'
 
 export default class Navbar extends Component {
 
@@ -9,26 +11,31 @@ export default class Navbar extends Component {
 
     render() {
         return (
-            <nav id="navbar" className="navbar has-shadow is-spaced">
-                <div className="container">
-                    <div className="navbar-brand">
-                        <a className="navbar-item" href="/">iRate</a>
+            <nav className="navbar is-white-important" role="navigation" aria-label="main navigation">
+                <div className="navbar-brand">
+                    <Link to={'/'} className="navbar-item">
+                        <img src={iRateLogo} alt="Vous trouverez ici le logo de notre app !"/>
+                    </Link>
+
+                    <button className="navbar-burger burger is-a-link-custom" aria-label="menu" aria-expanded="false"
+                       data-target="navbarBasicExample">
+                        <span aria-hidden="true"/>
+                        <span aria-hidden="true"/>
+                        <span aria-hidden="true"/>
+                    </button>
+                </div>
+
+                <div id="navbarBasicExample" className="navbar-menu">
+                    <div className="navbar-start">
+
+                        <Link to={"/exams"} className="navbar-item">
+                            Examens
+                        </Link>
+
+                        <Link to={"/newexam/instructions"} className="navbar-item">
+                            Créer un examen
+                        </Link>
                     </div>
-
-                    <div id="navMenuDocumentation" className="navbar-menu">
-                        <div className="navbar-start">Nav</div>
-                    </div>
-
-                    <div className="navbar-end">
-                        <div className="navbar-item">
-                            <div className="field is-grouped is-grouped-multiline">
-                                <p className="control">
-
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </nav>
         )
