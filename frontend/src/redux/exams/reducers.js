@@ -3,7 +3,7 @@ import {ACTIONS as ACTIONS_POST} from './actions/post';
 import {ACTIONS as ACTIONS_GET_SINGLE} from './actions/getSingle';
 import {ACTIONS as ACTIONS_PATCH} from './actions/patch'
 import {combineReducers} from 'redux';
-import {SET_PATCH_EXAMS_START} from "./actions/patch";
+//import {SET_PATCH_EXAMS_START} from "./actions/patch";
 
 const initialState = {
   exams: []
