@@ -31,7 +31,6 @@ export const getAuthHeaders = (headers = {}) => (
 
 const query = { ...qs.parse(document.location.search.slice(1)) };
 if (query.token) {
-    console.log('New token received from query : ' + query.token);
     setToken(query.token.split(' ')[1]);
     delete query.token;
     const newQuery = qs.stringify(query);
