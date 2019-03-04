@@ -41,10 +41,10 @@ export default class Error extends Component {
                 <div className="hero">
                     <div className="hero-body">
                         <div className="container">
-                            <div class="has-text-centered">
+                            <div className="has-text-centered">
                                 <h2 className="subtitle">{status}</h2>
-                                <span class="icon is-large has-text-warning py-2">
-                                    <i class="fas fas fa-exclamation-triangle fa-3x"></i>
+                                <span className="icon is-large has-text-warning py-2">
+                                    <i className="fas fas fa-exclamation-triangle fa-3x"></i>
                                 </span>
                             </div>
                             <div className="has-text-centered py-2">

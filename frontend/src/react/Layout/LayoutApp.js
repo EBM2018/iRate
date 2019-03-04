@@ -8,7 +8,7 @@ export default class LayoutApp extends Component {
     static propTypes = {
         component: PropTypes.func.isRequired,
         title: PropTypes.string.isRequired,
-        route: PropTypes.string
+        route: PropTypes.object
     };
 
     render() {
