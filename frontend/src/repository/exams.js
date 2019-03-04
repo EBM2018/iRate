@@ -1,19 +1,18 @@
-import axios from 'axios';
-import moment from "moment";
-
+import moment from 'moment';
+import {apiRequest} from '../services/api';
 export const getExams = async () => {
-    const { data } = await axios.get('http://localhost:4000/api/exams');
+    const data = await apiRequest('exams', 'get');
     return data;
 };
 
 export const getExam = async (id) => {
     if (!id) return;
-    const { data } = await axios.get(`http://localhost:4000/api/exams/${id}`);
+    const data = await apiRequest(`/exams/${id}`, 'get');
     return data;
 };
 
 export const getExamsWithScaleAndTime = async () => {
-    const {data} = await axios.get('http://localhost:4000/api/exams');
+    const data = await apiRequest(`/exams`, 'get');
     let examScale = 0;
     let examTime = 0;
     for (let i = 0; i < data.length; i++) {
@@ -32,14 +31,14 @@ export const getExamsWithScaleAndTime = async () => {
 };
 
 export const patchExam = async (exam) => {
-    const { data } = await axios.patch('http://localhost:4000/api/exams/' + exam._id, {
+    const data = await apiRequest(`/exams/` + exam._id, 'patch', {
         ...exam
     });
     return data;
 };
 
 export const postExam = async (exam) => {
-    const { data } = await axios.post('http://localhost:4000/api/exams', {
+    const data = await apiRequest(`/exams`, 'post', {
         ...exam
     });
     return data;
