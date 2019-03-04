@@ -17,7 +17,15 @@ app.use(bodyParser.json());
 // TODO: implement corsoptions to secure the app
 app.use(cors());
 
-app.use('/api', require('./api'));
+// All routes require a JWT token
+// TODO: turn it on and change URL
+/* app.use(require('./api/auth').initialize({
+  provider: 'https://linkapp.ebm.nymous.io/',
+})); */
+
+app.use('/api', require('./api/auth').requireAuth({
+  provider: 'https://linkapp.ebm.nymous.io/',
+}), require('./api'));
 
 // Disable ESLint for this line because of the issue listed here :
 // https://github.com/expressjs/generator/issues/78
