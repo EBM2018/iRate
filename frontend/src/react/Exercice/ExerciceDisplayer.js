@@ -38,6 +38,7 @@ export default class ExerciceDisplayer extends Component {
                         <div className="column is-half"><input className="input"
                                                                name="title"
                                                                id={this.props.id}
+                                                               defaultValue={this.props.exercices.title === 'undefined' ? '' : this.props.exercices.title}
                                                                onChange={this.props.handleInputExercice}
                                                                type="text"
                                                                placeholder="Epreuve..."/></div>
@@ -46,6 +47,7 @@ export default class ExerciceDisplayer extends Component {
                         <div className="column is-half"><span className="title is-5">Temps estimé :</span></div>
                         <div className="column is-half"><input className="input"
                                                                name="estimatedTime"
+                                                               defaultValue={this.props.exercices.estimatedTime === 'undefined' ? '' : this.props.exercices.estimatedTime}
                                                                id={this.props.id}
                                                                onChange={this.props.handleInputExercice}
                                                                type="text"/></div>
