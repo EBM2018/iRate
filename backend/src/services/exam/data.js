@@ -12,7 +12,7 @@ module.exports = {
     .populate({
       path: 'exercices',
       options: {
-        sort: { order: +1 },
+        sort: { order: + 1 },
       },
       populate: {
         path: 'questions',

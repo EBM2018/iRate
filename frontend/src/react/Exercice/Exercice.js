@@ -1,8 +1,12 @@
 import React from 'react';
 import ExerciceDisplayer from './ExerciceDisplayer';
 import PropTypes from "prop-types";
+import connect from "react-redux/es/connect/connect";
+import {postQuestion} from "../../redux/question/actions/post";
+import {deleteQuestion} from "../../redux/question/actions/delete";
+import {patchQuestion} from "../../redux/question/actions/patch";
 
-export default class Exercice extends React.Component {
+class Exercice extends React.Component {
 
     static propTypes = {
         exercices: PropTypes.array,
@@ -11,19 +15,36 @@ export default class Exercice extends React.Component {
     };
 
     state = {
-        question: [
-            {"questionTitle": '', "questionScale": null, "questionContent": '', "order": 0},
-        ],
+        question: [],
+    };
+
+    componentDidMount() {
+        if (this.state.question.length === 0) {
+            this.setState({question: this.props.exercices.questions});
+        }
     };
 
     /**
      * Add a new question related to an exercice.
      */
     addQuestion = () => {
-        let question = [...this.state.question];
+        let question = this.state.question;
+        let maxOrder = 0;
         console.log(question);
-        const maxOrder = Math.max(...question.map(qu => qu.order));
-        question.push({"questionTitle": '', "questionScale": null, "questionContent": '', "order" : maxOrder + 1});
+        if (typeof question !== 'undefined') {
+            maxOrder = Math.max(...question.map(qu => qu.order));
+            question.push({"title": '', "scale": null, "correction": '', "order": maxOrder + 1});
+        } else {
+            question = [{"title": '', "scale": null, "correction": '', "order": maxOrder + 1}];
+            maxOrder = 0;
+        }
+        this.setState({question: question});
+        this.props.fetchNewQuestion(this.props.id, this.props.exercices._id, {
+            "title": "Nouvelle Question",
+            "order": maxOrder + 1,
+            "scale": 0,
+            "correction": ""
+        })
     };
 
     moveQuestion = (dragIndex, hoverIndex) => {
@@ -42,23 +63,27 @@ export default class Exercice extends React.Component {
      * Put input value in state with name of the input as name of the variable
      * @param {Object} e
      */
-    handleInputQuestion = (e) => {
-        let questions = this.state.question;
-        let name = e.target.name;
-        let id = e.target.id;
-        console.log(e.target.id);
+    handleInputQuestion = async (e) => {
+        const {question} = this.state;
+        const {name, id} = e.target;
         switch (name) {
             case 'questionTitle':
-                questions[id].questionTitle = e.target.value;
-                this.setState({question: questions});
+                question[id].title = e.target.value;
+                this.setState({question: question});
+                console.log(this.state.question);
                 break;
             case 'questionScale':
-                questions[id].questionScale = e.target.value;
-                this.setState({question: questions});
+                question[id].scale = e.target.value;
+                this.setState({question: question});
                 break;
-            case 'questionContent':
-                questions[id].questionContent = e.target.value;
-                this.setState({question: questions});
+            case 'questionCorrection':
+                question[id].correction = e.target.value;
+                this.setState({question: question});
+                break;
+            case 'questionEstimatedTime':
+                question[id].estimatedTime = e.target.value;
+                this.setState({question: question});
+                break;
         }
     };
 
@@ -72,11 +97,18 @@ export default class Exercice extends React.Component {
      */
     deleteQuestion = (v) => {
         let idQuestion = v.target.value;
-        if (idQuestion === '0') return;
-        else {
-            const question = [...this.state.question];
-            question.splice(idQuestion, 1);
-            this.setState({question});
+        const question = [...this.state.question];
+        question.splice(idQuestion, 1);
+        this.setState({question});
+        this.props.fetchDeleteQuestion(this.props.id, this.props.exercices._id, this.state.question[idQuestion]._id);
+    };
+
+    saveNewQuestion = () => {
+        for (let i in this.state.question) {
+            if (typeof this.state.question[i]._id !== 'undefined') {
+                console.log(this.state.question[i]);
+                this.props.patchQuestion(this.props.id, this.props.exercices._id, this.state.question[i]._id, this.state.question[i]);
+            }
         }
     };
 
@@ -93,8 +125,26 @@ export default class Exercice extends React.Component {
                                    question={this.state.question}
                                    index={this.props.index}
                                    id={this.props.id}/>
+                <div className="section">
+                    <button className="button is-info is-medium" onClick={this.saveNewQuestion}>Sauvegarder l'exercice
+                    </button>
+                </div>
             </div>
         );
     }
 }
+
+
+export default connect((state, ownProps) => ({
+    exercice: state.exercices.exercices,
+    exam: state.exams.exams,
+    loading: state.exercices.loading,
+    err: state.exercices.errorMessage
+}), (dispatch, ownProps) => ({
+    fetchNewQuestion: (idExam, idExercice, questionToAdd) => dispatch(postQuestion(idExam, idExercice, questionToAdd)),
+    fetchDeleteQuestion: (idExam, idExercice, idQuestion, questionToAdd) => dispatch(deleteQuestion(idExam, idExercice, idQuestion, questionToAdd)),
+    patchQuestion: (idExam, idExercice, idQuestion, questionToAdd) => dispatch(patchQuestion(idExam, idExercice, idQuestion, questionToAdd)),
+}))(Exercice);
+
+
 

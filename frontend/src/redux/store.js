@@ -11,6 +11,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 
 import examsReducer from './exams/reducers';
 import exerciceReducer from './exercice/reducers';
+import questionReducer from './question/reducers';
 
 // Do not refactor this into !['production', 'test'].includes(process.env.NODE_ENV)
 // Because uglify cannot statically analyze this.
@@ -22,7 +23,8 @@ const isDevEnvironment = (
 // Create root reducer
 const reducers = combineReducers({
     exams: examsReducer,
-    exercices: exerciceReducer
+    exercices: exerciceReducer,
+    question: questionReducer
 });
 
 const middlewares = [

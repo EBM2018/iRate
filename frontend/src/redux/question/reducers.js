@@ -2,7 +2,7 @@ import {ACTIONS as ACTIONS_POST} from './actions/post';
 import {combineReducers} from 'redux';
 
 const initialState = {
-    exercices: []
+    questions: []
 };
 
 const ACTIONS = {
@@ -11,19 +11,19 @@ const ACTIONS = {
 };
 
 export default combineReducers({
-    exercices: (state = initialState, action) => {
+    questions: (state = initialState, action) => {
         switch (action.type) {
-            case ACTIONS.SET_POST_EXERCICE_SUCCESS:
+            case ACTIONS.SET_POST_QUESTION_START:
                 return {
                     ...state,
                     exercices: action.result
                 };
-            case ACTIONS.SET_PATCH_EXERCICE_SUCCESS:
+            case ACTIONS.SET_PATCH_QUESTION_SUCCESS:
                 return {
                     ...state,
                     exercices: action.result
                 };
-            case ACTIONS.SET_DELETE_EXERCICE_SUCCESS:
+            case ACTIONS.SET_DELETE_QUESTION_SUCCESS:
                 return state;
             default:
                 return state;
@@ -32,16 +32,16 @@ export default combineReducers({
 
     loading: (state = false, action) => {
         switch (action.type) {
-            case ACTIONS.SET_POST_EXERCICE_START:
-            case ACTIONS.SET_PATCH_EXERCICE_START:
-            case ACTIONS.SET_DELETE_EXERCICE_START:
+            case ACTIONS.SET_POST_QUESTION_START:
+            case ACTIONS.SET_PATCH_QUESTION_START:
+            case ACTIONS.SET_DELETE_QUESTION_START:
                 return true;
-            case ACTIONS.SET_POST_EXERCICE_SUCCESS:
-            case ACTIONS.SET_PATCH_EXERCICE_SUCCESS:
-            case ACTIONS.SET_DELETE_EXERCICE_SUCCESS:
-            case ACTIONS.SET_DELETE_EXERCICE_FAILURE:
-            case ACTIONS.SET_POST_EXERCICE_FAILURE:
-            case ACTIONS.SET_PATCH_EXERCICE_FAILURE:
+            case ACTIONS.SET_POST_QUESTION_SUCCESS:
+            case ACTIONS.SET_PATCH_QUESTION_SUCCESS:
+            case ACTIONS.SET_DELETE_QUESTION_SUCCESS:
+            case ACTIONS.SET_DELETE_QUESTION_FAILURE:
+            case ACTIONS.SET_POST_QUESTION_FAILURE:
+            case ACTIONS.SET_PATCH_QUESTION_FAILURE:
                 return false;
 
             default:

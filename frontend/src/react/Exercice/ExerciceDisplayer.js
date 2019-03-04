@@ -21,7 +21,6 @@ export default class ExerciceDisplayer extends Component {
     id: PropTypes.number.isRequired,
     index: PropTypes.number.isRequired
   };
-    static defaultProps = {};
 
     render() {
         return (
@@ -33,7 +32,7 @@ export default class ExerciceDisplayer extends Component {
                                 <p className="title">Exercice {this.props.index + 1}</p>
                             </div>
                             <div className="column is-1">
-                                <button className="delete is-large" value={this.props.id}
+                                <button className="delete is-large" value={this.props.index}
                                         onClick={this.props.deleteExercice}/>
                             </div>
                         </div>
@@ -45,24 +44,15 @@ export default class ExerciceDisplayer extends Component {
                         </div>
                         <div className="column is-half"><input className="input"
                                                                name="title"
-                                                               id={this.props.id}
+                                                               id={this.props.index}
                                                                defaultValue={this.props.exercices.title === 'undefined' ? '' : this.props.exercices.title}
                                                                onChange={this.props.handleInputExercice}
                                                                type="text"
                                                                placeholder="Epreuve..."/></div>
                     </div>
-                    <div className="columns">
-                        <div className="column is-half"><span className="title is-5">Temps estimé :</span></div>
-                        <div className="column is-half"><input className="input"
-                                                               name="estimatedTime"
-                                                               defaultValue={this.props.exercices.estimatedTime === 'undefined' ? '' : this.props.exercices.estimatedTime}
-                                                               id={this.props.id}
-                                                               onChange={this.props.handleInputExercice}
-                                                               type="text"/></div>
-                    </div>
                 </div>
           <SortableContainer onSortEnd={this.onSortEnd}>
-          {this.props.question.map((value, idx) => <Question key={uniqid()} id={idx} question={value} index={idx}
+          {typeof this.props.question !== 'undefined' && this.props.question !== null && this.props.question.length !== 0 && this.props.question.map((value, idx) => <Question key={uniqid()} id={idx} question={value} index={idx}
                                                              deleteQuestion={this.props.deleteQuestion}
                                                              handleInputQuestion={this.props.handleInputQuestion} />)}
         </SortableContainer>

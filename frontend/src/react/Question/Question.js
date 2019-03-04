@@ -9,13 +9,11 @@ const Question = (props) => {
       question: arrayMove(this.props.question, oldIndex, newIndex),
     }));
   };
-  const handleInput = (e) => {
-    this.setState({[e.target.name]:e.target.value});
-  };
   return (
-    <QuestionDisplayer handleInput={handleInput}
-                       deleteExercice={props.deleteExercice}
+    <QuestionDisplayer handleInputQuestion={props.handleInputQuestion}
+                       deleteQuestion={props.deleteQuestion}
                        id={props.id}
+                       question={props.question}
                        onSortEnd={onSortEnd}
                        exercices={props.exercices}
                        index={props.id}/>

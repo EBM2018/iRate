@@ -34,7 +34,7 @@ export default class ExerciceListDisplayer extends React.Component {
                 <SortableContainer onSortEnd={this.onSortEnd}>
 
                     {this.props.exercices.map((value, idx) => this.props.isExtended ?
-                        <Exercice key={uniqid()} id={idx} exercices={value}
+                        <Exercice key={uniqid()} id={this.props.id} exercices={value}
                                   index={idx}
                                   deleteExercice={this.props.deleteExercice}
                                   handleInputExercice={this.props.handleInputExercice}/> :
