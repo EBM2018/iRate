@@ -2,48 +2,54 @@ import React from 'react'
 import ExerciceListDisplayer from './ExerciceListDisplayer';
 import PropTypes from "prop-types";
 import connect from "react-redux/es/connect/connect";
+import {patchExercice} from "../../../redux/exercice/actions/patch";
 import {postExercice} from "../../../redux/exercice/actions/post";
+import {getExam} from "../../../redux/exams/actions/getSingle";
 
 class ExerciceList extends React.PureComponent {
 
     static propTypes = {
         id: PropTypes.number,
         exercice: PropTypes.object.isRequired,
+        exam: PropTypes.object
     };
 
     state = {
-        exercices: [
-            {"title": '', "estimatedTime": ''},
-        ],
-         isExtended: true,
+        exercices: [],
+        isExtended: true,
+    };
+
+    async componentDidMount() {
+        await this.props.fetchExam(this.props.id);
+        if (this.state.exercices.length === 0) {
+            this.setState({exercices: this.props.exam.exercices});
+        }
     };
 
     /**
      * Put input value in state with name of the input as name of the variable
      * @param {Object} e
      */
-    handleInputExercice = (e) => {
-        let exercices = this.state.exercices;
-        let name = e.target.name;
-        let id = e.target.id;
-        console.log(e.target.id);
+    handleInputExercice = async (e) => {
+        const { exercices } = this.state;
+        const { name, id }= e.target;
+        console.log('id ' + id);
         switch (name) {
             case 'title':
                 exercices[id].title = e.target.value;
+                console.log(exercices);
                 this.setState({exercices: exercices});
+                console.log(this.state.exercices);
                 break;
             case 'estimatedTime':
                 exercices[id].estimatedTime = e.target.value;
                 this.setState({exercices: exercices});
                 break;
         }
-        console.log(this.state.exercices);
-
     };
 
     toggleExtend = () => {
         const extend = !this.state.isExtended;
-        console.log(!this.state.isExtended);
         this.setState({
             isExtended: extend,
         })
@@ -76,11 +82,13 @@ class ExerciceList extends React.PureComponent {
         }
     };
 
-    saveExercice = () => {
-        for(let i in this.state.exercices)
-        {
-            console.log(this.state.exercices[i]);
-            this.props.fetchExercice(this.props.id, this.state.exercices[i]);
+    saveNewExercice = () => {
+        for (let i in this.state.exercices) {
+            if (typeof this.state.exercices[i]._id !== 'undefined') {
+                this.props.patchExercice(this.props.id, this.state.exercices[i]._id, this.state.exercices);
+            } else {
+                this.props.fetchNewExercice(this.props.id, this.state.exercices);
+            }
         }
     };
 
@@ -96,7 +104,7 @@ class ExerciceList extends React.PureComponent {
                                        toggleExtend={this.toggleExtend}
                                        isExtended={this.state.isExtended}
                                        id={this.props.id}/>
-                <button onClick={this.saveExercice}>Save</button>
+                <button onClick={this.saveNewExercice}>Sauvegarder nouvel exercice</button>
             </div>
         );
     }
@@ -105,9 +113,12 @@ class ExerciceList extends React.PureComponent {
 
 export default connect((state, ownProps) => ({
     exercice: state.exercices.exercices,
+    exam: state.exams.exams,
     loading: state.exercices.loading,
     err: state.exercices.errorMessage
 }), (dispatch, ownProps) => ({
-    fetchExercice: (id, exercice) => dispatch(postExercice(id, exercice))
+    patchExercice: (idExam, idExercice, exercice) => dispatch(patchExercice(idExam, idExercice, exercice)),
+    fetchNewExercice: (idExam, idExercice, exercice) => dispatch(postExercice(idExam, exercice)),
+    fetchExam: (id) => dispatch(getExam(id))
 }))(ExerciceList);
 
