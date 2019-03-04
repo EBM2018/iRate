@@ -6,8 +6,8 @@ import {postExam} from "../../redux/exams/actions/post";
 
 class Instructions extends Component {
     state = {
-        dropdownModule: false,
-        dropdownClass: false,
+        dropdownModule: 'Choisir le module',
+        dropdownClass: 'Choisir la séance',
         title: '',
         reminder: '',
         instruction: '',
@@ -19,8 +19,8 @@ class Instructions extends Component {
      * @param str
      * @returns undefined
      */
-    triggerDropdown = (str) => () => {
-        this.setState({[str]: !this.state[str]})
+    triggerDropdown = (str) => (e) => {
+
     };
 
     /**
@@ -53,14 +53,29 @@ class Instructions extends Component {
         }
     };
 
+    triggerActive = (e) => {
+        e.target.className = e.target.className + " is-active";
+    };
+
+    triggerInactive = (e) => {
+        e.target.className = e.target.className.substr(0, e.target.className.length - 10);
+    };
+
+    handleSelect = (select,dropdownType) => () => {
+        this.setState({[dropdownType]: select});
+    };
+
     render() {
         return (
             <>
                 <div className="tile is-child">
                     <InstructionsDisplayer triggerDropdown={this.triggerDropdown}
                                            dropdownModule={this.state.dropdownModule}
+                                           dropdownClass={this.state.dropdownClass}
                                            handleInput={this.handleInput}
-                                           dropdownClass={this.state.dropdownClass}/>
+                                           triggerActive={this.triggerActive}
+                                           triggerInactive={this.triggerInactive}
+                                           handleSelect={this.handleSelect}/>
                     <button className="box button is-medium" onClick={this.addExamAndRedirect}>Suivant</button>
                     {this.state.redirectExercices ? <Redirect to={`/newexam/${this.state.idRedirect}/exercices`}/> : null}
                 </div>

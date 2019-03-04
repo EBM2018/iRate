@@ -19,36 +19,38 @@ export default class InstructionsDisplayer extends Component {
                             <span className="title is-5">Module de l'épreuve:</span>
                         </div>
                         <div className="column is-one-third has-text-right">
-                            <div className={this.props.dropdownModule ? "dropdown is-active is-right" : "dropdown is-right"} onClick={this.props.triggerDropdown("dropdownModule")}>
-                                <div className="dropdown-trigger">
-                                    <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                                        <span>Dropdown button</span>
-                                        <span className="icon is-small"><i className="fas fa-angle-down" aria-hidden="true"/></span>
-                                    </button>
-                                </div>
-                                <div className="dropdown-menu" id="dropdown-menu" role="menu">
-                                    <div className="dropdown-content">
-                                        <div className="dropdown-item">test</div>
+                            <div className="columns">
+                                <div className="column is-half">
+                                    <div className="dropdown is-right is-hoverable">
+                                        <div className="dropdown-trigger">
+                                            <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                                                <span>{this.props.dropdownModule}</span>
+                                                <span className="icon is-small"><i className="fas fa-angle-down" aria-hidden="true"/></span>
+                                            </button>
+                                        </div>
+                                        <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                                            <div className="dropdown-content">
+                                                <a className="dropdown-item"
+                                                   onMouseOver={this.props.triggerActive}
+                                                   onMouseOut={this.props.triggerInactive}
+                                                   onClick={this.props.handleSelect("test","dropdownModule")}>test</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="columns">
-                        <div className="column is-two-thirds">
-                            <span className="title is-5">Sélectionner une séance:</span>
-                        </div>
-                        <div className="column is-one-third has-text-right">
-                            <div className={this.props.dropdownClass ? "dropdown is-active is-right" : "dropdown is-right"} onClick={this.props.triggerDropdown("dropdownClass")}>
-                                <div className="dropdown-trigger">
-                                    <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                                        <span>Choisir</span>
-                                        <span className="icon is-small"><i className="fas fa-angle-down" aria-hidden="true"/></span>
-                                    </button>
-                                </div>
-                                <div className="dropdown-menu" id="dropdown-menu" role="menu">
-                                    <div className="dropdown-content">
-                                        <div className="dropdown-item">test</div>
+                                <div className="column is-half">
+                                    <div className="dropdown is-right is-hoverable">
+                                        <div className="dropdown-trigger">
+                                            <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                                                <span>{this.props.dropdownClass}</span>
+                                                <span className="icon is-small"><i className="fas fa-angle-down" aria-hidden="true"/></span>
+                                            </button>
+                                        </div>
+                                        <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                                            <div className="dropdown-content">
+                                                <a className="dropdown-item" onMouseOver={this.props.triggerActive} onMouseOut={this.props.triggerInactive} onClick={this.props.handleSelect("test","dropdownClass")}>test</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
