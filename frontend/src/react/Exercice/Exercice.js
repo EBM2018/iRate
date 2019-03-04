@@ -12,7 +12,7 @@ export default class Exercice extends React.Component {
 
     state = {
         question: [
-            {"questionTitle": '', "questionScale": null, "questionContent": '', "order":0},
+            {"questionTitle": '', "questionScale": null, "questionContent": '', "order": 0},
         ],
     };
 
@@ -23,6 +23,7 @@ export default class Exercice extends React.Component {
         let question = [...this.state.question];
         const maxOrder = Math.max(...question.map(qu => qu.order));
         question.push({"questionTitle": '', "questionScale": null, "questionContent": '', "order" : maxOrder + 1});
+        this.setState({question});
     };
 
     moveQuestion = (dragIndex, hoverIndex) => {

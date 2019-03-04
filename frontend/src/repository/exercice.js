@@ -6,3 +6,11 @@ export const postExercice = async (id, exercice) => {
     });
     return data;
 };
+
+
+export const patchExercice = async (idExam, idExercice, exercice) => {
+    const { data } = await axios.patch('http://localhost:4000/api/exams/' + idExam + '/exercices/' + idExercice, {
+        ...exercice
+    });
+    return data;
+};
