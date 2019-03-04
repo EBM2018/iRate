@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 export default class InstructionsDisplayer extends Component {
     static propTypes = {
         triggerDropdown: PropTypes.func.isRequired,
-        dropdownModule: PropTypes.bool,
-        handleInput: PropTypes.func.handleInput,
-        dropdownClass: PropTypes.bool,
+        dropdownModule: PropTypes.string,
+        handleInput: PropTypes.func,
+        dropdownClass: PropTypes.string,
     };
 
     render() {
@@ -30,10 +30,10 @@ export default class InstructionsDisplayer extends Component {
                                         </div>
                                         <div className="dropdown-menu" id="dropdown-menu" role="menu">
                                             <div className="dropdown-content">
-                                                <a className="dropdown-item"
-                                                   onMouseOver={this.props.triggerActive}
-                                                   onMouseOut={this.props.triggerInactive}
-                                                   onClick={this.props.handleSelect("test","dropdownModule")}>test</a>
+                                                <button className="dropdown-item is-a-link-custom"
+                                                        onMouseOver={this.props.triggerActive}
+                                                        onMouseOut={this.props.triggerInactive}
+                                                        onClick={this.props.handleSelect("test","dropdownModule")}>test</button>
                                             </div>
                                         </div>
                                     </div>
@@ -48,7 +48,10 @@ export default class InstructionsDisplayer extends Component {
                                         </div>
                                         <div className="dropdown-menu" id="dropdown-menu" role="menu">
                                             <div className="dropdown-content">
-                                                <a className="dropdown-item" onMouseOver={this.props.triggerActive} onMouseOut={this.props.triggerInactive} onClick={this.props.handleSelect("test","dropdownClass")}>test</a>
+                                                <button className="dropdown-item is-a-link-custom"
+                                                   onMouseOver={this.props.triggerActive}
+                                                   onMouseOut={this.props.triggerInactive}
+                                                   onClick={this.props.handleSelect("test","dropdownClass")}>test</button>
                                             </div>
                                         </div>
                                     </div>

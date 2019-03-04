@@ -5,11 +5,29 @@ body {
   background: white !important;
 }
 .is-a-link {
-  color: #3273dc;
+  color: #3273dc !important;
   cursor: pointer;
-  text-decoration: none;
+  text-decoration: none !important;
+  border: none;
+}
+.is-a-link-custom{
+  color: #363636 !important;
+  background-color: white;
+  cursor: pointer;
+  text-decoration: none !important;
+  border: none;
 }
 .is-a-link strong {
   color: currentColor; }
-.is-a-link:hover {
-  color: #363636; }
+.is-a-link-custom:hover {
+  color: white !important;
+  background-color: #209cee !important;}
+.link-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
