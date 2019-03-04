@@ -2,15 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class QuestionDisplayer extends React.Component {
-  static propTypes = {
-    handleInput: PropTypes.func.isRequired,
-    deleteQuestion: PropTypes.func.isRequired,
-    question: PropTypes.array.isRequired,
-    id: PropTypes.number.isRequired,
-  };
 
-  static defaultProps = {};
-
+    static propTypes = {
+        handleInput: PropTypes.func.isRequired,
+        deleteQuestion: PropTypes.func.isRequired,
+        question: PropTypes.array.isRequired,
+        id: PropTypes.number.isRequired,
+    };
   render() {
     return (
       <div className="box">
