@@ -1,6 +1,6 @@
 import Instructions from '../react/Instructions/Instructions';
 import CreateExam from '../react/Exam/CreateExam';
-import DisplayExam from '../react/Exam/DisplayExam';
+import DisplayExam from '../react/Exam/DisplayExam/DisplayExam';
 import ExamList from '../react/Exam/ExamList/ExamList';
 export const privateRoutes = {
     Instructions: {

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
+
 import DisplayQuestion from './DisplayQuestion';
 
 export default class DisplayExercice extends Component {

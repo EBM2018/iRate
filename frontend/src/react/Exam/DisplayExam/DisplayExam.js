@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {getExam} from '../../redux/exams/actions/getSingle';
-import Error from '../utils/Error';
+import {getExam} from '../../../redux/exams/actions/getSingle';
+import Error from '../../utils/Error';
 import DisplayExercice from './DisplayExercice';
 
 class DisplayExam extends Component {
