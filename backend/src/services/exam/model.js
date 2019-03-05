@@ -39,11 +39,16 @@ const ExamSchema = new mongoose.Schema({
         trim: true,
         // ref: 'author', CF service Teamy
     },
+    group: {
+        type: String,
+        trim: true,
+        // ref: 'Group', CF service Teamy,
+        // gives us the group to assign the exam
+    },
     session: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         // ref: 'Session', CF service Teamy
-        // gives us the dates,
-        // gives us the subject
+        // gives us the dates
         trim: true,
     },
 });

@@ -1,19 +1,68 @@
 import React, {Component} from 'react'
 import InstructionsDisplayer from './InstructionsDisplayer';
-import {Redirect} from 'react-router-dom'
+import {groupsArray,group} from "../../helpers/mocks/group";
+
+import {Redirect} from 'react-router-dom';
+import moment from 'moment';
 import connect from "react-redux/es/connect/connect";
 import {postExam} from "../../redux/exams/actions/post";
 import {triggerActive,triggerInactive} from "../../helpers/activeClass";
 
 class Instructions extends Component {
     state = {
-        dropdownModule: 'Choisir le module',
-        dropdownClass: 'Choisir la séance',
+        dropdownGroup: {
+            value: 'Choisir le module',
+            _id: '',
+        },
+        dropdownSession: {
+            value: "Sélectionner d'abord un groupe.",
+            _id: '',
+        },
         title: '',
         reminder: '',
         instruction: '',
         redirectExercices: false,
+        groups: [],
     };
+
+    /**
+     * get the groups/sessions from url params or all of them if no params
+     * @return undefined
+     */
+    componentDidMount() {
+        //TODO When we'll have some routes from TEAMY Group --> API Call goes here.
+        const {groupId,sessionId} = this.props.route.match.params;
+        if(groupId && sessionId) {
+            if(groupId === group._id) {
+                const session = group.classes.find((session) => {return sessionId === session._id});
+                this.setState({
+                    dropdownSession: {
+                        _id: session._id,
+                        value: session.date + " from " + session.startTime + " to " + session.endTime
+                    },
+                    dropdownGroup: {
+                        _id: group._id,
+                        value: group.name,
+                    }
+                });
+            } else {
+                //TODO Handle not found id
+            }
+        } else {
+            //TODO Here I create the constant group so that we know where to put the API Call when we don't have id params.
+            const groups = groupsArray.groups.map((group) => {
+                let classes = group.classes.filter((aClass) => {
+                    return moment(aClass.date + " " + aClass.startTime).isAfter();
+                });
+                return {
+                    name: group.name,
+                    _id: group._id,
+                    classes: classes
+                }
+            });
+            this.setState({groups});
+        }
+    }
 
     /**
      * Put input value in state with name of the input as name of the variable
@@ -30,11 +79,15 @@ class Instructions extends Component {
     addExamAndRedirect = async () => {
         const { title,
                 reminder,
-                instruction} = this.state;
+                instruction,
+                dropdownSession,
+                dropdownGroup} = this.state;
         const examData = {
             title,
             reminder,
-            instruction
+            instruction,
+            group: dropdownGroup._id,
+            session: dropdownSession._id,
         };
 
         await this.props.createExam(examData);
@@ -45,17 +98,29 @@ class Instructions extends Component {
         }
     };
 
-    handleSelect = (select,dropdownType) => () => {
-        this.setState({[dropdownType]: select});
+    handleSelect = (select,id,dropdownType) => () => {
+        this.setState({[dropdownType]: {
+                value: select,
+                _id: id,
+            }});
+        if(dropdownType === "dropdownGroup") {
+            this.setState({
+                dropdownSession: {
+                    value: "Choisir la séance",
+                    _id: '',
+                }
+            })
+        }
     };
 
     render() {
         return (
             <>
                 <div className="tile is-child">
-                    <InstructionsDisplayer triggerDropdown={this.triggerDropdown}
-                                           dropdownModule={this.state.dropdownModule}
-                                           dropdownClass={this.state.dropdownClass}
+                    <InstructionsDisplayer dropdownGroup={this.state.dropdownGroup}
+                                           dropdownSession={this.state.dropdownSession}
+                                           groups={this.state.groups}
+                                           session={this.state.session}
                                            handleInput={this.handleInput}
                                            triggerActive={triggerActive}
                                            triggerInactive={triggerInactive}

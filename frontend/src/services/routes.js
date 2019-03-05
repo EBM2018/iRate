@@ -4,7 +4,7 @@ import DisplayExam from '../react/Exam/DisplayExam';
 import ExamList from '../react/Exam/ExamList/ExamList';
 export const privateRoutes = {
     Instructions: {
-        path: '/newexam/instructions',
+        path: '/newexam/instructions/:groupId?/:sessionId?',
         component: Instructions,
         title: 'Indiquez les détails du sujet'
     },
