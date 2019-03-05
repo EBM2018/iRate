@@ -39,6 +39,7 @@ const ExamSchema = new mongoose.Schema({
         trim: true,
         // ref: 'author', CF service Teamy
     },
+    //TODO: When the teamy group will have usable routes, we need to passe the types of those two below to 'mongoose.Schema.Types.ObjectId' as they should be.
     group: {
         type: String,
         trim: true,
