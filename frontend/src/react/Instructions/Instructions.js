@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import InstructionsDisplayer from './InstructionsDisplayer';
 import {Redirect} from 'react-router-dom'
-import connect from "react-redux/es/connect/connect";
+import {connect} from 'react-redux';
+
+import InstructionsDisplayer from './InstructionsDisplayer';
 import {postExam} from "../../redux/exams/actions/post";
 import {triggerActive,triggerInactive} from "../../helpers/activeClass";
 

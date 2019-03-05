@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
-import ExamListDisplayer from "./ExamListDisplayer";
-import connect from "react-redux/es/connect/connect";
-import {getExamsWithScaleAndTime} from "../../../redux/exams/actions/get";
-import FinaliseExamDisplayer from "./FinaliseExam/FinaliseExamDisplayer";
-import {patchExam} from "../../../redux/exams/actions/patch";
+import {connect} from 'react-redux';
+
+import ExamListDisplayer from './ExamListDisplayer';
+import {getExamsWithScaleAndTime} from '../../../redux/exams/actions/get';
+import FinaliseExamDisplayer from './FinaliseExam/FinaliseExamDisplayer';
+import {patchExam} from '../../../redux/exams/actions/patch';
 
 class ExamList extends Component {
     state = {
