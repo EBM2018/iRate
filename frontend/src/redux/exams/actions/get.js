@@ -30,6 +30,22 @@ export const getExams = () => async dispatch => {
     }
 };
 
+export const getExamsForStudent = (userId) => async dispatch => {
+    dispatch(SET_GET_EXAMS_START());
+    // Get the module and session from the user and build up the query
+    const query = {
+        /* correction: false,
+        user */
+    };
+
+    try {
+        const exams = await ExamsRepository.getExams(query);
+        dispatch(SET_GET_EXAMS_SUCCESS(exams));
+    } catch (err) {
+        dispatch(SET_GET_EXAMS_FAILURE(err));
+    }
+}
+
 export const getExamsWithScaleAndTime = () => async dispatch => {
     dispatch(SET_GET_EXAMS_START());
     try {
