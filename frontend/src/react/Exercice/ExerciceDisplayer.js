@@ -6,21 +6,21 @@ import {sortableContainer, sortableElement} from "react-sortable-hoc";
 let uniqid = require('uniqid');
 
 const SortableContainer = sortableContainer(({children}) => {
-  return <ul>{children}</ul>;
+    return <ul>{children}</ul>;
 });
 
 export default class ExerciceDisplayer extends Component {
-  static propTypes = {
-    handleInputExercice: PropTypes.func.isRequired,
-    handleInputQuestion: PropTypes.func,
-    deleteQuestion: PropTypes.func.isRequired,
-    addQuestion: PropTypes.func.isRequired,
-    deleteExercice: PropTypes.func.isRequired,
-    question: PropTypes.array.isRequired,
-    exercices: PropTypes.array.isRequired,
-    id: PropTypes.number.isRequired,
-    index: PropTypes.number.isRequired
-  };
+    static propTypes = {
+        handleInputExercice: PropTypes.func.isRequired,
+        handleInputQuestion: PropTypes.func,
+        deleteQuestion: PropTypes.func.isRequired,
+        addQuestion: PropTypes.func.isRequired,
+        deleteExercice: PropTypes.func.isRequired,
+        question: PropTypes.array,
+        exercices: PropTypes.array.isRequired,
+        id: PropTypes.number.isRequired,
+        index: PropTypes.number.isRequired
+    };
 
     render() {
         return (
@@ -51,12 +51,13 @@ export default class ExerciceDisplayer extends Component {
                                                                placeholder="Epreuve..."/></div>
                     </div>
                 </div>
-          <SortableContainer onSortEnd={this.onSortEnd}>
-          {typeof this.props.question !== 'undefined' && this.props.question !== null && this.props.question.length !== 0 && this.props.question.map((value, idx) => <Question key={uniqid()} id={idx} question={value} index={idx}
-                                                             deleteQuestion={this.props.deleteQuestion}
-                                                             handleInputQuestion={this.props.handleInputQuestion} />)}
-        </SortableContainer>
-               <button className="button is-info is-medium" onClick={this.props.addQuestion}>Nouvelle Question</button>
+                <SortableContainer onSortEnd={this.onSortEnd} pressDelay={100}>
+                    {typeof this.props.question !== 'undefined' && this.props.question !== null && this.props.question.length !== 0 && this.props.question.map((value, idx) =>
+                        <Question key={value._id} id={idx} question={value} index={value._id}
+                                  deleteQuestion={this.props.deleteQuestion}
+                                  handleInputQuestion={this.props.handleInputQuestion}/>)}
+                </SortableContainer>
+                <button className="button is-info is-medium" onClick={this.props.addQuestion}>Nouvelle Question</button>
             </div>
         );
     }

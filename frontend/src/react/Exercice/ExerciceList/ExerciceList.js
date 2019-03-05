@@ -12,7 +12,7 @@ class ExerciceList extends React.PureComponent {
     static propTypes = {
         id: PropTypes.number,
         exercice: PropTypes.object.isRequired,
-        exam: PropTypes.object
+        exam: PropTypes.object,
     };
 
     state = {
@@ -22,10 +22,14 @@ class ExerciceList extends React.PureComponent {
 
     async componentDidMount() {
         await this.props.fetchExam(this.props.route.match.params.id);
-        if (this.state.exercices.length === 0) {
-            this.setState({exercices: this.props.exam.exercices});
-        }
+        this.setState({exercices: this.props.exam.exercices});
     };
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.exam !== nextProps.exam) {
+            this.setState({exercices: nextProps.exam.exercices});
+        }
+    }
 
     /**
      * Put input value in state with name of the input as name of the variable
@@ -33,9 +37,8 @@ class ExerciceList extends React.PureComponent {
      */
 
     handleInputExercice = async (e) => {
-        const { exercices } = this.state;
-        const { name, id }= e.target;
-        console.log(id);
+        const {exercices} = this.state;
+        const {name, id} = e.target;
         switch (name) {
             case 'title':
                 exercices[id].title = e.target.value;
@@ -58,18 +61,20 @@ class ExerciceList extends React.PureComponent {
     /**
      * Add a new exercice in the exam creation page.
      */
-    addExercice = () => {
-        const exercices = [...this.state.exercices];
+    addExercice = async () => {
+        const exercices = this.state.exercices;
         let maxOrder = 0;
         if (exercices !== null) {
             maxOrder = Math.max(...exercices.map(qu => qu.order));
-        } else {
-            maxOrder = 0;
         }
-        exercices.push({"title": '', "estimatedTime": '', "order" : maxOrder + 1, "question": []});
+        exercices.push({"title": "Nouvel Exercice", "estimatedTime": '', "order": maxOrder + 1, "question": []});
+        await this.props.fetchNewExercice(this.props.route.match.params.id, {
+            "title": "Nouvel Exercice",
+            "order": maxOrder + 1,
+            "question": []
+        });
         this.setState({exercices: exercices});
-        this.props.fetchNewExercice(this.props.route.match.params.id, {"title": "Nouvel Exercice", "order" : maxOrder + 1, "question": []});
-
+        await this.props.fetchExam(this.props.route.match.params.id);
     };
 
     /**
@@ -81,8 +86,6 @@ class ExerciceList extends React.PureComponent {
      */
     deleteExercice = (v) => {
         let idExercice = v.target.value;
-        console.log(this.state.exercices);
-        console.log(idExercice);
         this.props.fetchDeleteExercice(this.props.route.match.params.id, this.state.exercices[idExercice]._id, this.state.exercices[idExercice])
         if (idExercice === '0') return;
         else {
@@ -96,10 +99,7 @@ class ExerciceList extends React.PureComponent {
         for (let i in this.state.exercices) {
             if (typeof this.state.exercices[i]._id !== 'undefined') {
                 this.props.patchExercice(this.props.route.match.params.id, this.state.exercices[i]._id, this.state.exercices[i]);
-            } else {
-                this.props.fetchNewExercice(this.props.route.match.params.id, this.state.exercices[i]);
             }
-
         }
     };
 
@@ -116,7 +116,8 @@ class ExerciceList extends React.PureComponent {
                                        isExtended={this.state.isExtended}
                                        id={this.props.route.match.params.id}/>
                 <div className="section">
-                <button className="button is-info is-medium" onClick={this.saveNewExercice}>Sauvegarder l'examen</button>
+                    <button className="button is-info is-medium" onClick={this.saveNewExercice}>Sauvegarder l'examen
+                    </button>
                 </div>
             </div>
         );

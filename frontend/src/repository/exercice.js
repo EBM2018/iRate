@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export const postExercice = async (id, exercice) => {
-    console.log(exercice);
     const { data } = await axios.post('http://localhost:4000/api/exams/' + id + '/exercices', {
         ...exercice
     });

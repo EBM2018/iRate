@@ -10,9 +10,9 @@ export const SET_POST_EXERCICE_START = () => ({
     type: ACTIONS.SET_POST_EXERCICE_START,
 });
 
-export const SET_POST_EXERCICE_SUCCESS = exercice => ({
+export const SET_POST_EXERCICE_SUCCESS = exercices => ({
     type: ACTIONS.SET_POST_EXERCICE_SUCCESS,
-    exercice,
+    exercices,
 });
 
 export const SET_POST_EXERCICE_FAILURE = err => ({
@@ -23,8 +23,8 @@ export const SET_POST_EXERCICE_FAILURE = err => ({
 export const postExercice = (id, exerciceToAdd) => async dispatch => {
     dispatch(SET_POST_EXERCICE_START());
     try {
-        const exercice = await ExercicesRepository.postExercice(id, exerciceToAdd);
-        dispatch(SET_POST_EXERCICE_SUCCESS(exercice));
+        const exercices = await ExercicesRepository.postExercice(id, exerciceToAdd);
+        dispatch(SET_POST_EXERCICE_SUCCESS(exercices));
     } catch (err) {
         dispatch(SET_POST_EXERCICE_FAILURE(err));
     }

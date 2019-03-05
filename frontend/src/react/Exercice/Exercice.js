@@ -5,6 +5,7 @@ import connect from "react-redux/es/connect/connect";
 import {postQuestion} from "../../redux/question/actions/post";
 import {deleteQuestion} from "../../redux/question/actions/delete";
 import {patchQuestion} from "../../redux/question/actions/patch";
+import {getExam} from "../../redux/exams/actions/getSingle";
 
 class Exercice extends React.Component {
 
@@ -19,38 +20,36 @@ class Exercice extends React.Component {
     };
 
     componentDidMount() {
-        if (this.state.question.length === 0) {
-            this.setState({question: this.props.exercices.questions});
-        }
+        this.setState({question: this.props.exercices.questions});
     };
 
     /**
      * Add a new question related to an exercice.
      */
-    addQuestion = () => {
+    addQuestion = async () => {
         let question = this.state.question;
         let maxOrder = 0;
-        console.log(question);
-        if (typeof question !== 'undefined') {
-            maxOrder = Math.max(...question.map(qu => qu.order));
-            question.push({"title": '', "scale": null, "correction": '', "order": maxOrder + 1});
+        if (question !== null) {
+            maxOrder = question.length;
+            question.push({"title": 'Nouvelle Question', "scale": 0, "correction": '', "order": maxOrder + 1});
         } else {
-            question = [{"title": '', "scale": null, "correction": '', "order": maxOrder + 1}];
+            question = [{"title": 'Nouvelle Question', "scale": 0, "correction": '', "order": 1}];
             maxOrder = 0;
         }
+        console.log(question);
         this.setState({question: question});
-        this.props.fetchNewQuestion(this.props.id, this.props.exercices._id, {
+        await this.props.fetchNewQuestion(this.props.id, this.props.exercices._id, {
             "title": "Nouvelle Question",
             "order": maxOrder + 1,
             "scale": 0,
             "correction": ""
-        })
+        });
+        await this.props.fetchExam(this.props.id);
     };
 
     moveQuestion = (dragIndex, hoverIndex) => {
         const {question} = this.state;
         const dragQuestion = question[dragIndex];
-
         this.setState({
             ...this.state,
             question: {
@@ -70,7 +69,6 @@ class Exercice extends React.Component {
             case 'questionTitle':
                 question[id].title = e.target.value;
                 this.setState({question: question});
-                console.log(this.state.question);
                 break;
             case 'questionScale':
                 question[id].scale = e.target.value;
@@ -144,6 +142,7 @@ export default connect((state, ownProps) => ({
     fetchNewQuestion: (idExam, idExercice, questionToAdd) => dispatch(postQuestion(idExam, idExercice, questionToAdd)),
     fetchDeleteQuestion: (idExam, idExercice, idQuestion, questionToAdd) => dispatch(deleteQuestion(idExam, idExercice, idQuestion, questionToAdd)),
     patchQuestion: (idExam, idExercice, idQuestion, questionToAdd) => dispatch(patchQuestion(idExam, idExercice, idQuestion, questionToAdd)),
+    fetchExam: (id) => dispatch(getExam(id)),
 }))(Exercice);
 
 
