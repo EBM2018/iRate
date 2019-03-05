@@ -7,7 +7,7 @@ import {triggerActive,triggerInactive} from "../../helpers/activeClass";
 
 class Instructions extends Component {
     state = {
-        dropdownModule: 'Choisir le module',
+        dropdownModule: 'Choisir le groupe',
         dropdownClass: 'Choisir la séance',
         title: '',
         reminder: '',
