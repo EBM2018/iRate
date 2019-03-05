@@ -3,15 +3,12 @@ import axios from 'axios';
 
 const apiInstance = axios.create({
     baseURL: '/api',
-    timeout: 3000
-});
-
-export const handleResponse = ({ data, status, statusText}) => {
-    if (status !== 200 || statusText !== 'OK') {
-        throw statusText;
+    timeout: 3000,
+    proxy: {
+        host: '127.0.0.1',
+        port: 4000
     }
-    return data;
-};
+});
 
 /**
  *
@@ -25,6 +22,6 @@ export const apiRequest = async (url, type, options = {}) => {
         //headers: getAuthHeaders(options.headers),
         ...options
     });
-    const response = await checkAuthResponse(dataRequest);
-    return handleResponse(response);
+    const { data } = await checkAuthResponse(dataRequest);
+    return data;
 };
