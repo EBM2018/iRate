@@ -1,7 +1,11 @@
 import moment from 'moment';
 import {apiRequest} from '../services/api';
-export const getExams = async () => {
-    const data = await apiRequest('exams', 'get');
+import {encodeQueryData} from '../helpers/query';
+export const getExams = async (query = {}) => {
+    console.log("query" + query);
+    const data = await apiRequest('exams', 'get', {
+        params: query && encodeQueryData(query)
+    });
     return data;
 };
 

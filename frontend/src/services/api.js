@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const apiInstance = axios.create({
     baseURL: '/api',
-    timeout: 3000,
+    timeout: 5000,
     proxy: {
         host: '127.0.0.1',
         port: 4000
