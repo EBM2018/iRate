@@ -39,11 +39,17 @@ const ExamSchema = new mongoose.Schema({
         trim: true,
         // ref: 'author', CF service Teamy
     },
+    //TODO: When the teamy group will have usable routes, we need to passe the types of those two below to 'mongoose.Schema.Types.ObjectId' as they should be.
+    group: {
+        type: String,
+        trim: true,
+        // ref: 'Group', CF service Teamy,
+        // gives us the group to assign the exam
+    },
     session: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         // ref: 'Session', CF service Teamy
-        // gives us the dates,
-        // gives us the subject
+        // gives us the dates
         trim: true,
     },
 });

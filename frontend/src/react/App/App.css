@@ -17,6 +17,9 @@ body {
   text-decoration: none;
   border: none;
 }
+.is-not-pointer{
+  cursor: default;
+}
 .is-a-link strong {
   color: currentColor; }
 .is-a-link-custom:hover {

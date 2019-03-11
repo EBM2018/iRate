@@ -1,5 +1,7 @@
 import moment from 'moment';
 import {apiRequest} from '../services/api';
+import {groupsArray} from "../helpers/mocks/group";
+
 export const getExams = async () => {
     const data = await apiRequest('exams', 'get');
     return data;
@@ -12,9 +14,10 @@ export const getExam = async (id) => {
 };
 
 export const getExamsWithScaleAndTime = async () => {
-    const data = await apiRequest(`/exams`, 'get');
+    let data = await apiRequest(`/exams`, 'get');
     let examScale = 0;
     let examTime = 0;
+
     for (let i = 0; i < data.length; i++) {
         for (let j = 0; j < data[i].exercices.length; j++) {
             for (let k = 0; k < data[i].exercices[j].questions.length; k++) {
@@ -27,6 +30,21 @@ export const getExamsWithScaleAndTime = async () => {
         examScale = 0;
         examTime = 0;
     }
+
+    data = data.map((exam) => {
+        let group = [];
+        let session = {};
+        if (exam.group) {
+            group = groupsArray.groups.find((aGroup) => {return aGroup._id === exam.group});
+            exam.group = group;
+        }
+        if (exam.session) {
+            session = group.classes.find((aClass) => {return aClass._id === exam.session});
+            exam.session = session
+        }
+        return exam;
+    });
+
     return data;
 };
 

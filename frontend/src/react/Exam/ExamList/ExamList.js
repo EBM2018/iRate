@@ -20,7 +20,7 @@ class ExamList extends Component {
     }
 
     toggleFinalise = (id) => () => {
-        this.setState({shouldFinaliseRender: !this.state.shouldFinaliseRender, examId: id})
+        this.setState({shouldFinaliseRender: !this.state.shouldFinaliseRender, examId: id});
     };
 
     toggleCheckScale = () => {
@@ -28,10 +28,11 @@ class ExamList extends Component {
     };
 
     finaliseExam = (id) => async () => {
-        const exam = this.props.exams.filter((exam) => {return exam._id === id})[0];
+        const exam = await this.props.exams.filter((exam) => {return exam._id === id})[0];
         exam.isFinalised = true;
         exam.showScale = this.state.didChecked;
         await this.props.fetchExamPatcher(exam);
+        await this.toggleFinalise('')();
     };
 
     render() {
