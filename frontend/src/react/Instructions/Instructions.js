@@ -18,11 +18,6 @@ class Instructions extends Component {
             value: "Sélectionner d'abord un groupe.",
             _id: '',
         },
-        title: '',
-        reminder: '',
-        instruction: '',
-        redirectExercices: false,
-        groups: [],
     };
 
     /**

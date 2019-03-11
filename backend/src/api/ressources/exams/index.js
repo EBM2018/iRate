@@ -5,7 +5,7 @@ const ExamController = require('./controller.js');
 const ExamMiddlewares = require('./middlewares.js');
 
 /**
- * @api {get} /exams: Get all exams
+ * @api {get} /exams Get all exams
  * @apiName GetAllExams
  * @apiGroup Exams
  * @apiDescription This URL displays a JSON containing all exams from the database
