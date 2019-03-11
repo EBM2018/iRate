@@ -4,7 +4,8 @@ const QuestionData = require('../../../services/question/data');
 
 const controller = {
   async getExams(req, res) {
-    const exams = await ExamData.getAll();
+    // TODO: remove correction
+    const exams = await ExamData.getAll(req.query);
     res.status(200).json(exams);
   },
 

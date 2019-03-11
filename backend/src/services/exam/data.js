@@ -1,11 +1,15 @@
 const Exam = require('./model');
 
 module.exports = {
-  getAll: async () => Exam.find({})
-    .populate({
-      path: 'exercices',
-      populate: { path: 'questions' },
-    }),
+  getAll: async (queryParams = {}) => {
+    const query = queryParams && { ...queryParams };
+    // TODO: validate the parameters if needed??
+    return Exam.find(query || '')
+      .populate({
+        path: 'exercices',
+        populate: { path: 'questions' },
+      });
+  },
   // TODO: handle case not valid ObjectID
   // link: https://stackoverflow.com/questions/17223517/mongoose-casterror-cast-to-objectid-failed-for-value-object-object-at-path
   getById: async id => Exam.findById(id)
