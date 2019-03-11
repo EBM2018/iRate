@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux';
 
 import ExamListDisplayer from './ExamListDisplayer';
-import {getExamsWithScaleAndTime} from '../../../redux/exams/actions/get';
+import {getExams} from '../../../redux/exams/actions/get';
 import FinaliseExamDisplayer from './FinaliseExam/FinaliseExamDisplayer';
 import {patchExam} from '../../../redux/exams/actions/patch';
 
@@ -57,6 +57,6 @@ export default connect(state => ({
     exams: state.exams.exams,
     loading: state.exams.loading,
 }), dispatch => ({
-    fetchExamsWithScale: () => dispatch(getExamsWithScaleAndTime()),
+    fetchExamsWithScale: () => dispatch(getExams({}, true)),
     fetchExamPatcher: (exam) => dispatch(patchExam(exam))
 }))(ExamList);
