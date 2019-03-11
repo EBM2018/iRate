@@ -24,7 +24,7 @@ class DisplayQuestion extends Component {
                     (<div className="level-right field is-grouped is-grouped-multiline">
                         <div className="control">
                             <div className="tags has-addons">
-                                <span className="tag is-dark">échelle</span>
+                                <span className="tag is-dark">barème</span>
                                 <span className="tag is-success">{question.scale}</span>
                             </div>
                         </div>

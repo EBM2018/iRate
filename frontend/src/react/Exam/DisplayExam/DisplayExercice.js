@@ -18,8 +18,9 @@ export default class DisplayExercice extends Component {
                     </div>
                     <div className="column is-one-third has-text-right">
                         <div>
-                            <div>
-                                Temps estimé: {exercice.estimatedTime} minutes
+                            <div className="tags has-addons d-block">
+                                <span className="tag is-dark">Temps est.</span>
+                                <span className="tag is-info">{exercice.estimatedTime}</span>
                             </div>
                         </div>
                     </div>
