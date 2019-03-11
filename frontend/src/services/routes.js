@@ -2,7 +2,9 @@ import Instructions from '../react/Instructions/Instructions';
 import CreateExam from '../react/Exam/CreateExam';
 import DisplayExam from '../react/Exam/DisplayExam/DisplayExam';
 import ExamList from '../react/Exam/ExamList/ExamList';
-import CopyList from '../react/Copy/PossibleCopyList/CopyList';
+import CopyList from '../react/Copy/CopyList';
+import AnswerExercice from '../react/Copy/AnswerExercice';
+
 export const privateRoutes = {
     Instructions: {
         path: '/newexam/instructions/:groupId?/:sessionId?',
@@ -28,5 +30,10 @@ export const privateRoutes = {
         path: '/copies',
         component: CopyList,
         title: 'Liste des copies associées à un élève'
+    },
+    AnswerExercice: {
+        path: '/copy/:examId/exercice/:exerciceId',
+        component: AnswerExercice,
+        title: 'Répondre à un examen'
     }
 };

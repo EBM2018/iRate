@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import {connect} from 'react-redux';
-import {getExamsForStudent} from '../../../redux/exams/actions/get';
+import {getExamsForStudent} from '../../redux/exams/actions/get';
 
 class CopyList extends Component {
     /* state = {
