@@ -1,6 +1,7 @@
 import {apiRequest} from '../services/api';
 import {encodeQueryData} from '../helpers/query';
 import {addTimeAndScale} from '../helpers/exam';
+import {groupsArray} from "../helpers/mocks/group";
 
 /**
  *
@@ -19,8 +20,23 @@ export const getExams = async (query = {}, withTS = false) => {
         return data;
     }
 
-    return data;
-};
+    // TODO: move this part to the backend once we get the route from the other group
+    const returnedData = data.map((exam) => {
+        let group = [];
+        let session = {};
+        if (exam.group) {
+            group = groupsArray.groups.find((aGroup) => {return aGroup._id === exam.group});
+            exam.group = group;
+        }
+        if (exam.session) {
+            session = group.classes.find((aClass) => {return aClass._id === exam.session});
+            exam.session = session
+        }
+        return exam;
+    });
+
+    return returnedData;
+}
 
 /**
  *
