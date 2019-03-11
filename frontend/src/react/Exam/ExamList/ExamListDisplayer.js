@@ -10,12 +10,19 @@ class ExamListDisplayer extends Component {
                         <div className="card">
                             <header className="card-header">
                                 <p className="card-header-title">Examen: {exam.title}</p>
-                                <div className="card-header-icon">
-                                    <div className="tags has-addons">
-                                        <span className="tag is-white">Finalisé</span>
-                                        {exam.isFinalised ? <span className="tag is-success">Oui</span> : <span className="tag is-warning">Non</span>}
-                                    </div>
-                                </div>
+                                {exam.isFinalised ?
+                                    <div className="card-header-icon is-not-pointer">
+                                        <div className="tags has-addons">
+                                            <span className="tag is-white">Finalisé</span>
+                                            <span className="tag is-success">Oui</span>
+                                        </div>
+                                    </div> :
+                                    <div className="card-header-icon" onClick={this.props.toggleFinalise(exam._id)}>
+                                        <div className="tags has-addons tooltip" data-tooltip="Cliquez ici pour finaliser l'examen !">
+                                            <span className="tag is-white">Finalisé</span>
+                                            <span className="tag is-warning">Non</span>
+                                        </div>
+                                    </div>}
                             </header>
                             <div className="card-content">
                                 <div className="content">
@@ -28,13 +35,10 @@ class ExamListDisplayer extends Component {
                             </div>
                             {exam.isFinalised ?
                                 <footer className="card-footer">
-                                    <div className="card-footer-item">Finalisé</div>
                                     <div className="card-footer-item"><Link to={"/exam/" + exam._id} target={"_blank"}>Voir</Link></div>
                                 </footer> : <footer className="card-footer">
-                                    <div className="card-footer-item"><Link
-                                        to={`/newexam/${exam._id}/exercices`}>Modifier</Link></div>
-                                    <div className="card-footer-item is-a-link"
-                                         onClick={this.props.toggleFinalise(exam._id)}>Finaliser
+                                    <div className="card-footer-item">
+                                        <Link to={`/newexam/${exam._id}/exercices`}>Modifier</Link>
                                     </div>
                                 </footer>
                             }
