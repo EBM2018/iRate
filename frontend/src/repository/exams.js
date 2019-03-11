@@ -17,7 +17,6 @@ export const getExams = async (query = {}, withTS = false) => {
         for (let i = 0; i < data.length; i++) {
             data[i] = addTimeAndScale(data[i]);
         };
-        return data;
     }
 
     // TODO: move this part to the backend once we get the route from the other group
