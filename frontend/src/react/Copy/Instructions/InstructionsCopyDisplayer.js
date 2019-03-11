@@ -19,7 +19,7 @@ export default class InstructionsCopyDisplayer extends Component {
               <span className="title is-5">Date de l'examen:</span>
             </div>
             <div className="column is-two-thirds">
-              <span className="title is-7">{this.props.session.date}</span>
+              <span className="title is-5">{this.props.session.date}</span>
             </div>
           </div>
           <div className="columns">
@@ -27,7 +27,7 @@ export default class InstructionsCopyDisplayer extends Component {
               <span className="title is-5">Heure de début:</span>
             </div>
             <div className="column is-two-thirds">
-              <span className="title is-7">{this.props.session.startTime}</span>
+              <span className="title is-5">{this.props.session.startTime}</span>
             </div>
           </div>
           <div className="columns">
@@ -35,19 +35,29 @@ export default class InstructionsCopyDisplayer extends Component {
               <span className="title is-5">Heure de fin:</span>
             </div>
             <div className="column is-two-thirds">
-              <span className="title is-7">{this.props.session.endTime}</span>
+              <span className="title is-5">{this.props.session.endTime}</span>
             </div>
           </div>
           <div className="columns">
             <div className="column is-one-third"><span className="title is-5">Rappels:</span></div>
             <div className="column is-two-thirds">
-              <span className="title is-7">{this.props.reminders}</span>
+              <span className="title is-5">{this.props.reminders}</span>
             </div>
           </div>
           <div className="columns">
             <div className="column is-one-third"><span className="title is-5">Consignes:</span></div>
             <div className="column is-two-thirds">
-              <span className="title is-7">{this.props.instructions}</span>
+              <span className="title is-5">{this.props.instructions}</span>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column is-half">
+            <button className="button is-medium is-info">Télécharger le sujet</button>
+          </div>
+          <div className="column is-right is-half">
+            <div className="buttons has-addons is-right">
+              <button className="button is-medium is-info">Démarrer l'examen</button>
             </div>
           </div>
         </div>

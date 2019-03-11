@@ -6,7 +6,7 @@ import {dataMock, session} from "../../../helpers/mocks/dataMock";
 //import PropTypes from 'prop-types';
 
 class InstructionsCopy extends Component {
-  static PropTypes = {};
+  static propTypes = {};
 
   state = {
     session: {},
@@ -40,6 +40,3 @@ export default connect(state => ({
 }), dispatch => ({
   fetchExam:(id) => dispatch(getExam(id))
 }))(InstructionsCopy)
-
-/*<button className="box button is-medium" onClick={this.addExamAndRedirect}>Suivant</button>
-          {this.state.redirectExercices ? <Redirect to={`/newexam/${this.state.idRedirect}/exercices`}/> : null}*/
