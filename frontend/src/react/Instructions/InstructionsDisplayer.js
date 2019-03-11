@@ -5,8 +5,8 @@ export default class InstructionsDisplayer extends Component {
     static propTypes = {
         triggerActive: PropTypes.func.isRequired,
         triggerInactive: PropTypes.func.isRequired,
-        dropdownGroup: PropTypes.string,
-        dropdownSession: PropTypes.string,
+        dropdownGroup: PropTypes.object,
+        dropdownSession: PropTypes.object,
         handleInput: PropTypes.func,
         handleSelect: PropTypes.func,
         groups: PropTypes.array,
@@ -42,8 +42,9 @@ export default class InstructionsDisplayer extends Component {
                                         </div>
                                         <div className="dropdown-menu" id="dropdown-menu" role="menu">
                                             <div className="dropdown-content">
-                                                {groups.length ? groups.map((group) =>
+                                                {groups && groups.length ? groups.map((group) =>
                                                     <button className="dropdown-item is-a-link-custom"
+                                                            key={group._id}
                                                             onMouseOver={triggerActive}
                                                             onMouseOut={triggerInactive}
                                                             onClick={handleSelect(group.name,group._id,"dropdownGroup")}>{group.name}</button>
@@ -65,9 +66,10 @@ export default class InstructionsDisplayer extends Component {
                                                 {dropdownSession.value !== "Sélectionner d'abord un groupe." ?
                                                     groups.find((aGroup) => {return aGroup.name === dropdownGroup.value}).classes.map((aClass) =>
                                                         <button className="dropdown-item is-a-link-custom"
+                                                                key={aClass._id}
                                                                 onMouseOver={triggerActive}
                                                                 onMouseOut={triggerInactive}
-                                                                onClick={handleSelect(aClass.date + " " + aClass.startTime + " to " + aClass.endTime,aClass._id,"dropdownSession")}>{aClass.date + " " + aClass.startTime + " to " + aClass.endTime}</button>
+                                                                onClick={handleSelect(aClass.date + " de " + aClass.startTime + " à " + aClass.endTime,aClass._id,"dropdownSession")}>{aClass.date + " de " + aClass.startTime + " à " + aClass.endTime}</button>
                                                     ) : null
                                                 }
                                             </div>
