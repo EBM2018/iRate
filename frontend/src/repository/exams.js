@@ -22,10 +22,15 @@ export const getExams = async (query = {}, withTS = false) => {
     return data;
 };
 
-export const getExam = async (id) => {
+/**
+ *
+ * @param {int} id - examID
+ * @param {Boolean} withTS - whether the exam should include the est. timing and scale
+ */
+export const getExam = async (id, withTS = false) => {
     if (!id) return;
     const data = await apiRequest(`/exams/${id}`, 'get');
-    return data;
+    return (withTS ? addTimeAndScale(data) : data);
 };
 
 export const patchExam = async (exam) => {
