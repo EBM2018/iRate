@@ -330,11 +330,38 @@
   },
   {
     "type": "get",
-    "url": "/exam",
+    "url": "/exams",
     "title": "Get all exams",
     "name": "GetAllExams",
     "group": "Exams",
     "description": "<p>This URL displays a JSON containing all exams from the database</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "module",
+            "description": "<p>Optional Module parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "session",
+            "description": "<p>Optional session name parameter</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "userId",
+            "description": "<p>Optional userId parameter</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "examples": [
         {
@@ -349,7 +376,7 @@
     "groupTitle": "Exams",
     "sampleRequest": [
       {
-        "url": "http://localhost:4000/api/exam"
+        "url": "http://localhost:4000/api/exams"
       }
     ]
   },
