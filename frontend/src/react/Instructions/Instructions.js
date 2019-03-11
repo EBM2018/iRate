@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import InstructionsDisplayer from './InstructionsDisplayer';
 import {postExam} from "../../redux/exams/actions/post";
-import {triggerActive,triggerInactive} from "../../helpers/activeClass";
+import {triggerActive,triggerInactive} from "../../helpers/css";
 
 class Instructions extends Component {
     state = {
