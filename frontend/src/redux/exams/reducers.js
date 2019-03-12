@@ -27,7 +27,7 @@ export default combineReducers({
       case ACTIONS.SET_PATCH_EXAMS_SUCCESS:
         return action.exams;
         case ACTIONS.SET_POST_EXAM_SUCCESS:
-        return state.exams.length ? {
+        return state.exams && state.exams.length ? {
             ...state,
             exam: action.exam,
             exams: [

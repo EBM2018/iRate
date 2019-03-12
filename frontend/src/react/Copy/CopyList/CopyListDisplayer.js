@@ -6,7 +6,7 @@ export default class CopyListDisplayer extends Component {
             <div className="columns is-variable is-multiline is-8">
                 {this.props.exams.length && this.props.exams.map((exam) =>
                     <div key={exam._id} className="column is-one-third">
-                        <div className="card">
+                        <div className={exam.isOver ? "card is-disabled":"card"}>
                             <header className="card-header">
                                 <p className="card-header-title">Examen: {exam.title}</p>
                             </header>

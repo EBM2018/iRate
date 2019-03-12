@@ -3,6 +3,7 @@ import moment from 'moment';
 import {connect} from 'react-redux';
 import {getExamsForStudent} from '../../../redux/exams/actions/get';
 import CopyListDisplayer from "./CopyListDisplayer";
+import {sortExamsBySessionDate} from "../../../helpers/exam";
 
 class CopyList extends Component {
     //TODO Mapper uniquement les exams dont l'élève fait partie du groupe: exemple, l'élève est dans EBM, on lui mappe ses exams uniquement pas ceux des autres groupes.
@@ -15,10 +16,11 @@ class CopyList extends Component {
         if(this.props.exams) {
             let exams = this.props.exams.filter((exam) => {return exam.isFinalised}).map((exam) => {
                 if(exam.session) {
-                    exam.isOver = moment().isAfter(exam.session.date.split("/")[2] + "-" +  exam.session.date.split("/")[1] + "-" + exam.session.date.split("/")[0]+"T"+exam.session.endTime);
+                    exam.isOver = moment().isAfter(exam.session.date.split("/")[2] + "-" +  exam.session.date.split("/")[0] + "-" + exam.session.date.split("/")[1]+"T"+exam.session.endTime);
                 }
                 return exam;
             });
+            exams = sortExamsBySessionDate(exams);
             this.setState({exams});
         }
     }

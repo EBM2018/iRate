@@ -20,6 +20,10 @@ body {
 .is-not-pointer{
   cursor: default;
 }
+.is-disabled{
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+}
 .is-a-link strong {
   color: currentColor; }
 .is-a-link-custom:hover {

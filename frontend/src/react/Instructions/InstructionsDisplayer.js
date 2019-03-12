@@ -42,7 +42,7 @@ export default class InstructionsDisplayer extends Component {
                                         </div>
                                         <div className="dropdown-menu" id="dropdown-menu" role="menu">
                                             <div className="dropdown-content">
-                                                {groups.length ? groups.map((group) =>
+                                                {groups && groups.length ? groups.map((group) =>
                                                     <button className="dropdown-item is-a-link-custom"
                                                             onMouseOver={triggerActive}
                                                             onMouseOut={triggerInactive}

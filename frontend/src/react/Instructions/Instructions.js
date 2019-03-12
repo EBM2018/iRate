@@ -46,13 +46,14 @@ class Instructions extends Component {
         } else {
             //TODO Here I create the constant group so that we know where to put the API Call when we don't have id params.
             const groups = groupsArray.groups.map((group) => {
-                let classes = group.classes.filter((aClass) => {
+                //TODO Don't forget to put this guy back in place
+                /*let classes = group.classes.filter((aClass) => {
                     return moment(aClass.date + " " + aClass.startTime).isAfter();
-                });
+                });*/
                 return {
                     name: group.name,
                     _id: group._id,
-                    classes: classes
+                    classes: group.classes
                 }
             });
             this.setState({groups});

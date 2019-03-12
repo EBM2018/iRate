@@ -16,20 +16,21 @@ export const getExams = async (query = {}, withTS = false) => {
     if (withTS) {
         for (let i = 0; i < data.length; i++) {
             data[i] = addTimeAndScale(data[i]);
-        };
+        }
     }
 
     // TODO: move this part to the backend once we get the route from the other group
     const returnedData = data.map((exam) => {
         let group = [];
         let session = {};
+        console.log(exam.session)
         if (exam.group) {
             group = groupsArray.groups.find((aGroup) => {return aGroup._id === exam.group});
             exam.group = group;
         }
         if (exam.session) {
             session = group.classes.find((aClass) => {return aClass._id === exam.session});
-            exam.session = session
+            exam.session = session;
         }
         return exam;
     });
