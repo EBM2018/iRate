@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from "react-router-dom";
 
 export default class CopyListDisplayer extends Component {
     render() {
@@ -9,6 +10,9 @@ export default class CopyListDisplayer extends Component {
                         <div className={exam.isOver ? "card is-disabled":"card"}>
                             <header className="card-header">
                                 <p className="card-header-title">Examen: {exam.title}</p>
+                                {exam.isPassing ? <div className="card-header-icon">
+                                    <Link to={`copy/${exam._id}`} className="tag is-warning tooltip" data-tooltip="Cliquez ici pour passer l'épreuve">En cours</Link>
+                                </div> : null}
                             </header>
                             <div className="card-content">
                                 <div className="content">
@@ -23,7 +27,3 @@ export default class CopyListDisplayer extends Component {
         );
     }
 }
-
-/*
-
- */

@@ -17,6 +17,9 @@ class CopyList extends Component {
             let exams = this.props.exams.filter((exam) => {return exam.isFinalised}).map((exam) => {
                 if(exam.session) {
                     exam.isOver = moment().isAfter(exam.session.date.split("/")[2] + "-" +  exam.session.date.split("/")[0] + "-" + exam.session.date.split("/")[1]+"T"+exam.session.endTime);
+                    if(!exam.isOver) {
+                        exam.isPassing = moment().isBetween(exam.session.date.split("/")[2] + "-" +  exam.session.date.split("/")[0] + "-" + exam.session.date.split("/")[1]+"T"+exam.session.startTime, exam.session.date.split("/")[2] + "-" +  exam.session.date.split("/")[0] + "-" + exam.session.date.split("/")[1]+"T"+exam.session.endTime)
+                    }
                 }
                 return exam;
             });
