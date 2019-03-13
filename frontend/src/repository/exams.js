@@ -23,7 +23,6 @@ export const getExams = async (query = {}, withTS = false) => {
     const returnedData = data.map((exam) => {
         let group = [];
         let session = {};
-        console.log(exam.session)
         if (exam.group) {
             group = groupsArray.groups.find((aGroup) => {return aGroup._id === exam.group});
             exam.group = group;
