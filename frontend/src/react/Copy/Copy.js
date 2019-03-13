@@ -1,0 +1,86 @@
+import React, {Component} from 'react'
+import connect from 'react-redux/es/connect/connect';
+
+import {getExam} from '../../redux/exams/actions/getSingle';
+
+import Instructions from './Instructions';
+import Exercice from './Exercice';
+import FooterCopy from './FooterCopy';
+import ConfirmCopy from './ConfirmCopy';
+import {dataMock, session} from '../../helpers/mocks/dataMock';
+
+class Copy extends Component {
+
+  state = {
+    session: {},
+    step: 0, // in: 0 (instructions), 1 (exercice), 2 (confirmation)
+    exerciceIndex: ''
+  };
+
+  async componentDidMount() {
+    // TODO: await this.props.fetchExam(this.props.route.match.params.id);
+    const sessionId = 'e22cc200-c140-4977-9b1d-gvrbbb4156';
+    const aSession = await session.classes.find(session => sessionId === session._id);
+    this.setState({session: aSession});
+  }
+
+  handleNext = (force = false) => {
+    const {step, exerciceIndex} = this.state;
+    // TODO: const {exercices} = this.props.exercices;
+    const {exercices} = dataMock;
+    if (step === 0) {
+      this.setState({exerciceIndex: 0, step: 1});
+    } else {
+      this.setState({
+        step: ((exerciceIndex === exercices.length-1) || force) ? 2 : 1,
+        exerciceIndex: exerciceIndex+1
+      });
+    }
+  }
+
+  renderContent() {
+    // TODO: const {exercices} = this.props.exam;
+    const {exercices} = dataMock;
+    const {exerciceIndex} = this.state;
+    switch (this.state.step) {
+      case 0:
+        return (
+          <Instructions title={dataMock.title}
+                        reminders={dataMock.reminder}
+                        instructions={dataMock.instruction}
+                        session={this.state.session}
+                        start={this.handleNext}/>
+        );
+      case 2:
+          return (
+            <ConfirmCopy />
+          );
+      default:
+        return (
+              <Exercice exercice={exercices[exerciceIndex]} nextExercice={this.handleNext}/>
+            );
+    }
+  }
+
+  render() {
+    const {step, exerciceIndex} = this.state;
+    const {exercices} = dataMock;// TODO
+    // Next exercice
+    // Prev exercice
+    return (
+      <div className="tile is-child">
+        { this.renderContent() }
+        { (step === 1) &&
+          <FooterCopy currentExercice={exerciceIndex} exercices={exercices} confirm={() => this.handleNext(true)}/>
+        }
+      </div>
+    );
+  }
+}
+
+export default connect(state => ({
+  exam: state.exams.exams,
+  loading: state.exams.loading,
+}), dispatch => ({
+  fetchExam:(id) => dispatch(getExam(id))
+}))(Copy)

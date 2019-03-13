@@ -57,6 +57,27 @@ export const dataMock = {
         "creationTime": "01/01/2019T07:16:05"
       }
     ],
+  },
+  {
+    "_id": "5a9e7dc7832a780c53650ab1",
+    "title": "Exercice 3",
+    "estimatedTime": "01:00:00",
+    "creationTime": "01/01/2019T07:00:00",
+    "questions": [{
+        "_id": "5a9e7dcjdkfa690c53650ab1",
+        "title": "Quelle est la somme de 1+1 ?",
+        "scale": 0.5,
+        "correction": "2",
+        "creationTime": "01/01/2019T07:00:00"
+      },
+      {
+        "_id": "5a9e7jekkfa690c53650ab1",
+        "title": "Quelle est la somme de 2+2 ?",
+        "scale": 0.75,
+        "correction": "4",
+        "creationTime": "01/01/2019T07:00:00"
+      }
+    ],
   }
 ]};
 
