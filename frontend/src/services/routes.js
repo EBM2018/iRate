@@ -2,7 +2,7 @@ import Instructions from '../react/Instructions/Instructions';
 import CreateExam from '../react/Exam/CreateExam';
 import DisplayExam from '../react/Exam/DisplayExam/DisplayExam';
 import ExamList from '../react/Exam/ExamList/ExamList';
-import CopyList from '../react/Copy/CopyList';
+import CopyList from '../react/Copy/CopyList/CopyList';
 import AnswerExercice from '../react/Copy/AnswerExercice';
 
 export const privateRoutes = {

@@ -5,6 +5,7 @@ import ExamListDisplayer from './ExamListDisplayer';
 import {getExams} from '../../../redux/exams/actions/get';
 import FinaliseExamDisplayer from './FinaliseExam/FinaliseExamDisplayer';
 import {patchExam} from '../../../redux/exams/actions/patch';
+import {sortExamsBySessionDate} from "../../../helpers/exam";
 
 class ExamList extends Component {
     state = {
@@ -16,7 +17,8 @@ class ExamList extends Component {
     async componentDidMount() {
         await this.props.fetchExamsWithScale();
         if(this.props.exams) {
-            this.setState({exams: this.props.exams});
+            const exams = sortExamsBySessionDate(this.props.exams);
+            this.setState({exams});
         }
     }
 

@@ -29,7 +29,7 @@ export const getExams = async (query = {}, withTS = false) => {
         }
         if (exam.session) {
             session = group.classes.find((aClass) => {return aClass._id === exam.session});
-            exam.session = session
+            exam.session = session;
         }
         return exam;
     });
