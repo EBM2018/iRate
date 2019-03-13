@@ -3,7 +3,6 @@ import InstructionsDisplayer from './InstructionsDisplayer';
 import {groupsArray,group} from '../../helpers/mocks/group';
 
 import {Redirect} from 'react-router-dom';
-import moment from 'moment';
 import connect from 'react-redux/es/connect/connect';
 import {postExam} from '../../redux/exams/actions/post';
 import {triggerActive,triggerInactive} from '../../helpers/css';
