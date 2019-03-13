@@ -17,6 +17,9 @@ body {
   text-decoration: none;
   border: none;
 }
+.has-no-margin-bottom{
+  margin-bottom: 0 !important;
+}
 .is-not-pointer{
   cursor: default;
 }
