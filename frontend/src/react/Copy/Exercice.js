@@ -15,9 +15,13 @@ class Exercice extends Component {
     }
 
     render() {
-        return <div>
-            <button onClick={this.handleNext}>Next</button>
-        </div>
+        return (<div>
+            <section></section>
+            <footer>
+                <button onClick={this.handleNext}>Next</button>
+                <button>valider</button>
+            </footer>
+        </div>)
     }
 }
 

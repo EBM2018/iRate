@@ -4,7 +4,7 @@ import CreateExam from '../react/Exam/CreateExam';
 import DisplayExam from '../react/Exam/DisplayExam/DisplayExam';
 import ExamList from '../react/Exam/ExamList/ExamList';
 import Copy from '../react/Copy/Copy';
-import CopyList from '../react/Copy/CopyList';
+import CopyList from '../react/Copy/CopyList/CopyList';
 
 export const privateRoutes = {
     Instructions: {

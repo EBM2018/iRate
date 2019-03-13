@@ -7,7 +7,7 @@ import Instructions from './Instructions';
 import Exercice from './Exercice';
 import FooterCopy from './FooterCopy';
 import ConfirmCopy from './ConfirmCopy';
-import {dataMock, session} from '../../helpers/mocks/dataMock';
+import {session} from '../../helpers/mocks/dataMock';
 
 class Copy extends Component {
 
@@ -18,36 +18,37 @@ class Copy extends Component {
   };
 
   async componentDidMount() {
-    // TODO: await this.props.fetchExam(this.props.route.match.params.id);
+    await this.props.fetchExam(this.props.route.match.params.id);
     const sessionId = 'e22cc200-c140-4977-9b1d-gvrbbb4156';
     const aSession = await session.classes.find(session => sessionId === session._id);
     this.setState({session: aSession});
   }
 
-  handleNext = (force = false) => {
+  /**
+   * @param {Boolean} - forceConfirmation: whether we want to force the confirmation
+   */
+  handleNext = (forceConfirmation = false) => {
     const {step, exerciceIndex} = this.state;
-    // TODO: const {exercices} = this.props.exercices;
-    const {exercices} = dataMock;
+    const {exercices} = this.props.exam;
     if (step === 0) {
       this.setState({exerciceIndex: 0, step: 1});
     } else {
       this.setState({
-        step: ((exerciceIndex === exercices.length-1) || force) ? 2 : 1,
+        step: ((exerciceIndex === exercices.length - 1) || forceConfirmation) ? 2 : 1,
         exerciceIndex: exerciceIndex+1
       });
     }
   }
 
   renderContent() {
-    // TODO: const {exercices} = this.props.exam;
-    const {exercices} = dataMock;
+    const {exam} = this.props;
     const {exerciceIndex} = this.state;
     switch (this.state.step) {
       case 0:
         return (
-          <Instructions title={dataMock.title}
-                        reminders={dataMock.reminder}
-                        instructions={dataMock.instruction}
+          <Instructions title={exam.title}
+                        reminders={exam.reminder}
+                        instructions={exam.instruction}
                         session={this.state.session}
                         start={this.handleNext}/>
         );
@@ -57,22 +58,24 @@ class Copy extends Component {
           );
       default:
         return (
-              <Exercice exercice={exercices[exerciceIndex]} nextExercice={this.handleNext}/>
+              <Exercice exercice={exam.exercices[exerciceIndex]} nextExercice={this.handleNext}/>
             );
     }
   }
 
   render() {
     const {step, exerciceIndex} = this.state;
-    const {exercices} = dataMock;// TODO
-    // Next exercice
-    // Prev exercice
+    const {exercices} = this.props.exam;
     return (
       <div className="tile is-child">
-        { this.renderContent() }
         { (step === 1) &&
-          <FooterCopy currentExercice={exerciceIndex} exercices={exercices} confirm={() => this.handleNext(true)}/>
+          <FooterCopy
+            currentExercice={exerciceIndex}
+            exercices={exercices}
+            confirm={() => this.handleNext(true)}
+            navigate={ (index) => this.navigate(index)}/>
         }
+        { this.renderContent() }
       </div>
     );
   }
