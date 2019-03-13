@@ -5,6 +5,10 @@ const CopySchema = new mongoose.Schema({
     type: Date,
     default: () => Date.now(),
   },
+  exam: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Exam',
+  }],
   answers: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Answer',

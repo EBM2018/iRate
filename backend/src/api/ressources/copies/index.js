@@ -14,7 +14,7 @@ const CopyController = require('./controller.js');
  *  {
  *    "_id": "5a9e7dc7717a690c53650ab1",
  *    "type": "Copies"
- *    "examId": "5pod76h7a690c53650ab1",
+ *    "exam": "5pod76h7a690c53650ab1",
  *    "title": "Copies 1",
  *    "author" : {
  *      "name": "Yolo",
@@ -60,7 +60,7 @@ router.get('/:examId', CopyController.getCopies);
  *  {
  *    "_id": "5a9e7dc7717a690c53650ab1",
  *    "type": "Copies"
- *    "examId": "5pod76h7a690c53650ab1",
+ *    "exam": "5pod76h7a690c53650ab1",
  *    "title": "Copies 1",
  *    "author" : {
  *      "name": "Yolo",
@@ -137,7 +137,7 @@ router.get('/answer/:answerId', CopyController.getAnswer);
  *   {
  *    "title": "Copies 1",
  *    "authorId": "abcdefghjkqspdsqpjpijp86972",
- *    "examId": "sqojfdoisqjdoiqj679089076",
+ *    "exam": "sqojfdoisqjdoiqj679089076",
  *   }
  *
  * @apiSuccess (201) {json} Copy a JSON object containing the created copy
