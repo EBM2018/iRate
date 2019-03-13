@@ -10,7 +10,7 @@ export default class CopyListDisplayer extends Component {
                         <div className="title">Examen en cours</div>
                     </div>
                 {this.props.exams.length && this.props.exams.map((exam) =>
-                exam.isPassing ? <div className="content"> <div className="card">
+                exam.isPassing ? <div key={exam._id} className="content"> <div className="card">
                             <header className="card-header">
                                 <p className="card-header-title has-no-margin-bottom">Examen: {exam.title}</p>
                                 <div className="card-header-icon">
@@ -32,7 +32,7 @@ export default class CopyListDisplayer extends Component {
                         <div className="title">Examens à passer</div>
                     </div>
                     {this.props.exams.length && this.props.exams.map((exam) =>
-                        !exam.isPassing && !exam.isOver ? <div className="content"> <div className="card">
+                        !exam.isPassing && !exam.isOver ? <div key={exam._id} className="content"> <div className="card">
                             <header className="card-header">
                                 <p className="card-header-title">Examen: {exam.title}</p>
                             </header>
@@ -51,7 +51,7 @@ export default class CopyListDisplayer extends Component {
                         <div className="title">Examens passés</div>
                     </div>
                     {this.props.exams.length && this.props.exams.map((exam) =>
-                        exam.isOver ? <div className="content">
+                        exam.isOver ? <div key={exam._id} className="content">
                             <div className="card is-disabled">
                             <header className="card-header">
                                 <p className="card-header-title">Examen: {exam.title}</p>
