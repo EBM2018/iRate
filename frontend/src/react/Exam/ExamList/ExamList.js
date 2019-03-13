@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
-import ExamListDisplayer from "./ExamListDisplayer";
-import connect from "react-redux/es/connect/connect";
-import {getExamsWithScaleAndTime} from "../../../redux/exams/actions/get";
-import FinaliseExamDisplayer from "./FinaliseExam/FinaliseExamDisplayer";
-import {patchExam} from "../../../redux/exams/actions/patch";
+import {connect} from 'react-redux';
+
+import ExamListDisplayer from './ExamListDisplayer';
+import {getExams} from '../../../redux/exams/actions/get';
+import FinaliseExamDisplayer from './FinaliseExam/FinaliseExamDisplayer';
+import {patchExam} from '../../../redux/exams/actions/patch';
 
 class ExamList extends Component {
     state = {
@@ -20,7 +21,7 @@ class ExamList extends Component {
     }
 
     toggleFinalise = (id) => () => {
-        this.setState({shouldFinaliseRender: !this.state.shouldFinaliseRender, examId: id})
+        this.setState({shouldFinaliseRender: !this.state.shouldFinaliseRender, examId: id});
     };
 
     toggleCheckScale = () => {
@@ -28,10 +29,11 @@ class ExamList extends Component {
     };
 
     finaliseExam = (id) => async () => {
-        const exam = this.props.exams.filter((exam) => {return exam._id === id})[0];
+        const exam = await this.props.exams.filter((exam) => {return exam._id === id})[0];
         exam.isFinalised = true;
         exam.showScale = this.state.didChecked;
         await this.props.fetchExamPatcher(exam);
+        await this.toggleFinalise('')();
     };
 
     render() {
@@ -56,6 +58,6 @@ export default connect(state => ({
     exams: state.exams.exams,
     loading: state.exams.loading,
 }), dispatch => ({
-    fetchExamsWithScale: () => dispatch(getExamsWithScaleAndTime()),
+    fetchExamsWithScale: () => dispatch(getExams({}, true)),
     fetchExamPatcher: (exam) => dispatch(patchExam(exam))
 }))(ExamList);
