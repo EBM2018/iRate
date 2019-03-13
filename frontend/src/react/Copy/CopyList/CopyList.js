@@ -11,11 +11,19 @@ class CopyList extends Component {
         exams: {},
     };
 
+    /**
+     * This lifecycle fetch exams
+     * Filter them is finalised
+     * Add a "isOver" boolean if the exam has a passed date
+     * Add a "isPassing" boolean if the exam is currently being passed
+     * @return {void}
+     */
     async componentDidMount() {
         await this.props.fetchExams();
         if(this.props.exams) {
             let exams = this.props.exams.filter((exam) => {return exam.isFinalised}).map((exam) => {
                 if(exam.session) {
+                    //Very long because I rewrite the date to have a moment format
                     exam.isOver = moment().isAfter(exam.session.date.split("/")[2] + "-" +  exam.session.date.split("/")[0] + "-" + exam.session.date.split("/")[1]+"T"+exam.session.endTime);
                     if(!exam.isOver) {
                         exam.isPassing = moment().isBetween(exam.session.date.split("/")[2] + "-" +  exam.session.date.split("/")[0] + "-" + exam.session.date.split("/")[1]+"T"+exam.session.startTime, exam.session.date.split("/")[2] + "-" +  exam.session.date.split("/")[0] + "-" + exam.session.date.split("/")[1]+"T"+exam.session.endTime)
