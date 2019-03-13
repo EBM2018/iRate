@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 
-export default class FooterCopy extends Component {
+export default class HeaderCopy extends Component {
 
     static propTypes = {
         exercices: PropTypes.array.isRequired,
         clickExercice: PropTypes.func,
         currentExercice: PropTypes.number.isRequired,
-        confirm: PropTypes.func
+        navigate: PropTypes.func
     };
 
     render() {
@@ -15,7 +15,11 @@ export default class FooterCopy extends Component {
         const exercices = this.props.exercices.slice(0, currentExercice+1).map(
             (ex, index) => (
                 <li key={index}>
-                    <a href="#/" className={currentExercice === index ? 'active' : ''}>{index+1}</a>
+                    <a href="#/"
+                        onClick={() => this.props.navigate(index)}
+                        className={currentExercice === index ? 'active' : ''}>
+                        {index+1}
+                    </a>
                 </li>)
         );
         return (

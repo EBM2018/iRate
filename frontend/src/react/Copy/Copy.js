@@ -5,7 +5,7 @@ import {getExam} from '../../redux/exams/actions/getSingle';
 
 import Instructions from './Instructions';
 import Exercice from './Exercice';
-import FooterCopy from './FooterCopy';
+import HeaderCopy from './HeaderCopy';
 import ConfirmCopy from './ConfirmCopy';
 import {session} from '../../helpers/mocks/dataMock';
 
@@ -58,9 +58,14 @@ class Copy extends Component {
           );
       default:
         return (
-              <Exercice exercice={exam.exercices[exerciceIndex]} nextExercice={this.handleNext}/>
+              <Exercice exercice={exam.exercices[exerciceIndex]} nextExercice={this.handleNext} confirm={() => this.handleNext(true)}/>
             );
     }
+  }
+
+  navigate(index) {
+    console.log(index);
+    this.setState({exerciceIndex: index})
   }
 
   render() {
@@ -69,10 +74,9 @@ class Copy extends Component {
     return (
       <div className="tile is-child">
         { (step === 1) &&
-          <FooterCopy
+          <HeaderCopy
             currentExercice={exerciceIndex}
             exercices={exercices}
-            confirm={() => this.handleNext(true)}
             navigate={ (index) => this.navigate(index)}/>
         }
         { this.renderContent() }
