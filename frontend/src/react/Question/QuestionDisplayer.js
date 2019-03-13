@@ -5,6 +5,7 @@ export default class QuestionDisplayer extends React.Component {
 
     static propTypes = {
         handleInputQuestion: PropTypes.func.isRequired,
+        saveQuestion: PropTypes.func.isRequired,
         deleteQuestion: PropTypes.func.isRequired,
         question: PropTypes.array.isRequired,
         id: PropTypes.number.isRequired,
@@ -20,6 +21,7 @@ export default class QuestionDisplayer extends React.Component {
                                                         name="questionTitle"
                                                         id={this.props.id}
                                                         onChange={this.props.handleInputQuestion}
+                                                        onBlur={this.props.saveQuestion}
                                                         defaultValue={typeof this.props.question.title === 'undefined' ? '' : this.props.question.title}
                                                         type="text"
                                                         placeholder="Nouvelle Question"/></div>
@@ -34,6 +36,7 @@ export default class QuestionDisplayer extends React.Component {
                                                         id={this.props.id}
                                                         defaultValue={typeof this.props.question.scale === 'undefined' ? '' : this.props.question.scale}
                                                         onChange={this.props.handleInputQuestion}
+                                                        onBlur={this.props.saveQuestion}
                                                         type="number"
                                                         min="0"
                                                         step="0.25"/></div>
@@ -50,6 +53,7 @@ export default class QuestionDisplayer extends React.Component {
                                                         id={this.props.id}
                                                         defaultValue={typeof this.props.question.estimatedTime === 'undefined' ? '' : this.props.question.estimatedTime}
                                                         onChange={this.props.handleInputQuestion}
+                                                        onBlur={this.props.saveQuestion}
                                                         type="number"
                                                         min="0"
                                                         step="0.25"/></div>
@@ -63,6 +67,7 @@ export default class QuestionDisplayer extends React.Component {
                                                            id={this.props.id}
                                                            defaultValue={typeof this.props.question.correction === 'undefined' ? '' : this.props.question.correction}
                                                            onChange={this.props.handleInputQuestion}
+                                                           onBlur={this.props.saveQuestion}
                                                            type="text"
                                                            placeholder="Question..."
                     /></div>

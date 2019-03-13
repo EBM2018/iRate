@@ -4,25 +4,16 @@ import ExerciceSimplifiedDisplayer from "./ExerciceSimplifiedDisplayer";
 import {arrayMove} from 'array-move';
 import {SortableElement} from "react-sortable-hoc";
 
-
 const ExerciceSimplified = (props) => {
-  const onSortEnd = ({oldIndex, newIndex}) => {
-    this.setState(({exercices}) => ({
-      exercices: arrayMove(this.props.exercices, oldIndex, newIndex),
-    }));
-  };
 
-  const handleInput = (e) => {
-    this.setState({[e.target.name]:e.target.value});
-  };
-  return (
-    <ExerciceSimplifiedDisplayer handleInput={handleInput}
-                                 deleteExercice={props.deleteExercice}
-                                 id={props.id}
-                                 onSortEnd={onSortEnd}
-                                 exercices={props.exercices}
-                                 index={props.id}/>
-  );
+    return (
+        <ExerciceSimplifiedDisplayer
+                                     deleteExercice={props.deleteExercice}
+                                     id={props.id}
+                                     exercices={props.exercices}
+                                     idQuestion={props.idQuestion}
+                                     index={props.index}/>
+    );
 };
 
 export default SortableElement((props) => ExerciceSimplified(props));

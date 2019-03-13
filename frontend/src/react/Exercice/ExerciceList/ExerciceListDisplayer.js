@@ -14,6 +14,7 @@ export default class ExerciceListDisplayer extends React.Component {
 
     static propTypes = {
         deleteExercice: PropTypes.func,
+        onSortEnd: PropTypes.func,
         exercices: PropTypes.array,
         handleInputExercice: PropTypes.func,
         id: PropTypes.number,
@@ -31,14 +32,14 @@ export default class ExerciceListDisplayer extends React.Component {
                         <label htmlFor="switchRoundedInfo">Passer en mode simplifié</label>
                     </div>
                 </div>
-                <SortableContainer onSortEnd={this.onSortEnd}>
-
-                    {this.props.exercices.map((value, idx) => this.props.isExtended ?
+                <SortableContainer onSortEnd={this.props.onSortEnd}>
+                    {typeof this.props.exercices !== 'undefined' && this.props.exercices.map((value, idx) => this.props.isExtended ?
                         <Exercice key={uniqid()} id={this.props.id} exercices={value}
                                   index={idx}
                                   deleteExercice={this.props.deleteExercice}
                                   handleInputExercice={this.props.handleInputExercice}/> :
-                        <ExerciceSimplified key={uniqid()} id={idx} exercices={value} index={idx}
+                        <ExerciceSimplified key={uniqid()} id={this.props.id} exercices={value} index={idx}
+                                            idQuestion={idx}
                                             deleteExercice={this.props.deleteExercice}/>)}
                 </SortableContainer>
                 <button className="button is-info is-medium" onClick={this.props.addExercice}>Nouvel Exercice</button>

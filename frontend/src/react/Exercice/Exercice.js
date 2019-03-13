@@ -29,14 +29,13 @@ class Exercice extends React.Component {
     addQuestion = async () => {
         let question = this.state.question;
         let maxOrder = 0;
-        if (question !== null) {
+        if (question.length !== null) {
             maxOrder = question.length;
             question.push({"title": 'Nouvelle Question', "scale": 0, "correction": '', "order": maxOrder + 1});
         } else {
             question = [{"title": 'Nouvelle Question', "scale": 0, "correction": '', "order": 1}];
             maxOrder = 0;
         }
-        console.log(question);
         this.setState({question: question});
         await this.props.fetchNewQuestion(this.props.id, this.props.exercices._id, {
             "title": "Nouvelle Question",
@@ -48,6 +47,7 @@ class Exercice extends React.Component {
     };
 
     moveQuestion = (dragIndex, hoverIndex) => {
+        console.log(this.state.question);
         const {question} = this.state;
         const dragQuestion = question[dragIndex];
         this.setState({
@@ -120,13 +120,10 @@ class Exercice extends React.Component {
                                    deleteQuestion={this.deleteQuestion}
                                    moveQuestion={this.moveQuestion}
                                    deleteExercice={this.props.deleteExercice}
+                                   saveQuestion={this.saveNewQuestion}
                                    question={this.state.question}
                                    index={this.props.index}
                                    id={this.props.id}/>
-                <div className="section">
-                    <button className="button is-info is-medium" onClick={this.saveNewQuestion}>Sauvegarder l'exercice
-                    </button>
-                </div>
             </div>
         );
     }

@@ -12,6 +12,7 @@ const Question = (props) => {
   return (
     <QuestionDisplayer handleInputQuestion={props.handleInputQuestion}
                        deleteQuestion={props.deleteQuestion}
+                       saveQuestion={props.saveQuestion}
                        id={props.id}
                        question={props.question}
                        onSortEnd={onSortEnd}

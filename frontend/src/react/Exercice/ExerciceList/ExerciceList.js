@@ -6,6 +6,7 @@ import {patchExercice} from "../../../redux/exercice/actions/patch";
 import {postExercice} from "../../../redux/exercice/actions/post";
 import {deleteExercice} from "../../../redux/exercice/actions/delete";
 import {getExam} from "../../../redux/exams/actions/getSingle";
+import arrayMove from "array-move";
 
 class ExerciceList extends React.PureComponent {
 
@@ -20,8 +21,8 @@ class ExerciceList extends React.PureComponent {
         isExtended: true,
     };
 
-    async componentDidMount() {
-        await this.props.fetchExam(this.props.route.match.params.id);
+    componentDidMount() {
+        this.props.fetchExam(this.props.route.match.params.id);
         this.setState({exercices: this.props.exam.exercices});
     };
 
@@ -62,18 +63,29 @@ class ExerciceList extends React.PureComponent {
      * Add a new exercice in the exam creation page.
      */
     addExercice = async () => {
-        const exercices = this.state.exercices;
+        let exercices = this.state.exercices;
         let maxOrder = 0;
         if (exercices !== null) {
             maxOrder = Math.max(...exercices.map(qu => qu.order));
+            if (maxOrder === -Infinity) {
+                exercices = [{"title": "Nouvel Exercice", "estimatedTime": '', "order": 1, "question": []}];
+                maxOrder = 0;
+            } else {
+                exercices.push({
+                    "title": "Nouvel Exercice",
+                    "estimatedTime": '',
+                    "order": maxOrder + 1,
+                    "question": []
+                });
+            }
         }
-        exercices.push({"title": "Nouvel Exercice", "estimatedTime": '', "order": maxOrder + 1, "question": []});
+        this.setState({exercices: exercices});
+        let order = maxOrder + 1
         await this.props.fetchNewExercice(this.props.route.match.params.id, {
             "title": "Nouvel Exercice",
-            "order": maxOrder + 1,
+            "order": order,
             "question": []
         });
-        this.setState({exercices: exercices});
         await this.props.fetchExam(this.props.route.match.params.id);
     };
 
@@ -87,12 +99,9 @@ class ExerciceList extends React.PureComponent {
     deleteExercice = (v) => {
         let idExercice = v.target.value;
         this.props.fetchDeleteExercice(this.props.route.match.params.id, this.state.exercices[idExercice]._id, this.state.exercices[idExercice])
-        if (idExercice === '0') return;
-        else {
-            const exercices = [...this.state.exercices];
-            exercices.splice(idExercice, 1);
-            this.setState({exercices});
-        }
+        const exercices = [...this.state.exercices];
+        exercices.splice(idExercice, 1);
+        this.setState({exercices});
     };
 
     saveNewExercice = () => {
@@ -103,6 +112,46 @@ class ExerciceList extends React.PureComponent {
         }
     };
 
+    onSortEnd = async ({oldIndex, newIndex}) => {
+        let exercices = this.state.exercices;
+        let departure = oldIndex + 1;
+        let arrival = newIndex + 1;
+        console.log(oldIndex);
+        console.log(newIndex);
+
+        console.log(exercices);
+        if (arrival === departure) return;
+        if (arrival > departure) {
+            for (let i in exercices) {
+                console.log(exercices[i].order);
+                if (exercices[i].order <= arrival && exercices[i].order > departure && exercices[i].order !== departure) {
+                    exercices[i].order = exercices[i].order - 1;
+                }
+            }
+            exercices[oldIndex].order = newIndex;
+
+        } else {
+            console.log('else');
+            for (let i in exercices) {
+                if (exercices[i].order >= arrival && exercices[i].order < departure && exercices[i].order !== departure) {
+                    console.log(exercices[i].order);
+                    console.log(i);
+                   // exercices[i].order = exercices[i].order - 1;
+                }
+            }
+            exercices[oldIndex].order = newIndex + 1;
+        }
+        for (let i in exercices) {
+            if (typeof exercices[i]._id !== 'undefined') {
+                await this.props.patchExercice(this.props.route.match.params.id, exercices[i]._id, exercices[i]);
+            }
+        }
+        this.setState({exercices: exercices});
+        await this.props.fetchExam(this.props.route.match.params.id);
+        console.log(exercices);
+    };
+
+
     render() {
         return (
             <div>
@@ -110,6 +159,7 @@ class ExerciceList extends React.PureComponent {
                                        deleteExercice={this.deleteExercice}
                                        exercices={this.state.exercices}
                                        handleInputExercice={this.handleInputExercice}
+                                       onSortEnd={this.onSortEnd}
                                        index={this.props.id}
                                        idExercice={this.state.idExercice}
                                        toggleExtend={this.toggleExtend}

@@ -13,6 +13,8 @@ export default class ExerciceDisplayer extends Component {
     static propTypes = {
         handleInputExercice: PropTypes.func.isRequired,
         handleInputQuestion: PropTypes.func,
+        saveQuestion: PropTypes.func,
+        moveQuestion: PropTypes.func,
         deleteQuestion: PropTypes.func.isRequired,
         addQuestion: PropTypes.func.isRequired,
         deleteExercice: PropTypes.func.isRequired,
@@ -55,7 +57,9 @@ export default class ExerciceDisplayer extends Component {
                     {typeof this.props.question !== 'undefined' && this.props.question !== null && this.props.question.length !== 0 && this.props.question.map((value, idx) =>
                         <Question key={value._id} id={idx} question={value} index={value._id}
                                   deleteQuestion={this.props.deleteQuestion}
-                                  handleInputQuestion={this.props.handleInputQuestion}/>)}
+                                  handleInputQuestion={this.props.handleInputQuestion}
+                        saveQuestion={this.props.saveQuestion}
+                        moveQuestion={this.props.moveQuestion}/>)}
                 </SortableContainer>
                 <button className="button is-info is-medium" onClick={this.props.addQuestion}>Nouvelle Question</button>
             </div>
