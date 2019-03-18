@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import ExerciceDisplayer from "./ExerciceDisplayer";
 
 class Exercice extends Component {
 
@@ -12,16 +13,12 @@ class Exercice extends Component {
     handleNext = () => {
         // TODO: save along the way
         this.props.nextExercice();
-    }
+    };
 
     render() {
-        return (<div>
-            <section></section>
-            <footer>
-                <button onClick={this.handleNext}>Next</button>
-                <button>valider</button>
-            </footer>
-        </div>)
+        return (
+            <ExerciceDisplayer handleNext={this.handleNext} exercice={this.props.exercice} showScale={this.props.showScale}/>
+        )
     }
 }
 

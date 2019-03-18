@@ -4,7 +4,7 @@ import connect from 'react-redux/es/connect/connect';
 import {getExam} from '../../redux/exams/actions/getSingle';
 
 import Instructions from './Instructions';
-import Exercice from './Exercice';
+import Exercice from './AnswerExercice/Exercice';
 import HeaderCopy from './HeaderCopy';
 import ConfirmCopy from './ConfirmCopy';
 import {session} from '../../helpers/mocks/dataMock';
@@ -25,7 +25,7 @@ class Copy extends Component {
   }
 
   /**
-   * @param {Boolean} - forceConfirmation: whether we want to force the confirmation
+   * @param {Boolean} forceConfirmation: whether we want to force the confirmation
    */
   handleNext = (forceConfirmation = false) => {
     const {step, exerciceIndex} = this.state;
@@ -38,7 +38,7 @@ class Copy extends Component {
         exerciceIndex: exerciceIndex+1
       });
     }
-  }
+  };
 
   renderContent() {
     const {exam} = this.props;
@@ -58,13 +58,12 @@ class Copy extends Component {
           );
       default:
         return (
-              <Exercice exercice={exam.exercices[exerciceIndex]} nextExercice={this.handleNext} confirm={() => this.handleNext(true)}/>
+              <Exercice exercice={exam.exercices[exerciceIndex]} showScale={exam.showScale} nextExercice={this.handleNext} confirm={() => this.handleNext(true)}/>
             );
     }
   }
 
   navigate(index) {
-    console.log(index);
     this.setState({exerciceIndex: index})
   }
 
