@@ -21,6 +21,14 @@ export default class Question extends Component {
         return 'not-handled';
     };
 
+    myBlockStyleFn = (contentBlock) => {
+        const type = contentBlock.getType();
+        console.log(type);
+        if (type === 'unstyled') {
+            return 'textarea';
+        }
+    };
+
     onUnderlineClick = () => {
         this.handleChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
     };
@@ -45,6 +53,7 @@ export default class Question extends Component {
             <QuestionDisplayer question={this.props.question}
                                showScale={this.props.showScale}
                                editorState={this.state.editorState}
+                               myBlockStyleFn={this.myBlockStyleFn}
                                handleChange={this.handleChange}
                                handleKeycommand={this.handleKeyCommand}
                                handleBlur={this.handleBlur}
