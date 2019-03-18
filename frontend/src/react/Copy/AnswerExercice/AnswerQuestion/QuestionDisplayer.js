@@ -47,8 +47,8 @@ export default class QuestionDisplayer extends Component {
                     <button onClick={this.props.onBoldClick}>B</button>
                     <button onClick={this.props.onItalicClick}>I</button>
                 <div className="field">
-                    <div class="control">
-                            <Editor editorState={this.props.editorState} className="textarea" onChange={this.props.handleChange} handleKeyCommand={this.props.handleKeyCommand} />
+                    <div className="control">
+                            <Editor editorState={this.props.editorState} className="textarea" onChange={this.props.handleChange} onBlur={this.props.handleBlur} handleKeyCommand={this.props.handleKeyCommand} />
                     </div>
                 </div>
                 </div>
