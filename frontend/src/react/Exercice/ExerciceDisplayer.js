@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Question from '../Question/Question';
-import {sortableContainer, sortableElement} from "react-sortable-hoc";
+import {sortableContainer} from "react-sortable-hoc";
 
 let uniqid = require('uniqid');
 
@@ -53,9 +53,9 @@ export default class ExerciceDisplayer extends Component {
                                                                placeholder="Epreuve..."/></div>
                     </div>
                 </div>
-                <SortableContainer onSortEnd={this.onSortEnd} pressDelay={100}>
+                <SortableContainer onSortEnd={this.props.moveQuestion} pressDelay={100}>
                     {typeof this.props.question !== 'undefined' && this.props.question !== null && this.props.question.length !== 0 && this.props.question.map((value, idx) =>
-                        <Question key={value._id} id={idx} question={value} index={value._id}
+                        <Question key={uniqid()} id={value._id} question={value} index={idx}
                                   deleteQuestion={this.props.deleteQuestion}
                                   handleInputQuestion={this.props.handleInputQuestion}
                         saveQuestion={this.props.saveQuestion}

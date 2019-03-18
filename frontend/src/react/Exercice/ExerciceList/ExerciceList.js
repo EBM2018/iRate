@@ -6,7 +6,6 @@ import {patchExercice} from "../../../redux/exercice/actions/patch";
 import {postExercice} from "../../../redux/exercice/actions/post";
 import {deleteExercice} from "../../../redux/exercice/actions/delete";
 import {getExam} from "../../../redux/exams/actions/getSingle";
-import arrayMove from "array-move";
 
 class ExerciceList extends React.PureComponent {
 
@@ -48,6 +47,8 @@ class ExerciceList extends React.PureComponent {
             case 'estimatedTime':
                 exercices[id].estimatedTime = e.target.value;
                 this.setState({exercices: exercices});
+                break;
+            default:
                 break;
         }
     };
@@ -136,7 +137,7 @@ class ExerciceList extends React.PureComponent {
                 if (exercices[i].order >= arrival && exercices[i].order < departure && exercices[i].order !== departure) {
                     console.log(exercices[i].order);
                     console.log(i);
-                   // exercices[i].order = exercices[i].order - 1;
+                    // exercices[i].order = exercices[i].order - 1;
                 }
             }
             exercices[oldIndex].order = newIndex + 1;
@@ -148,7 +149,6 @@ class ExerciceList extends React.PureComponent {
         }
         this.setState({exercices: exercices});
         await this.props.fetchExam(this.props.route.match.params.id);
-        console.log(exercices);
     };
 
 

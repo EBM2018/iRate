@@ -13,6 +13,7 @@ class Exercice extends React.Component {
         exercices: PropTypes.array,
         handleInputExercice: PropTypes.func,
         id: PropTypes.number,
+        index: PropTypes.number
     };
 
     state = {
@@ -46,16 +47,35 @@ class Exercice extends React.Component {
         await this.props.fetchExam(this.props.id);
     };
 
-    moveQuestion = (dragIndex, hoverIndex) => {
-        console.log(this.state.question);
-        const {question} = this.state;
-        const dragQuestion = question[dragIndex];
-        this.setState({
-            ...this.state,
-            question: {
-                $splice: [[dragIndex, 1], [hoverIndex, 0, dragQuestion]],
-            },
-        });
+    moveQuestion = async ({oldIndex, newIndex}) => {
+        let exercices = this.props.exercices.questions;
+        let departure = oldIndex + 1;
+        let arrival = newIndex + 1;
+
+        if (arrival === departure) return;
+        if (arrival > departure) {
+            for (let i in exercices) {
+                if (exercices[i].order <= arrival && exercices[i].order > departure && exercices[i].order !== departure) {
+                    exercices[i].order = exercices[i].order - 1;
+                }
+            }
+            exercices[oldIndex].order = newIndex;
+
+        } else {
+            for (let i in exercices) {
+                if (exercices[i].order >= arrival && exercices[i].order < departure && exercices[i].order !== departure) {
+                    // exercices[i].order = exercices[i].order - 1;
+                }
+            }
+            exercices[oldIndex].order = newIndex + 1;
+        }
+        for (let i in this.state.question) {
+            if (typeof this.state.question[i]._id !== 'undefined') {
+                await this.props.patchQuestion(this.props.id, this.props.exercices._id, this.state.question[i]._id, this.state.question[i]);
+            }
+        }
+        this.setState({question: exercices});
+        await this.props.fetchExam(this.props.id);
     };
 
     /**
@@ -79,8 +99,11 @@ class Exercice extends React.Component {
                 this.setState({question: question});
                 break;
             case 'questionEstimatedTime':
-                question[id].estimatedTime = e.target.value;
+                let time = (e.target.value) * 60
+                question[id].estimatedTime = time;
                 this.setState({question: question});
+                break;
+            default:
                 break;
         }
     };

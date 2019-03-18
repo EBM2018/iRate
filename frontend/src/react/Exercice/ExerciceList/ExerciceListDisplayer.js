@@ -2,7 +2,7 @@ import React from 'react'
 import Exercice from '../Exercice';
 import PropTypes from 'prop-types';
 import ExerciceSimplified from "../ExerciceSimplified/ExerciceSimplified";
-import {sortableContainer, sortableElement} from "react-sortable-hoc";
+import {sortableContainer} from "react-sortable-hoc";
 
 let uniqid = require('uniqid');
 

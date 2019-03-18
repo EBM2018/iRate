@@ -50,6 +50,7 @@ export default class QuestionDisplayer extends React.Component {
                     <div className="column is-5"><span className="title is-5">Temps estimé :</span></div>
                     <div className="column is-6"><input className="input"
                                                         name="questionEstimatedTime"
+                                                        placeholder="minutes"
                                                         id={this.props.id}
                                                         defaultValue={typeof this.props.question.estimatedTime === 'undefined' ? '' : this.props.question.estimatedTime}
                                                         onChange={this.props.handleInputQuestion}

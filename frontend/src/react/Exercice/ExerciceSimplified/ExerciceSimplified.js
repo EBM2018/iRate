@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from "prop-types";
 import ExerciceSimplifiedDisplayer from "./ExerciceSimplifiedDisplayer";
-import {arrayMove} from 'array-move';
 import {SortableElement} from "react-sortable-hoc";
 
 const ExerciceSimplified = (props) => {
