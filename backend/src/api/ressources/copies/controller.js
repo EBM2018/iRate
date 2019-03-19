@@ -14,14 +14,14 @@ const controller = {
 
   async getCopy(req, res, next) {
     try {
-      res.status(200).json().send();
+      res.status(200).json(res.locals.copy).send();
     } catch (error) {
       next(error);
     }
   },
   async getAnswer(req, res, next) {
     try {
-      res.status(200).json().send();
+      res.status(200).json(res.locals.answer).send();
     } catch (error) {
       next(error);
     }

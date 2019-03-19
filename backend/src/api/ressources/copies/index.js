@@ -95,7 +95,7 @@ router.get('/:examId', ExamMiddlewares.findExamOrReturn, CopyController.getCopie
  *    "__v": 0
  *  }
  */
-router.get('/:copyId', CopyController.getCopy);
+router.get('/:copyId', CopyMiddlewares.findCopyOrReturn, CopyController.getCopy);
 
 /**
  * @api {get} /copies/answers/:answerId Get a specific answer
@@ -126,7 +126,7 @@ router.get('/:copyId', CopyController.getCopy);
  *    ]
  *  }
  */
-router.get('/answers/:answerId', CopyController.getAnswer);
+router.get('/answers/:answerId', CopyMiddlewares.findAnswerOrReturn, CopyController.getAnswer);
 
 /**
  * @api {post} /copy Create a new copy
