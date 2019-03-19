@@ -251,7 +251,7 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/copies/:examId",
+    "url": "/copies/exams/:examId",
     "title": "Get all copies related to an exam",
     "name": "GetAllCopies",
     "group": "Copies",
@@ -270,7 +270,7 @@ define({ "api": [
     "groupTitle": "Copies",
     "sampleRequest": [
       {
-        "url": "http://localhost:4000/api/copies/:examId"
+        "url": "http://localhost:4000/api/copies/exams/:examId"
       }
     ]
   },
