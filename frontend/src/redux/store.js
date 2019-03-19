@@ -10,6 +10,7 @@ import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import examsReducer from './exams/reducers';
+import copiesReducer from './copies/reducers';
 
 // Do not refactor this into !['production', 'test'].includes(process.env.NODE_ENV)
 // Because uglify cannot statically analyze this.
@@ -21,6 +22,7 @@ const isDevEnvironment = (
 // Create root reducer
 const reducers = combineReducers({
   exams: examsReducer,
+  copiesStore: copiesReducer,
 });
 
 const middlewares = [

@@ -22,5 +22,10 @@
   "homepage": "https://github.com/EBM2018/iRate",
   "devDependencies": {
     "concurrently": "^4.1.0"
+  },
+  "dependencies": {
+    "html2canvas": "^1.0.0-alpha.12",
+    "jspdf": "^1.5.3",
+    "uniqid": "^5.0.3"
   }
 }

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import moment from 'moment';
 
 class DisplayQuestion extends Component {
     static propTypes = {
@@ -32,7 +33,7 @@ class DisplayQuestion extends Component {
                         <div className="control">
                             <div className="tags has-addons">
                                 <span className="tag is-dark">temps est.</span>
-                                <span className="tag is-success">{question.estimatedTime}</span>
+                                <span className="tag is-success">{moment.utc(question.estimatedTime*1000).format('mm:ss')}</span>
                             </div>
                         </div>
                     </div>)
