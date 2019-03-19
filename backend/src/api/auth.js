@@ -37,7 +37,7 @@ module.exports.initialize = ({ provider, userFactory }) => async (req, res, next
   const factoryResponseHandled = userFactoryResponse
     && (typeof (userFactoryResponse.then) === 'function' ? await userFactoryResponse : userFactoryResponse);
 
-  req.locals.user = factoryResponseHandled || userData;
+  res.locals.user = factoryResponseHandled || userData;
 
   return next();
 };
