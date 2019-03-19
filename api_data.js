@@ -1,7 +1,7 @@
 define({ "api": [
   {
     "type": "post",
-    "url": "/copy/:copyId/answer",
+    "url": "/copies/:copyId/answers",
     "title": "Create a new answer associated with a copy",
     "name": "CreateAnswer",
     "group": "Answers",
@@ -44,13 +44,62 @@ define({ "api": [
     "groupTitle": "Answers",
     "sampleRequest": [
       {
-        "url": "http://localhost:4000/api/copy/:copyId/answer"
+        "url": "http://localhost:4000/api/copies/:copyId/answers"
+      }
+    ]
+  },
+  {
+    "type": "patch",
+    "url": "/copies/:copyId/answers/:answerId",
+    "title": "Edit a copy",
+    "name": "EditAnswer",
+    "group": "Answers",
+    "description": "<p>This URL edits the answer of a copy</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "json",
+            "optional": false,
+            "field": "copy",
+            "description": "<p>An object with the information you want to edit.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n \"title\": \"Exercice 6\",\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "201": [
+          {
+            "group": "201",
+            "type": "json",
+            "optional": false,
+            "field": "Copy",
+            "description": "<p>a JSON object containing the edited answer</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/api/ressources/copies/index.js",
+    "groupTitle": "Answers",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:4000/api/copies/:copyId/answers/:answerId"
       }
     ]
   },
   {
     "type": "get",
-    "url": "/copy/answer/:answerId",
+    "url": "/copies/answers/:answerId",
     "title": "Get a specific answer",
     "name": "GetAnswerById",
     "group": "Answers",
@@ -69,7 +118,36 @@ define({ "api": [
     "groupTitle": "Answers",
     "sampleRequest": [
       {
-        "url": "http://localhost:4000/api/copy/answer/:answerId"
+        "url": "http://localhost:4000/api/copies/answers/:answerId"
+      }
+    ]
+  },
+  {
+    "type": "delete",
+    "url": "/copies/:copyId/answers/:answerId",
+    "title": "Delete a copy",
+    "name": "deleteAnswer",
+    "group": "Answers",
+    "description": "<p>This deletes an answer of a copy</p>",
+    "success": {
+      "fields": {
+        "204": [
+          {
+            "group": "204",
+            "type": "null",
+            "optional": false,
+            "field": "null",
+            "description": "<p>Empty data</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/api/ressources/copies/index.js",
+    "groupTitle": "Answers",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:4000/api/copies/:copyId/answers/:answerId"
       }
     ]
   },
@@ -95,7 +173,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n \"title\": \"Copies 1\",\n \"authorId\": \"abcdefghjkqspdsqpjpijp86972\",\n \"examId\": \"sqojfdoisqjdoiqj679089076\",\n}",
+          "content": "{\n \"title\": \"Copies 1\",\n \"authorId\": \"abcdefghjkqspdsqpjpijp86972\",\n \"exam\": \"sqojfdoisqjdoiqj679089076\",\n}",
           "type": "json"
         }
       ]
@@ -123,37 +201,8 @@ define({ "api": [
     ]
   },
   {
-    "type": "delete",
-    "url": "/copy/:copyId",
-    "title": "Delete a copy",
-    "name": "DeleteCopyById",
-    "group": "Copies",
-    "description": "<p>This deletes a copy</p>",
-    "success": {
-      "fields": {
-        "204": [
-          {
-            "group": "204",
-            "type": "null",
-            "optional": false,
-            "field": "null",
-            "description": "<p>Empty data</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "src/api/ressources/copies/index.js",
-    "groupTitle": "Copies",
-    "sampleRequest": [
-      {
-        "url": "http://localhost:4000/api/copy/:copyId"
-      }
-    ]
-  },
-  {
     "type": "patch",
-    "url": "/copy/:copyId",
+    "url": "/copies/:copyId",
     "title": "Edit a copy",
     "name": "EditCopies",
     "group": "Copies",
@@ -196,13 +245,13 @@ define({ "api": [
     "groupTitle": "Copies",
     "sampleRequest": [
       {
-        "url": "http://localhost:4000/api/copy/:copyId"
+        "url": "http://localhost:4000/api/copies/:copyId"
       }
     ]
   },
   {
     "type": "get",
-    "url": "/copy/:examId",
+    "url": "/copies/:examId",
     "title": "Get all copies related to an exam",
     "name": "GetAllCopies",
     "group": "Copies",
@@ -211,7 +260,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "[\n {\n   \"_id\": \"5a9e7dc7717a690c53650ab1\",\n   \"type\": \"Copies\"\n   \"examId\": \"5pod76h7a690c53650ab1\",\n   \"title\": \"Copies 1\",\n   \"author\" : {\n     \"name\": \"Yolo\",\n     \"surname\": \"Swag\"\n   }\n   \"answers\": [\n     {\n         \"creationTime\": \"2018-03-06T11:38:47.160Z\",\n         \"content\": \"Voici une réponse à une question\",\n         \"_id\": \"5a9e7d55717a690c53650ab1\",\n         \"grade\": 18,\n         \"question\": {\n           \"_id\": \"5a9e7dlqskfa690c53650ab1\",\n           \"title\": \"Quelle est la somme de 2*8 ?\",\n           \"scale\": 2,\n           \"creationTime\": \"01/01/2019T07:15:31\"\n         },\n         \"feedback\": [\n             {\n                 \"_id\": \"5a9e7dlqskfa690c53650ab1\",\n                 \"content\": \"Votre réponse est bonne mais aurait pu être davantage élaborée\",\n                 \"creationTime\": \"01/01/2019T07:15:31\"\n             }\n         ]\n\n     }\n   ]\n   \"submissionTime\": \"2018-03-06T11:38:47.160Z\",\n   \"creationTime\": \"2018-03-06T11:38:47.160Z\",\n   \"__v\": 0\n }\n]",
+          "content": "[\n {\n   \"_id\": \"5a9e7dc7717a690c53650ab1\",\n   \"type\": \"Copies\"\n   \"exam\": \"5pod76h7a690c53650ab1\",\n   \"title\": \"Copies 1\",\n   \"author\" : {\n     \"name\": \"Yolo\",\n     \"surname\": \"Swag\"\n   }\n   \"answers\": [\n     {\n         \"creationTime\": \"2018-03-06T11:38:47.160Z\",\n         \"content\": \"Voici une réponse à une question\",\n         \"_id\": \"5a9e7d55717a690c53650ab1\",\n         \"grade\": 18,\n         \"question\": {\n           \"_id\": \"5a9e7dlqskfa690c53650ab1\",\n           \"title\": \"Quelle est la somme de 2*8 ?\",\n           \"scale\": 2,\n           \"creationTime\": \"01/01/2019T07:15:31\"\n         },\n         \"feedback\": [\n             {\n                 \"_id\": \"5a9e7dlqskfa690c53650ab1\",\n                 \"content\": \"Votre réponse est bonne mais aurait pu être davantage élaborée\",\n                 \"creationTime\": \"01/01/2019T07:15:31\"\n             }\n         ]\n\n     }\n   ]\n   \"submissionTime\": \"2018-03-06T11:38:47.160Z\",\n   \"creationTime\": \"2018-03-06T11:38:47.160Z\",\n   \"__v\": 0\n }\n]",
           "type": "json"
         }
       ]
@@ -221,13 +270,13 @@ define({ "api": [
     "groupTitle": "Copies",
     "sampleRequest": [
       {
-        "url": "http://localhost:4000/api/copy/:examId"
+        "url": "http://localhost:4000/api/copies/:examId"
       }
     ]
   },
   {
     "type": "get",
-    "url": "/copy/:copyId",
+    "url": "/copies/:copyId",
     "title": "Get a specific copy",
     "name": "GetCopyById",
     "group": "Copies",
@@ -236,7 +285,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n  \"_id\": \"5a9e7dc7717a690c53650ab1\",\n  \"type\": \"Copies\"\n  \"examId\": \"5pod76h7a690c53650ab1\",\n  \"title\": \"Copies 1\",\n  \"author\" : {\n    \"name\": \"Yolo\",\n    \"surname\": \"Swag\"\n  }\n  \"answers\": [\n    {\n        \"creationTime\": \"2018-03-06T11:38:47.160Z\",\n        \"content\": \"Voici une réponse à une question\",\n        \"_id\": \"5a9e7d55717a690c53650ab1\",\n        \"grade\": 18,\n        \"question\": {\n          \"_id\": \"5a9e7dlqskfa690c53650ab1\",\n          \"title\": \"Quelle est la somme de 2*8 ?\",\n          \"scale\": 2,\n          \"creationTime\": \"01/01/2019T07:15:31\"\n        },\n        \"feedback\": [\n            {\n                \"_id\": \"5a9e7dlqskfa690c53650ab1\",\n                \"content\": \"Votre réponse est bonne mais aurait pu être davantage élaborée\",\n                \"creationTime\": \"01/01/2019T07:15:31\"\n            }\n        ]\n\n    }\n  ]\n  \"submissionTime\": \"2018-03-06T11:38:47.160Z\",\n  \"creationTime\": \"2018-03-06T11:38:47.160Z\",\n  \"__v\": 0\n}",
+          "content": "{\n  \"_id\": \"5a9e7dc7717a690c53650ab1\",\n  \"type\": \"Copies\"\n  \"exam\": \"5pod76h7a690c53650ab1\",\n  \"title\": \"Copies 1\",\n  \"author\" : {\n    \"name\": \"Yolo\",\n    \"surname\": \"Swag\"\n  }\n  \"answers\": [\n    {\n        \"creationTime\": \"2018-03-06T11:38:47.160Z\",\n        \"content\": \"Voici une réponse à une question\",\n        \"_id\": \"5a9e7d55717a690c53650ab1\",\n        \"grade\": 18,\n        \"question\": {\n          \"_id\": \"5a9e7dlqskfa690c53650ab1\",\n          \"title\": \"Quelle est la somme de 2*8 ?\",\n          \"scale\": 2,\n          \"creationTime\": \"01/01/2019T07:15:31\"\n        },\n        \"feedback\": [\n            {\n                \"_id\": \"5a9e7dlqskfa690c53650ab1\",\n                \"content\": \"Votre réponse est bonne mais aurait pu être davantage élaborée\",\n                \"creationTime\": \"01/01/2019T07:15:31\"\n            }\n        ]\n\n    }\n  ]\n  \"submissionTime\": \"2018-03-06T11:38:47.160Z\",\n  \"creationTime\": \"2018-03-06T11:38:47.160Z\",\n  \"__v\": 0\n}",
           "type": "json"
         }
       ]
@@ -246,7 +295,36 @@ define({ "api": [
     "groupTitle": "Copies",
     "sampleRequest": [
       {
-        "url": "http://localhost:4000/api/copy/:copyId"
+        "url": "http://localhost:4000/api/copies/:copyId"
+      }
+    ]
+  },
+  {
+    "type": "delete",
+    "url": "/copies/:copyId",
+    "title": "Delete a copy",
+    "name": "deleteCopy",
+    "group": "Copies",
+    "description": "<p>This deletes a copy</p>",
+    "success": {
+      "fields": {
+        "204": [
+          {
+            "group": "204",
+            "type": "null",
+            "optional": false,
+            "field": "null",
+            "description": "<p>Empty data</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/api/ressources/copies/index.js",
+    "groupTitle": "Copies",
+    "sampleRequest": [
+      {
+        "url": "http://localhost:4000/api/copies/:copyId"
       }
     ]
   },
