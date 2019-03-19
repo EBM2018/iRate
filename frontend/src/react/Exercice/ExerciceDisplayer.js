@@ -13,6 +13,7 @@ export default class ExerciceDisplayer extends Component {
     static propTypes = {
         handleInputExercice: PropTypes.func.isRequired,
         handleInputQuestion: PropTypes.func,
+        saveNewExercice: PropTypes.func,
         saveQuestion: PropTypes.func,
         moveQuestion: PropTypes.func,
         deleteQuestion: PropTypes.func.isRequired,
@@ -47,19 +48,20 @@ export default class ExerciceDisplayer extends Component {
                         <div className="column is-half"><input className="input"
                                                                name="title"
                                                                id={this.props.index}
+                                                               onBlur={this.props.saveNewExercice}
                                                                defaultValue={this.props.exercices.title === 'undefined' ? '' : this.props.exercices.title}
                                                                onChange={this.props.handleInputExercice}
                                                                type="text"
                                                                placeholder="Epreuve..."/></div>
                     </div>
                 </div>
-                <SortableContainer onSortEnd={this.props.moveQuestion} pressDelay={100}>
+                <SortableContainer onSortEnd={this.props.moveQuestion}>
                     {typeof this.props.question !== 'undefined' && this.props.question !== null && this.props.question.length !== 0 && this.props.question.map((value, idx) =>
-                        <Question key={uniqid()} id={value._id} question={value} idQuestion={idx}
+                        <Question key={idx} id={value._id} question={value} idQuestion={idx}
+                                  index={idx}
                                   deleteQuestion={this.props.deleteQuestion}
                                   handleInputQuestion={this.props.handleInputQuestion}
-                        saveQuestion={this.props.saveQuestion}
-                        moveQuestion={this.props.moveQuestion}/>)}
+                        saveQuestion={this.props.saveQuestion} />)}
                 </SortableContainer>
                 <button className="button is-info is-medium" onClick={this.props.addQuestion}>Nouvelle Question</button>
             </div>

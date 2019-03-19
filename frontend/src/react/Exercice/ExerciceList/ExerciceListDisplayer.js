@@ -14,6 +14,7 @@ export default class ExerciceListDisplayer extends React.Component {
 
     static propTypes = {
         deleteExercice: PropTypes.func,
+        saveNewExercice: PropTypes.func,
         onSortEnd: PropTypes.func,
         exercices: PropTypes.array,
         handleInputExercice: PropTypes.func,
@@ -37,6 +38,7 @@ export default class ExerciceListDisplayer extends React.Component {
                         <Exercice key={uniqid()} id={this.props.id} exercices={value}
                                   index={idx}
                                   deleteExercice={this.props.deleteExercice}
+                                  saveNewExercice={this.props.saveNewExercice}
                                   handleInputExercice={this.props.handleInputExercice}/> :
                         <ExerciceSimplified key={uniqid()} id={this.props.id} exercices={value} index={idx}
                                             idQuestion={idx}

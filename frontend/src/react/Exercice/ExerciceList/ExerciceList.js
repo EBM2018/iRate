@@ -114,6 +114,8 @@ class ExerciceList extends React.PureComponent {
     };
 
     onSortEnd = async ({oldIndex, newIndex}) => {
+        console.log(oldIndex);
+        console.log(newIndex);
         let exercices = this.state.exercices;
         let departure = oldIndex + 1;
         let arrival = newIndex + 1;
@@ -155,6 +157,7 @@ class ExerciceList extends React.PureComponent {
                                        deleteExercice={this.deleteExercice}
                                        exercices={this.state.exercices}
                                        handleInputExercice={this.handleInputExercice}
+                                       saveNewExercice={this.saveNewExercice}
                                        onSortEnd={this.onSortEnd}
                                        index={this.props.id}
                                        idExercice={this.state.idExercice}
