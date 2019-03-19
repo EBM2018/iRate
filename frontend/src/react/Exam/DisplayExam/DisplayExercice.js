@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 import DisplayQuestion from './DisplayQuestion';
 
@@ -20,7 +21,7 @@ export default class DisplayExercice extends Component {
                         <div>
                             <div className="tags has-addons d-block">
                                 <span className="tag is-dark">Temps est.</span>
-                                <span className="tag is-info">{exercice.estimatedTime}</span>
+                                <span className="tag is-info">{moment.utc(exercice.estimatedTime*1000).format('mm:ss')}</span>
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import connect from 'react-redux/es/connect/connect';
 
+import {postCopy} from '../../redux/copies/actions/post';
 import {getExam} from '../../redux/exams/actions/getSingle';
 
 import Instructions from './Instructions';
@@ -27,21 +28,30 @@ class Copy extends Component {
   /**
    * @param {Boolean} forceConfirmation: whether we want to force the confirmation
    */
-  handleNext = (forceConfirmation = false) => {
+  handleNext = async (forceConfirmation = false) => {
+
     const {step, exerciceIndex} = this.state;
     const {exercices} = this.props.exam;
+
     if (step === 0) {
+      // Create the copy
+      await this.props.createCopy({
+        exam: this.props.exam._id,
+        author: 12 // TODO: add the userID (logged in)
+      });
       this.setState({exerciceIndex: 0, step: 1});
     } else {
+
       this.setState({
         step: ((exerciceIndex === exercices.length - 1) || forceConfirmation) ? 2 : 1,
         exerciceIndex: exerciceIndex+1
       });
+
     }
   };
 
   renderContent() {
-    const {exam} = this.props;
+    const {exam, copy} = this.props;
     const {exerciceIndex} = this.state;
     switch (this.state.step) {
       case 0:
@@ -58,11 +68,19 @@ class Copy extends Component {
           );
       default:
         return (
-              <Exercice exercice={exam.exercices[exerciceIndex]} showScale={exam.showScale} nextExercice={this.handleNext} confirm={() => this.handleNext(true)}/>
+              <Exercice
+                exercice={exam.exercices[exerciceIndex]}
+                nextExercice={this.handleNext}
+                confirm={() => this.handleNext(true)}
+                copyId={copy && copy._id}
+              />
             );
     }
   }
 
+  /**
+   * Move to a given exercice index
+   */
   navigate(index) {
     this.setState({exerciceIndex: index})
   }
@@ -87,6 +105,8 @@ class Copy extends Component {
 export default connect(state => ({
   exam: state.exams.exams,
   loading: state.exams.loading,
+  copy: state.copiesStore.copies
 }), dispatch => ({
-  fetchExam:(id) => dispatch(getExam(id))
+  fetchExam:(id) => dispatch(getExam(id)),
+  createCopy: (copy) => dispatch(postCopy(copy))
 }))(Copy)

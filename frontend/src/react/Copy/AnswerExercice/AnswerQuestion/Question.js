@@ -5,8 +5,10 @@ import {createRawContent, createRichContentFromRaw} from "../../../../helpers/ri
 import connect from "react-redux/es/connect/connect";
 import ControllerDisplayer from "./Controller/ControllerDisplayer";
 import AnswerDisplayer from "./Answer/AnswerDisplayer";
+import {postAnswer} from "../../../../redux/copies/actions/postAnswer";
+import {patchAnswer} from "../../../../redux/copies/actions/patchAnswer";
 
-export default class Question extends Component {
+class Question extends Component {
     state = {
         editorState: EditorState.createEmpty(),
         id: '',
@@ -14,7 +16,7 @@ export default class Question extends Component {
     };
 
     componentDidMount() {
-        this.setState({id:this.props.id})
+        this.setState({id:this.props.id});
     };
 
     handleChange = (editorState) => {
@@ -37,7 +39,7 @@ export default class Question extends Component {
         }
     };
 
-    handleControllerClick = () => {
+    handleControllerClick = async () => {
         const { id,
                 answerId,
                 editorState } = this.state;
@@ -45,6 +47,8 @@ export default class Question extends Component {
         console.log(id,rawContent);
         if (answerId) {
             //TODO make a PATCH Request here
+            console.log(await this.props.createAnswer());
+            console.log(await this.props.editAnswer());
         } else {
             //TODO make a POST Request here, don't forget to pass the id to the state.
         }
@@ -87,17 +91,18 @@ export default class Question extends Component {
                                      onUnderlineClick={this.onUnderlineClick}
                                      onBoldClick={this.onBoldClick}
                                      onItalicClick={this.onItalicClick}/>
-                    <ControllerDisplayer/>
+                    <ControllerDisplayer handleControllerClick={this.handleControllerClick}/>
                 </div>
             </>
         );
     }
 }
 
-/*export default connect(state => ({
+export default connect(state => ({
     copyId: state.id,
     answerId: state.answerId,
     loading: state.exams.loading,
 }), dispatch => ({
-
-});*/
+    createAnswer: (copyId,questionId,answerContent) => dispatch(postAnswer(copyId,questionId,answerContent)),
+    editAnswer: (copyId,questionId,answerId,answerContent) => dispatch(patchAnswer(copyId,questionId,answerId,answerContent)),
+}))(Question);
