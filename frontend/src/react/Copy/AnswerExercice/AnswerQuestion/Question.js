@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import QuestionDisplayer from "./QuestionDisplayer";
+import QuestionDisplayer from './QuestionDisplayer';
 import {EditorState, RichUtils} from 'draft-js';
-import {createRawContent, createRichContentFromRaw} from "../../../../helpers/richContent";
-import connect from "react-redux/es/connect/connect";
-import ControllerDisplayer from "./Controller/ControllerDisplayer";
-import AnswerDisplayer from "./Answer/AnswerDisplayer";
+import {createRawContent, createRichContentFromRaw} from '../../../../helpers/richContent';
+import ControllerDisplayer from './Controller/ControllerDisplayer';
+import AnswerDisplayer from './Answer/AnswerDisplayer';
 
 export default class Question extends Component {
     state = {

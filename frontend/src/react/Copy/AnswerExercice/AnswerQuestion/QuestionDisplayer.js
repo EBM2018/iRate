@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import moment from "moment";
 import 'draft-js/dist/Draft.css';
-import {Editor} from 'draft-js';
+//import {Editor} from 'draft-js';
 
 export default class QuestionDisplayer extends Component {
     render() {

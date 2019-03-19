@@ -4,15 +4,14 @@ import {Link} from "react-router-dom";
 
 export default class Instructions extends Component {
   static propTypes = {
-    title: PropTypes.string,
-    reminders: PropTypes.string,
-    instructions: PropTypes.string,
-    session: PropTypes.object
+    exam: PropTypes.object,
+    session: PropTypes.object,
+    start: PropTypes.func.isRequired
   };
 
   render() {
-    const exam = this.props.exam;
-    const session = this.props.session;
+    const {session, exam} = this.props;
+    console.log(session);
     return (
       <section className="section">
         <div className="box notification is-info"><p className="title">{exam.title}</p></div>
@@ -22,7 +21,7 @@ export default class Instructions extends Component {
               <span className="title is-5">Date de l'examen:</span>
             </div>
             <div className="column is-two-thirds">
-              <span className="title is-5">{session.classes[0].date}</span>
+              <span className="title is-5">{session.date}</span>
             </div>
           </div>
           <div className="columns">
@@ -30,7 +29,7 @@ export default class Instructions extends Component {
               <span className="title is-5">Heure de début:</span>
             </div>
             <div className="column is-two-thirds">
-              <span className="title is-5">{session.classes[0].startTime}</span>
+              <span className="title is-5">{session.startTime}</span>
             </div>
           </div>
           <div className="columns">
@@ -38,7 +37,7 @@ export default class Instructions extends Component {
               <span className="title is-5">Heure de fin:</span>
             </div>
             <div className="column is-two-thirds">
-              <span className="title is-5">{session.classes[0].endTime}</span>
+              <span className="title is-5">{session.endTime}</span>
             </div>
           </div>
           <div className="columns">
@@ -67,7 +66,7 @@ export default class Instructions extends Component {
           </div>
           <div className="column is-right is-half">
             <div className="buttons has-addons is-right">
-              <button className="button is-medium is-info">Démarrer l'examen</button>
+              <button className="button is-medium is-info" onClick={this.props.start}>Démarrer l'examen</button>
             </div>
           </div>
         </div>

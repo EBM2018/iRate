@@ -15,7 +15,7 @@ export default class ExamTopic extends Component {
     return (
       <div>
         <div className="has-text-centered">
-          <a onClick={this.downloadTopic} className="button is-success">
+          <a href="#/" onClick={this.downloadTopic} className="button is-success">
             <span className="icon is-large"><i className="fas fa-download"></i></span>
             <span>Télécharger le sujet</span>
           </a>

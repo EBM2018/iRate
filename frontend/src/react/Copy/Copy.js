@@ -4,7 +4,7 @@ import connect from 'react-redux/es/connect/connect';
 import {postCopy} from '../../redux/copies/actions/post';
 import {getExam} from '../../redux/exams/actions/getSingle';
 
-import Instructions from './Instructions';
+import Instructions from './Instructions/Instructions';
 import Exercice from './AnswerExercice/Exercice';
 import HeaderCopy from './HeaderCopy';
 import ConfirmCopy from './ConfirmCopy';
@@ -29,7 +29,6 @@ class Copy extends Component {
    * @param {Boolean} forceConfirmation: whether we want to force the confirmation
    */
   handleNext = async (forceConfirmation = false) => {
-    console.log('forcing' + forceConfirmation);
     const {step, exerciceIndex} = this.state;
     const {exercices} = this.props.exam;
 
@@ -54,9 +53,7 @@ class Copy extends Component {
     switch (this.state.step) {
       case 0:
         return (
-          <Instructions title={exam.title}
-                        reminders={exam.reminder}
-                        instructions={exam.instruction}
+          <Instructions exam={exam}
                         session={this.state.session}
                         start={this.handleNext}/>
         );
