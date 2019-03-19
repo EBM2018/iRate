@@ -13,7 +13,6 @@ export default class QuestionDisplayer extends React.Component {
     };
 
     render() {
-        console.log(this.props.index);
         return (
             <div className="box">
                 <div className="columns">

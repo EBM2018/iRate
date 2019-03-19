@@ -4,7 +4,6 @@ import FooterExam from "../FooterExam/FooterExam";
 
 export default class CreateExam extends Component {
     render() {
-        console.log(this.props);
         return (
             <>
                 <div className="tile is-parent">
