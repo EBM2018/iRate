@@ -3,7 +3,8 @@ import Instructions from '../react/Instructions/Instructions';
 import CreateExam from '../react/Exam/CreateExam';
 import DisplayExam from '../react/Exam/DisplayExam';
 import ExamList from '../react/Exam/ExamList/ExamList';
-import InstructionsCopy from '../react/Copy/Instructions/InstructionsCopy'
+import InstructionsCopy from '../react/Copy/Instructions/InstructionsCopy';
+import ExamTopic from "../react/Copy/Instructions/GenerateTopic/ExamTopic";
 
 export const privateRoutes = {
     Instructions: {
@@ -30,5 +31,10 @@ export const privateRoutes = {
         path: '/copy/:examId/instructions',
         component: InstructionsCopy,
         title: 'Voici les détails du sujet'
+    },
+    ExamTopic: {
+        path: '/topic/:examId',
+        component: ExamTopic,
+        title: 'Voici le sujet'
     }
 };

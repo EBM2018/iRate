@@ -16,7 +16,7 @@ export const dataMock = {
   "exercices" : [
   {
     "_id": "5a9e7dc7832a690c53650ab1",
-    "title": "Exercice 1",
+    "title": "Jeu du Pendu",
     "estimatedTime": "01:00:00",
     "creationTime": "01/01/2019T07:00:00",
     "questions": [
@@ -38,7 +38,7 @@ export const dataMock = {
   },
   {
     "_id": "5a9e7dc7832jfhdc53650ab1",
-    "title": "Exercice 2",
+    "title": "Le théorème de Pythagore",
     "estimatedTime": "00:30:00",
     "creationTime": "01/01/2019T07:15:00",
     "questions": [
