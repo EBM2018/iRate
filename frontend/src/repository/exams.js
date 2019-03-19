@@ -1,33 +1,51 @@
-import moment from 'moment';
 import {apiRequest} from '../services/api';
-export const getExams = async () => {
-    const data = await apiRequest('exams', 'get');
-    return data;
-};
+import {encodeQueryData} from '../helpers/query';
+import {addTimeAndScale} from '../helpers/exam';
+import {groupsArray} from "../helpers/mocks/group";
 
-export const getExam = async (id) => {
+/**
+ *
+ * @param {Object} query
+ * @param {Boolean} withTS - whether the exams should include the est. timing and scale
+ */
+export const getExams = async (query = {}, withTS = false) => {
+    const data = await apiRequest('exams', 'get', {
+        params: query && encodeQueryData(query)
+    });
+
+    if (withTS) {
+        for (let i = 0; i < data.length; i++) {
+            data[i] = addTimeAndScale(data[i]);
+        }
+    }
+
+    // TODO: move this part to the backend once we get the route from the other group
+    const returnedData = data.map((exam) => {
+        let group = [];
+        let session = {};
+        if (exam.group) {
+            group = groupsArray.groups.find((aGroup) => {return aGroup._id === exam.group});
+            exam.group = group;
+        }
+        if (exam.session) {
+            session = group.classes.find((aClass) => {return aClass._id === exam.session});
+            exam.session = session;
+        }
+        return exam;
+    });
+
+    return returnedData;
+}
+
+/**
+ *
+ * @param {int} id - examID
+ * @param {Boolean} withTS - whether the exam should include the est. timing and scale
+ */
+export const getExam = async (id, withTS = false) => {
     if (!id) return;
     const data = await apiRequest(`/exams/${id}`, 'get');
-    return data;
-};
-
-export const getExamsWithScaleAndTime = async () => {
-    const data = await apiRequest(`/exams`, 'get');
-    let examScale = 0;
-    let examTime = 0;
-    for (let i = 0; i < data.length; i++) {
-        for (let j = 0; j < data[i].exercices.length; j++) {
-            for (let k = 0; k < data[i].exercices[j].questions.length; k++) {
-                if(data[i].exercices[j].questions[k].scale) examScale = examScale + data[i].exercices[j].questions[k].scale;
-                if(data[i].exercices[j].questions[k].estimatedTime) examTime = examTime + data[i].exercices[j].questions[k].estimatedTime;
-            }
-        }
-        data[i].scale = examScale;
-        data[i].estimatedTime = moment.utc(examTime * 1000).format('HH:mm:ss');
-        examScale = 0;
-        examTime = 0;
-    }
-    return data;
+    return (withTS ? addTimeAndScale(data) : data);
 };
 
 export const patchExam = async (exam) => {

@@ -1,14 +1,16 @@
 import Instructions from '../react/Instructions/Instructions';
 
 import CreateExam from '../react/Exam/CreateExam';
-import DisplayExam from '../react/Exam/DisplayExam';
+import DisplayExam from '../react/Exam/DisplayExam/DisplayExam';
 import ExamList from '../react/Exam/ExamList/ExamList';
+import Copy from '../react/Copy/Copy';
+import CopyList from '../react/Copy/CopyList/CopyList';
 import InstructionsCopy from '../react/Copy/Instructions/InstructionsCopy';
 import ExamTopic from "../react/Copy/Instructions/GenerateTopic/ExamTopic";
 
 export const privateRoutes = {
     Instructions: {
-        path: '/newexam/instructions',
+        path: '/newexam/instructions/:groupId?/:sessionId?',
         component: Instructions,
         title: 'Indiquez les détails du sujet'
     },
@@ -27,14 +29,19 @@ export const privateRoutes = {
         component: DisplayExam,
         title: 'Voici les détails du sujet'
     },
-    InstructionsCopy: {
-        path: '/copy/:examId/instructions',
-        component: InstructionsCopy,
+    Copy: {
+        path: '/copy/:id',
+        component: Copy,
         title: 'Voici les détails du sujet'
     },
     ExamTopic: {
         path: '/topic/:examId',
         component: ExamTopic,
         title: 'Voici le sujet'
+    },
+    CopyList: {
+        path: '/copies',
+        component: CopyList,
+        title: 'Liste des copies associées à un élève'
     }
 };

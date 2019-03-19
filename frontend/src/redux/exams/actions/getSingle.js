@@ -19,10 +19,10 @@ export const SET_GET_EXAM_FAILURE = err => ({
     err,
 });
 
-export const getExam = (id) => async dispatch => {
+export const getExam = (id, withTS = false) => async dispatch => {
     dispatch(SET_GET_EXAM_START());
     try {
-        const exam = await ExamsRepository.getExam(id);
+        const exam = await ExamsRepository.getExam(id, withTS);
         if (!exam) return;
         dispatch(SET_GET_EXAM_SUCCESS(exam));
     } catch (err) {

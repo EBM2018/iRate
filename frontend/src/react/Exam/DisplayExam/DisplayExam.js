@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {getExam} from '../../redux/exams/actions/getSingle';
-import Error from '../utils/Error';
+import {getExam} from '../../../redux/exams/actions/getSingle';
+import Error from '../../utils/Error';
 import DisplayExercice from './DisplayExercice';
 
 class DisplayExam extends Component {
@@ -40,14 +40,45 @@ class DisplayExam extends Component {
                     <>
                     <header className="box has-background-white-ter">
                         <div className="columns">
-                            <div className="column is-three-quarters">
+                            <div className="column">
                                 <h1 className="title">{exam.title}</h1>
                                 <p className="subtitle is-4">
-                                    Instructions: {exam.instruction}
+                                    Instructions : {exam.instruction}
                                 </p>
-                                <p className="subtitle is-4">
+                                <p>
+                                    Groupe : {exam.group}
+                                </p>
+                                <p>
+                                   {/*  TODO: Waiting for the other group */}
+                                    Module :
+                                </p>
+                                <p className="subtitle is-4 pt-1">
                                     Rappel: {exam.reminder}
                                 </p>
+                            </div>
+                            <div className="column">
+                                <div className="field is-grouped">
+                                    <div className="control">
+                                        <div className="tags has-addons">
+                                            <span className="tag is-dark">barème</span>
+                                            <span className="tag is-success">{exam.scale}</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="control">
+                                        <div className="tags has-addons">
+                                            <span className="tag is-dark">affichage barème</span>
+                                            <span className="tag is-success">{exam.showScale ? 'Oui' : 'Non'}</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="control">
+                                        <div className="tags has-addons">
+                                            <span className="tag is-dark">temps est.</span>
+                                            <span className="tag is-success">{exam.estimatedTime}</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div className="column">
                                 <button className="button is-pulled-right is-info no-print" onClick={this.print}>Télécharger la version PDF</button>
@@ -74,5 +105,5 @@ export default connect((state, ownProps) => ({
     loading: state.exams.loading,
     err: state.exams.errorMessage
 }), (dispatch, ownProps) => ({
-    fetchExam: () => dispatch(getExam(ownProps.route.match.params.id))
+    fetchExam: () => dispatch(getExam(ownProps.route.match.params.id, true))
 }))(DisplayExam);

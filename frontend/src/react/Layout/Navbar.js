@@ -35,6 +35,10 @@ export default class Navbar extends Component {
                         <Link to={"/newexam/instructions"} className="navbar-item">
                             Créer un examen
                         </Link>
+
+                        <Link to={"/copies"} className="navbar-item">
+                            Ses épreuves
+                        </Link>
                     </div>
                 </div>
             </nav>

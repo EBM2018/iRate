@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
 
-export default class Instructions extends Component {
+export default class InstructionsCopyDisplayer extends Component {
   static propTypes = {
     title: PropTypes.string,
     reminders: PropTypes.string,
