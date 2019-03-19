@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import Question from '../Question/Question';
 import {sortableContainer} from "react-sortable-hoc";
 
-let uniqid = require('uniqid');
-
 const SortableContainer = sortableContainer(({children}) => {
     return <ul>{children}</ul>;
 });
@@ -47,6 +45,7 @@ export default class ExerciceDisplayer extends Component {
                         <div className="column is-half"><input className="input"
                                                                name="title"
                                                                id={this.props.index}
+                                                               onBlur={this.props.saveNewExercice}
                                                                defaultValue={this.props.exercices.title === 'undefined' ? '' : this.props.exercices.title}
                                                                onChange={this.props.handleInputExercice}
                                                                type="text"
@@ -55,7 +54,8 @@ export default class ExerciceDisplayer extends Component {
                 </div>
                 <SortableContainer onSortEnd={this.props.moveQuestion} pressDelay={100}>
                     {typeof this.props.question !== 'undefined' && this.props.question !== null && this.props.question.length !== 0 && this.props.question.map((value, idx) =>
-                        <Question key={uniqid()} id={value._id} question={value} idQuestion={idx}
+                        <Question key={idx} id={value._id} question={value} idQuestion={idx}
+                                  index={idx}
                                   deleteQuestion={this.props.deleteQuestion}
                                   handleInputQuestion={this.props.handleInputQuestion}
                         saveQuestion={this.props.saveQuestion}
