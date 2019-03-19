@@ -2,9 +2,11 @@ const { Router } = require('express');
 
 const router = new Router();
 const CopyController = require('./controller.js');
+const ExamMiddlewares = require('../exams/middlewares');
+const CopyMiddlewares = require('../copies/middlewares');
 
 /**
- * @api {get} /copy/:examId Get all copies related to an exam
+ * @api {get} /copies/:examId Get all copies related to an exam
  * @apiName GetAllCopies
  * @apiGroup Copies
  * @apiDescription Returns a JSON containing all the copies for a given exam
@@ -14,7 +16,7 @@ const CopyController = require('./controller.js');
  *  {
  *    "_id": "5a9e7dc7717a690c53650ab1",
  *    "type": "Copies"
- *    "examId": "5pod76h7a690c53650ab1",
+ *    "exam": "5pod76h7a690c53650ab1",
  *    "title": "Copies 1",
  *    "author" : {
  *      "name": "Yolo",
@@ -48,10 +50,10 @@ const CopyController = require('./controller.js');
  *  }
  *]
  */
-router.get('/:examId', CopyController.getCopies);
+router.get('/:examId', ExamMiddlewares.findExamOrReturn, CopyController.getCopies);
 
 /**
- * @api {get} /copy/:copyId Get a specific copy
+ * @api {get} /copies/:copyId Get a specific copy
  * @apiName GetCopyById
  * @apiGroup Copies
  * @apiDescription Returns a JSON containing a given copy ID
@@ -60,7 +62,7 @@ router.get('/:examId', CopyController.getCopies);
  *  {
  *    "_id": "5a9e7dc7717a690c53650ab1",
  *    "type": "Copies"
- *    "examId": "5pod76h7a690c53650ab1",
+ *    "exam": "5pod76h7a690c53650ab1",
  *    "title": "Copies 1",
  *    "author" : {
  *      "name": "Yolo",
@@ -93,10 +95,10 @@ router.get('/:examId', CopyController.getCopies);
  *    "__v": 0
  *  }
  */
-router.get('/:copyId', CopyController.getCopy);
+router.get('/:copyId', CopyMiddlewares.findCopyOrReturn, CopyController.getCopy);
 
 /**
- * @api {get} /copy/answer/:answerId Get a specific answer
+ * @api {get} /copies/answers/:answerId Get a specific answer
  * @apiName GetAnswerById
  * @apiGroup Answers
  * @apiDescription Returns a JSON containing a given answer ID
@@ -124,7 +126,7 @@ router.get('/:copyId', CopyController.getCopy);
  *    ]
  *  }
  */
-router.get('/answer/:answerId', CopyController.getAnswer);
+router.get('/answers/:answerId', CopyMiddlewares.findAnswerOrReturn, CopyController.getAnswer);
 
 /**
  * @api {post} /copy Create a new copy
@@ -137,15 +139,15 @@ router.get('/answer/:answerId', CopyController.getAnswer);
  *   {
  *    "title": "Copies 1",
  *    "authorId": "abcdefghjkqspdsqpjpijp86972",
- *    "examId": "sqojfdoisqjdoiqj679089076",
+ *    "exam": "sqojfdoisqjdoiqj679089076",
  *   }
  *
  * @apiSuccess (201) {json} Copy a JSON object containing the created copy
  */
-router.post('/', CopyController.newCopy);
+router.post('/', CopyMiddlewares.findExamOfCopy, CopyController.newCopy);
 
 /**
- * @api {post} /copy/:copyId/answer Create a new answer associated with a copy
+ * @api {post} /copies/:copyId/answers Create a new answer associated with a copy
  * @apiName CreateAnswer
  * @apiGroup Answers
  * @apiDescription This URL creates a new copy
@@ -163,10 +165,10 @@ router.post('/', CopyController.newCopy);
  *
  * @apiSuccess (201) {json} Copy a JSON object containing the created answer
  */
-router.post('/:copyId/answer', CopyController.newAnswer);
+router.post('/:copyId/answers', CopyMiddlewares.findCopyOrReturn, CopyController.newAnswer);
 
 /**
- * @api {patch} /copy/:copyId Edit a copy
+ * @api {patch} /copies/:copyId Edit a copy
  * @apiName EditCopies
  * @apiGroup Copies
  * @apiDescription This URL edit a copy from its id
@@ -179,16 +181,42 @@ router.post('/:copyId/answer', CopyController.newAnswer);
  *
  * @apiSuccess (201) {json} Copy a JSON object containing the edited copy
  */
-router.patch('/:copyId', CopyController.editCopy);
+router.patch('/:copyId', CopyMiddlewares.findCopyOrReturn, CopyController.editCopy);
 
 /**
- * @api {delete} /copy/:copyId Delete a copy
- * @apiName DeleteCopyById
+ * @api {delete} /copies/:copyId Delete a copy
+ * @apiName deleteCopy
  * @apiGroup Copies
  * @apiDescription This deletes a copy
  *
  * @apiSuccess (204) {null} null Empty data
  */
-router.delete('/:copyId', CopyController.deleteCopyById);
+router.delete('/:copyId', CopyMiddlewares.findCopyOrReturn, CopyController.deleteCopy);
+
+/**
+ * @api {patch} /copies/:copyId/answers/:answerId Edit a copy
+ * @apiName EditAnswer
+ * @apiGroup Answers
+ * @apiDescription This URL edits the answer of a copy
+ *
+ * @apiParam {json} copy An object with the information you want to edit.
+ * @apiParamExample {json} Request-Example:
+ *   {
+ *    "title": "Exercice 6",
+ *   }
+ *
+ * @apiSuccess (201) {json} Copy a JSON object containing the edited answer
+ */
+router.patch('/:copyId/answers/:answerId', CopyMiddlewares.findCopyOrReturn, CopyMiddlewares.findAnswerOrReturn, CopyController.editAnswer);
+
+/**
+ * @api {delete} /copies/:copyId/answers/:answerId Delete a copy
+ * @apiName deleteAnswer
+ * @apiGroup Answers
+ * @apiDescription This deletes an answer of a copy
+ *
+ * @apiSuccess (204) {null} null Empty data
+ */
+router.delete('/:copyId/answers/:answerId', CopyMiddlewares.findCopyOrReturn, CopyMiddlewares.findAnswerOrReturn, CopyController.deleteAnswer);
 
 module.exports = router;
