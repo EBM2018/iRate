@@ -4,8 +4,7 @@ import { EditorState, RichUtils } from 'draft-js';
 
 import QuestionDisplayer from './QuestionDisplayer';
 import {
-  createRawContent,
-  createRichContentFromRaw
+  createRawContent
 } from '../../../../helpers/richContent';
 
 import ControllerDisplayer from './Controller/ControllerDisplayer';

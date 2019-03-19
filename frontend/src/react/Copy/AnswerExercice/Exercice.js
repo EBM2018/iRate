@@ -6,12 +6,9 @@ import ExerciceDisplayer from './ExerciceDisplayer';
 class Exercice extends Component {
   static propTypes = {
     exercice: PropTypes.object.isRequired,
-    nextExercice: PropTypes.func.isRequired
+    nextExercice: PropTypes.func.isRequired,
+    copyId: PropTypes.string.isRequired
   };
-
-  componentDidMount() {
-    console.log(this.props);
-  }
 
   handleNext = () => {
     // TODO: save along the way

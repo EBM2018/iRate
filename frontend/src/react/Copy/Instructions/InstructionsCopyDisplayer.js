@@ -11,7 +11,6 @@ export default class Instructions extends Component {
 
   render() {
     const { session, exam } = this.props;
-    console.log(session);
     return (
       <section className="section">
         <div className="box notification is-info">
