@@ -121,8 +121,9 @@ class Exercice extends React.Component {
         let idQuestion = v.target.value;
         const question = [...this.state.question];
         question.splice(idQuestion, 1);
+        let idExo = this.props.exercices._id;
         this.setState({question});
-        this.props.fetchDeleteQuestion(this.props.id, this.props.exercices._id, this.state.question[idQuestion]._id);
+        this.props.fetchDeleteQuestion(this.props.id, idExo, this.state.question[idQuestion]._id);
     };
 
     saveNewQuestion = () => {

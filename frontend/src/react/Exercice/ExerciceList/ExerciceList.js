@@ -21,7 +21,7 @@ class ExerciceList extends React.PureComponent {
     };
 
     componentDidMount() {
-        this.props.fetchExam(this.props.route.match.params.id);
+        this.props.fetchExam(this.props.id);
         this.setState({exercices: this.props.exam.exercices});
     };
 
@@ -82,12 +82,12 @@ class ExerciceList extends React.PureComponent {
         }
         this.setState({exercices: exercices});
         let order = maxOrder + 1
-        await this.props.fetchNewExercice(this.props.route.match.params.id, {
+        await this.props.fetchNewExercice(this.props.id, {
             "title": "Nouvel Exercice",
             "order": order,
             "question": []
         });
-        await this.props.fetchExam(this.props.route.match.params.id);
+        await this.props.fetchExam(this.props.id);
     };
 
     /**
@@ -99,7 +99,7 @@ class ExerciceList extends React.PureComponent {
      */
     deleteExercice = (v) => {
         let idExercice = v.target.value;
-        this.props.fetchDeleteExercice(this.props.route.match.params.id, this.state.exercices[idExercice]._id, this.state.exercices[idExercice])
+        this.props.fetchDeleteExercice(this.props.id, this.state.exercices[idExercice]._id, this.state.exercices[idExercice])
         const exercices = [...this.state.exercices];
         exercices.splice(idExercice, 1);
         this.setState({exercices});
@@ -108,7 +108,7 @@ class ExerciceList extends React.PureComponent {
     saveNewExercice = () => {
         for (let i in this.state.exercices) {
             if (typeof this.state.exercices[i]._id !== 'undefined') {
-                this.props.patchExercice(this.props.route.match.params.id, this.state.exercices[i]._id, this.state.exercices[i]);
+                this.props.patchExercice(this.props.id, this.state.exercices[i]._id, this.state.exercices[i]);
             }
         }
     };
@@ -117,10 +117,6 @@ class ExerciceList extends React.PureComponent {
         let exercices = this.state.exercices;
         let departure = oldIndex + 1;
         let arrival = newIndex + 1;
-        console.log(oldIndex);
-        console.log(newIndex);
-
-        console.log(exercices);
         if (arrival === departure) return;
         if (arrival > departure) {
             for (let i in exercices) {
@@ -144,11 +140,11 @@ class ExerciceList extends React.PureComponent {
         }
         for (let i in exercices) {
             if (typeof exercices[i]._id !== 'undefined') {
-                await this.props.patchExercice(this.props.route.match.params.id, exercices[i]._id, exercices[i]);
+                await this.props.patchExercice(this.props.id, exercices[i]._id, exercices[i]);
             }
         }
         this.setState({exercices: exercices});
-        await this.props.fetchExam(this.props.route.match.params.id);
+        await this.props.fetchExam(this.props.id);
     };
 
 
@@ -164,7 +160,7 @@ class ExerciceList extends React.PureComponent {
                                        idExercice={this.state.idExercice}
                                        toggleExtend={this.toggleExtend}
                                        isExtended={this.state.isExtended}
-                                       id={this.props.route.match.params.id}/>
+                                       id={this.props.id}/>
                 <div className="section">
                     <button className="button is-info is-medium" onClick={this.saveNewExercice}>Sauvegarder l'examen
                     </button>

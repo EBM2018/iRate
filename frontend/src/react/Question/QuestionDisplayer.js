@@ -9,6 +9,7 @@ export default class QuestionDisplayer extends React.Component {
         deleteQuestion: PropTypes.func.isRequired,
         question: PropTypes.array.isRequired,
         id: PropTypes.number.isRequired,
+        index: PropTypes.number.isRequired,
     };
 
     render() {
@@ -26,7 +27,7 @@ export default class QuestionDisplayer extends React.Component {
                                                         type="text"
                                                         placeholder="Nouvelle Question"/></div>
                     <div className="column is-1">
-                        <button className="delete is-large" value={this.props.id} onClick={this.props.deleteQuestion}/>
+                        <button className="delete is-large" value={this.props.index} onClick={this.props.deleteQuestion}/>
                     </div>
                 </div>
                 <div className="columns">

@@ -55,7 +55,7 @@ export default class ExerciceDisplayer extends Component {
                 </div>
                 <SortableContainer onSortEnd={this.props.moveQuestion} pressDelay={100}>
                     {typeof this.props.question !== 'undefined' && this.props.question !== null && this.props.question.length !== 0 && this.props.question.map((value, idx) =>
-                        <Question key={uniqid()} id={value._id} question={value} index={idx}
+                        <Question key={uniqid()} id={value._id} question={value} idQuestion={idx}
                                   deleteQuestion={this.props.deleteQuestion}
                                   handleInputQuestion={this.props.handleInputQuestion}
                         saveQuestion={this.props.saveQuestion}
