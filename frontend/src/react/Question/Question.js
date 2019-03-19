@@ -18,7 +18,7 @@ const Question = (props) => {
                            question={props.question}
                            onSortEnd={onSortEnd}
                            exercices={props.exercices}
-                           index={props.id}/>
+                           index={props.idQuestion}/>
     );
 };
 
