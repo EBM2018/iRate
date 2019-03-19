@@ -55,14 +55,13 @@ export default class Instructions extends Component {
         </div>
         <div className="columns">
           <div className="column is-half">
-            <button  className="button is-medium is-info">
-              <Link to={{
+              <Link className="button is-medium is-info"
+                  to={{
                       pathname: `/topic/${exam._id}`,
                       state: { exam, session }
                     }}
               >
                 Afficher le sujet</Link>
-            </button>
           </div>
           <div className="column is-right is-half">
             <div className="buttons has-addons is-right">

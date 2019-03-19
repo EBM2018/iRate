@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import Exercice from "./Exercice";
+import React, {Component} from 'react';
+import Exercice from './Exercice';
 let uniqid = require('uniqid');
 
 export default class ExamTopic extends Component {
@@ -9,9 +9,8 @@ export default class ExamTopic extends Component {
   };
 
   render() {
-    const exam = this.props.route.location.state.exam;
-    const session = this.props.route.location.state.session;
-    const exercices = this.props.route.location.state.exam.exercices;
+    const {exam, session} = this.props.route.location.state;
+    const {exercices} = exam;
     return (
       <div>
         <div className="has-text-centered">
@@ -28,7 +27,7 @@ export default class ExamTopic extends Component {
                 <span className="title is-5">Date de l'examen:</span>
               </div>
               <div className="column is-two-thirds">
-                <span className="title is-5">{session.classes[0].date}</span>
+                <span className="title is-5">{session.date}</span>
               </div>
             </div>
             <div className="columns">
@@ -36,7 +35,7 @@ export default class ExamTopic extends Component {
                 <span className="title is-5">Heure de début:</span>
               </div>
               <div className="column is-two-thirds">
-                <span className="title is-5">{session.classes[0].startTime}</span>
+                <span className="title is-5">{session.startTime}</span>
               </div>
             </div>
             <div className="columns">
@@ -44,7 +43,7 @@ export default class ExamTopic extends Component {
                 <span className="title is-5">Heure de fin:</span>
               </div>
               <div className="column is-two-thirds">
-                <span className="title is-5">{session.classes[0].endTime}</span>
+                <span className="title is-5">{session.endTime}</span>
               </div>
             </div>
             <div className="columns">

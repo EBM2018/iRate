@@ -4,7 +4,7 @@ import Question from "./AnswerQuestion/Question";
 export default class ExerciceDisplayer extends Component {
     render() {
         const { title,
-                questions } = this.props.exercice;
+            questions } = this.props.exercice;
         const {showScale} = this.props;
         return (
             <div>
@@ -12,10 +12,15 @@ export default class ExerciceDisplayer extends Component {
                     <div className="title">{title}</div>
                 </div>
                 {questions.map((question,index) => <Question key={question._id} id={question._id} question={question} showScale={showScale} index={index}/>)}
-                <footer>
-                    <button onClick={this.props.handleNext}>Next</button>
-                    <button>valider</button>
-                </footer>
+                <div className="steps-actions">
+                    <div className="buttons field is-grouped">
+                        <div className="control">
+                            <div className="steps-action">
+                                <a href="#/" data-nav="next" className="button is-info is-outlined is-medium" onClick={this.props.handleNext}>Next</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }

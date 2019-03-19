@@ -1,10 +1,12 @@
 import {ACTIONS as ACTIONS_POST} from './actions/post';
 import {ACTIONS as ACTIONS_PATCH} from './actions/patch';
+import {ACTIONS as ACTIONS_POST_ANSWER} from './actions/postAnswer';
 import {combineReducers} from 'redux';
 
 const ACTIONS = {
   ...ACTIONS_POST,
   ...ACTIONS_PATCH,
+  ...ACTIONS_POST_ANSWER,
   'RESET_ERROR_MESSAGE': 'RESET_ERROR_MESSAGE'
 };
 
@@ -18,7 +20,12 @@ export default combineReducers({
       case ACTIONS.SET_PATCH_COPY_SUCCESS:
         return {
           ...action.copy
-        }
+        };
+      case ACTIONS.SET_POST_ANSWER_SUCCESS:
+        return {
+            ...state,
+            answers: state.copy.answers.length ? [...state.copy.answers,...action.answer] : [...action.answer],
+        };
       default:
         return state;
     }
@@ -28,13 +35,15 @@ export default combineReducers({
     switch(action.type) {
       case ACTIONS.SET_POST_COPY_START:
       case ACTIONS.SET_PATCH_COPY_START:
+      case ACTIONS.SET_POST_ANSWER_START:
         return true;
       case ACTIONS.SET_POST_COPY_SUCCESS:
       case ACTIONS.SET_POST_COPY_FAILURE:
-      case ACTIONS.SET_PATCH_COPY_FAILURE:
-      case ACTIONS.SET_PATCH_COPY_SUCCESS:
+      case ACTIONS.SET_POST_ANSWER_SUCCESS:
+      case ACTIONS.SET_POST_ANSWER_FAILURE:
+      case ACTIONS.SET_PATCH_ANSWER_SUCCESS:
+      case ACTIONS.SET_PATCH_ANSWER_FAILURE:
         return false;
-
       default:
         return state;
     }
