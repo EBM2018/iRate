@@ -1,9 +1,4 @@
-import {
-  createStore,
-  applyMiddleware,
-  combineReducers,
-  compose,
-} from 'redux';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
@@ -14,34 +9,30 @@ import copiesReducer from './copies/reducers';
 
 // Do not refactor this into !['production', 'test'].includes(process.env.NODE_ENV)
 // Because uglify cannot statically analyze this.
-const isDevEnvironment = (
-  process.env.NODE_ENV !== 'production'
-  && process.env.NODE_ENV !== 'test'
-);
+const isDevEnvironment =
+  process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test';
 
 // Create root reducer
 const reducers = combineReducers({
   exams: examsReducer,
-  copiesStore: copiesReducer,
+  copiesStore: copiesReducer
 });
 
-const middlewares = [
-  thunk,
-];
+const middlewares = [thunk];
 
 if (isDevEnvironment) {
-  middlewares.push(createLogger({
-    collapsed: true,
-    diff: true,
-    duration: true,
-  }));
+  middlewares.push(
+    createLogger({
+      collapsed: true,
+      diff: true,
+      duration: true
+    })
+  );
 }
 
 const composer = isDevEnvironment ? composeWithDevTools : compose;
 
-const enhancers = composer(
-  applyMiddleware(...middlewares),
-);
+const enhancers = composer(applyMiddleware(...middlewares));
 
 const initialState = {};
 

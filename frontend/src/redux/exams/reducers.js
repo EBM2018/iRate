@@ -1,8 +1,8 @@
-import {ACTIONS as ACTIONS_GET} from './actions/get';
-import {ACTIONS as ACTIONS_POST} from './actions/post';
-import {ACTIONS as ACTIONS_GET_SINGLE} from './actions/getSingle';
-import {ACTIONS as ACTIONS_PATCH} from './actions/patch'
-import {combineReducers} from 'redux';
+import { ACTIONS as ACTIONS_GET } from "./actions/get";
+import { ACTIONS as ACTIONS_POST } from "./actions/post";
+import { ACTIONS as ACTIONS_GET_SINGLE } from "./actions/getSingle";
+import { ACTIONS as ACTIONS_PATCH } from "./actions/patch";
+import { combineReducers } from "redux";
 //import {SET_PATCH_EXAMS_START} from "./actions/patch";
 
 const initialState = {
@@ -14,7 +14,7 @@ const ACTIONS = {
   ...ACTIONS_POST,
   ...ACTIONS_GET_SINGLE,
   ...ACTIONS_PATCH,
-  'RESET_ERROR_MESSAGE': 'RESET_ERROR_MESSAGE'
+  RESET_ERROR_MESSAGE: "RESET_ERROR_MESSAGE"
 };
 
 export default combineReducers({
@@ -26,25 +26,24 @@ export default combineReducers({
         return action.exam;
       case ACTIONS.SET_PATCH_EXAMS_SUCCESS:
         return action.exams;
-        case ACTIONS.SET_POST_EXAM_SUCCESS:
-        return state.exams && state.exams.length ? {
-            ...state,
-            exam: action.exam,
-            exams: [
-                ...state.exams,
-                action.exam
-            ]
-        } : {
-            ...state,
-            exam: action.exam,
-        };
+      case ACTIONS.SET_POST_EXAM_SUCCESS:
+        return state.exams && state.exams.length
+          ? {
+              ...state,
+              exam: action.exam,
+              exams: [...state.exams, action.exam]
+            }
+          : {
+              ...state,
+              exam: action.exam
+            };
       default:
         return state;
     }
   },
 
   loading: (state = false, action) => {
-    switch(action.type) {
+    switch (action.type) {
       case ACTIONS.SET_GET_EXAMS_START:
       case ACTIONS.SET_GET_EXAM_START:
       case ACTIONS.SET_POST_EXAM_START:

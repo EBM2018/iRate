@@ -1,10 +1,9 @@
-import React from 'react'
+import React from "react";
 import PropTypes from "prop-types";
 import Question from "./Question";
-let uniqid = require('uniqid');
+let uniqid = require("uniqid");
 
-export default class Exercice extends React.Component{
-
+export default class Exercice extends React.Component {
   static propTypes = {
     exercice: PropTypes.object
   };
@@ -22,15 +21,25 @@ export default class Exercice extends React.Component{
           </div>
           <section className="box">
             <div className="columns">
-              <div className="column is-half"><span className="title is-5">Intitulé de l'exercice :</span></div>
-              <div className="column is-half"><span className="title is-5">{exercice.title}</span></div>
+              <div className="column is-half">
+                <span className="title is-5">Intitulé de l'exercice :</span>
+              </div>
+              <div className="column is-half">
+                <span className="title is-5">{exercice.title}</span>
+              </div>
             </div>
             <div className="columns">
-              <div className="column is-half"><span className="title is-5">Temps estimé :</span></div>
-              <div className="column is-half"><span className="title is-5">{exercice.estimatedTime}</span></div>
+              <div className="column is-half">
+                <span className="title is-5">Temps estimé :</span>
+              </div>
+              <div className="column is-half">
+                <span className="title is-5">{exercice.estimatedTime}</span>
+              </div>
             </div>
           </section>
-          {question.map((question,idx) => <Question key={uniqid()} index={idx} question={question}/>)}
+          {question.map((question, idx) => (
+            <Question key={uniqid()} index={idx} question={question} />
+          ))}
         </section>
       </>
     );
