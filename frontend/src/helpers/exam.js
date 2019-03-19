@@ -8,7 +8,9 @@ import moment from 'moment';
  */
 export const addTimeAndScale = (exam) => {
     let examScale = 0,
-        examTime = 0;
+        examTime = 0,
+        exerciceScale = 0,
+        exerciceTime= 0;
     const clonedExam = JSON.parse(JSON.stringify(exam));
 
     if (!exam || !exam.exercices)
@@ -16,11 +18,20 @@ export const addTimeAndScale = (exam) => {
 
     for (let j = 0; j < clonedExam.exercices.length; j++) {
         for (let k = 0; k < clonedExam.exercices[j].questions.length; k++) {
-            if (clonedExam.exercices[j].questions[k].scale)
+            if (clonedExam.exercices[j].questions[k].scale) {
                 examScale = examScale + clonedExam.exercices[j].questions[k].scale;
-            if (clonedExam.exercices[j].questions[k].estimatedTime)
+                exerciceScale = exerciceScale + clonedExam.exercices[j].questions[k].scale;
+            }
+            if (clonedExam.exercices[j].questions[k].estimatedTime) {
                 examTime = examTime + clonedExam.exercices[j].questions[k].estimatedTime;
+                exerciceTime = exerciceTime + clonedExam.exercices[j].questions[k].estimatedTime;
+            }
         }
+
+        clonedExam.exercices[j].estimatedTime = exerciceTime;
+        clonedExam.exercices[j].scale = exerciceScale;
+        exerciceTime = 0;
+        exerciceScale = 0;
     }
 
     clonedExam.scale = examScale;

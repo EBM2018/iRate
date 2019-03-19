@@ -21,3 +21,6 @@
 
 .d-block {
   display: block !important; }
+
+.pointer {
+  cursor: pointer; }

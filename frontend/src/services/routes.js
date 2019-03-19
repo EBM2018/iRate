@@ -1,9 +1,11 @@
 import Instructions from '../react/Instructions/Instructions';
+
 import CreateExam from '../react/Exam/CreateExam';
 import DisplayExam from '../react/Exam/DisplayExam/DisplayExam';
 import ExamList from '../react/Exam/ExamList/ExamList';
+import Copy from '../react/Copy/Copy';
 import CopyList from '../react/Copy/CopyList/CopyList';
-import AnswerExercice from '../react/Copy/AnswerExercice';
+import ExamTopic from "../react/Copy/Instructions/GenerateTopic/ExamTopic";
 
 export const privateRoutes = {
     Instructions: {
@@ -26,14 +28,19 @@ export const privateRoutes = {
         component: DisplayExam,
         title: 'Voici les détails du sujet'
     },
+    Copy: {
+        path: '/copy/:id',
+        component: Copy,
+        title: 'Voici les détails du sujet'
+    },
+    ExamTopic: {
+        path: '/topic/:examId',
+        component: ExamTopic,
+        title: 'Voici le sujet'
+    },
     CopyList: {
         path: '/copies',
         component: CopyList,
         title: 'Liste des copies associées à un élève'
-    },
-    AnswerExercice: {
-        path: '/copy/:examId/exercice/:exerciceId',
-        component: AnswerExercice,
-        title: 'Répondre à un examen'
     }
 };
