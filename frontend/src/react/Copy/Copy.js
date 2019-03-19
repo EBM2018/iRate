@@ -5,7 +5,7 @@ import {postCopy} from '../../redux/copies/actions/post';
 import {getExam} from '../../redux/exams/actions/getSingle';
 
 import Instructions from './Instructions';
-import Exercice from './Exercice';
+import Exercice from './AnswerExercice/Exercice';
 import HeaderCopy from './HeaderCopy';
 import ConfirmCopy from './ConfirmCopy';
 import {session} from '../../helpers/mocks/dataMock';
@@ -26,7 +26,7 @@ class Copy extends Component {
   }
 
   /**
-   * @param {Boolean} - forceConfirmation: whether we want to force the confirmation
+   * @param {Boolean} forceConfirmation: whether we want to force the confirmation
    */
   handleNext = async (forceConfirmation = false) => {
     console.log('forcing' + forceConfirmation);
@@ -46,7 +46,6 @@ class Copy extends Component {
         exerciceIndex: exerciceIndex+1
       });
     }
-
   }
 
   renderContent() {
@@ -69,10 +68,10 @@ class Copy extends Component {
         return (
               <Exercice
                 exercice={exam.exercices[exerciceIndex]}
+                showScale={exam.showScale}
                 nextExercice={this.handleNext}
-                confirm={() => this.handleNext(true)}
                 copyId={copy && copy._id}
-              />
+                confirm={() => this.handleNext(true)}/>
             );
     }
   }

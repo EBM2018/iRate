@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 
 export default class QuestionDisplayer extends React.Component {
   static propTypes = {
-    /*number: PropTypes.number,
-    intitule: PropTypes.str,
-    contenu: PropTypes.str,
-    fctSave: PropTypes.function,*/
     handleInput: PropTypes.func.isRequired,
     delQuestion: PropTypes.func.isRequired,
     question: PropTypes.array.isRequired,

@@ -16,8 +16,8 @@ export const groupsArray = {
                 {
                     "_id": "218542ea-28f6-4bda-9bbe-5a36f201ab35",
                     "date" : moment().format("MM/DD/YYYY"),
-                    "startTime" : "08:00:00",
-                    "endTime" : "12:00:00",
+                    "startTime" : "00:00:00",
+                    "endTime" : "23:00:00",
                 },
                 {
                     "_id": "1bd66db2-6d3e-4e9a-b56f-edb7b868a19f",
