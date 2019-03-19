@@ -6,7 +6,7 @@ const ExamMiddlewares = require('../exams/middlewares');
 const CopyMiddlewares = require('../copies/middlewares');
 
 /**
- * @api {get} /copies/:examId Get all copies related to an exam
+ * @api {get} /copies/exams/:examId Get all copies related to an exam
  * @apiName GetAllCopies
  * @apiGroup Copies
  * @apiDescription Returns a JSON containing all the copies for a given exam
@@ -50,7 +50,7 @@ const CopyMiddlewares = require('../copies/middlewares');
  *  }
  *]
  */
-router.get('/:examId', ExamMiddlewares.findExamOrReturn, CopyController.getCopies);
+router.get('/exams/:examId', ExamMiddlewares.findExamOrReturn, CopyController.getCopies);
 
 /**
  * @api {get} /copies/:copyId Get a specific copy
