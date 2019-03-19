@@ -22,7 +22,6 @@ export const SET_POST_EXAM_FAILURE = err => ({
 
 export const postExam = (examToAdd) => async dispatch => {
     dispatch(SET_POST_EXAM_START());
-
     try {
         const exam = await ExamsRepository.postExam(examToAdd);
         dispatch(SET_POST_EXAM_SUCCESS(exam));

@@ -1,9 +1,7 @@
 import React from 'react'
 import {Route, Switch as RouterSwitch} from 'react-router';
 
-import Instructions from '../Instructions/Instructions';
-import CreateExam from '../Exam/CreateExam';
-import DisplayExam from '../Exam/DisplayExam';
+import {privateRoutes} from '../../services/routes';
 import LayoutApp from '../Layout/LayoutApp';
 import NotFound from '../utils/NotFound';
 import ExamList from '../Exam/ExamList/ExamList';

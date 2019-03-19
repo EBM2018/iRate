@@ -4,7 +4,8 @@ const QuestionData = require('../../../services/question/data');
 
 const controller = {
   async getExams(req, res) {
-    const exams = await ExamData.getAll();
+    // TODO: remove correction
+    const exams = await ExamData.getAll(req.query);
     res.status(200).json(exams);
   },
 
@@ -61,9 +62,9 @@ const controller = {
     const { exam } = res.locals;
     if (req.body) {
       try {
-        exam.update(req.body);
-        await exam.save();
-        return res.status(200).json(req.body);
+        await ExamData.update(exam._id, req.body);
+        const result = await ExamData.getById(req.body._id);
+        return res.status(200).json(result);
       } catch (error) {
         return next(error);
       }

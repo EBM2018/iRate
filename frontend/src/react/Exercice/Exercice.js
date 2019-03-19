@@ -7,6 +7,7 @@ import {deleteQuestion} from "../../redux/question/actions/delete";
 import {patchQuestion} from "../../redux/question/actions/patch";
 import {getExam} from "../../redux/exams/actions/getSingle";
 
+
 class Exercice extends React.Component {
 
     static propTypes = {

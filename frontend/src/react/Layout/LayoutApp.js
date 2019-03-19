@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+import './LayoutApp.css';
 import Navbar from './Navbar';
 
 export default class LayoutApp extends Component {
 
     static propTypes = {
         component: PropTypes.func.isRequired,
-        title: PropTypes.string.isRequired
+        title: PropTypes.string.isRequired,
+        route: PropTypes.object
     };
 
     render() {
@@ -15,9 +17,9 @@ export default class LayoutApp extends Component {
         const { title, route } = this.props;
 
         return (
-                <div className="layout">
+                <div>
                     {/** This navbar can be extended and use as a menu, we can also add sidebar */}
-                    <Navbar title={title}></Navbar>
+                    <Navbar title={title}/>
                     <main>
                         <div className="container py-1">
                             <Component route={route}/>
