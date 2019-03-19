@@ -15,7 +15,7 @@ class Copy extends Component {
   state = {
     session: {},
     step: 0, // in: 0 (instructions), 1 (exercice), 2 (confirmation)
-    exerciceIndex: ''
+    exerciceIndex: null
   };
 
   async componentDidMount() {
@@ -29,7 +29,7 @@ class Copy extends Component {
    * @param {Boolean} - forceConfirmation: whether we want to force the confirmation
    */
   handleNext = async (forceConfirmation = false) => {
-
+    console.log('forcing' + forceConfirmation);
     const {step, exerciceIndex} = this.state;
     const {exercices} = this.props.exam;
 
@@ -41,12 +41,10 @@ class Copy extends Component {
       });
       this.setState({exerciceIndex: 0, step: 1});
     } else {
-
       this.setState({
         step: ((exerciceIndex === exercices.length - 1) || forceConfirmation) ? 2 : 1,
         exerciceIndex: exerciceIndex+1
       });
-
     }
 
   }
@@ -87,17 +85,23 @@ class Copy extends Component {
   }
 
   render() {
-    const {step, exerciceIndex} = this.state;
+    const {exerciceIndex, step} = this.state;
     const {exercices} = this.props.exam;
     return (
       <div className="tile is-child">
-        { (step === 1) &&
+        { exercices &&
           <HeaderCopy
+            step={step}
+            confirm={() => this.handleNext(true)}
             currentExercice={exerciceIndex}
             exercices={exercices}
             navigate={ (index) => this.navigate(index)}/>
         }
-        { this.renderContent() }
+        <div className="steps-content">
+            <div className="step-content has-text-centered">
+              { this.renderContent() }
+            </div>
+        </div>
       </div>
     );
   }

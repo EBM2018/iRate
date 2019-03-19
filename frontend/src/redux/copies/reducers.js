@@ -1,8 +1,10 @@
 import {ACTIONS as ACTIONS_POST} from './actions/post';
+import {ACTIONS as ACTIONS_PATCH} from './actions/patch';
 import {combineReducers} from 'redux';
 
 const ACTIONS = {
   ...ACTIONS_POST,
+  ...ACTIONS_PATCH,
   'RESET_ERROR_MESSAGE': 'RESET_ERROR_MESSAGE'
 };
 
@@ -13,6 +15,10 @@ export default combineReducers({
         return {
             ...action.copy,
         };
+      case ACTIONS.SET_PATCH_COPY_SUCCESS:
+        return {
+          ...action.copy
+        }
       default:
         return state;
     }
@@ -21,9 +27,12 @@ export default combineReducers({
   loading: (state = false, action) => {
     switch(action.type) {
       case ACTIONS.SET_POST_COPY_START:
+      case ACTIONS.SET_PATCH_COPY_START:
         return true;
       case ACTIONS.SET_POST_COPY_SUCCESS:
       case ACTIONS.SET_POST_COPY_FAILURE:
+      case ACTIONS.SET_PATCH_COPY_FAILURE:
+      case ACTIONS.SET_PATCH_COPY_SUCCESS:
         return false;
 
       default:
