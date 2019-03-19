@@ -11,7 +11,7 @@ export default class ExerciceDisplayer extends Component {
                 <div className="box notification is-info">
                     <div className="title">{title}</div>
                 </div>
-                {questions.map((question,index) => <Question key={question._id} question={question} showScale={showScale} index={index}/>)}
+                {questions.map((question,index) => <Question key={question._id} id={question._id} question={question} showScale={showScale} index={index}/>)}
                 <footer>
                     <button onClick={this.props.handleNext}>Next</button>
                     <button>valider</button>

@@ -2,10 +2,19 @@ import React, {Component} from 'react';
 import QuestionDisplayer from "./QuestionDisplayer";
 import {EditorState, RichUtils} from 'draft-js';
 import {createRawContent, createRichContentFromRaw} from "../../../../helpers/richContent";
+import connect from "react-redux/es/connect/connect";
+import ControllerDisplayer from "./Controller/ControllerDisplayer";
+import AnswerDisplayer from "./Answer/AnswerDisplayer";
 
 export default class Question extends Component {
     state = {
-        editorState: EditorState.createEmpty()
+        editorState: EditorState.createEmpty(),
+        id: '',
+        answerId: '',
+    };
+
+    componentDidMount() {
+        this.setState({id:this.props.id})
     };
 
     handleChange = (editorState) => {
@@ -23,9 +32,21 @@ export default class Question extends Component {
 
     myBlockStyleFn = (contentBlock) => {
         const type = contentBlock.getType();
-        console.log(type);
         if (type === 'unstyled') {
             return 'textarea';
+        }
+    };
+
+    handleControllerClick = () => {
+        const { id,
+                answerId,
+                editorState } = this.state;
+        const rawContent = createRawContent(editorState);
+        console.log(id,rawContent);
+        if (answerId) {
+            //TODO make a PATCH Request here
+        } else {
+            //TODO make a POST Request here, don't forget to pass the id to the state.
         }
     };
 
@@ -48,19 +69,35 @@ export default class Question extends Component {
         this.setState({editorState: createRichContentFromRaw(createRawContent(this.state.editorState))});
     };
 
+
+
     render() {
         return (
-            <QuestionDisplayer question={this.props.question}
-                               showScale={this.props.showScale}
-                               editorState={this.state.editorState}
-                               myBlockStyleFn={this.myBlockStyleFn}
-                               handleChange={this.handleChange}
-                               handleKeycommand={this.handleKeyCommand}
-                               handleBlur={this.handleBlur}
-                               onUnderlineClick={this.onUnderlineClick}
-                               onBoldClick={this.onBoldClick}
-                               onItalicClick={this.onItalicClick}
-                               index={this.props.index}/>
+            <>
+                <QuestionDisplayer question={this.props.question}
+                                   showScale={this.props.showScale}
+                                   index={this.props.index}/>
+                <div className="box">
+                    <AnswerDisplayer editorState={this.state.editorState}
+                                     myBlockStyleFn={this.myBlockStyleFn}
+                                     handleEditorClick={this.handleEditorClick}
+                                     handleChange={this.handleChange}
+                                     handleKeycommand={this.handleKeyCommand}
+                                     handleBlur={this.handleBlur}
+                                     onUnderlineClick={this.onUnderlineClick}
+                                     onBoldClick={this.onBoldClick}
+                                     onItalicClick={this.onItalicClick}/>
+                    <ControllerDisplayer/>
+                </div>
+            </>
         );
     }
 }
+
+/*export default connect(state => ({
+    copyId: state.id,
+    answerId: state.answerId,
+    loading: state.exams.loading,
+}), dispatch => ({
+
+});*/
