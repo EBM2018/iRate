@@ -120,7 +120,6 @@ class ExerciceList extends React.PureComponent {
         if (arrival === departure) return;
         if (arrival > departure) {
             for (let i in exercices) {
-                console.log(exercices[i].order);
                 if (exercices[i].order <= arrival && exercices[i].order > departure && exercices[i].order !== departure) {
                     exercices[i].order = exercices[i].order - 1;
                 }
@@ -128,12 +127,9 @@ class ExerciceList extends React.PureComponent {
             exercices[oldIndex].order = newIndex;
 
         } else {
-            console.log('else');
             for (let i in exercices) {
                 if (exercices[i].order >= arrival && exercices[i].order < departure && exercices[i].order !== departure) {
-                    console.log(exercices[i].order);
-                    console.log(i);
-                    // exercices[i].order = exercices[i].order - 1;
+                    exercices[i].order = exercices[i].order - 1;
                 }
             }
             exercices[oldIndex].order = newIndex + 1;

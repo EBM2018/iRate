@@ -51,11 +51,8 @@ class Exercice extends React.Component {
 
     moveQuestion = async ({oldIndex, newIndex}) => {
         let exercices = this.props.exercices.questions;
-        console.log(oldIndex);
-        console.log(newIndex);
         let departure = oldIndex + 1;
         let arrival = newIndex + 1;
-        console.log(exercices[oldIndex]);
         if (arrival === departure) return;
         if (arrival > departure) {
             for (let i in exercices) {
@@ -89,8 +86,6 @@ class Exercice extends React.Component {
     handleInputQuestion = async (e) => {
         const {question} = this.state;
         const {name, id} = e.target;
-        console.log(question);
-        console.log(id);
         switch (name) {
             case 'questionTitle':
                 question[id].title = e.target.value;
