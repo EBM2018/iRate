@@ -1,23 +1,20 @@
-import axios from 'axios';
+import {apiRequest} from "../services/api";
 
 export const postExercice = async (id, exercice) => {
-    const { data } = await axios.post('http://localhost:4000/api/exams/' + id + '/exercices', {
+    return await apiRequest(`exams/${id}/exercices`, 'post', {
         ...exercice
     });
-    return data;
-};
+}
 
 export const deleteExercice = async (idExam, idExercice, exercice) => {
-    const { data } = await axios.delete('http://localhost:4000/api/exams/' + idExam + '/exercices/' + idExercice, {
+    return await apiRequest(`exams/${idExam}/exercices/${idExercice}`, 'delete', {
         ...exercice
     });
-    return data;
 };
 
 
 export const patchExercice = async (idExam, idExercice, exercice) => {
-    const { data } = await axios.patch('http://localhost:4000/api/exams/' + idExam + '/exercices/' + idExercice, {
+    return await apiRequest(`exams/${idExam}/exercices/${idExercice}`, 'patch', {
         ...exercice
     });
-    return data;
 };
