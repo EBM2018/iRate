@@ -13,6 +13,7 @@ class Exercice extends React.Component {
     static propTypes = {
         exercices: PropTypes.array,
         handleInputExercice: PropTypes.func,
+        saveNewExercice: PropTypes.func,
         id: PropTypes.number,
         index: PropTypes.number
     };
@@ -86,22 +87,24 @@ class Exercice extends React.Component {
     handleInputQuestion = async (e) => {
         const {question} = this.state;
         const {name, id} = e.target;
+        let index = this.props.index;
+
         switch (name) {
             case 'questionTitle':
-                question[id].title = e.target.value;
+                question[index].title = e.target.value;
                 this.setState({question: question});
                 break;
             case 'questionScale':
-                question[id].scale = e.target.value;
+                question[index].scale = e.target.value;
                 this.setState({question: question});
                 break;
             case 'questionCorrection':
-                question[id].correction = e.target.value;
+                question[index].correction = e.target.value;
                 this.setState({question: question});
                 break;
             case 'questionEstimatedTime':
                 let time = (e.target.value) * 60
-                question[id].estimatedTime = time;
+                question[index].estimatedTime = time;
                 this.setState({question: question});
                 break;
             default:
@@ -140,6 +143,7 @@ class Exercice extends React.Component {
             <div>
                 <ExerciceDisplayer handleInputQuestion={this.handleInputQuestion}
                                    handleInputExercice={this.props.handleInputExercice}
+                                   saveNewExercice={this.props.saveNewExercice}
                                    addQuestion={this.addQuestion}
                                    exercices={this.props.exercices}
                                    deleteQuestion={this.deleteQuestion}

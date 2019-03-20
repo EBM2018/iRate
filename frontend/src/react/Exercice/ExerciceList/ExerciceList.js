@@ -153,6 +153,7 @@ class ExerciceList extends React.PureComponent {
             <div>
                 <ExerciceListDisplayer addExercice={this.addExercice}
                                        deleteExercice={this.deleteExercice}
+                                       saveNewExercice={this.saveNewExercice}
                                        exercices={this.state.exercices}
                                        handleInputExercice={this.handleInputExercice}
                                        onSortEnd={this.onSortEnd}
