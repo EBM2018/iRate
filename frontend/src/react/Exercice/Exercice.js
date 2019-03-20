@@ -86,7 +86,7 @@ class Exercice extends React.Component {
      */
     handleInputQuestion = async (e) => {
         const {question} = this.state;
-        const {name, id} = e.target;
+        const {name} = e.target;
         let index = this.props.index;
 
         switch (name) {
