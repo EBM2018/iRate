@@ -89,23 +89,24 @@ class Exercice extends React.Component {
     handleInputQuestion = async (e) => {
         const {question} = this.state;
         const {name, id} = e.target;
-        let index = this.props.index;
+        console.log(question);
+        console.log(id);
         switch (name) {
             case 'questionTitle':
-                question[index].title = e.target.value;
+                question[id].title = e.target.value;
                 this.setState({question: question});
                 break;
             case 'questionScale':
-                question[index].scale = e.target.value;
+                question[id].scale = e.target.value;
                 this.setState({question: question});
                 break;
             case 'questionCorrection':
-                question[index].correction = e.target.value;
+                question[id].correction = e.target.value;
                 this.setState({question: question});
                 break;
             case 'questionEstimatedTime':
                 let time = (e.target.value) * 60;
-                question[index].estimatedTime = time;
+                question[id].estimatedTime = time;
                 this.setState({question: question});
                 break;
             default:
@@ -133,7 +134,6 @@ class Exercice extends React.Component {
     saveNewQuestion = () => {
         for (let i in this.state.question) {
             if (typeof this.state.question[i]._id !== 'undefined') {
-                console.log(this.state.question[i]);
                 this.props.patchQuestion(this.props.id, this.props.exercices._id, this.state.question[i]._id, this.state.question[i]);
             }
         }

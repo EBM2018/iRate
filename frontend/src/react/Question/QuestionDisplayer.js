@@ -20,7 +20,7 @@ export default class QuestionDisplayer extends React.Component {
                     </div>
                     <div className="column is-6"><input className="input"
                                                         name="questionTitle"
-                                                        id={this.props.id}
+                                                        id={this.props.index}
                                                         onChange={this.props.handleInputQuestion}
                                                         onBlur={this.props.saveQuestion}
                                                         defaultValue={typeof this.props.question.title === 'undefined' ? '' : this.props.question.title}
@@ -34,7 +34,7 @@ export default class QuestionDisplayer extends React.Component {
                     <div className="column is-5"><span className="title is-5">Barème :</span></div>
                     <div className="column is-6"><input className="input"
                                                         name="questionScale"
-                                                        id={this.props.id}
+                                                        id={this.props.index}
                                                         defaultValue={typeof this.props.question.scale === 'undefined' ? '' : this.props.question.scale}
                                                         onChange={this.props.handleInputQuestion}
                                                         onBlur={this.props.saveQuestion}
@@ -52,7 +52,7 @@ export default class QuestionDisplayer extends React.Component {
                     <div className="column is-6"><input className="input"
                                                         name="questionEstimatedTime"
                                                         placeholder="minutes"
-                                                        id={this.props.id}
+                                                        id={this.props.index}
                                                         defaultValue={typeof this.props.question.estimatedTime === 'undefined' ? '' : this.props.question.estimatedTime}
                                                         onChange={this.props.handleInputQuestion}
                                                         onBlur={this.props.saveQuestion}
@@ -66,7 +66,7 @@ export default class QuestionDisplayer extends React.Component {
                     <div className="column is-5"><span className="title is-5">Contenu question :</span></div>
                     <div className="column is-6"><textarea className="textarea"
                                                            name="questionCorrection"
-                                                           id={this.props.id}
+                                                           id={this.props.index}
                                                            defaultValue={typeof this.props.question.correction === 'undefined' ? '' : this.props.question.correction}
                                                            onChange={this.props.handleInputQuestion}
                                                            onBlur={this.props.saveQuestion}

@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import Question from '../Question/Question';
 import {sortableContainer} from "react-sortable-hoc";
 
-let uniqid = require('uniqid');
-
 const SortableContainer = sortableContainer(({children}) => {
     return <ul>{children}</ul>;
 });
