@@ -13,6 +13,7 @@ class Exercice extends React.Component {
     static propTypes = {
         exercices: PropTypes.array,
         handleInputExercice: PropTypes.func,
+        saveNewExercice: PropTypes.func,
         id: PropTypes.number,
         index: PropTypes.number
     };
@@ -50,9 +51,11 @@ class Exercice extends React.Component {
 
     moveQuestion = async ({oldIndex, newIndex}) => {
         let exercices = this.props.exercices.questions;
+        console.log(oldIndex);
+        console.log(newIndex);
         let departure = oldIndex + 1;
         let arrival = newIndex + 1;
-
+        console.log(exercices[oldIndex]);
         if (arrival === departure) return;
         if (arrival > departure) {
             for (let i in exercices) {
@@ -86,6 +89,8 @@ class Exercice extends React.Component {
     handleInputQuestion = async (e) => {
         const {question} = this.state;
         const {name, id} = e.target;
+        console.log(question);
+        console.log(id);
         switch (name) {
             case 'questionTitle':
                 question[id].title = e.target.value;
@@ -100,7 +105,7 @@ class Exercice extends React.Component {
                 this.setState({question: question});
                 break;
             case 'questionEstimatedTime':
-                let time = (e.target.value) * 60
+                let time = (e.target.value) * 60;
                 question[id].estimatedTime = time;
                 this.setState({question: question});
                 break;
@@ -121,14 +126,14 @@ class Exercice extends React.Component {
         let idQuestion = v.target.value;
         const question = [...this.state.question];
         question.splice(idQuestion, 1);
+        let idExo = this.props.exercices._id;
         this.setState({question});
-        this.props.fetchDeleteQuestion(this.props.id, this.props.exercices._id, this.state.question[idQuestion]._id);
+        this.props.fetchDeleteQuestion(this.props.id, idExo, this.state.question[idQuestion]._id);
     };
 
     saveNewQuestion = () => {
         for (let i in this.state.question) {
             if (typeof this.state.question[i]._id !== 'undefined') {
-                console.log(this.state.question[i]);
                 this.props.patchQuestion(this.props.id, this.props.exercices._id, this.state.question[i]._id, this.state.question[i]);
             }
         }
@@ -139,6 +144,7 @@ class Exercice extends React.Component {
             <div>
                 <ExerciceDisplayer handleInputQuestion={this.handleInputQuestion}
                                    handleInputExercice={this.props.handleInputExercice}
+                                   saveNewExercice={this.props.saveNewExercice}
                                    addQuestion={this.addQuestion}
                                    exercices={this.props.exercices}
                                    deleteQuestion={this.deleteQuestion}
