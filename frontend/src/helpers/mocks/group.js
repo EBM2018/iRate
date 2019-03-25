@@ -9,30 +9,35 @@ export const groupsArray = {
             "classes": [
                 {
                     "_id": "e22cc200-c140-4977-9b1d-1bcd584f4156",
+                    "label": "TP1",
                     "date": "04/01/2019",
                     "startTime" : "08:00:00",
                     "endTime" : "12:00:00"
                 },
                 {
                     "_id": "218542ea-28f6-4bda-9bbe-5a36f201ab35",
+                    "label": "Exam Fil Rouge",
                     "date" : moment().format("MM/DD/YYYY"),
                     "startTime" : "00:00:00",
                     "endTime" : "23:00:00",
                 },
                 {
                     "_id": "1bd66db2-6d3e-4e9a-b56f-edb7b868a19f",
+                    "label": "TD long",
                     "date" : "03/21/2019",
                     "startTime" : "13:30:00",
                     "endTime" : "15:30:00"
                 },
                 {
                     "_id": "35bd2b00-34e4-4ec0-b644-fa7cca1c6a8a",
+                    "label": "Amphi",
                     "date": "02/13/2019",
                     "startTime": "13:30:00",
                     "endTime": "17:45:00",
                 },
                 {
                     "_id": "4973bd07-b894-452f-93b0-704f5a70fe11",
+                    "label": "TP2",
                     "date": "02/17/2019",
                     "startTime": "13:30:00",
                     "endTime": "17:45:00",
@@ -45,18 +50,21 @@ export const groupsArray = {
             "classes" : [
                 {
                     "_id": "4daedf70-3b88-4d36-85ba-9195073abc50",
+                    "label": "TP1",
                     "date": "04/01/2019",
                     "startTime" : "08:00:00",
                     "endTime" : "12:00:00"
                 },
                 {
                     "_id": "d1ad704c-5539-4ce9-ad31-f3844ccb923f",
+                    "label": "TD1",
                     "date": "03/10/2019",
                     "startTime" : "08:00:00",
                     "endTime" : "12:00:00"
                 },
                 {
                     "_id": "1ca49ce7-960b-49e8-b68a-074764bef1a9",
+                    "label": "TD2",
                     "date" : "03/01/2019",
                     "startTime" : "10:00:00",
                     "endTime" : "12:00:00"
