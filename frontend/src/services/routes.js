@@ -1,8 +1,8 @@
-import Instructions from '../react/Instructions/Instructions';
+import Instructions from '../react/Exam/CreateExam/Instructions/Instructions';
 
-import CreateExam from '../react/Exam/CreateExam';
+import CreateExam from '../react/Exam/CreateExam/CreateExam';
 import DisplayExam from '../react/Exam/DisplayExam/DisplayExam';
-import ExamList from '../react/Exam/ExamList/ExamList';
+import ExamList from '../react/Exam/DisplayExamList/ExamList';
 import Copy from '../react/Copy/Copy';
 import CopyList from '../react/Copy/CopyList/CopyList';
 import ExamTopic from "../react/Copy/Instructions/GenerateTopic/ExamTopic";
