@@ -2,10 +2,10 @@ import React from 'react';
 import ExerciceDisplayer from './ExerciceDisplayer';
 import PropTypes from "prop-types";
 import connect from "react-redux/es/connect/connect";
-import {postQuestion} from "../../redux/question/actions/post";
-import {deleteQuestion} from "../../redux/question/actions/delete";
-import {patchQuestion} from "../../redux/question/actions/patch";
-import {getExam} from "../../redux/exams/actions/getSingle";
+import {postQuestion} from "../../../../redux/question/actions/post";
+import {deleteQuestion} from "../../../../redux/question/actions/delete";
+import {patchQuestion} from "../../../../redux/question/actions/patch";
+import {getExam} from "../../../../redux/exams/actions/getSingle";
 
 
 class Exercice extends React.Component {
