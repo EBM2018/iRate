@@ -2,10 +2,10 @@ import React from 'react'
 import ExerciceListDisplayer from './ExerciceListDisplayer';
 import PropTypes from "prop-types";
 import connect from "react-redux/es/connect/connect";
-import {patchExercice} from "../../../redux/exercice/actions/patch";
-import {postExercice} from "../../../redux/exercice/actions/post";
-import {deleteExercice} from "../../../redux/exercice/actions/delete";
-import {getExam} from "../../../redux/exams/actions/getSingle";
+import {patchExercice} from "../../../../../redux/exercice/actions/patch";
+import {postExercice} from "../../../../../redux/exercice/actions/post";
+import {deleteExercice} from "../../../../../redux/exercice/actions/delete";
+import {getExam} from "../../../../../redux/exams/actions/getSingle";
 
 class ExerciceList extends React.PureComponent {
 
