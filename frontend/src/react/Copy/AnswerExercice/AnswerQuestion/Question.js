@@ -1,21 +1,31 @@
 import React, { Component } from 'react';
-import connect from 'react-redux/es/connect/connect';
+import PropTypes from 'prop-types';
 import { EditorState, RichUtils } from 'draft-js';
 
 import QuestionDisplayer from './QuestionDisplayer';
-import {
-  createRawContent
-} from '../../../../helpers/richContent';
+import {createRawContent, createRichContentFromRaw} from '../../../../helpers/richContent';
 
 import ControllerDisplayer from './Controller/ControllerDisplayer';
 import AnswerDisplayer from './Answer/AnswerDisplayer';
 
 import { patchAnswer, postAnswer } from '../../../../services/answers';
 
-class Question extends Component {
+export default class Question extends Component {
+
+  static propTypes = {
+    question: PropTypes.object.isRequired,
+    showScale: PropTypes.bool.isRequired,
+    copy: PropTypes.object.isRequired,
+    index: PropTypes.number.isRequired
+  };
+
   state = {
     editorState: EditorState.createEmpty(),
     answer: ''
+  };
+
+  componentDidMount() {
+    this.checkForExistingAnswer();
   };
 
   handleChange = editorState => {
@@ -41,21 +51,30 @@ class Question extends Component {
     }
   };
 
+  checkForExistingAnswer = () => {
+    const {question, copy} = this.props;
+    const answer = copy.answers && copy.answers.find(x => x.refQuestion === question._id);
+    if (answer) {
+      const editorState = createRichContentFromRaw(answer.content);
+      this.setState({ answer, editorState });
+    }
+  };
+
   handleControllerClick = async () => {
     const { editorState, answer } = this.state;
     const rawContent = createRawContent(editorState);
-    const copyId = this.props.copy._id;
+    const {copy, question} = this.props;
 
     if (answer._id) {
       const answerData = await patchAnswer(
-        copyId,
-        this.props.id,
+        copy._id,
+        question._id,
         answer._id,
         rawContent
       );
       this.setState({ answer: answerData });
     } else {
-      const answerData = await postAnswer(copyId, this.props.id, rawContent);
+      const answerData = await postAnswer(copy._id, question._id, rawContent);
       this.setState({ answer: answerData });
     }
   };
@@ -79,12 +98,13 @@ class Question extends Component {
   };
 
   render() {
+    const {showScale, question, index} = this.props;
     return (
       <>
         <QuestionDisplayer
-          question={this.props.question}
-          showScale={this.props.showScale}
-          index={this.props.index}
+          question={question}
+          showScale={showScale}
+          index={index}
         />
         <div className="box">
           <AnswerDisplayer
@@ -106,15 +126,3 @@ class Question extends Component {
     );
   }
 }
-
-export default connect(
-  state => ({
-    loading: state.exams.loading,
-    copy: state.copiesStore.copies,
-    answers: state.answer
-  }),
-  dispatch => ({
-    /*editAnswer: (copyId, questionId, answerId, answerContent) =>
-      dispatch(patchAnswer(copyId, questionId, answerId, answerContent))*/
-  })
-)(Question);

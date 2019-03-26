@@ -6,16 +6,23 @@ export default class Instructions extends Component {
   static propTypes = {
     exam: PropTypes.object,
     session: PropTypes.object,
+    startedCopy: PropTypes.object,
     start: PropTypes.func.isRequired
   };
 
   render() {
-    const { session, exam } = this.props;
+    const { session, exam, startedCopy } = this.props;
     return (
       <section className="section">
         <div className="box notification is-info">
           <p className="title">{exam.title}</p>
         </div>
+        {
+          startedCopy &&
+          (<div className="notification is-warning">
+            <p>Vous avez déjà démarré un examen, cliquer sur "continuer" pour reprendre</p>
+          </div>)
+        }
         <div className="box">
           <div className="columns">
             <div className="column is-one-third">
@@ -76,7 +83,7 @@ export default class Instructions extends Component {
                 className="button is-medium is-info"
                 onClick={this.props.start}
               >
-                Démarrer l'examen
+                { startedCopy ? "Reprendre" : "Démarrer" } l'examen
               </button>
             </div>
           </div>

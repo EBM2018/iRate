@@ -171,6 +171,3 @@ export default connect((state, ownProps) => ({
     patchQuestion: (idExam, idExercice, idQuestion, questionToAdd) => dispatch(patchQuestion(idExam, idExercice, idQuestion, questionToAdd)),
     fetchExam: (id) => dispatch(getExam(id)),
 }))(Exercice);
-
-
-

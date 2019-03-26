@@ -4,7 +4,7 @@ import Question from './AnswerQuestion/Question';
 export default class ExerciceDisplayer extends Component {
   render() {
     const { title, questions } = this.props.exercice;
-    const { showScale } = this.props;
+    const { showScale, copy } = this.props;
     return (
       <div>
         <div className="box notification is-info">
@@ -13,10 +13,10 @@ export default class ExerciceDisplayer extends Component {
         {questions.map((question, index) => (
           <Question
             key={question._id}
-            id={question._id}
             question={question}
             showScale={showScale}
             index={index}
+            copy={copy}
           />
         ))}
         <div className="steps-actions">

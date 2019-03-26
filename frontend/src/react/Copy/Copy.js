@@ -3,6 +3,7 @@ import connect from 'react-redux/es/connect/connect';
 
 import { postCopy } from '../../redux/copies/actions/post';
 import { getExam } from '../../redux/exams/actions/getSingle';
+import { getCopy } from '../../redux/copies/actions/getSingle';
 
 import Instructions from './Instructions/Instructions';
 import Exercice from './AnswerExercice/Exercice';
@@ -17,7 +18,7 @@ class Copy extends Component {
     session: {},
     step: 0, // in: 0 (instructions), 1 (exercice), 2 (confirmation)
     exerciceIndex: null,
-    startedCopyId: null,
+    startedCopy: null,
     storage: []
   };
 
@@ -27,53 +28,56 @@ class Copy extends Component {
     const sessionId = 'e22cc200-c140-4977-9b1d-gvrbbb4156';
     const aSession = await session.classes.find(session => sessionId === session._id);
     this.setState({ session: aSession });
-    this.checkLocalStorage();
+    await this.checkLocalStorage();
   };
 
-  checkLocalStorage = () => {
+  checkLocalStorage = async () => {
     const copies = this.getValidLocalStorage();
     if (!copies) return;
 
-    this.setState({ storage: copies });
-    console.log(copies);
+    const copy = copies.find(x => x.examId === this.props.route.match.params.id);
 
-    const copy = copies.find(copy => copy.examId === this.props.route.match.params.id);
     // We found a copy in progress for this exam
     if (copy) {
-      console.log(copy);
-      this.setState({ startedCopy: copy._id });
+      this.setState({ startedCopy: copy });
+      await this.props.fetchCopy(copy.copyId);
     }
   }
 
   getValidLocalStorage = () => {
     const storage = localStorage.getItem(COPIES_KEY) && JSON.parse(localStorage.getItem(COPIES_KEY));
-    if (!storage) return null;
-
-    localStorage.removeItem(COPIES_KEY);
+    if (!storage || storage.length === 0 || !storage.some(el => el !== null)) return null;
 
     // Check that each item is valid, else delete it
     for (let i = 0; i < storage.length; i++) {
       const element = storage[i];
       const expTime = element.ttl || null;
-      if (expTime && expTime + element.now > Date.now()) {
+      if (expTime && expTime + element.now < Date.now()) {
         delete storage[i];
       }
     }
 
-    localStorage.setItem(COPIES_KEY, JSON.stringify(storage));
-    return storage;
+    storage ? localStorage.setItem(COPIES_KEY, JSON.stringify(storage)) : localStorage.removeItem(COPIES_KEY);
+    return (storage.length > 0 ? storage : null);
   }
 
   storeLocalCopy = () => {
-    const {storage} = this.state;
+    const storage = this.getValidLocalStorage() || [];
     const {exam, copy} = this.props;
     // Update the local storage
     storage.push({
       examId: exam._id,
       copyId: copy._id,
-      ttl: 3600000, // 1H by default
+      ttl: 14400000, // 4H by default
       now: Date.now()
     });
+    localStorage.setItem(COPIES_KEY, JSON.stringify(storage));
+  }
+
+  updateLocalCopy = () => {
+    const storage = this.getValidLocalStorage();
+    const index = storage.findIndex(x => x.examId === this.props.route.match.params.id);
+    storage[index].now = Date.now();
     localStorage.setItem(COPIES_KEY, JSON.stringify(storage));
   }
 
@@ -81,16 +85,20 @@ class Copy extends Component {
    * @param {Boolean} forceConfirmation: whether we want to force the confirmation
    */
   handleNext = async (forceConfirmation = false) => {
-    const { step, exerciceIndex } = this.state;
+    const { step, exerciceIndex, startedCopy } = this.state;
     const { exercices } = this.props.exam;
 
     if (step === 0) {
       // Create the copy
-      await this.props.createCopy({
-        exam: this.props.exam._id
-        //TODO: add the userID (logged in) --> Delete the mock data bc database requires an objectId element.
-      });
-      this.storeLocalCopy();
+      if (!startedCopy) {
+        await this.props.createCopy({
+          exam: this.props.exam._id
+          //TODO: add the userID (logged in) --> Delete the mock data bc database requires an objectId element.
+        });
+        this.storeLocalCopy();
+      } else {
+        this.updateLocalCopy();
+      }
       this.setState({ exerciceIndex: 0, step: 1 });
     } else {
       this.setState({
@@ -103,13 +111,13 @@ class Copy extends Component {
 
   renderContent() {
     const { exam, copy } = this.props;
-    const { exerciceIndex } = this.state;
+    const { exerciceIndex, startedCopy } = this.state;
     switch (this.state.step) {
       case 0:
-        console.log(copy);
         return (
           <Instructions
             exam={exam}
+            startedCopy={startedCopy}
             session={this.state.session}
             start={this.handleNext}
           />
@@ -119,7 +127,7 @@ class Copy extends Component {
       default:
         return (
           <Exercice
-            copyId={copy._id}
+            copy={copy}
             exercice={exam.exercices[exerciceIndex]}
             showScale={exam.showScale}
             nextExercice={this.handleNext}
@@ -151,7 +159,7 @@ class Copy extends Component {
           />
         )}
         <div className="steps-content">
-          <div className="step-content has-text-centered">
+          <div className="step-content has-text-centered pt-1">
             {this.renderContent()}
           </div>
         </div>
@@ -168,6 +176,7 @@ export default connect(
   }),
   dispatch => ({
     fetchExam: id => dispatch(getExam(id)),
+    fetchCopy: copyId => dispatch(getCopy(copyId)),
     createCopy: copy => dispatch(postCopy(copy))
   })
 )(Copy);
