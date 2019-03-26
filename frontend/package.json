@@ -16,6 +16,7 @@
     "prop-types": "^15.6.2",
     "qs": "^6.6.0",
     "react": "^16.7.0",
+    "react-day-picker": "^7.3.0",
     "react-dnd": "^7.0.2",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",
