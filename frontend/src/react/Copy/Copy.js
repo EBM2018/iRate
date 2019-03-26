@@ -10,6 +10,8 @@ import Exercice from './AnswerExercice/Exercice';
 import HeaderCopy from './HeaderCopy';
 import ConfirmCopy from './ConfirmCopy';
 
+import Error from '../utils/Error';
+
 import { session } from '../../helpers/mocks/dataMock';
 
 const COPIES_KEY = 'irate_copies';
@@ -19,7 +21,7 @@ class Copy extends Component {
     step: 0, // in: 0 (instructions), 1 (exercice), 2 (confirmation)
     exerciceIndex: null,
     startedCopy: null,
-    storage: []
+    displayError: true
   };
 
   async componentDidMount() {
@@ -95,11 +97,11 @@ class Copy extends Component {
           exam: this.props.exam._id
           //TODO: add the userID (logged in) --> Delete the mock data bc database requires an objectId element.
         });
-        this.storeLocalCopy();
+        if (!this.props.err) this.storeLocalCopy();
       } else {
         this.updateLocalCopy();
       }
-      this.setState({ exerciceIndex: 0, step: 1 });
+      if (!this.props.err) this.setState({ exerciceIndex: 0, step: 1 });
     } else {
       this.setState({
         step:
@@ -144,26 +146,42 @@ class Copy extends Component {
     this.setState({ exerciceIndex: index });
   }
 
+  closeError = () => {
+    this.setState({displayError: false});
+  }
+
   render() {
-    const { exerciceIndex, step } = this.state;
+    const { exerciceIndex, step, displayError } = this.state;
     const { exercices } = this.props.exam;
+    const {err} = this.props;
     return (
-      <div className="tile is-child">
-        {exercices && (
-          <HeaderCopy
-            step={step}
-            confirm={() => this.handleNext(true)}
-            currentExercice={exerciceIndex}
-            exercices={exercices}
-            navigate={index => this.navigate(index)}
-          />
+      <>
+        {err && (
+          displayError && (
+            <Error
+              errors={err}
+              close={this.closeError}
+              status={err.response.status}
+            />
+          )
         )}
-        <div className="steps-content">
-          <div className="step-content has-text-centered py-2">
-            {this.renderContent()}
+        <div className="tile is-child">
+          {exercices && (
+            <HeaderCopy
+              step={step}
+              confirm={() => this.handleNext(true)}
+              currentExercice={exerciceIndex}
+              exercices={exercices}
+              navigate={index => this.navigate(index)}
+            />
+          )}
+          <div className="steps-content">
+            <div className="step-content has-text-centered py-2">
+              {this.renderContent()}
+            </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }
@@ -172,7 +190,8 @@ export default connect(
   state => ({
     exam: state.exams.exams,
     loading: state.exams.loading,
-    copy: state.copiesStore.copies
+    copy: state.copiesStore.copies,
+    err: state.copiesStore.errorMessage
   }),
   dispatch => ({
     fetchExam: id => dispatch(getExam(id)),

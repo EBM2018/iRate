@@ -9,6 +9,7 @@ import ControllerDisplayer from './Controller/ControllerDisplayer';
 import AnswerDisplayer from './Answer/AnswerDisplayer';
 
 import { patchAnswer, postAnswer } from '../../../../services/answers';
+import Error from '../../../utils/Error';
 
 export default class Question extends Component {
 
@@ -21,7 +22,9 @@ export default class Question extends Component {
 
   state = {
     editorState: EditorState.createEmpty(),
-    answer: ''
+    answer: '',
+    err: '',
+    saved: false
   };
 
   componentDidMount() {
@@ -29,7 +32,7 @@ export default class Question extends Component {
   };
 
   handleChange = editorState => {
-    this.setState({ editorState });
+    this.setState({ editorState, saved: false });
   };
 
   handleKeyCommand = command => {
@@ -66,17 +69,23 @@ export default class Question extends Component {
     const {copy, question} = this.props;
 
     if (answer._id) {
-      const answerData = await patchAnswer(
-        copy._id,
-        question._id,
-        answer._id,
-        rawContent
-      );
-      console.log(answerData);
-      this.setState({ answer: answerData });
+
+      try {
+        const answerData = await patchAnswer(copy._id, question._id, answer._id, rawContent);
+        this.setState({answer: answerData, saved: true});
+      } catch (err) {
+        this.setState({err});
+      }
+
     } else {
-      const answerData = await postAnswer(copy._id, question._id, rawContent);
-      this.setState({ answer: answerData });
+
+      try {
+        const answerData = await postAnswer(copy._id, question._id, rawContent);
+        this.setState({ answer: answerData, saved: true });
+      } catch (err) {
+        this.setState({err});
+      }
+
     }
   };
 
@@ -100,8 +109,12 @@ export default class Question extends Component {
 
   render() {
     const {showScale, question, index} = this.props;
+    const {err, saved} = this.state;
     return (
       <>
+        {
+          err && <Error errors={err} status={err.response.status}/>
+        }
         <QuestionDisplayer
           question={question}
           showScale={showScale}
@@ -114,13 +127,14 @@ export default class Question extends Component {
             handleEditorClick={this.handleEditorClick}
             handleChange={this.handleChange}
             handleKeycommand={this.handleKeyCommand}
-            handleBlur={this.handleBlur}
+            handleBlur={this.handleControllerClick}
             onUnderlineClick={this.onUnderlineClick}
             onBoldClick={this.onBoldClick}
             onItalicClick={this.onItalicClick}
           />
           <ControllerDisplayer
             handleControllerClick={this.handleControllerClick}
+            saved={saved}
           />
         </div>
       </>

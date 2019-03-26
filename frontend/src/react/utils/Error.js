@@ -31,14 +31,14 @@ export default class Error extends Component {
     };
 
     render() {
-        const { errorMessage, status } = this.state;
+        const { errorMessage } = this.state;
         return (
             <>
                 <div className="notification is-danger">
                     <button className="delete" onClick={this.close}></button>
                     {errorMessage}
                 </div>
-                <div className="hero">
+                {/* <div className="hero">
                     <div className="hero-body">
                         <div className="container">
                             <div className="has-text-centered">
@@ -52,9 +52,7 @@ export default class Error extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
-
-
+                </div> */}
             </>
         )
     }
