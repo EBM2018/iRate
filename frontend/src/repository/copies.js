@@ -1,4 +1,4 @@
-import { apiRequest } from '../services/api';
+import {apiRequest} from '../services/api';
 
 export const postCopy = async copy => {
   return await apiRequest(`copies`, 'post', {
@@ -19,20 +19,8 @@ export const postAnswer = async (copyId, questionId, answerContent) => {
   return data;
 };
 
-export const patchAnswer = async (
-  copyId,
-  questionId,
-  answerId,
-  answerContent
-) => {
-  /*const data = await apiRequest(`/copies/${copyId}/answers/${answerId}`, 'patch', {
-        '_id': answerId,
-        'content': answerContent,
-        'refQuestion': questionId
-    });
-    return data*/
-  return {
-    _id: "hihi jt'ai bien patché",
-    content: 'Cié encore moé'
-  };
+export const patchCopy = async (copy) => {
+  return await apiRequest(`/copies/${copy._id}`, 'patch', {
+      ...copy
+    })
 };

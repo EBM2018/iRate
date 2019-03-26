@@ -2,8 +2,11 @@ import React, {Component} from 'react';
 import connect from 'react-redux/es/connect/connect';
 import moment from 'moment';
 
-import {submitCopy} from '../../../redux/copies/actions/patch';
 import ConfirmCopyDisplayer from './ConfirmCopyDisplayer';
+import {patchCopy} from '../../../repository/copies';
+import {Redirect} from 'react-router';
+
+const COPIES_KEY = 'irate_copies';
 
 class ConfirmCopy extends Component {
   state = {
@@ -13,12 +16,13 @@ class ConfirmCopy extends Component {
     forceClose: false,
     nbrOfAnswers: 0,
     nbrOfQuestions: 0,
+    redirect: false,
   };
 
   async componentDidMount() {
-      const timerId = await setInterval(() => this.getTimeBeforeEnd(), 1000);
-      this.setState({timerId});
-      this.addNumberOfQuestionsAndAnswers()
+    const timerId = await setInterval(() => this.getTimeBeforeEnd(), 1000);
+    this.setState({timerId});
+    this.addNumberOfQuestionsAndAnswers();
   }
 
   componentWillUnmount() {
@@ -26,25 +30,25 @@ class ConfirmCopy extends Component {
   }
 
   getTimeBeforeEnd = () => {
-    const { exam } = this.props;
+    const {exam} = this.props;
     const dateTable = exam.session.date.split('/');
-    const endDate = dateTable[2] + '-' + dateTable[0] + '-' + dateTable[1] + "T" + exam.session.endTime;
+    const endDate = dateTable[2] + '-' + dateTable[0] + '-' + dateTable[1] + 'T' + exam.session.endTime;
     const endDateMoment = moment(endDate);
     const timeDiff = endDateMoment.diff(moment(), 'seconds');
-    const timer = moment.utc(timeDiff * 1000).format("HH:mm:ss");
+    const timer = moment.utc(timeDiff * 1000).format('HH:mm:ss');
     this.setState({timer});
-    if(!this.state.lessFiveMinutes && !this.state.forceClose && timeDiff < 360) {
+    if (!this.state.lessFiveMinutes && !this.state.forceClose && timeDiff < 360) {
       this.toggleLessFiveMinutes(false)();
     }
   };
 
   addNumberOfQuestionsAndAnswers = () => {
-    const { exam, copy } = this.props;
+    const {exam, copy} = this.props;
     const nbrOfQuestions = exam.exercices.reduce((total, exercice) => {
       return total.concat(exercice.questions);
     }, []).length;
     const nbrOfAnswers = copy.answers.length;
-    this.setState({nbrOfQuestions,nbrOfAnswers})
+    this.setState({nbrOfQuestions, nbrOfAnswers});
   };
 
   toggleLessFiveMinutes = (forceClose) => () => {
@@ -52,15 +56,28 @@ class ConfirmCopy extends Component {
     this.setState({lessFiveMinutes: !lessFiveMinutes, forceClose});
   };
 
+  confirmCopy = async () => {
+    const {copy} = this.props;
+    copy.isSubmitted = true;
+    const data = await patchCopy(copy);
+    if (data) {
+      localStorage.removeItem(COPIES_KEY);
+      this.setState({redirect: true});
+    }
+  };
+
   render() {
-    const { exam, copy} = this.props;
-    const { nbrOfQuestions, nbrOfAnswers} = this.state;
+    const {nbrOfQuestions, nbrOfAnswers, redirect} = this.state;
     return (
-      <ConfirmCopyDisplayer nbrOfQuestions={nbrOfQuestions}
-                            nbrOfAnswers={nbrOfAnswers}
-                            timer={this.state.timer}
-                            lessFiveMinutes={this.state.lessFiveMinutes}
-                            toggleLessFiveMinutes={this.toggleLessFiveMinutes}/>
+      <>
+        <ConfirmCopyDisplayer nbrOfQuestions={nbrOfQuestions}
+                              nbrOfAnswers={nbrOfAnswers}
+                              timer={this.state.timer}
+                              lessFiveMinutes={this.state.lessFiveMinutes}
+                              confirmCopy={this.confirmCopy}
+                              toggleLessFiveMinutes={this.toggleLessFiveMinutes}/>
+        {redirect ? <Redirect to={'/copies'}/> : null}
+      </>
     );
   }
 }
@@ -68,9 +85,6 @@ class ConfirmCopy extends Component {
 export default connect(
   state => ({
     loading: state.exams.loading,
-    copy: state.copiesStore.copies
+    copy: state.copiesStore.copies,
   }),
-  dispatch => ({
-    confirmCopy: copy => dispatch(submitCopy(copy))
-  })
 )(ConfirmCopy);

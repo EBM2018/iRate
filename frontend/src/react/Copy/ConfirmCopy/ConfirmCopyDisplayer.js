@@ -7,7 +7,8 @@ export default class ConfirmCopyDisplayer extends Component {
             lessFiveMinutes,
             nbrOfQuestions,
             nbrOfAnswers,
-            toggleLessFiveMinutes,} = this.props;
+            confirmCopy,
+            toggleLessFiveMinutes} = this.props;
     return (
       <section className="section">
         <div className="box notification is-info">
@@ -28,7 +29,7 @@ export default class ConfirmCopyDisplayer extends Component {
             <div className="column is-right">
               <div className="buttons has-addons is-right">
                 <button className="button is-medium is-info"
-                        onClick={this.props.confirmCopy}>
+                        onClick={confirmCopy}>
                   Confirmer
                 </button>
               </div>
