@@ -1,11 +1,13 @@
 import Instructions from '../react/Exam/CreateExam/Instructions/Instructions';
 
-import CreateExam from '../react/Exam/CreateExam/CreateExam';
-import DisplayExam from '../react/Exam/DisplayExam/DisplayExam';
-import ExamList from '../react/Exam/DisplayExamList/ExamList';
-import Copy from '../react/Copy/Copy';
-import CopyList from '../react/Copy/CopyList/CopyList';
-import ExamTopic from '../react/Copy/Instructions/GenerateTopic/ExamTopic';
+import CreateExam from "../react/Exam/CreateExam/CreateExam";
+import DisplayExam from "../react/Exam/DisplayExam/DisplayExam";
+import ExamList from "../react/Exam/DisplayExamList/ExamList";
+import Copy from "../react/Copy/Copy";
+import CopyList from "../react/Copy/CopyList/CopyList";
+import ExamTopic from "../react/Copy/Instructions/GenerateTopic/ExamTopic";
+import CopiesOfExam from "../react/Correction/CopiesOfExam";
+import CopyCorrection from "../react/Correction/CopyCorrection";
 
 export const privateRoutes = {
   Instructions: {
@@ -41,6 +43,16 @@ export const privateRoutes = {
   CopyList: {
     path: '/copies',
     component: CopyList,
-    title: 'Liste des copies associées à un élève',
+    title: "Liste des copies associées à un élève"
   },
+  Correction: {
+    path: "/correction/:examId",
+    component: CopiesOfExam,
+    title: "Liste des copies associées à un examen"
+  },
+  CopyCorrection: {
+    path: "/correction/:examId/copy/:copyId",
+    component: CopyCorrection,
+    title: "Corriger une copie"
+  }
 };
