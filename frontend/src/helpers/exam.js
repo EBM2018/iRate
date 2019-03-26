@@ -61,3 +61,23 @@ export const sortExamsBySessionDate = (exams) => {
         } else return 1;
     })
 };
+
+export const filterPassedExams = (exams) => {
+  return exams.filter(exam => {
+    if(!exam.session) {
+      return false
+    }
+    const examDate = exam.session.date.split("/")[2] + "-" +  exam.session.date.split("/")[0] + "-" + exam.session.date.split("/")[1]+"T"+exam.session.endTime;
+    return moment().isAfter(examDate);
+  })
+};
+
+export const filterNotPassedExams = (exams) => {
+  return exams.filter(exam => {
+    if(!exam.session) {
+      return false
+    }
+    const examDate = exam.session.date.split("/")[2] + "-" +  exam.session.date.split("/")[0] + "-" + exam.session.date.split("/")[1]+"T"+exam.session.endTime;
+    return !moment().isAfter(examDate);
+  })
+};
