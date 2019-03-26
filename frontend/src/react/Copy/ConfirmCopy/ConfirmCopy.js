@@ -58,7 +58,7 @@ class ConfirmCopy extends Component {
 
   confirmCopy = async () => {
     const {copy} = this.props;
-    copy.isSubmitted = true;
+    copy.submissionTime = moment().format("YYYY-MM-DDTHH:mm:ss");
     const data = await patchCopy(copy);
     if (data) {
       localStorage.removeItem(COPIES_KEY);

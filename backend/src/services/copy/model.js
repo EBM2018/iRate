@@ -12,10 +12,6 @@ const CopySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Answer',
   }],
-  isSubmitted: {
-    type: Boolean,
-    default: false,
-  },
   author: {
     type: mongoose.Schema.Types.ObjectId,
   },
