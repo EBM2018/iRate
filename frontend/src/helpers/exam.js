@@ -81,3 +81,25 @@ export const filterNotPassedExams = (exams) => {
     return !moment().isAfter(examDate);
   })
 };
+
+export const filterFinalisedExams = (exams) => {
+  return exams.filter(exam => {
+    return exam.isFinalised
+  })
+};
+
+export const filterNotFinalisedExams = (exams) => {
+  return exams.filter(exam => {
+    return !exam.isFinalised
+  })
+};
+
+export const filterExamsByDate = (exams, day) => {
+  return exams.filter(exam => {
+    if(!exam.session) {
+      return false
+    }
+    const examDate = exam.session.date.split("/")[2] + "-" +  exam.session.date.split("/")[0] + "-" + exam.session.date.split("/")[1]+"T12:00:00";
+    return moment(examDate).isSame(day)
+  })
+};

@@ -10,7 +10,7 @@ class ExamListDisplayer extends Component {
             <div className="box">
               <div className="title">Examen finalisés</div>
             </div>
-            {this.props.finalisedExams.length && this.props.finalisedExams.map((exam) => <div className="content" key={exam._id}>
+            {this.props.finalisedExams && this.props.finalisedExams.map((exam) => <div className="content" key={exam._id}>
               <div className="card">
                 <header className="card-header">
                   <p className="card-header-title has-no-margin-bottom">Examen: {exam.title}</p>
@@ -41,7 +41,7 @@ class ExamListDisplayer extends Component {
             <div className="box">
               <div className="title">Examen créés</div>
             </div>
-            {this.props.createdExams.length && this.props.createdExams.map((exam) => <div className="content" key={exam._id}>
+            {this.props.createdExams && this.props.createdExams.map((exam) => <div className="content" key={exam._id}>
               <div className="card">
                 <header className="card-header">
                   <p className="card-header-title has-no-margin-bottom">Examen: {exam.title}</p>
@@ -74,7 +74,7 @@ class ExamListDisplayer extends Component {
             <div className="box">
               <div className="title">Examen passés</div>
             </div>
-            {this.props.passedExams.length && this.props.passedExams.map((exam) => <div className="content" key={exam._id}>
+            {this.props.passedExams && this.props.passedExams.map((exam) => <div className="content" key={exam._id}>
               <div className="card">
                 <header className="card-header">
                   <p className="card-header-title has-no-margin-bottom">Examen: {exam.title}</p>

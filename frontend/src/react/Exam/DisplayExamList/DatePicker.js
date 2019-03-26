@@ -7,6 +7,7 @@ export default class DatePicker extends Component {
       simplified,
       handleSimplified,
       handleDayChange,
+      cancelFilterFromCalendar,
       day
     } = this.props;
 
@@ -17,10 +18,11 @@ export default class DatePicker extends Component {
             Filtrer par date
           </button>
           :
-          <aside className=" box">
-            <p className="subtitle">Filtrer sur le calendrier</p>
-            <DayPicker onDayClick={handleDayChange} selectedDays={day ? day : undefined}/>
-          </aside>}
+              <aside className="box">
+                <p className="subtitle">Filtrer sur le calendrier</p>
+                <DayPicker className={"tile"} onDayClick={handleDayChange} selectedDays={day ? day : undefined}/>
+                <button className="button is-info is-outlined" onClick={cancelFilterFromCalendar}>Annuler</button>
+              </aside>}
       </div>
     );
   }

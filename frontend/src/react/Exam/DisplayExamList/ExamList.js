@@ -5,8 +5,14 @@ import ExamListDisplayer from './ExamListDisplayer';
 import {getExams} from '../../../redux/exams/actions/get';
 import FinaliseExamDisplayer from './FinaliseExam/FinaliseExamDisplayer';
 import {patchExam} from '../../../redux/exams/actions/patch';
-import {filterNotPassedExams, filterPassedExams, sortExamsBySessionDate} from '../../../helpers/exam';
+import {
+  filterExamsByDate, filterFinalisedExams, filterNotFinalisedExams,
+  filterNotPassedExams,
+  filterPassedExams,
+  sortExamsBySessionDate,
+} from '../../../helpers/exam';
 import DatePicker from './DatePicker';
+import 'react-day-picker/lib/style.css';
 
 class ExamList extends Component {
   state = {
@@ -20,25 +26,27 @@ class ExamList extends Component {
   async componentDidMount() {
     await this.props.fetchExamsWithScale();
     if(this.props.exams) {
-      const exams = await sortExamsBySessionDate(this.props.exams);
-      const passedExams = await sortExamsBySessionDate(filterPassedExams(this.props.exams));
-      const notPassedExams = await sortExamsBySessionDate(filterNotPassedExams(this.props.exams));
-      const finalisedExams = await notPassedExams.filter(exam => {
-        return exam.isFinalised
-      });
-      const createdExams = await sortExamsBySessionDate(exams.filter(exam => {
-        return !exam.isFinalised
-      }));
-      this.setState({passedExams,finalisedExams,createdExams});
+      await this.filterByCalendarDate();
     }
   }
 
-  filterByCalendarDate() {
-    const { day } = this.state;
-    if (day) {
+  filterByCalendarDate = async (day) => {
+      let exams = await sortExamsBySessionDate(this.props.exams);
+      if(day) {
+        await this.setState({day});
+        exams = await filterExamsByDate(exams,day);
+      }
+      const passedExams = await filterPassedExams(exams);
+      const notPassedExams = await filterNotPassedExams(exams);
+      const finalisedExams = await filterFinalisedExams(notPassedExams);
+      const createdExams = await filterNotFinalisedExams(exams);
+      this.setState({passedExams,finalisedExams,createdExams})
+  };
 
-    }
-  }
+  cancelFilterFromCalendar = async () => {
+    await this.filterByCalendarDate();
+    await this.setState({day:'',simplified:true});
+  };
 
   toggleFinalise = (id) => () => {
     this.setState({shouldFinaliseRender: !this.state.shouldFinaliseRender, examId: id});
@@ -62,10 +70,6 @@ class ExamList extends Component {
     this.setState({simplified})
   };
 
-  handleDayChange = (day) => {
-    this.setState({day});
-  };
-
   render() {
     return (
       <>
@@ -79,7 +83,8 @@ class ExamList extends Component {
                                                       toggleFinalise={this.toggleFinalise}/> : 'waiting'}
         <DatePicker simplified={this.state.simplified}
                     handleSimplified={this.handleSimplified}
-                    handleDayChange={this.handleDayChange}
+                    handleDayChange={this.filterByCalendarDate}
+                    cancelFilterFromCalendar={this.cancelFilterFromCalendar}
                     day={this.state.day}/>
         {this.state.shouldFinaliseRender ? <FinaliseExamDisplayer toggleFinalise={this.toggleFinalise}
                                                                   id={this.state.examId}
