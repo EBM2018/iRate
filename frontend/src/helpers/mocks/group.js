@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from "moment";
 
 export const groupsArray = {
   '_id': '4247b1cb-fb3c-49ad-80dd-9a354714e9cf',

@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from "moment";
 
 /**
  * Mutate an exam by adding the estimated timing and scale
@@ -6,15 +6,14 @@ import moment from 'moment';
  * @param {Object} exam
  * @returns {Object}
  */
-export const addTimeAndScale = (exam) => {
+export const addTimeAndScale = exam => {
   let examScale = 0,
     examTime = 0,
     exerciceScale = 0,
     exerciceTime = 0;
   const clonedExam = JSON.parse(JSON.stringify(exam));
 
-  if (!exam || !exam.exercices)
-    return;
+  if (!exam || !exam.exercices) return;
 
   for (let j = 0; j < clonedExam.exercices.length; j++) {
     for (let k = 0; k < clonedExam.exercices[j].questions.length; k++) {
@@ -47,7 +46,7 @@ export const addTimeAndScale = (exam) => {
  * @param {Array} exams
  * @returns {Array}
  */
-export const sortExamsBySessionDate = (exams) => {
+export const sortExamsBySessionDate = exams => {
   return exams.sort((a, b) => {
     if (!a.session) {
       return 1;

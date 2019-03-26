@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Switch as RouterSwitch} from 'react-router';
 
-import {privateRoutes} from '../../services/routes';
+import { privateRoutes } from '../../services/routes';
 import LayoutApp from '../Layout/LayoutApp';
 import NotFound from '../utils/NotFound';
 
