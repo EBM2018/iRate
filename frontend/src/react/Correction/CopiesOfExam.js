@@ -14,14 +14,10 @@ class CopiesOfExam extends Component {
     console.log(copies);
     this.setState({copies: copies})
   }
-  showCopy = (copyId) => () => {
-    console.log(copyId);
-  }
   render () {
     return (
       <CopiesOfExamDisplayer 
         copies={this.state.copies}
-        showCopy={this.showCopy}
         examId={this.props.route.match.params.examId}>
       </CopiesOfExamDisplayer>
     )

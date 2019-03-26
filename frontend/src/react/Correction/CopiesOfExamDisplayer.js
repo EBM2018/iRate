@@ -6,7 +6,7 @@ class CopiesOfExamDisplayer extends Component {
     const copies = this.props.copies.length > 0 && this.props.copies.map((copy) => {
       const examId = this.props.examId;
       return (
-      <Link to={`/correction/${examId}/copy/${copy._id}`} className="content pointer" key={copy._id} onClick={this.props.showCopy(copy._id)}>
+      <Link to={`/correction/${examId}/copy/${copy._id}`} className="content pointer" key={copy._id}>
         <div className="card">
           <header className="card-header">
             <div className="card-header-title has-no-margin-bottom">
