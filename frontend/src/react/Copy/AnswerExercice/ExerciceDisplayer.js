@@ -20,18 +20,19 @@ export default class ExerciceDisplayer extends Component {
           />
         ))}
         <div className="steps-actions">
-          <div className="buttons field is-grouped">
-            <div className="control">
-              <div className="steps-action">
-                <a
-                  href="#/"
-                  data-nav="next"
-                  className="button is-info is-outlined is-medium"
-                  onClick={this.props.handleNext}
-                >
-                  Next
-                </a>
-              </div>
+          <div className="buttons field is-grouped columns">
+            <div className="is-4 is-offset-8 column text-right">
+              <a
+                href="#/"
+                data-nav="next"
+                className="button is-info is-outlined is-medium is-4 is-offset-8"
+                onClick={this.props.handleNext}
+              >
+                <span className="icon">
+                  <i className="fas fa-arrow-right"></i>
+                </span>
+                <span>Suivant</span>
+              </a>
             </div>
           </div>
         </div>

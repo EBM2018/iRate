@@ -72,6 +72,7 @@ export default class Question extends Component {
         answer._id,
         rawContent
       );
+      console.log(answerData);
       this.setState({ answer: answerData });
     } else {
       const answerData = await postAnswer(copy._id, question._id, rawContent);
