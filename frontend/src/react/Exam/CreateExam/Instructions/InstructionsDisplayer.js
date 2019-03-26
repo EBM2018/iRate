@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import moment from 'moment';
 
 export default class InstructionsDisplayer extends Component {
   static propTypes = {
@@ -9,7 +10,7 @@ export default class InstructionsDisplayer extends Component {
     dropdownSession: PropTypes.object,
     handleInput: PropTypes.func,
     handleSelect: PropTypes.func,
-    groups: PropTypes.array
+    groups: PropTypes.array,
   };
 
   render() {
@@ -20,8 +21,9 @@ export default class InstructionsDisplayer extends Component {
       triggerInactive,
       handleInput,
       handleSelect,
-      groups
+      groups,
     } = this.props;
+
     return (
       <section className="section">
         <div className="box notification is-info">
@@ -29,6 +31,7 @@ export default class InstructionsDisplayer extends Component {
         </div>
         <div className="box">
           <div className="columns">
+            <strong/>
             <div className="column is-one-third">
               <span className="title is-5">Module et séance:</span>
             </div>
@@ -44,7 +47,7 @@ export default class InstructionsDisplayer extends Component {
                       >
                         <span>{dropdownGroup.value}</span>
                         <span className="icon is-small">
-                          <i className="fas fa-angle-down" aria-hidden="true" />
+                          <i className="fas fa-angle-down" aria-hidden="true"/>
                         </span>
                       </button>
                     </div>
@@ -56,20 +59,21 @@ export default class InstructionsDisplayer extends Component {
                       <div className="dropdown-content">
                         {groups && groups.length
                           ? groups.map(group => (
-                              <button
-                                className="dropdown-item is-a-link-custom"
-                                key={group._id}
-                                onMouseOver={triggerActive}
-                                onMouseOut={triggerInactive}
-                                onClick={handleSelect(
-                                  group.name,
-                                  group._id,
-                                  "dropdownGroup"
-                                )}
-                              >
-                                {group.name}
-                              </button>
-                            ))
+                            <button
+                              className="dropdown-item is-a-link-custom"
+                              key={group._id}
+                              onMouseOver={triggerActive}
+                              onMouseOut={triggerInactive}
+                              onClick={handleSelect(
+                                group.name,
+                                group._id,
+                                'dropdownGroup',
+                              )}
+                            >
+                              {' '}
+                              {group.name}
+                            </button>
+                          ))
                           : null}
                       </div>
                     </div>
@@ -78,11 +82,11 @@ export default class InstructionsDisplayer extends Component {
                 <div className="column is-half">
                   <div
                     className={
-                      dropdownSession.value ===
-                      "Sélectionner d'abord un groupe."
-                        ? "dropdown is-right"
-                        : "dropdown is-right is-hoverable"
+                      !dropdownGroup._id
+                        ? 'dropdown is-right is-disabled tooltip'
+                        : 'dropdown is-right is-hoverable'
                     }
+                    data-tooltip="Sélectionner d'abord le groupe."
                   >
                     <div className="dropdown-trigger">
                       <button
@@ -90,9 +94,20 @@ export default class InstructionsDisplayer extends Component {
                         aria-haspopup="true"
                         aria-controls="dropdown-menu"
                       >
-                        <span>{dropdownSession.value}</span>
+                        <span>
+                          {dropdownSession._id ? (
+                            <>
+                              <strong>
+                                {dropdownSession.value.split(':')[0] + ': '}
+                              </strong>
+                              {dropdownSession.value.split(':').slice(1, dropdownSession.value.split(':').length).join(':')}
+                            </>
+                          ) : (
+                            dropdownSession.value
+                          )}
+                        </span>
                         <span className="icon is-small">
-                          <i className="fas fa-angle-down" aria-hidden="true" />
+                          <i className="fas fa-angle-down" aria-hidden="true"/>
                         </span>
                       </button>
                     </div>
@@ -102,35 +117,35 @@ export default class InstructionsDisplayer extends Component {
                       role="menu"
                     >
                       <div className="dropdown-content">
-                        {dropdownSession.value !==
-                        "Sélectionner d'abord un groupe."
+                        {dropdownGroup._id
                           ? groups
-                              .find(aGroup => {
-                                return aGroup.name === dropdownGroup.value;
-                              })
-                              .classes.map(aClass => (
-                                <button
-                                  className="dropdown-item is-a-link-custom"
-                                  key={aClass._id}
-                                  onMouseOver={triggerActive}
-                                  onMouseOut={triggerInactive}
-                                  onClick={handleSelect(
-                                    aClass.date +
-                                      " de " +
-                                      aClass.startTime +
-                                      " à " +
-                                      aClass.endTime,
-                                    aClass._id,
-                                    "dropdownSession"
-                                  )}
-                                >
-                                  {aClass.date +
-                                    " de " +
-                                    aClass.startTime +
-                                    " à " +
-                                    aClass.endTime}
-                                </button>
-                              ))
+                            .find(aGroup => {
+                              return aGroup.name === dropdownGroup.value;
+                            })
+                            .classes.map(aClass => (
+                              <button
+                                className="dropdown-item is-a-link-custom"
+                                key={aClass._id}
+                                onMouseOver={triggerActive}
+                                onMouseOut={triggerInactive}
+                                onClick={handleSelect(
+                                  aClass.label +
+                                  ': ' +
+                                  moment(aClass.date).format('DD/MM/YYYY') +
+                                  ' de ' +
+                                  aClass.startTime.split(':').slice(0, aClass.startTime.split(':').length - 1).join(':') +
+                                  ' à ' +
+                                  aClass.endTime.split(':').slice(0, aClass.endTime.split(':').length - 1).join(':'),
+                                  aClass._id,
+                                  'dropdownSession',
+                                )}
+                              >
+                                <strong>{aClass.label + ': '}</strong>{' '}
+                                {moment(aClass.date).format('DD/MM/YYYY') + ' de ' +
+                                aClass.startTime.split(':').slice(0, aClass.startTime.split(':').length - 1).join(':') + ' à ' +
+                                aClass.endTime.split(':').slice(0, aClass.endTime.split(':').length - 1).join(':')}
+                              </button>
+                            ))
                           : null}
                       </div>
                     </div>

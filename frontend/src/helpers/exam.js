@@ -19,14 +19,11 @@ export const addTimeAndScale = exam => {
     for (let k = 0; k < clonedExam.exercices[j].questions.length; k++) {
       if (clonedExam.exercices[j].questions[k].scale) {
         examScale = examScale + clonedExam.exercices[j].questions[k].scale;
-        exerciceScale =
-          exerciceScale + clonedExam.exercices[j].questions[k].scale;
+        exerciceScale = exerciceScale + clonedExam.exercices[j].questions[k].scale;
       }
       if (clonedExam.exercices[j].questions[k].estimatedTime) {
-        examTime =
-          examTime + clonedExam.exercices[j].questions[k].estimatedTime;
-        exerciceTime =
-          exerciceTime + clonedExam.exercices[j].questions[k].estimatedTime;
+        examTime = examTime + clonedExam.exercices[j].questions[k].estimatedTime;
+        exerciceTime = exerciceTime + clonedExam.exercices[j].questions[k].estimatedTime;
       }
     }
 
@@ -37,7 +34,7 @@ export const addTimeAndScale = exam => {
   }
 
   clonedExam.scale = examScale;
-  clonedExam.estimatedTime = moment.utc(examTime * 1000).format("HH:mm:ss");
+  clonedExam.estimatedTime = moment.utc(examTime * 1000).format('HH:mm:ss');
 
   return clonedExam;
 };
@@ -56,24 +53,52 @@ export const sortExamsBySessionDate = exams => {
     } else if (!b.session) {
       return -1;
     }
-    const examDateA =
-      a.session.date.split("/")[2] +
-      "-" +
-      a.session.date.split("/")[0] +
-      "-" +
-      a.session.date.split("/")[1] +
-      "T" +
-      a.session.endTime;
-    const examDateB =
-      b.session.date.split("/")[2] +
-      "-" +
-      b.session.date.split("/")[0] +
-      "-" +
-      b.session.date.split("/")[1] +
-      "T" +
-      b.session.endTime;
+    const examDateA = a.session.date.split('/')[2] + '-' + a.session.date.split('/')[0] + '-' + a.session.date.split('/')[1] + 'T' + a.session.endTime;
+    const examDateB = b.session.date.split('/')[2] + '-' + b.session.date.split('/')[0] + '-' + b.session.date.split('/')[1] + 'T' + b.session.endTime;
     if (moment(examDateA).isAfter(examDateB)) {
       return -1;
     } else return 1;
+  });
+};
+
+export const filterPassedExams = (exams) => {
+  return exams.filter(exam => {
+    if (!exam.session) {
+      return false;
+    }
+    const examDate = exam.session.date.split('/')[2] + '-' + exam.session.date.split('/')[0] + '-' + exam.session.date.split('/')[1] + 'T' + exam.session.endTime;
+    return moment().isAfter(examDate);
+  });
+};
+
+export const filterNotPassedExams = (exams) => {
+  return exams.filter(exam => {
+    if (!exam.session) {
+      return false;
+    }
+    const examDate = exam.session.date.split('/')[2] + '-' + exam.session.date.split('/')[0] + '-' + exam.session.date.split('/')[1] + 'T' + exam.session.endTime;
+    return !moment().isAfter(examDate);
+  });
+};
+
+export const filterFinalisedExams = (exams) => {
+  return exams.filter(exam => {
+    return exam.isFinalised;
+  });
+};
+
+export const filterNotFinalisedExams = (exams) => {
+  return exams.filter(exam => {
+    return !exam.isFinalised;
+  });
+};
+
+export const filterExamsByDate = (exams, day) => {
+  return exams.filter(exam => {
+    if (!exam.session) {
+      return false;
+    }
+    const examDate = exam.session.date.split('/')[2] + '-' + exam.session.date.split('/')[0] + '-' + exam.session.date.split('/')[1] + 'T12:00:00';
+    return moment(examDate).isSame(day);
   });
 };

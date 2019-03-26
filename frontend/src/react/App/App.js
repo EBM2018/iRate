@@ -13,7 +13,7 @@ class App extends Component {
         <Provider store={store}>
           <BrowserRouter>
             <div className="hero is-fullheight">
-              <Router />
+              <Router/>
             </div>
           </BrowserRouter>
         </Provider>
