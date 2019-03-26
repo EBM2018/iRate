@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
 class ExamListDisplayer extends Component {
   render() {
@@ -10,7 +10,8 @@ class ExamListDisplayer extends Component {
             <div className="box">
               <div className="title">Examen finalisés</div>
             </div>
-            {this.props.finalisedExams && this.props.finalisedExams.map((exam) => <div className="content" key={exam._id}>
+            {this.props.finalisedExams && this.props.finalisedExams.map((exam) => <div className="content"
+                                                                                       key={exam._id}>
               <div className="card">
                 <header className="card-header">
                   <p className="card-header-title has-no-margin-bottom">Examen: {exam.title}</p>
@@ -23,15 +24,21 @@ class ExamListDisplayer extends Component {
                 </header>
                 <div className="card-content">
                   <div className="content">
-                    <p className="content">Groupe: <strong>{exam.group ? exam.group.name : "Pas de groupe assigné"}</strong></p>
-                    <p className="content">{exam.session ? "Le" : null} <strong>{exam.session ? exam.session.date : "Pas de session assignée"}</strong></p>
-                    <p className="content">{exam.session ? "De " : null} <strong>{exam.session ? exam.session.startTime.split(":").slice(0,2).join(":") : null}</strong> {exam.session ? " à " : null} <strong>{exam.session ? exam.session.endTime.split(":").slice(0,2).join(":") : "Pas d'heures assignées"}</strong></p>
+                    <p
+                      className="content">Groupe: <strong>{exam.group ? exam.group.name : 'Pas de groupe assigné'}</strong>
+                    </p>
+                    <p className="content">{exam.session ? 'Le' : null}
+                      <strong>{exam.session ? exam.session.date : 'Pas de session assignée'}</strong></p>
+                    <p className="content">{exam.session ? 'De ' : null}
+                      <strong>{exam.session ? exam.session.startTime.split(':').slice(0, 2).join(':') : null}</strong> {exam.session ? ' à ' : null}
+                      <strong>{exam.session ? exam.session.endTime.split(':').slice(0, 2).join(':') : 'Pas d\'heures assignées'}</strong>
+                    </p>
                     <p className="content">Barème: <strong>/{exam.scale}</strong></p>
                     <p className="content">Temps estimé: <strong>{exam.estimatedTime}</strong></p>
                   </div>
                 </div>
                 <footer className="card-footer">
-                  <div className="card-footer-item"><Link to={"/exam/" + exam._id} target={"_blank"}>Voir</Link></div>
+                  <div className="card-footer-item"><Link to={'/exam/' + exam._id} target={'_blank'}>Voir</Link></div>
                 </footer>
               </div>
             </div>)}
@@ -54,9 +61,15 @@ class ExamListDisplayer extends Component {
                 </header>
                 <div className="card-content">
                   <div className="content">
-                    <p className="content">Groupe: <strong>{exam.group ? exam.group.name : "Pas de groupe assigné"}</strong></p>
-                    <p className="content">{exam.session ? "Le" : null} <strong>{exam.session ? exam.session.date : "Pas de session assignée"}</strong></p>
-                    <p className="content">{exam.session ? "De " : null} <strong>{exam.session ? exam.session.startTime.split(":").slice(0,2).join(":") : null}</strong> {exam.session ? " à " : null} <strong>{exam.session ? exam.session.endTime.split(":").slice(0,2).join(":") : "Pas d'heures assignées"}</strong></p>
+                    <p
+                      className="content">Groupe: <strong>{exam.group ? exam.group.name : 'Pas de groupe assigné'}</strong>
+                    </p>
+                    <p className="content">{exam.session ? 'Le' : null}
+                      <strong>{exam.session ? exam.session.date : 'Pas de session assignée'}</strong></p>
+                    <p className="content">{exam.session ? 'De ' : null}
+                      <strong>{exam.session ? exam.session.startTime.split(':').slice(0, 2).join(':') : null}</strong> {exam.session ? ' à ' : null}
+                      <strong>{exam.session ? exam.session.endTime.split(':').slice(0, 2).join(':') : 'Pas d\'heures assignées'}</strong>
+                    </p>
                     <p className="content">Barème: <strong>/{exam.scale}</strong></p>
                     <p className="content">Temps estimé: <strong>{exam.estimatedTime}</strong></p>
                   </div>
@@ -87,9 +100,15 @@ class ExamListDisplayer extends Component {
                 </header>
                 <div className="card-content">
                   <div className="content">
-                    <p className="content">Groupe: <strong>{exam.group ? exam.group.name : "Pas de groupe assigné"}</strong></p>
-                    <p className="content">{exam.session ? "Le" : null} <strong>{exam.session ? exam.session.date : "Pas de session assignée"}</strong></p>
-                    <p className="content">{exam.session ? "De " : null} <strong>{exam.session ? exam.session.startTime.split(":").slice(0,2).join(":") : null}</strong> {exam.session ? " à " : null} <strong>{exam.session ? exam.session.endTime.split(":").slice(0,2).join(":") : "Pas d'heures assignées"}</strong></p>
+                    <p
+                      className="content">Groupe: <strong>{exam.group ? exam.group.name : 'Pas de groupe assigné'}</strong>
+                    </p>
+                    <p className="content">{exam.session ? 'Le' : null}
+                      <strong>{exam.session ? exam.session.date : 'Pas de session assignée'}</strong></p>
+                    <p className="content">{exam.session ? 'De ' : null}
+                      <strong>{exam.session ? exam.session.startTime.split(':').slice(0, 2).join(':') : null}</strong> {exam.session ? ' à ' : null}
+                      <strong>{exam.session ? exam.session.endTime.split(':').slice(0, 2).join(':') : 'Pas d\'heures assignées'}</strong>
+                    </p>
                     <p className="content">Barème: <strong>/{exam.scale}</strong></p>
                     <p className="content">Temps estimé: <strong>{exam.estimatedTime}</strong></p>
                   </div>

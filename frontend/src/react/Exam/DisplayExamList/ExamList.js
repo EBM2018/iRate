@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import ExamListDisplayer from './ExamListDisplayer';
@@ -25,27 +25,27 @@ class ExamList extends Component {
 
   async componentDidMount() {
     await this.props.fetchExamsWithScale();
-    if(this.props.exams) {
+    if (this.props.exams) {
       await this.filterByCalendarDate();
     }
   }
 
   filterByCalendarDate = async (day) => {
-      let exams = await sortExamsBySessionDate(this.props.exams);
-      if(day) {
-        await this.setState({day});
-        exams = await filterExamsByDate(exams,day);
-      }
-      const passedExams = await filterPassedExams(exams);
-      const notPassedExams = await filterNotPassedExams(exams);
-      const finalisedExams = await filterFinalisedExams(notPassedExams);
-      const createdExams = await filterNotFinalisedExams(exams);
-      this.setState({passedExams,finalisedExams,createdExams})
+    let exams = await sortExamsBySessionDate(this.props.exams);
+    if (day) {
+      await this.setState({day});
+      exams = await filterExamsByDate(exams, day);
+    }
+    const passedExams = await filterPassedExams(exams);
+    const notPassedExams = await filterNotPassedExams(exams);
+    const finalisedExams = await filterFinalisedExams(notPassedExams);
+    const createdExams = await filterNotFinalisedExams(exams);
+    this.setState({passedExams, finalisedExams, createdExams});
   };
 
   cancelFilterFromCalendar = async () => {
     await this.filterByCalendarDate();
-    await this.setState({day:'',simplified:true});
+    await this.setState({day: '', simplified: true});
   };
 
   toggleFinalise = (id) => () => {
@@ -57,7 +57,9 @@ class ExamList extends Component {
   };
 
   finaliseExam = (id) => async () => {
-    const exam = await this.props.exams.filter((exam) => {return exam._id === id})[0];
+    const exam = await this.props.exams.filter((exam) => {
+      return exam._id === id;
+    })[0];
     exam.isFinalised = true;
     exam.showScale = this.state.didChecked;
     await this.props.fetchExamPatcher(exam);
@@ -67,7 +69,7 @@ class ExamList extends Component {
   handleSimplified = () => {
     let {simplified} = this.state;
     simplified = !simplified;
-    this.setState({simplified})
+    this.setState({simplified});
   };
 
   render() {
@@ -101,5 +103,5 @@ export default connect(state => ({
   loading: state.exams.loading,
 }), dispatch => ({
   fetchExamsWithScale: () => dispatch(getExams({}, true)),
-  fetchExamPatcher: (exam) => dispatch(patchExam(exam))
+  fetchExamPatcher: (exam) => dispatch(patchExam(exam)),
 }))(ExamList);

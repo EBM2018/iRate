@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
+import React, {Component} from 'react';
+import {Provider} from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
 
-import "./App.css";
-import store from "../../redux/store";
-import Router from "../Router/Router";
+import './App.css';
+import store from '../../redux/store';
+import Router from '../Router/Router';
 
 class App extends Component {
   render() {
@@ -13,7 +13,7 @@ class App extends Component {
         <Provider store={store}>
           <BrowserRouter>
             <div className="hero is-fullheight">
-              <Router />
+              <Router/>
             </div>
           </BrowserRouter>
         </Provider>

@@ -1,46 +1,46 @@
-import Instructions from "../react/Exam/CreateExam/Instructions/Instructions";
+import Instructions from '../react/Exam/CreateExam/Instructions/Instructions';
 
-import CreateExam from "../react/Exam/CreateExam/CreateExam";
-import DisplayExam from "../react/Exam/DisplayExam/DisplayExam";
-import ExamList from "../react/Exam/DisplayExamList/ExamList";
-import Copy from "../react/Copy/Copy";
-import CopyList from "../react/Copy/CopyList/CopyList";
-import ExamTopic from "../react/Copy/Instructions/GenerateTopic/ExamTopic";
+import CreateExam from '../react/Exam/CreateExam/CreateExam';
+import DisplayExam from '../react/Exam/DisplayExam/DisplayExam';
+import ExamList from '../react/Exam/DisplayExamList/ExamList';
+import Copy from '../react/Copy/Copy';
+import CopyList from '../react/Copy/CopyList/CopyList';
+import ExamTopic from '../react/Copy/Instructions/GenerateTopic/ExamTopic';
 
 export const privateRoutes = {
   Instructions: {
-    path: "/newexam/instructions/:groupId?/:sessionId?",
+    path: '/newexam/instructions/:groupId?/:sessionId?',
     component: Instructions,
-    title: "Indiquez les détails du sujet"
+    title: 'Indiquez les détails du sujet',
   },
   CreateExam: {
-    path: "/newexam/:examId/exercices",
+    path: '/newexam/:examId/exercices',
     component: CreateExam,
-    title: "Créez votre examen"
+    title: 'Créez votre examen',
   },
   ExamList: {
-    path: "/exams",
+    path: '/exams',
     component: ExamList,
-    title: "Afficher tous les examens"
+    title: 'Afficher tous les examens',
   },
   DisplayExam: {
-    path: "/exam/:id",
+    path: '/exam/:id',
     component: DisplayExam,
-    title: "Voici les détails du sujet"
+    title: 'Voici les détails du sujet',
   },
   Copy: {
-    path: "/copy/:id",
+    path: '/copy/:id',
     component: Copy,
-    title: "Voici les détails du sujet"
+    title: 'Voici les détails du sujet',
   },
   ExamTopic: {
-    path: "/topic/:examId",
+    path: '/topic/:examId',
     component: ExamTopic,
-    title: "Voici le sujet"
+    title: 'Voici le sujet',
   },
   CopyList: {
-    path: "/copies",
+    path: '/copies',
     component: CopyList,
-    title: "Liste des copies associées à un élève"
-  }
+    title: 'Liste des copies associées à un élève',
+  },
 };

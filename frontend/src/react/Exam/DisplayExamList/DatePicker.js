@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import DayPicker from 'react-day-picker';
 
 export default class DatePicker extends Component {
@@ -8,7 +8,7 @@ export default class DatePicker extends Component {
       handleSimplified,
       handleDayChange,
       cancelFilterFromCalendar,
-      day
+      day,
     } = this.props;
 
     return (
@@ -18,11 +18,11 @@ export default class DatePicker extends Component {
             Filtrer par date
           </button>
           :
-              <aside className="box">
-                <p className="subtitle">Filtrer sur le calendrier</p>
-                <DayPicker className={"tile"} onDayClick={handleDayChange} selectedDays={day ? day : undefined}/>
-                <button className="button is-info is-outlined" onClick={cancelFilterFromCalendar}>Annuler</button>
-              </aside>}
+          <aside className="box">
+            <p className="subtitle">Filtrer sur le calendrier</p>
+            <DayPicker className={'tile'} onDayClick={handleDayChange} selectedDays={day ? day : undefined}/>
+            <button className="button is-info is-outlined" onClick={cancelFilterFromCalendar}>Annuler</button>
+          </aside>}
       </div>
     );
   }

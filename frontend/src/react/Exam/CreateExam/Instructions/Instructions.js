@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import InstructionsDisplayer from "./InstructionsDisplayer";
-import { groupsArray, group } from "../../../../helpers/mocks/group";
+import React, {Component} from 'react';
+import InstructionsDisplayer from './InstructionsDisplayer';
+import {groupsArray, group} from '../../../../helpers/mocks/group';
 
-import { Redirect } from "react-router-dom";
-import connect from "react-redux/es/connect/connect";
-import { postExam } from "../../../../redux/exams/actions/post";
-import { triggerActive, triggerInactive } from "../../../../helpers/css";
+import {Redirect} from 'react-router-dom';
+import connect from 'react-redux/es/connect/connect';
+import {postExam} from '../../../../redux/exams/actions/post';
+import {triggerActive, triggerInactive} from '../../../../helpers/css';
 
 class Instructions extends Component {
   state = {
     dropdownGroup: {
-      value: "Choisir un groupe",
-      _id: ""
+      value: 'Choisir un groupe',
+      _id: '',
     },
     dropdownSession: {
-      value: "Choisir une séance",
-      _id: ""
-    }
+      value: 'Choisir une séance',
+      _id: '',
+    },
   };
 
   /**
@@ -25,7 +25,7 @@ class Instructions extends Component {
    */
   componentDidMount() {
     //TODO When we'll have some routes from TEAMY Group --> API Call goes here.
-    const { groupId, sessionId } = this.props.route.match.params;
+    const {groupId, sessionId} = this.props.route.match.params;
     if (groupId && sessionId) {
       if (groupId === group._id) {
         const session = group.classes.find(session => {
@@ -36,15 +36,15 @@ class Instructions extends Component {
             _id: session._id,
             value:
               session.date +
-              " from " +
+              ' from ' +
               session.startTime +
-              " to " +
-              session.endTime
+              ' to ' +
+              session.endTime,
           },
           dropdownGroup: {
             _id: group._id,
-            value: group.name
-          }
+            value: group.name,
+          },
         });
       } else {
         //TODO Handle not found id
@@ -59,10 +59,10 @@ class Instructions extends Component {
         return {
           name: group.name,
           _id: group._id,
-          classes: group.classes
+          classes: group.classes,
         };
       });
-      this.setState({ groups });
+      this.setState({groups});
     }
   }
 
@@ -71,7 +71,7 @@ class Instructions extends Component {
    * @param {Object} e
    */
   handleInput = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({[e.target.name]: e.target.value});
   };
 
   /**
@@ -84,21 +84,21 @@ class Instructions extends Component {
       reminder,
       instruction,
       dropdownSession,
-      dropdownGroup
+      dropdownGroup,
     } = this.state;
     const examData = {
       title,
       reminder,
       instruction,
       group: dropdownGroup._id,
-      session: dropdownSession._id
+      session: dropdownSession._id,
     };
 
     await this.props.createExam(examData);
     if (this.props.exams.exam._id) {
       this.setState({
         idRedirect: this.props.exams.exam._id,
-        redirectExercices: true
+        redirectExercices: true,
       });
     }
   };
@@ -107,15 +107,15 @@ class Instructions extends Component {
     this.setState({
       [dropdownType]: {
         value: select,
-        _id: id
-      }
+        _id: id,
+      },
     });
-    if (dropdownType === "dropdownGroup") {
+    if (dropdownType === 'dropdownGroup') {
       this.setState({
         dropdownSession: {
-          value: "Choisir la séance",
-          _id: ""
-        }
+          value: 'Choisir la séance',
+          _id: '',
+        },
       });
     }
   };
@@ -141,7 +141,7 @@ class Instructions extends Component {
             Suivant
           </button>
           {this.state.redirectExercices ? (
-            <Redirect to={`/newexam/${this.state.idRedirect}/exercices`} />
+            <Redirect to={`/newexam/${this.state.idRedirect}/exercices`}/>
           ) : null}
         </div>
       </>
@@ -152,9 +152,9 @@ class Instructions extends Component {
 export default connect(
   state => ({
     exams: state.exams.exams,
-    loading: state.exams.loading
+    loading: state.exams.loading,
   }),
   dispatch => ({
-    createExam: examData => dispatch(postExam(examData))
-  })
+    createExam: examData => dispatch(postExam(examData)),
+  }),
 )(Instructions);
