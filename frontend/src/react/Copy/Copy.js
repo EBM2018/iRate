@@ -159,7 +159,7 @@ class Copy extends Component {
           />
         )}
         <div className="steps-content">
-          <div className="step-content has-text-centered pt-1">
+          <div className="step-content has-text-centered py-2">
             {this.renderContent()}
           </div>
         </div>
