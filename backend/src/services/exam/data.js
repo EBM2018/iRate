@@ -3,7 +3,6 @@ const Exam = require('./model');
 module.exports = {
   getAll: async (queryParams = {}) => {
     const query = queryParams && { ...queryParams };
-    // TODO: validate the parameters if needed??
     return Exam.find(query || '')
       .populate({
         path: 'exercices',
@@ -16,7 +15,7 @@ module.exports = {
     .populate({
       path: 'exercices',
       options: {
-        sort: { order: + 1 },
+        sort: { order: +1 },
       },
       populate: {
         path: 'questions',

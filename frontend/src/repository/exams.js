@@ -48,7 +48,7 @@ export const getExams = async (query = {}, withTS = false) => {
  */
 export const getExam = async (id, withTS = false) => {
   if (!id) return;
-  const data = await apiRequest(`/exams/${id}`, "get");
+  const data = await apiRequest(`/exams/${id}`, 'get');
   return withTS ? addTimeAndScale(data) : data;
 };
 

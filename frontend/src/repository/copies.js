@@ -6,6 +6,11 @@ export const postCopy = async copy => {
   });
 };
 
+export const getCopy = async id => {
+  if (!id) return;
+  return await apiRequest(`/copies/${id}`, 'get');
+};
+
 export const postAnswer = async (copyId, questionId, answerContent) => {
   const data = await apiRequest(`/copies/${copyId}`, 'post', {
     content: answerContent,

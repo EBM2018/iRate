@@ -6,6 +6,6 @@ module.exports = {
     const copyToSave = new Copy(copy);
     return copyToSave.save();
   },
-  getById: copyId => Copy.findById(copyId),
+  getById: copyId => Copy.findById(copyId).populate({ path: 'answers' }),
   update: async (_id, copy) => Copy.findOneAndUpdate({ _id }, copy),
 };

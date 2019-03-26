@@ -2,22 +2,22 @@ const mongoose = require('mongoose');
 
 const CopySchema = new mongoose.Schema({
   submissionTime: {
-    type: Date
+    type: Date,
   },
   exam: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Exam'
+    ref: 'Exam',
   }],
   answers: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Answer'
+    ref: 'Answer',
   }],
   author: {
-    type: mongoose.Schema.Types.ObjectId
+    type: mongoose.Schema.Types.ObjectId,
   },
   creationTime: {
     type: Date,
-    default: () => Date.now()
+    default: () => Date.now(),
   },
 });
 
