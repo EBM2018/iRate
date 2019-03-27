@@ -4,10 +4,9 @@ import {createRichContentFromRaw} from '../../helpers/richContent'
 class DisplayAnswer extends Component {
   constructor(props) {
     super(props);
-    console.log('answer', props.answer)
     this.state = {
         editorState: createRichContentFromRaw(props.answer.content)
-      }
+    };
     }
   onChange = (editorState) => this.setState({editorState});
   render () {

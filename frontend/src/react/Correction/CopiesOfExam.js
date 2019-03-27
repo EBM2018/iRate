@@ -11,7 +11,6 @@ class CopiesOfExam extends Component {
   }
   async addExamsToState(examId) {
     const copies = await getCopiesOfExam(examId);
-    console.log(copies);
     this.setState({copies: copies})
   }
   render () {

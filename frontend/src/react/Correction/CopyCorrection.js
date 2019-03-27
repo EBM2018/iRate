@@ -15,11 +15,11 @@ class CopyCorrection extends Component {
   }
   async addExamToState(examId) {
     const exam = await getExam(examId, true);
-    this.setState({...this.state, exam: exam});
+    this.setState({exam: exam});
   };
   async addCopyToState(copyId) {
     const copy = await getCopy(copyId);
-    this.setState({...this.state, copy: copy});
+    this.setState({copy: copy});
   };
 
   render () {
