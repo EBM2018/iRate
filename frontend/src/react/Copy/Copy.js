@@ -143,7 +143,11 @@ class Copy extends Component {
    * Move to a given exercice index
    */
   navigate(index) {
-    this.setState({ exerciceIndex: index });
+    const {exerciceIndex, step} = this.state;
+    this.setState({
+      exerciceIndex: index,
+      step: (index < exerciceIndex && step === 2) ? 1 : step // going from confirmation screen to exercice
+    });
   }
 
   closeError = () => {
