@@ -15,7 +15,6 @@ export default class QuestionDisplayer extends React.Component {
     };
 
     render() {
-        console.log(this.props.displayCross);
         return (
             <div className="box">
                 <div className="columns">
@@ -46,12 +45,12 @@ export default class QuestionDisplayer extends React.Component {
                                                         type="number"
                                                         min="0"
                                                         step="0.25"/></div>
-                    <div className="column is-1" style={{display: this.props.displayCross ? 'block' : 'none'}}>
+                    <div className="column is-1" style={{display: this.props.displayCross[0] ? 'block' : 'none'}}>
                             <span className="icon has-text-success is-medium">
                                 <i className="fas fa-check-square"/>
                             </span>
                     </div>
-                    <div className="column is-1" style={{display: this.props.displayCross ? 'none' : 'block'}}>
+                    <div className="column is-1" style={{display: this.props.displayCross[0] ? 'none' : 'block'}}>
                             <span className="icon has-text-danger is-medium">
                                 <i className="fas fa-ban"/>
                             </span>
@@ -71,12 +70,12 @@ export default class QuestionDisplayer extends React.Component {
                                                         type="number"
                                                         min="0"
                                                         step="0.25"/></div>
-                    <div className="column is-1" style={{display: this.props.displayCross ? 'block' : 'none'}}>
+                    <div className="column is-1" style={{display: this.props.displayCross[1] ? 'block' : 'none'}}>
                             <span className="icon has-text-success is-medium">
                                 <i className="fas fa-check-square"/>
                             </span>
                     </div>
-                    <div className="column is-1" style={{display: this.props.displayCross ? 'none' : 'block'}}>
+                    <div className="column is-1" style={{display: this.props.displayCross[1] ? 'none' : 'block'}}>
                             <span className="icon has-text-danger is-medium">
                                 <i className="fas fa-ban"/>
                             </span>
@@ -87,19 +86,19 @@ export default class QuestionDisplayer extends React.Component {
                     <div className="column is-6"><textarea className="textarea"
                                                            name="questionTitle"
                                                            id={this.props.index}
-                                                           defaultValue={typeof this.props.question.correction === 'undefined' ? '' : this.props.question.correction}
+                                                           defaultValue={typeof this.props.question.title === 'undefined' ? '' : this.props.question.title}
                                                            onChange={this.props.handleInputQuestion}
                                                            onBlur={this.props.saveQuestion}
                                                            onKeyDown={this.props.saveQuestion}
                                                            type="text"
                                                            placeholder="Question..."
                     /></div>
-                    <div className="column is-1" style={{display: this.props.displayCross ? 'block' : 'none'}}>
+                    <div className="column is-1" style={{display: this.props.displayCross[2] ? 'block' : 'none'}}>
                             <span className="icon has-text-success is-medium">
                                 <i className="fas fa-check-square"/>
                             </span>
                     </div>
-                    <div className="column is-1" style={{display: this.props.displayCross ? 'none' : 'block'}}>
+                    <div className="column is-1" style={{display: this.props.displayCross[2] ? 'none' : 'block'}}>
                             <span className="icon has-text-danger is-medium">
                                 <i className="fas fa-ban"/>
                             </span>

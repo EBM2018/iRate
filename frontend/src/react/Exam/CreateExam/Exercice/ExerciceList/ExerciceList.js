@@ -7,6 +7,7 @@ import {postExercice} from "../../../../../redux/exercice/actions/post";
 import {deleteExercice} from "../../../../../redux/exercice/actions/delete";
 import {getExam} from "../../../../../redux/exams/actions/getSingle";
 import {Redirect} from "react-router-dom";
+import FooterExam from "../../FooterExam/FooterExam";
 
 class ExerciceList extends React.PureComponent {
 
@@ -27,7 +28,7 @@ class ExerciceList extends React.PureComponent {
         this.setState({exercices: this.props.exam.exercices});
     };
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps, nextState) {
         if (this.props.exam !== nextProps.exam) {
             this.setState({exercices: nextProps.exam.exercices});
         }
@@ -39,7 +40,6 @@ class ExerciceList extends React.PureComponent {
      */
 
     handleInputExercice = async (e) => {
-
         const {exercices} = this.state;
         const {name, id} = e.target;
         switch (name) {
@@ -54,7 +54,6 @@ class ExerciceList extends React.PureComponent {
             default:
                 break;
         }
-
     };
 
     toggleExtend = () => {
@@ -115,7 +114,6 @@ class ExerciceList extends React.PureComponent {
 
     saveNewExercice = (e) => {
         if (e.keyCode === 13) {
-            console.log(e);
             for (let i in this.state.exercices) {
                 if (typeof this.state.exercices[i]._id !== 'undefined') {
                     this.props.patchExercice(this.props.id, this.state.exercices[i]._id, this.state.exercices[i]);
@@ -131,7 +129,6 @@ class ExerciceList extends React.PureComponent {
         if (arrival === departure) return;
         if (arrival > departure) {
             for (let i in exercices) {
-                console.log(exercices[i].order);
                 if (exercices[i].order <= arrival && exercices[i].order > departure && exercices[i].order !== departure) {
                     exercices[i].order = exercices[i].order - 1;
                 }
@@ -139,12 +136,9 @@ class ExerciceList extends React.PureComponent {
             exercices[oldIndex].order = newIndex;
 
         } else {
-            console.log('else');
             for (let i in exercices) {
                 if (exercices[i].order >= arrival && exercices[i].order < departure && exercices[i].order !== departure) {
-                    console.log(exercices[i].order);
-                    console.log(i);
-                    // exercices[i].order = exercices[i].order - 1;
+                    exercices[i].order = exercices[i].order - 1;
                 }
             }
             exercices[oldIndex].order = newIndex + 1;
@@ -180,6 +174,9 @@ class ExerciceList extends React.PureComponent {
                         <Redirect to={'/exams/'}/>
                     ) : null}
                 </div>
+                {this.state.exercices ? (
+                    <FooterExam exercices={this.state.exercices}/>
+                ) : null}
             </div>
         );
     }

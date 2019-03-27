@@ -20,11 +20,15 @@ class Exercice extends React.Component {
 
     state = {
         question: [],
-        displayCross: true
+        displayCross: []
     };
 
     componentDidMount() {
         this.setState({question: this.props.exercices.questions});
+        let {displayCross} = this.state;
+        for (let i in this.props.exercices.questions) {
+            displayCross.push([true,true,true]);
+        }
     };
 
     /**
@@ -51,11 +55,8 @@ class Exercice extends React.Component {
 
     moveQuestion = async ({oldIndex, newIndex}) => {
         let exercices = this.props.exercices.questions;
-        console.log(oldIndex);
-        console.log(newIndex);
         let departure = oldIndex + 1;
         let arrival = newIndex + 1;
-        console.log(exercices[oldIndex]);
         if (arrival === departure) return;
         if (arrival > departure) {
             for (let i in exercices) {
@@ -86,18 +87,23 @@ class Exercice extends React.Component {
      * Put input value in state with name of the input as name of the variable
      * @param {Object} e
      */
-    handleInputQuestion = async (e) => {
-        this.setState({displayCross: false});
+    handleInputQuestion = (e) => {
         const {question} = this.state;
         const {name, id} = e.target;
+        let {displayCross} = this.state;
         switch (name) {
             case 'questionTitle':
                 question[id].title = e.target.value;
+                displayCross[id][2] = false;
                 this.setState({question: question});
+                this.setState({displayCross: displayCross});
                 break;
             case 'questionScale':
                 question[id].scale = e.target.value;
                 this.setState({question: question});
+                displayCross[id][0] = false;
+                this.setState({displayCross: displayCross});
+
                 break;
             case 'questionCorrection':
                 question[id].correction = e.target.value;
@@ -107,6 +113,8 @@ class Exercice extends React.Component {
                 let time = (e.target.value) * 60;
                 question[id].estimatedTime = time;
                 this.setState({question: question});
+                displayCross[id][1] = false;
+                this.setState({displayCross: displayCross});
                 break;
             default:
                 break;
@@ -131,23 +139,27 @@ class Exercice extends React.Component {
     };
 
     saveNewQuestion = (e) => {
+        let {displayCross} = this.state;
         for (let i in this.state.question) {
             if (typeof this.state.question[i]._id !== 'undefined') {
                 this.props.patchQuestion(this.props.id, this.props.exercices._id, this.state.question[i]._id, this.state.question[i]);
-                this.setState({displayCross: true});
+                displayCross[i] = [true, true, true];
             }
         }
+        this.setState({displayCross});
     };
 
     saveQuestionEnter = (e) => {
+        let {displayCross} = this.state;
         if (e.keyCode === 13 || e.keyCode === 9) {
             for (let i in this.state.question) {
                 if (typeof this.state.question[i]._id !== 'undefined') {
                     this.props.patchQuestion(this.props.id, this.props.exercices._id, this.state.question[i]._id, this.state.question[i]);
-                    this.setState({displayCross: true});
+                    displayCross[i] = [true, true, true];
                 }
             }
         }
+        this.setState({displayCross});
     };
 
     render() {

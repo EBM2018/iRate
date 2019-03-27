@@ -54,6 +54,16 @@ export default class ExerciceDisplayer extends Component {
                                                             onChange={this.props.handleInputExercice}
                                                             type="text"
                                                             placeholder="Epreuve..."/></div>
+                        <div className="column is-1" style={{display: this.props.displayCross ? 'block' : 'none'}}>
+                            <span className="icon has-text-success is-medium">
+                                <i className="fas fa-check-square"/>
+                            </span>
+                        </div>
+                        <div className="column is-1" style={{display: this.props.displayCross ? 'none' : 'block'}}>
+                            <span className="icon has-text-danger is-medium">
+                                <i className="fas fa-ban"/>
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <SortableContainer onSortEnd={this.props.moveQuestion}>
@@ -62,7 +72,7 @@ export default class ExerciceDisplayer extends Component {
                                   index={idx}
                                   deleteQuestion={this.props.deleteQuestion}
                                   handleInputQuestion={this.props.handleInputQuestion}
-                                  displayCross={this.props.displayCross}
+                                  displayCross={this.props.displayCross[idx]}
                                   saveQuestion={this.props.saveQuestion}
                                   saveQuestionEnter={this.props.saveQuestionEnter}
                         />)}
