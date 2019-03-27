@@ -6,6 +6,7 @@ import {patchExercice} from "../../../../../redux/exercice/actions/patch";
 import {postExercice} from "../../../../../redux/exercice/actions/post";
 import {deleteExercice} from "../../../../../redux/exercice/actions/delete";
 import {getExam} from "../../../../../redux/exams/actions/getSingle";
+import {Redirect} from "react-router-dom";
 
 class ExerciceList extends React.PureComponent {
 
@@ -18,6 +19,7 @@ class ExerciceList extends React.PureComponent {
     state = {
         exercices: [],
         isExtended: true,
+        redirectExams: false
     };
 
     componentDidMount() {
@@ -37,6 +39,7 @@ class ExerciceList extends React.PureComponent {
      */
 
     handleInputExercice = async (e) => {
+
         const {exercices} = this.state;
         const {name, id} = e.target;
         switch (name) {
@@ -51,6 +54,7 @@ class ExerciceList extends React.PureComponent {
             default:
                 break;
         }
+
     };
 
     toggleExtend = () => {
@@ -90,6 +94,10 @@ class ExerciceList extends React.PureComponent {
         await this.props.fetchExam(this.props.id);
     };
 
+    saveExam = () => {
+        this.setState({redirectExams: true});
+    };
+
     /**
      * Delete an exercice in the exam creation page.
      *
@@ -105,10 +113,13 @@ class ExerciceList extends React.PureComponent {
         this.setState({exercices});
     };
 
-    saveNewExercice = () => {
-        for (let i in this.state.exercices) {
-            if (typeof this.state.exercices[i]._id !== 'undefined') {
-                this.props.patchExercice(this.props.id, this.state.exercices[i]._id, this.state.exercices[i]);
+    saveNewExercice = (e) => {
+        if (e.keyCode === 13) {
+            console.log(e);
+            for (let i in this.state.exercices) {
+                if (typeof this.state.exercices[i]._id !== 'undefined') {
+                    this.props.patchExercice(this.props.id, this.state.exercices[i]._id, this.state.exercices[i]);
+                }
             }
         }
     };
@@ -163,8 +174,11 @@ class ExerciceList extends React.PureComponent {
                                        isExtended={this.state.isExtended}
                                        id={this.props.id}/>
                 <div className="section">
-                    <button className="button is-info is-medium" onClick={this.saveNewExercice}>Sauvegarder l'examen
+                    <button className="button is-info is-medium" onClick={this.saveExam}>Sauvegarder l'examen
                     </button>
+                    {this.state.redirectExams ? (
+                        <Redirect to={'/exams/'}/>
+                    ) : null}
                 </div>
             </div>
         );

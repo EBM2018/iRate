@@ -13,6 +13,7 @@ export default class ExerciceDisplayer extends Component {
         handleInputQuestion: PropTypes.func,
         saveNewExercice: PropTypes.func,
         saveQuestion: PropTypes.func,
+        saveQuestionEnter: PropTypes.func,
         moveQuestion: PropTypes.func,
         deleteQuestion: PropTypes.func.isRequired,
         addQuestion: PropTypes.func.isRequired,
@@ -20,7 +21,8 @@ export default class ExerciceDisplayer extends Component {
         question: PropTypes.array,
         exercices: PropTypes.array.isRequired,
         id: PropTypes.number.isRequired,
-        index: PropTypes.number.isRequired
+        index: PropTypes.number.isRequired,
+        displayCross: PropTypes.bool
     };
 
     render() {
@@ -41,16 +43,17 @@ export default class ExerciceDisplayer extends Component {
                 </div>
                 <div className="box">
                     <div className="columns">
-                        <div className="column is-half"><span className="title is-5">Intitulé de l'exercice :</span>
+                        <div className="column is-6"><span className="title is-5">Intitulé de l'exercice :</span>
                         </div>
-                        <div className="column is-half"><input className="input"
-                                                               name="title"
-                                                               id={this.props.index}
-                                                               onBlur={this.props.saveNewExercice}
-                                                               defaultValue={this.props.exercices.title === 'undefined' ? '' : this.props.exercices.title}
-                                                               onChange={this.props.handleInputExercice}
-                                                               type="text"
-                                                               placeholder="Epreuve..."/></div>
+                        <div className="column is-5"><input className="input"
+                                                            name="title"
+                                                            id={this.props.index}
+                                                            onBlur={this.props.saveNewExercice}
+                                                            onKeyDown={this.props.saveNewExercice}
+                                                            defaultValue={this.props.exercices.title === 'undefined' ? '' : this.props.exercices.title}
+                                                            onChange={this.props.handleInputExercice}
+                                                            type="text"
+                                                            placeholder="Epreuve..."/></div>
                     </div>
                 </div>
                 <SortableContainer onSortEnd={this.props.moveQuestion}>
@@ -59,7 +62,10 @@ export default class ExerciceDisplayer extends Component {
                                   index={idx}
                                   deleteQuestion={this.props.deleteQuestion}
                                   handleInputQuestion={this.props.handleInputQuestion}
-                        saveQuestion={this.props.saveQuestion} />)}
+                                  displayCross={this.props.displayCross}
+                                  saveQuestion={this.props.saveQuestion}
+                                  saveQuestionEnter={this.props.saveQuestionEnter}
+                        />)}
                 </SortableContainer>
                 <button className="button is-info is-medium" onClick={this.props.addQuestion}>Nouvelle Question</button>
             </div>

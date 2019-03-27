@@ -8,8 +8,10 @@ const Question = (props) => {
         <QuestionDisplayer handleInputQuestion={props.handleInputQuestion}
                            deleteQuestion={props.deleteQuestion}
                            saveQuestion={props.saveQuestion}
+                           saveQuestionEnter={props.saveQuestionEnter}
                            id={props.id}
                            question={props.question}
+                           displayCross={props.displayCross}
                            exercices={props.exercices}
                            index={props.idQuestion}/>
     );

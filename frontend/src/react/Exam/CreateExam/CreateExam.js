@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ExerciceList from './Exercice/ExerciceList/ExerciceList';
-import FooterExam from './FooterExam/FooterExam';
+import FooterExam from "./FooterExam/FooterExam";
 
 export default class CreateExam extends Component {
   render() {
@@ -8,10 +8,10 @@ export default class CreateExam extends Component {
       <>
         <div className="tile is-parent">
           <div className="tile is-child">
-            <ExerciceList />
+            <ExerciceList id={this.props.route.match.params.examId}/>
           </div>
+            <FooterExam/>
         </div>
-        <FooterExam />
       </>
     );
   }

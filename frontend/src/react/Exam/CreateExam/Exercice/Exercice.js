@@ -20,6 +20,7 @@ class Exercice extends React.Component {
 
     state = {
         question: [],
+        displayCross: true
     };
 
     componentDidMount() {
@@ -44,7 +45,6 @@ class Exercice extends React.Component {
             "title": "Nouvelle Question",
             "order": maxOrder + 1,
             "scale": 0,
-            "correction": ""
         });
         await this.props.fetchExam(this.props.id);
     };
@@ -87,10 +87,9 @@ class Exercice extends React.Component {
      * @param {Object} e
      */
     handleInputQuestion = async (e) => {
+        this.setState({displayCross: false});
         const {question} = this.state;
         const {name, id} = e.target;
-        console.log(question);
-        console.log(id);
         switch (name) {
             case 'questionTitle':
                 question[id].title = e.target.value;
@@ -131,10 +130,22 @@ class Exercice extends React.Component {
         this.props.fetchDeleteQuestion(this.props.id, idExo, this.state.question[idQuestion]._id);
     };
 
-    saveNewQuestion = () => {
+    saveNewQuestion = (e) => {
         for (let i in this.state.question) {
             if (typeof this.state.question[i]._id !== 'undefined') {
                 this.props.patchQuestion(this.props.id, this.props.exercices._id, this.state.question[i]._id, this.state.question[i]);
+                this.setState({displayCross: true});
+            }
+        }
+    };
+
+    saveQuestionEnter = (e) => {
+        if (e.keyCode === 13 || e.keyCode === 9) {
+            for (let i in this.state.question) {
+                if (typeof this.state.question[i]._id !== 'undefined') {
+                    this.props.patchQuestion(this.props.id, this.props.exercices._id, this.state.question[i]._id, this.state.question[i]);
+                    this.setState({displayCross: true});
+                }
             }
         }
     };
@@ -151,8 +162,10 @@ class Exercice extends React.Component {
                                    moveQuestion={this.moveQuestion}
                                    deleteExercice={this.props.deleteExercice}
                                    saveQuestion={this.saveNewQuestion}
+                                   saveQuestionEnter={this.saveQuestionEnter}
                                    question={this.state.question}
                                    index={this.props.index}
+                                   displayCross={this.state.displayCross}
                                    id={this.props.id}/>
             </div>
         );
