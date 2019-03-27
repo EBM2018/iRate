@@ -19,6 +19,8 @@ export const getExams = async (query = {}, withTS = false) => {
     }
   }
 
+  //const allo = await axios.get('https://teamy.ebm.nymous.io/api/groups');
+
   // TODO: move this part to the backend once we get the route from the other group
   const returnedData = data.map(exam => {
     let group = [];

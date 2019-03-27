@@ -1,4 +1,5 @@
 import moment from "moment";
+import axios from 'axios';
 
 /**
  * Mutate an exam by adding the estimated timing and scale
@@ -39,7 +40,7 @@ export const addTimeAndScale = exam => {
   return clonedExam;
 };
 
-//TODO the date format should be reconsidered when the Teamy group gives us access to their routes.
+
 /**
  * Sort an array of exam by it's session date.
  * If there is no session, the exam is put at the end (should not arrived thought)
