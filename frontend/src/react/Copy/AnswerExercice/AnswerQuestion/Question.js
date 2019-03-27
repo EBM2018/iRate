@@ -10,7 +10,6 @@ import AnswerDisplayer from './Answer/AnswerDisplayer';
 
 import { patchAnswer, postAnswer } from '../../../../services/answers';
 import Error from '../../../utils/Error';
-
 export default class Question extends Component {
 
   static propTypes = {
@@ -117,9 +116,12 @@ export default class Question extends Component {
     const {err, saved} = this.state;
     return (
         <>
-            <QuestionDisplayer question={this.props.question}
-                               showScale={this.props.showScale}
-                               index={this.props.index}/>
+            {
+            !this.state.readOnly && err && <Error errors={err} status={err.response.status}/>
+            }
+            <QuestionDisplayer question={question}
+                               showScale={showScale}
+                               index={index}/>
             <div className="box">
                 <AnswerDisplayer editorState={this.state.editorState}
                                  myBlockStyleFn={this.myBlockStyleFn}
@@ -131,7 +133,10 @@ export default class Question extends Component {
                                  onBoldClick={this.onBoldClick}
                                  onItalicClick={this.onItalicClick}
                                  readOnly={this.state.readOnly}/>
-                {!this.state.readOnly && <ControllerDisplayer handleControllerClick={this.handleControllerClick}/>}
+                {!this.state.readOnly && <ControllerDisplayer 
+                    handleControllerClick={this.handleControllerClick}
+                    saved={saved}
+                />}
             </div>
         </>
     );
