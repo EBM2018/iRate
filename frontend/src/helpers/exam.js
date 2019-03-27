@@ -1,5 +1,4 @@
 import moment from "moment";
-import axios from 'axios';
 
 /**
  * Mutate an exam by adding the estimated timing and scale
