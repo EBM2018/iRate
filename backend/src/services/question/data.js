@@ -26,10 +26,8 @@ module.exports = {
       // and if it has a higher order
       // then increment its order
       if (syblingQuestion._id !== question._id && syblingQuestion.order >= newQuestionOrder) {
-        console.log('Sybling question to update', syblingQuestion.order);
         const newSyblingQuestion = syblingQuestion;
         newSyblingQuestion.order += 1;
-        console.log('New Question order', newSyblingQuestion.order);
         await newSyblingQuestion.save();
       }
       return true;
