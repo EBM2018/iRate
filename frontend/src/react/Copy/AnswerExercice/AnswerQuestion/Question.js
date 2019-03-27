@@ -49,6 +49,9 @@ export default class Question extends Component {
   };
 
   myBlockStyleFn = contentBlock => {
+    if(this.props.readOnly){
+        return 'div';
+    }
     const type = contentBlock.getType();
     if (type === 'unstyled') {
       return 'textarea';
@@ -131,7 +134,6 @@ export default class Question extends Component {
                 {!this.state.readOnly && <ControllerDisplayer handleControllerClick={this.handleControllerClick}/>}
             </div>
         </>
-    );
     );
   }
 }

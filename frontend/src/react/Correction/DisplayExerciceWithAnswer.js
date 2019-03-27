@@ -29,7 +29,7 @@ export default class DisplayExerciceWithAnswer extends Component {
                 {exercice.questions && exercice.questions.map(question =>
                     <div key={question._id}>
                         <Question key={question._id} id={question._id} question={question} idQuestion={question._id}
-                        index={question._id} answer={copy.answers.filter(answer => answer.refQuestion === question._id).pop()} readOnly={true} />
+                        index={question._id} answer={copy.answers.filter(answer => answer.refQuestion === question._id).pop()} copy={copy} readOnly={true} />
                     </div>
                 )}
             </div>
