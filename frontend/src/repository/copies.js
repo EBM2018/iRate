@@ -1,5 +1,15 @@
 import {apiRequest} from '../services/api';
 
+
+/**
+ * 
+ * @param {String} examId 
+ */
+export const getCopiesOfExam = async (examId) => {
+    const data = await apiRequest(`copies/exams/${examId}`, 'get');
+    return data;
+};
+
 export const postCopy = async copy => {
   return await apiRequest(`copies`, 'post', {
     ...copy

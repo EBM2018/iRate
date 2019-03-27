@@ -6,41 +6,53 @@ import ExamList from '../react/Exam/DisplayExamList/ExamList';
 import Copy from '../react/Copy/Copy';
 import CopyList from '../react/Copy/CopyList/CopyList';
 import ExamTopic from '../react/Copy/Instructions/GenerateTopic/ExamTopic';
+import CopiesOfExam from '../react/Correction/CopiesOfExam';
+import CopyCorrection from '../react/Correction/CopyCorrection';
 
 export const privateRoutes = {
   Instructions: {
     path: '/newexam/instructions/:groupId?/:sessionId?',
     component: Instructions,
-    title: 'Indiquez les détails du sujet',
+    title: 'Indiquez les détails du sujet'
   },
   CreateExam: {
     path: '/newexam/:examId/exercices',
     component: CreateExam,
-    title: 'Créez votre examen',
+    title: 'Créez votre examen'
   },
   ExamList: {
     path: '/exams',
     component: ExamList,
-    title: 'Afficher tous les examens',
+    title: 'Afficher tous les examens'
   },
   DisplayExam: {
     path: '/exam/:id',
     component: DisplayExam,
-    title: 'Voici les détails du sujet',
+    title: 'Voici les détails du sujet'
   },
   Copy: {
     path: '/copy/:id',
     component: Copy,
-    title: 'Voici les détails du sujet',
+    title: 'Voici les détails du sujet'
   },
   ExamTopic: {
     path: '/topic/:examId',
     component: ExamTopic,
-    title: 'Voici le sujet',
+    title: 'Voici le sujet'
   },
   CopyList: {
     path: '/copies',
     component: CopyList,
-    title: 'Liste des copies associées à un élève',
+    title: 'Liste des copies associées à un élève'
   },
+  Correction: {
+    path: '/correction/:examId',
+    component: CopiesOfExam,
+    title: 'Liste des copies associées à un examen'
+  },
+  CopyCorrection: {
+    path: '/correction/:examId/copy/:copyId',
+    component: CopyCorrection,
+    title: 'Corriger une copie'
+  }
 };

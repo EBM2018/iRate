@@ -10,7 +10,6 @@ import AnswerDisplayer from './Answer/AnswerDisplayer';
 
 import { patchAnswer, postAnswer } from '../../../../services/answers';
 import Error from '../../../utils/Error';
-
 export default class Question extends Component {
 
   static propTypes = {
@@ -24,7 +23,8 @@ export default class Question extends Component {
     editorState: EditorState.createEmpty(),
     answer: '',
     err: '',
-    saved: false
+    saved: false,
+    readOnly: false
   };
 
   componentDidMount() {
@@ -48,6 +48,9 @@ export default class Question extends Component {
   };
 
   myBlockStyleFn = contentBlock => {
+    if(this.props.readOnly){
+        return 'div';
+    }
     const type = contentBlock.getType();
     if (type === 'unstyled') {
       return 'textarea';
@@ -61,6 +64,7 @@ export default class Question extends Component {
       const editorState = createRichContentFromRaw(answer.content);
       this.setState({ answer, editorState });
     }
+    this.setState({readOnly: this.props.readOnly || answer})
   };
 
   handleControllerClick = async () => {
@@ -111,33 +115,30 @@ export default class Question extends Component {
     const {showScale, question, index} = this.props;
     const {err, saved} = this.state;
     return (
-      <>
-        {
-          err && <Error errors={err} status={err.response.status}/>
-        }
-        <QuestionDisplayer
-          question={question}
-          showScale={showScale}
-          index={index}
-        />
-        <div className="box">
-          <AnswerDisplayer
-            editorState={this.state.editorState}
-            myBlockStyleFn={this.myBlockStyleFn}
-            handleEditorClick={this.handleEditorClick}
-            handleChange={this.handleChange}
-            handleKeycommand={this.handleKeyCommand}
-            handleBlur={this.handleControllerClick}
-            onUnderlineClick={this.onUnderlineClick}
-            onBoldClick={this.onBoldClick}
-            onItalicClick={this.onItalicClick}
-          />
-          <ControllerDisplayer
-            handleControllerClick={this.handleControllerClick}
-            saved={saved}
-          />
-        </div>
-      </>
+        <>
+            {
+            !this.state.readOnly && err && <Error errors={err} status={err.response.status}/>
+            }
+            <QuestionDisplayer question={question}
+                               showScale={showScale}
+                               index={index}/>
+            <div className="box">
+                <AnswerDisplayer editorState={this.state.editorState}
+                                 myBlockStyleFn={this.myBlockStyleFn}
+                                 handleEditorClick={this.handleEditorClick}
+                                 handleChange={this.handleChange}
+                                 handleKeycommand={this.handleKeyCommand}
+                                 handleBlur={this.handleBlur}
+                                 onUnderlineClick={this.onUnderlineClick}
+                                 onBoldClick={this.onBoldClick}
+                                 onItalicClick={this.onItalicClick}
+                                 readOnly={this.state.readOnly}/>
+                {!this.state.readOnly && <ControllerDisplayer 
+                    handleControllerClick={this.handleControllerClick}
+                    saved={saved}
+                />}
+            </div>
+        </>
     );
   }
 }
