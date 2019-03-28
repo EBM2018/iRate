@@ -16,13 +16,18 @@ export default class ExerciceDisplayer extends Component {
         saveQuestionEnter: PropTypes.func,
         moveQuestion: PropTypes.func,
         deleteQuestion: PropTypes.func.isRequired,
+        displayCrossExo: PropTypes.array,
         addQuestion: PropTypes.func.isRequired,
         deleteExercice: PropTypes.func.isRequired,
         question: PropTypes.array,
         exercices: PropTypes.array.isRequired,
         id: PropTypes.number.isRequired,
         index: PropTypes.number.isRequired,
-        displayCross: PropTypes.bool
+        displayCross: PropTypes.array
+    };
+
+    state = {
+        displayCrossExo: []
     };
 
     render() {
@@ -49,21 +54,11 @@ export default class ExerciceDisplayer extends Component {
                                                             name="title"
                                                             id={this.props.index}
                                                             onBlur={this.props.saveNewExercice}
-                                                            onKeyDown={this.props.saveNewExercice}
+                                                            onKeyDown={this.props.saveNewExerciceEnter}
                                                             defaultValue={this.props.exercices.title === 'undefined' ? '' : this.props.exercices.title}
                                                             onChange={this.props.handleInputExercice}
                                                             type="text"
                                                             placeholder="Epreuve..."/></div>
-                        <div className="column is-1" style={{display: this.props.displayCross ? 'block' : 'none'}}>
-                            <span className="icon has-text-success is-medium">
-                                <i className="fas fa-check-square"/>
-                            </span>
-                        </div>
-                        <div className="column is-1" style={{display: this.props.displayCross ? 'none' : 'block'}}>
-                            <span className="icon has-text-danger is-medium">
-                                <i className="fas fa-ban"/>
-                            </span>
-                        </div>
                     </div>
                 </div>
                 <SortableContainer onSortEnd={this.props.moveQuestion}>

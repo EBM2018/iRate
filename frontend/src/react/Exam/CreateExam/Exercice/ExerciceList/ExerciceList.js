@@ -20,7 +20,8 @@ class ExerciceList extends React.PureComponent {
     state = {
         exercices: [],
         isExtended: true,
-        redirectExams: false
+        redirectExams: false,
+        displayCrossExo: []
     };
 
     componentDidMount() {
@@ -39,16 +40,15 @@ class ExerciceList extends React.PureComponent {
      * @param {Object} e
      */
 
-    handleInputExercice = async (e) => {
+    handleInputExercice = (e) => {
+        let {displayCrossExo} = this.state;
         const {exercices} = this.state;
         const {name, id} = e.target;
+        displayCrossExo[id] = false;
+        this.setState({displayCrossExo: displayCrossExo});
         switch (name) {
             case 'title':
                 exercices[id].title = e.target.value;
-                this.setState({exercices: exercices});
-                break;
-            case 'estimatedTime':
-                exercices[id].estimatedTime = e.target.value;
                 this.setState({exercices: exercices});
                 break;
             default:
@@ -112,14 +112,28 @@ class ExerciceList extends React.PureComponent {
         this.setState({exercices});
     };
 
-    saveNewExercice = (e) => {
-        if (e.keyCode === 13) {
+    saveNewExerciceEnter = (e) => {
+        let {displayCrossExo} = this.state;
+        if (e.keyCode === 13 || e.keyCode === 9) {
             for (let i in this.state.exercices) {
                 if (typeof this.state.exercices[i]._id !== 'undefined') {
                     this.props.patchExercice(this.props.id, this.state.exercices[i]._id, this.state.exercices[i]);
+                    displayCrossExo[i] = true
                 }
             }
+            this.setState({displayCrossExo: displayCrossExo});
         }
+    };
+
+    saveNewExercice = (e) => {
+        let {displayCrossExo} = this.state;
+        for (let i in this.state.exercices) {
+            if (typeof this.state.exercices[i]._id !== 'undefined') {
+                this.props.patchExercice(this.props.id, this.state.exercices[i]._id, this.state.exercices[i]);
+                displayCrossExo[i] = true
+            }
+        }
+        this.setState({displayCrossExo: displayCrossExo});
     };
 
     onSortEnd = async ({oldIndex, newIndex}) => {
@@ -159,9 +173,11 @@ class ExerciceList extends React.PureComponent {
                 <ExerciceListDisplayer addExercice={this.addExercice}
                                        deleteExercice={this.deleteExercice}
                                        saveNewExercice={this.saveNewExercice}
+                                       saveNewExerciceEnter={this.saveNewExerciceEnter}
                                        exercices={this.state.exercices}
                                        handleInputExercice={this.handleInputExercice}
                                        onSortEnd={this.onSortEnd}
+                                       displayCrossExo={this.state.displayCrossExo}
                                        index={this.props.id}
                                        idExercice={this.state.idExercice}
                                        toggleExtend={this.toggleExtend}

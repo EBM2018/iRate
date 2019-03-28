@@ -13,7 +13,9 @@ class Exercice extends React.Component {
     static propTypes = {
         exercices: PropTypes.array,
         handleInputExercice: PropTypes.func,
+        displayCrossExo: PropTypes.array,
         saveNewExercice: PropTypes.func,
+        saveNewExerciceEnter: PropTypes.func,
         id: PropTypes.number,
         index: PropTypes.number
     };
@@ -129,37 +131,42 @@ class Exercice extends React.Component {
      *
      * @param {Object} v
      */
-    deleteQuestion = (v) => {
+    deleteQuestion = async (v) => {
         let idQuestion = v.target.value;
         const question = [...this.state.question];
         question.splice(idQuestion, 1);
         let idExo = this.props.exercices._id;
         this.setState({question});
-        this.props.fetchDeleteQuestion(this.props.id, idExo, this.state.question[idQuestion]._id);
+        await this.props.fetchDeleteQuestion(this.props.id, idExo, this.state.question[idQuestion]._id);
+        await this.props.fetchExam(this.props.id);
+
     };
 
-    saveNewQuestion = (e) => {
+    saveNewQuestion = async (e) => {
         let {displayCross} = this.state;
         for (let i in this.state.question) {
             if (typeof this.state.question[i]._id !== 'undefined') {
-                this.props.patchQuestion(this.props.id, this.props.exercices._id, this.state.question[i]._id, this.state.question[i]);
+                await this.props.patchQuestion(this.props.id, this.props.exercices._id, this.state.question[i]._id, this.state.question[i]);
                 displayCross[i] = [true, true, true];
             }
         }
         this.setState({displayCross});
+        await this.props.fetchExam(this.props.id);
+
     };
 
-    saveQuestionEnter = (e) => {
+    saveQuestionEnter = async (e) => {
         let {displayCross} = this.state;
         if (e.keyCode === 13 || e.keyCode === 9) {
             for (let i in this.state.question) {
                 if (typeof this.state.question[i]._id !== 'undefined') {
-                    this.props.patchQuestion(this.props.id, this.props.exercices._id, this.state.question[i]._id, this.state.question[i]);
+                    await this.props.patchQuestion(this.props.id, this.props.exercices._id, this.state.question[i]._id, this.state.question[i]);
                     displayCross[i] = [true, true, true];
                 }
             }
         }
         this.setState({displayCross});
+        await this.props.fetchExam(this.props.id);
     };
 
     render() {
@@ -168,11 +175,13 @@ class Exercice extends React.Component {
                 <ExerciceDisplayer handleInputQuestion={this.handleInputQuestion}
                                    handleInputExercice={this.props.handleInputExercice}
                                    saveNewExercice={this.props.saveNewExercice}
+                                   saveNewExerciceEnter={this.props.saveNewExerciceEnter}
                                    addQuestion={this.addQuestion}
                                    exercices={this.props.exercices}
                                    deleteQuestion={this.deleteQuestion}
                                    moveQuestion={this.moveQuestion}
                                    deleteExercice={this.props.deleteExercice}
+                                   displayCrossExo={this.props.displayCrossExo}
                                    saveQuestion={this.saveNewQuestion}
                                    saveQuestionEnter={this.saveQuestionEnter}
                                    question={this.state.question}

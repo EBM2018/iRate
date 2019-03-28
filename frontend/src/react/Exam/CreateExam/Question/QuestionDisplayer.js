@@ -27,7 +27,8 @@ export default class QuestionDisplayer extends React.Component {
                         <span className="title is-5">Question {this.props.index + 1}</span>
                     </div>
                     <div className="column is-1">
-                        <button className="delete is-large" value={this.props.index} onClick={this.props.deleteQuestion}/>
+                        <button className="delete is-large" value={this.props.index}
+                                onClick={this.props.deleteQuestion}/>
                     </div>
                 </div>
                 <div className="columns">
@@ -45,6 +46,8 @@ export default class QuestionDisplayer extends React.Component {
                                                         type="number"
                                                         min="0"
                                                         step="0.25"/></div>
+                    {this.props.displayCross &&
+                        <>
                     <div className="column is-1" style={{display: this.props.displayCross[0] ? 'block' : 'none'}}>
                             <span className="icon has-text-success is-medium">
                                 <i className="fas fa-check-square"/>
@@ -54,7 +57,7 @@ export default class QuestionDisplayer extends React.Component {
                             <span className="icon has-text-danger is-medium">
                                 <i className="fas fa-ban"/>
                             </span>
-                    </div>
+                    </div></>}
                 </div>
                 <div className="columns">
 
@@ -70,16 +73,18 @@ export default class QuestionDisplayer extends React.Component {
                                                         type="number"
                                                         min="0"
                                                         step="0.25"/></div>
+                    {this.props.displayCross &&
                     <div className="column is-1" style={{display: this.props.displayCross[1] ? 'block' : 'none'}}>
                             <span className="icon has-text-success is-medium">
                                 <i className="fas fa-check-square"/>
                             </span>
-                    </div>
+                    </div>}
+                    {this.props.displayCross &&
                     <div className="column is-1" style={{display: this.props.displayCross[1] ? 'none' : 'block'}}>
                             <span className="icon has-text-danger is-medium">
                                 <i className="fas fa-ban"/>
                             </span>
-                    </div>
+                    </div>}
                 </div>
                 <div className="columns">
                     <div className="column is-5"><span className="title is-5">Contenu question :</span></div>
@@ -93,16 +98,19 @@ export default class QuestionDisplayer extends React.Component {
                                                            type="text"
                                                            placeholder="Question..."
                     /></div>
-                    <div className="column is-1" style={{display: this.props.displayCross[2] ? 'block' : 'none'}}>
+                    {this.props.displayCross &&
+                    <>
+                        <div className="column is-1" style={{display: this.props.displayCross[2] ? 'block' : 'none'}}>
                             <span className="icon has-text-success is-medium">
                                 <i className="fas fa-check-square"/>
                             </span>
-                    </div>
-                    <div className="column is-1" style={{display: this.props.displayCross[2] ? 'none' : 'block'}}>
+                        </div>
+                        <div className="column is-1" style={{display: this.props.displayCross[2] ? 'none' : 'block'}}>
                             <span className="icon has-text-danger is-medium">
                                 <i className="fas fa-ban"/>
                             </span>
-                    </div>
+                        </div>
+                    </>}
                 </div>
             </div>
         );

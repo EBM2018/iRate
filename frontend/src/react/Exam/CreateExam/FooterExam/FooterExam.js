@@ -33,7 +33,23 @@ export default class FooterExam extends Component {
 
     componentWillReceiveProps(nextProps, nextState) {
         console.log(nextProps);
-        console.log(nextState);
+        let bareme = 0;
+        let estimatedTime = 0;
+        let nbQuestion = 0;
+        for (let i in nextProps.exercices) {
+            for (let j in nextProps.exercices[i].questions) {
+                bareme = bareme + nextProps.exercices[i].questions[j].scale;
+                if (typeof nextProps.exercices[i].questions[j].estimatedTime !== 'undefined') {
+                    estimatedTime = estimatedTime + (nextProps.exercices[i].questions[j].estimatedTime / 60);
+                }
+                nbQuestion = nbQuestion + 1;
+            }
+        }
+        this.setState({bareme: bareme});
+        this.setState({nbQuestion: nbQuestion});
+        this.setState({estimatedTime: estimatedTime});
+
+
     }
 
     render() {
