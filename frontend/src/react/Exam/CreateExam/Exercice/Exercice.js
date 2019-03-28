@@ -54,7 +54,7 @@ class Exercice extends React.Component {
             "order": maxOrder + 1,
             "scale": 0,
         });
-        this.props.fetchExam(this.props.id);
+        await this.props.fetchExam(this.props.id);
     };
 
     moveQuestion = async ({oldIndex, newIndex}) => {
@@ -140,7 +140,7 @@ class Exercice extends React.Component {
         let idExo = this.props.exercices._id;
         this.setState({question});
         await this.props.fetchDeleteQuestion(this.props.id, idExo, this.state.question[idQuestion]._id);
-        //await this.props.fetchExam(this.props.id);
+        await this.props.fetchExam(this.props.id);
 
     };
 
@@ -153,7 +153,7 @@ class Exercice extends React.Component {
             }
         }
         this.setState({displayCross});
-        //await this.props.fetchExam(this.props.id);
+        await this.props.fetchExam(this.props.id);
 
     };
 
@@ -168,7 +168,7 @@ class Exercice extends React.Component {
             }
         }
         this.setState({displayCross});
-        //await this.props.fetchExam(this.props.id);
+        await this.props.fetchExam(this.props.id);
     };
 
     render() {
