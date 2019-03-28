@@ -26,10 +26,6 @@ export default class ExerciceDisplayer extends Component {
         displayCross: PropTypes.array
     };
 
-    state = {
-        displayCrossExo: []
-    };
-
     render() {
         return (
             <div className="section">

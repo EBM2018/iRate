@@ -27,3 +27,9 @@
 
 .text-right {
   text-align: right; }
+
+.is-fixed-bottom {
+  position: fixed;
+  top: 80%;
+  left: 0;
+  width: 100%; }

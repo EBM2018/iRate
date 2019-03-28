@@ -69,7 +69,7 @@ export default class QuestionDisplayer extends React.Component {
                                                         defaultValue={typeof this.props.question.estimatedTime === 'undefined' ? '' : this.props.question.estimatedTime / 60}
                                                         onChange={this.props.handleInputQuestion}
                                                         onBlur={this.props.saveQuestion}
-                                                        onKeyDown={this.props.saveQuestion}
+                                                        onKeyDown={this.props.saveQuestionEnter}
                                                         type="number"
                                                         min="0"
                                                         step="0.25"/></div>
@@ -94,7 +94,7 @@ export default class QuestionDisplayer extends React.Component {
                                                            defaultValue={typeof this.props.question.title === 'undefined' ? '' : this.props.question.title}
                                                            onChange={this.props.handleInputQuestion}
                                                            onBlur={this.props.saveQuestion}
-                                                           onKeyDown={this.props.saveQuestion}
+                                                           onKeyDown={this.props.saveQuestionEnter}
                                                            type="text"
                                                            placeholder="Question..."
                     /></div>

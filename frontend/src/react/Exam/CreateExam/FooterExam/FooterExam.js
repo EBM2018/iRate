@@ -32,7 +32,6 @@ export default class FooterExam extends Component {
     }
 
     componentWillReceiveProps(nextProps, nextState) {
-        console.log(nextProps);
         let bareme = 0;
         let estimatedTime = 0;
         let nbQuestion = 0;
@@ -48,13 +47,11 @@ export default class FooterExam extends Component {
         this.setState({bareme: bareme});
         this.setState({nbQuestion: nbQuestion});
         this.setState({estimatedTime: estimatedTime});
-
-
     }
 
     render() {
         return (
-            <footer className="footer is-info">
+            <footer className="footer is-info is-fixed-bottom">
                 <div className="columns">
                     <div className="column is-1">
                     </div>

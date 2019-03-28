@@ -25,8 +25,10 @@ class ExerciceList extends React.PureComponent {
     };
 
     componentDidMount() {
-        this.props.fetchExam(this.props.id);
-        this.setState({exercices: this.props.exam.exercices});
+        if (this.state.exercices.length === 0) {
+            this.props.fetchExam(this.props.id);
+            this.setState({exercices: this.props.exam.exercices});
+        }
     };
 
     componentWillReceiveProps(nextProps, nextState) {
