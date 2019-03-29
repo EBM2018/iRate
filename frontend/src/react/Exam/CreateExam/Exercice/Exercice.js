@@ -28,7 +28,7 @@ class Exercice extends React.Component {
     componentDidMount() {
         this.setState({question: this.props.exercices.questions});
         let {displayCross} = this.state;
-        if (this.props.exercices) {
+        if (this.props.exercices && this.props.exercices.questions && this.props.exercices.questions.length !== 0) {
             for (let i = 0; i <= this.props.exercices.questions.length; i++) {
                 displayCross.push([true, true, true]);
             }
