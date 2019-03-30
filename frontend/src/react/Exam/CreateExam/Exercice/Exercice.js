@@ -11,12 +11,12 @@ import {getExam} from "../../../../redux/exams/actions/getSingle";
 class Exercice extends React.Component {
 
     static propTypes = {
-        exercices: PropTypes.array,
+        exercices: PropTypes.object,
         handleInputExercice: PropTypes.func,
         displayCrossExo: PropTypes.array,
         saveNewExercice: PropTypes.func,
         saveNewExerciceEnter: PropTypes.func,
-        id: PropTypes.number,
+        id: PropTypes.string,
         index: PropTypes.number
     };
 

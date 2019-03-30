@@ -5,7 +5,7 @@ export default class ExerciceSimplifiedDisplayer extends React.PureComponent {
     static propTypes = {
         deleteExercice: PropTypes.func.isRequired,
         exercices: PropTypes.array.isRequired,
-        id: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         idQuestion: PropTypes.number.isRequired,
         index: PropTypes.number.isRequired
     };

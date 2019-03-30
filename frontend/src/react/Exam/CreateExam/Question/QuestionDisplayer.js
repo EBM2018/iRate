@@ -10,7 +10,7 @@ export default class QuestionDisplayer extends React.Component {
         deleteQuestion: PropTypes.func.isRequired,
         question: PropTypes.array.isRequired,
         displayCross: PropTypes.bool,
-        id: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         index: PropTypes.number.isRequired,
     };
 

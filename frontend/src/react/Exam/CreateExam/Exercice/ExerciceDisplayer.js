@@ -20,8 +20,8 @@ export default class ExerciceDisplayer extends Component {
         addQuestion: PropTypes.func.isRequired,
         deleteExercice: PropTypes.func.isRequired,
         question: PropTypes.array,
-        exercices: PropTypes.array.isRequired,
-        id: PropTypes.number.isRequired,
+        exercices: PropTypes.object.isRequired,
+        id: PropTypes.string.isRequired,
         index: PropTypes.number.isRequired,
         displayCross: PropTypes.array
     };
