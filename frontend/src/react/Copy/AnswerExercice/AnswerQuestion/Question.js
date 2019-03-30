@@ -58,13 +58,13 @@ export default class Question extends Component {
   };
 
   checkForExistingAnswer = () => {
-    const {question, copy} = this.props;
+    const {question, copy, readOnly} = this.props;
     const answer = copy.answers && copy.answers.find(x => x.refQuestion === question._id);
     if (answer) {
       const editorState = createRichContentFromRaw(answer.content);
       this.setState({ answer, editorState });
     }
-    this.setState({readOnly: this.props.readOnly || answer})
+    this.setState({readOnly})
   };
 
   handleControllerClick = async () => {
@@ -128,12 +128,12 @@ export default class Question extends Component {
                                  handleEditorClick={this.handleEditorClick}
                                  handleChange={this.handleChange}
                                  handleKeycommand={this.handleKeyCommand}
-                                 handleBlur={this.handleBlur}
+                                 handleBlur={this.handleControllerClick}
                                  onUnderlineClick={this.onUnderlineClick}
                                  onBoldClick={this.onBoldClick}
                                  onItalicClick={this.onItalicClick}
                                  readOnly={this.state.readOnly}/>
-                {!this.state.readOnly && <ControllerDisplayer 
+                {!this.state.readOnly && <ControllerDisplayer
                     handleControllerClick={this.handleControllerClick}
                     saved={saved}
                 />}

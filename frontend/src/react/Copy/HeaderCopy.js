@@ -11,7 +11,7 @@ export default class HeaderCopy extends Component {
   };
 
   state = {
-    defaultStepItemClass: "step-item"
+    defaultStepItemClass: 'step-item'
   };
 
   /**
@@ -20,11 +20,11 @@ export default class HeaderCopy extends Component {
   getClassEx = index => {
     const { defaultStepItemClass } = this.state;
     if (this.props.currentExercice === index)
-      return `${defaultStepItemClass} is-active pointer`;
+      return `${defaultStepItemClass} is-active`;
     else if (this.props.currentExercice > index)
       return `${defaultStepItemClass} is-completed pointer`;
 
-    return `${defaultStepItemClass}`;
+    return `${defaultStepItemClass} pointer`;
   };
 
   render() {
@@ -35,7 +35,7 @@ export default class HeaderCopy extends Component {
         <div className="steps">
           <div
             className={
-              step === 1
+              step > 1
                 ? `is-completed ${defaultStepItemClass}`
                 : `is-active ${defaultStepItemClass}`
             }
@@ -50,8 +50,7 @@ export default class HeaderCopy extends Component {
               className={this.getClassEx(index)}
               key={index}
               onClick={() =>
-                currentExercice &&
-                currentExercice > index &&
+                !isNaN(currentExercice) &&
                 this.props.navigate(index)
               }
             >
