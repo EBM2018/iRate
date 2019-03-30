@@ -20,7 +20,7 @@ export default class ExerciceListDisplayer extends React.Component {
         exercices: PropTypes.array,
         displayCrossExo: PropTypes.array,
         handleInputExercice: PropTypes.func,
-        id: PropTypes.number,
+        id: PropTypes.string,
         idExercice: PropTypes.number
     };
 

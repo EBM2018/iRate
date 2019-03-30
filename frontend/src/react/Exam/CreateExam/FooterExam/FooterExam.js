@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 export default class FooterExam extends Component {
 
     static propTypes = {
-        exercices: PropTypes.object.isRequired,
+        exercices: PropTypes.array.isRequired,
     };
 
     state = {

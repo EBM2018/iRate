@@ -12,7 +12,7 @@ import FooterExam from "../../FooterExam/FooterExam";
 class ExerciceList extends React.PureComponent {
 
     static propTypes = {
-        id: PropTypes.number,
+        id: PropTypes.string,
         exercice: PropTypes.object.isRequired,
         exam: PropTypes.object,
     };
