@@ -8,8 +8,14 @@ import CopyList from '../react/Copy/CopyList/CopyList';
 import ExamTopic from '../react/Copy/Instructions/GenerateTopic/ExamTopic';
 import CopiesOfExam from '../react/Correction/CopiesOfExam';
 import CopyCorrection from '../react/Correction/CopyCorrection';
+import Homepage from '../react/Homepage/Homepage';
 
 export const privateRoutes = {
+  Homepage: {
+    path: '/',
+    component: Homepage,
+    title: 'La page de garde'
+  },
   Instructions: {
     path: '/newexam/instructions/:groupId?/:sessionId?',
     component: Instructions,

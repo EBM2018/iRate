@@ -10,6 +10,7 @@ body {
   text-decoration: none;
   border: none;
 }
+
 .is-a-link-custom{
   color: #363636;
   background-color: white;
@@ -45,4 +46,12 @@ body {
   position: fixed;
   bottom: 3%;
   right: 3%;
+}
+
+.is-homepage {
+  position: absolute;
+  height: 87%;
+  width: auto;
+  bottom: 0;
+  right: 0;
 }
