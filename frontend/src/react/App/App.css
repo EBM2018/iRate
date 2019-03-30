@@ -49,9 +49,9 @@ body {
 }
 
 .is-homepage {
-  position: fixed;
-  height: 93%;
-  width: 68.5%;
+  position: absolute;
+  height: 87%;
+  width: auto;
   bottom: 0;
-  right: 2%;
+  right: 0;
 }
