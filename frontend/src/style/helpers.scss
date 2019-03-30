@@ -39,7 +39,9 @@
 
 .is-fixed-bottom{
     position: fixed;
-    top: 80%;
+    bottom: 0%;
     left: 0;
     width: 100%;
+    box-shadow: 0 -10px 10px -10px #DADADA;
+    padding: 20px;
 }
