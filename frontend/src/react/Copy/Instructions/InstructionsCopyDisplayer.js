@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import moment from 'moment';
 
 export default class Instructions extends Component {
   static propTypes = {
@@ -29,7 +30,7 @@ export default class Instructions extends Component {
               <span className="title is-5">Date de l'examen:</span>
             </div>
             <div className="column is-two-thirds">
-              <span className="title is-5">{session.date}</span>
+              <span className="title is-5">{moment(session.startingDate).format("DD/MM/YYYY")}</span>
             </div>
           </div>
           <div className="columns">
@@ -37,7 +38,7 @@ export default class Instructions extends Component {
               <span className="title is-5">Heure de début:</span>
             </div>
             <div className="column is-two-thirds">
-              <span className="title is-5">{session.startTime}</span>
+              <span className="title is-5">{moment(session.startingDate).format("HH:mm")}</span>
             </div>
           </div>
           <div className="columns">
@@ -45,7 +46,7 @@ export default class Instructions extends Component {
               <span className="title is-5">Heure de fin:</span>
             </div>
             <div className="column is-two-thirds">
-              <span className="title is-5">{session.endTime}</span>
+              <span className="title is-5">{moment(session.finishingDate).format("HH:mm")}</span>
             </div>
           </div>
           <div className="columns">
