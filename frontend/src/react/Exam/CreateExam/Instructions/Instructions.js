@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import InstructionsDisplayer from './InstructionsDisplayer';
-import {groupsArray, group} from '../../../../helpers/mocks/group';
+import {group} from '../../../../helpers/mocks/group';
 
 import {Redirect} from 'react-router-dom';
 import connect from 'react-redux/es/connect/connect';
 import {postExam} from '../../../../redux/exams/actions/post';
 import {triggerActive, triggerInactive} from '../../../../helpers/css';
+import axios from 'axios';
+import moment from 'moment';
 
 class Instructions extends Component {
   state = {
@@ -17,13 +19,14 @@ class Instructions extends Component {
       value: 'Choisir une séance',
       _id: '',
     },
+    groupErr: false,
   };
 
   /**
    * get the groups/sessions from url params or all of them if no params
    * @return undefined
    */
-  componentDidMount() {
+  async componentDidMount() {
     //TODO When we'll have some routes from TEAMY Group --> API Call goes here.
     const {groupId, sessionId} = this.props.route.match.params;
     if (groupId && sessionId) {
@@ -51,18 +54,29 @@ class Instructions extends Component {
       }
     } else {
       //TODO Here I create the constant group so that we know where to put the API Call when we don't have id params.
-      const groups = groupsArray.groups.map(group => {
-        //TODO Don't forget to put this guy back in place
-        /*let classes = group.classes.filter((aClass) => {
-                    return moment(aClass.date + " " + aClass.startTime).isAfter();
-                });*/
-        return {
-          name: group.name,
-          _id: group._id,
-          classes: group.classes,
-        };
-      });
-      this.setState({groups});
+      const callResponse = await axios.get('https://teamy.ebm.nymous.io/api/groups');
+      if (callResponse.status === 200) {
+        const {data} = callResponse;
+        const groups = data.map(group => {
+          let classes = group.seances.filter((seance) => {
+            return moment(seance.finishingDate).isAfter();
+          }).map((seance) => {
+            return {
+              _id: seance._id,
+              label: seance.label,
+              dateDisplay: moment(seance.startingDate).format('DD/MM/YYYY [de] HH:mm [à] ') + moment(seance.finishingDate).format('HH:mm'),
+            };
+          });
+          return {
+            _id: group._id,
+            name: group.groupName,
+            classes: classes,
+          };
+        });
+        this.setState({groups});
+      } else {
+        this.setState({groupErr: true});
+      }
     }
   }
 
@@ -124,25 +138,18 @@ class Instructions extends Component {
     return (
       <>
         <div className="tile is-child">
-          <InstructionsDisplayer
-            dropdownGroup={this.state.dropdownGroup}
-            dropdownSession={this.state.dropdownSession}
-            groups={this.state.groups}
-            session={this.state.session}
-            handleInput={this.handleInput}
-            triggerActive={triggerActive}
-            triggerInactive={triggerInactive}
-            handleSelect={this.handleSelect}
-          />
-          <button
-            className="box button is-medium"
-            onClick={this.addExamAndRedirect}
-          >
-            Suivant
-          </button>
-          {this.state.redirectExercices ? (
-            <Redirect to={`/newexam/${this.state.idRedirect}/exercices`}/>
-          ) : null}
+          <InstructionsDisplayer dropdownGroup={this.state.dropdownGroup}
+                                 dropdownSession={this.state.dropdownSession}
+                                 groups={this.state.groups}
+                                 session={this.state.session}
+                                 handleInput={this.handleInput}
+                                 triggerActive={triggerActive}
+                                 triggerInactive={triggerInactive}
+                                 groupErr={this.state.groupErr}
+                                 handleSelect={this.handleSelect}/>
+          <button className="box button is-medium"
+                  onClick={this.addExamAndRedirect}>Suivant</button>
+          {this.state.redirectExercices ? (<Redirect to={`/newexam/${this.state.idRedirect}/exercices`}/>) : null}
         </div>
       </>
     );

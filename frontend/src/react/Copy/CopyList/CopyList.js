@@ -21,39 +21,11 @@ class CopyList extends Component {
   async componentDidMount() {
     await this.props.fetchExams();
     if (this.props.exams) {
-      let exams = this.props.exams
-        .filter(exam => {
-          return exam.isFinalised;
-        })
-        .map(exam => {
+      let exams = this.props.exams.filter(exam => {return exam.isFinalised;}).map(exam => {
           if (exam.session) {
-            //Very long because I rewrite the date to have a moment format
-            exam.isOver = moment().isAfter(
-              exam.session.date.split("/")[2] +
-                "-" +
-                exam.session.date.split("/")[0] +
-                "-" +
-                exam.session.date.split("/")[1] +
-                "T" +
-                exam.session.endTime
-            );
+            exam.isOver = moment().isAfter(exam.session.finishingDate);
             if (!exam.isOver) {
-              exam.isPassing = moment().isBetween(
-                exam.session.date.split("/")[2] +
-                  "-" +
-                  exam.session.date.split("/")[0] +
-                  "-" +
-                  exam.session.date.split("/")[1] +
-                  "T" +
-                  exam.session.startTime,
-                exam.session.date.split("/")[2] +
-                  "-" +
-                  exam.session.date.split("/")[0] +
-                  "-" +
-                  exam.session.date.split("/")[1] +
-                  "T" +
-                  exam.session.endTime
-              );
+              exam.isPassing = moment().isBetween(exam.session.startingDate,exam.session.finishingDate);
             }
           }
           return exam;

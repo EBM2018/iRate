@@ -31,9 +31,7 @@ class ConfirmCopy extends Component {
 
   getTimeBeforeEnd = () => {
     const {exam} = this.props;
-    const dateTable = exam.session.date.split('/');
-    const endDate = dateTable[2] + '-' + dateTable[0] + '-' + dateTable[1] + 'T' + exam.session.endTime;
-    const endDateMoment = moment(endDate);
+    const endDateMoment = moment(exam.session.finishingDate);
     const timeDiff = endDateMoment.diff(moment(), 'seconds');
     const timer = moment.utc(timeDiff * 1000).format('HH:mm:ss');
     this.setState({timer});

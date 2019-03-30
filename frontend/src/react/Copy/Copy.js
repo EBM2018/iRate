@@ -12,8 +12,6 @@ import ConfirmCopy from './ConfirmCopy/ConfirmCopy';
 
 import Error from '../utils/Error';
 
-import { session } from '../../helpers/mocks/dataMock';
-
 const COPIES_KEY = 'irate_copies';
 class Copy extends Component {
   state = {
@@ -27,9 +25,7 @@ class Copy extends Component {
   async componentDidMount() {
     //TODO: When a user will be connected, add a "get copy" from the exam and the author to know which copy is currently writing the user (if he refresh the page)
     await this.props.fetchExam(this.props.route.match.params.id);
-    const sessionId = 'e22cc200-c140-4977-9b1d-gvrbbb4156';
-    const aSession = await session.classes.find(session => sessionId === session._id);
-    this.setState({ session: aSession });
+    this.setState({ session: this.props.exam.session });
     await this.checkLocalStorage();
   };
 
