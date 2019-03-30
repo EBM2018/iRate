@@ -21,7 +21,6 @@ export const SET_GET_EXAMS_FAILURE = err => ({
 
 export const getExams = (query = {}, withTS = false) => async dispatch => {
   dispatch(SET_GET_EXAMS_START());
-
   try {
     const exams = await ExamsRepository.getExams(query, withTS);
     dispatch(SET_GET_EXAMS_SUCCESS(exams));
