@@ -8,7 +8,7 @@ import { getCopy } from '../../redux/copies/actions/getSingle';
 import Instructions from './Instructions/Instructions';
 import Exercice from './AnswerExercice/Exercice';
 import HeaderCopy from './HeaderCopy';
-import ConfirmCopy from './ConfirmCopy';
+import ConfirmCopy from './ConfirmCopy/ConfirmCopy';
 
 import Error from '../utils/Error';
 
@@ -44,7 +44,7 @@ class Copy extends Component {
       this.setState({ startedCopy: copy });
       await this.props.fetchCopy(copy.copyId);
     }
-  }
+  };
 
   getValidLocalStorage = () => {
     const storage = localStorage.getItem(COPIES_KEY) && JSON.parse(localStorage.getItem(COPIES_KEY));
@@ -61,7 +61,7 @@ class Copy extends Component {
 
     storage ? localStorage.setItem(COPIES_KEY, JSON.stringify(storage)) : localStorage.removeItem(COPIES_KEY);
     return (storage.length > 0 ? storage : null);
-  }
+  };
 
   storeLocalCopy = () => {
     const storage = this.getValidLocalStorage() || [];
@@ -74,14 +74,14 @@ class Copy extends Component {
       now: Date.now()
     });
     localStorage.setItem(COPIES_KEY, JSON.stringify(storage));
-  }
+  };
 
   updateLocalCopy = () => {
     const storage = this.getValidLocalStorage();
     const index = storage.findIndex(x => x.examId === this.props.route.match.params.id);
     storage[index].now = Date.now();
     localStorage.setItem(COPIES_KEY, JSON.stringify(storage));
-  }
+  };
 
   /**
    * @param {Boolean} forceConfirmation: whether we want to force the confirmation
@@ -125,7 +125,7 @@ class Copy extends Component {
           />
         );
       case 2:
-        return <ConfirmCopy />;
+        return <ConfirmCopy exam={exam} />;
       default:
         return (
           <Exercice
@@ -148,7 +148,7 @@ class Copy extends Component {
 
   closeError = () => {
     this.setState({displayError: false});
-  }
+  };
 
   render() {
     const { exerciceIndex, step, displayError } = this.state;

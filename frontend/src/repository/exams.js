@@ -1,7 +1,7 @@
-import { apiRequest } from "../services/api";
-import { encodeQueryData } from "../helpers/query";
-import { addTimeAndScale } from "../helpers/exam";
-import { groupsArray } from "../helpers/mocks/group";
+import {apiRequest} from '../services/api';
+import {encodeQueryData} from '../helpers/query';
+import {addTimeAndScale} from '../helpers/exam';
+import {groupsArray} from '../helpers/mocks/group';
 
 /**
  *
@@ -18,6 +18,8 @@ export const getExams = async (query = {}, withTS = false) => {
       data[i] = addTimeAndScale(data[i]);
     }
   }
+
+  //const allo = await axios.get('https://teamy.ebm.nymous.io/api/groups');
 
   // TODO: move this part to the backend once we get the route from the other group
   const returnedData = data.map(exam => {
@@ -49,6 +51,17 @@ export const getExams = async (query = {}, withTS = false) => {
 export const getExam = async (id, withTS = false) => {
   if (!id) return;
   const data = await apiRequest(`/exams/${id}`, 'get');
+  // TODO: move this part to the backend once we get the route from the other group
+  if (data.group) {
+    data.group = groupsArray.groups.find(aGroup => {
+      return aGroup._id === data.group;
+    });
+  }
+  if (data.session) {
+    data.session = data.group.classes.find(aClass => {
+      return aClass._id === data.session;
+    });
+  }
   return withTS ? addTimeAndScale(data) : data;
 };
 
