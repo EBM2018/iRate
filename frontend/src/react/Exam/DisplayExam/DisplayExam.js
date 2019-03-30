@@ -50,7 +50,7 @@ class DisplayExam extends Component {
                   <p className="subtitle is-4">
                     Instructions : {exam.instruction}
                   </p>
-                  <p>Groupe : {exam.group}</p>
+                  <p>Groupe : {exam.group && exam.group.groupName}</p>
                   <p>
                     {/*  TODO: Waiting for the other group */}
                     Module :
@@ -97,7 +97,7 @@ class DisplayExam extends Component {
             </header>
             <section id={`exam-${id}`} className="py-2 exam">
               {exam.exercices &&
-                exam.exercices.map((exercice, index) => {
+                exam.exercices.map((exercice) => {
                   return (
                     <DisplayExercice exercice={exercice} key={exercice._id} />
                   );

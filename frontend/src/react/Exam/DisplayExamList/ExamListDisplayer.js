@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import moment from 'moment';
 
 class ExamListDisplayer extends Component {
   render() {
+    console.log(this.props.finalisedExams, this.props.createdExams);
     return (
       <>
         <div className="columns is-variable is-multiline is-8">
@@ -25,13 +27,12 @@ class ExamListDisplayer extends Component {
                 <div className="card-content">
                   <div className="content">
                     <p
-                      className="content">Groupe: <strong>{exam.group ? exam.group.name : 'Pas de groupe assigné'}</strong>
+                      className="content">Groupe: <strong>{exam.group ? exam.group.groupName : 'Pas de groupe assigné'}</strong>
                     </p>
-                    <p className="content">{exam.session ? 'Le' : null}
-                      <strong>{exam.session ? exam.session.date : 'Pas de session assignée'}</strong></p>
-                    <p className="content">{exam.session ? 'De ' : null}
-                      <strong>{exam.session ? exam.session.startTime.split(':').slice(0, 2).join(':') : null}</strong> {exam.session ? ' à ' : null}
-                      <strong>{exam.session ? exam.session.endTime.split(':').slice(0, 2).join(':') : 'Pas d\'heures assignées'}</strong>
+                    <p className="content">
+                      Le <strong>{moment(exam.session.startingDate).format('DD/MM/YYYY') + ' '}</strong>
+                      de <strong>{moment(exam.session.startingDate).format('HH:mm') + ' '}</strong>
+                      à <strong>{moment(exam.session.finishingDate).format('HH:mm')}</strong>
                     </p>
                     <p className="content">Barème: <strong>/{exam.scale}</strong></p>
                     <p className="content">Temps estimé: <strong>{exam.estimatedTime}</strong></p>
@@ -62,13 +63,12 @@ class ExamListDisplayer extends Component {
                 <div className="card-content">
                   <div className="content">
                     <p
-                      className="content">Groupe: <strong>{exam.group ? exam.group.name : 'Pas de groupe assigné'}</strong>
+                      className="content">Groupe: <strong>{exam.group ? exam.group.groupName : 'Pas de groupe assigné'}</strong>
                     </p>
-                    <p className="content">{exam.session ? 'Le' : null}
-                      <strong>{exam.session ? exam.session.date : 'Pas de session assignée'}</strong></p>
-                    <p className="content">{exam.session ? 'De ' : null}
-                      <strong>{exam.session ? exam.session.startTime.split(':').slice(0, 2).join(':') : null}</strong> {exam.session ? ' à ' : null}
-                      <strong>{exam.session ? exam.session.endTime.split(':').slice(0, 2).join(':') : 'Pas d\'heures assignées'}</strong>
+                    <p className="content">
+                      Le <strong>{moment(exam.session.startingDate).format('DD/MM/YYYY') + ' '}</strong>
+                      de <strong>{moment(exam.session.startingDate).format('HH:mm') + ' '}</strong>
+                      à <strong>{moment(exam.session.finishingDate).format('HH:mm')}</strong>
                     </p>
                     <p className="content">Barème: <strong>/{exam.scale}</strong></p>
                     <p className="content">Temps estimé: <strong>{exam.estimatedTime}</strong></p>
@@ -101,13 +101,12 @@ class ExamListDisplayer extends Component {
                 <div className="card-content">
                   <div className="content">
                     <p
-                      className="content">Groupe: <strong>{exam.group ? exam.group.name : 'Pas de groupe assigné'}</strong>
+                      className="content">Groupe: <strong>{exam.group ? exam.group.groupName : 'Pas de groupe assigné'}</strong>
                     </p>
-                    <p className="content">{exam.session ? 'Le' : null}
-                      <strong>{exam.session ? exam.session.date : 'Pas de session assignée'}</strong></p>
-                    <p className="content">{exam.session ? 'De ' : null}
-                      <strong>{exam.session ? exam.session.startTime.split(':').slice(0, 2).join(':') : null}</strong> {exam.session ? ' à ' : null}
-                      <strong>{exam.session ? exam.session.endTime.split(':').slice(0, 2).join(':') : 'Pas d\'heures assignées'}</strong>
+                    <p className="content">
+                      Le <strong>{moment(exam.session.startingDate).format('DD/MM/YYYY') + ' '}</strong>
+                      de <strong>{moment(exam.session.startingDate).format('HH:mm') + ' '}</strong>
+                      à <strong>{moment(exam.session.finishingDate).format('HH:mm')}</strong>
                     </p>
                     <p className="content">Barème: <strong>/{exam.scale}</strong></p>
                     <p className="content">Temps estimé: <strong>{exam.estimatedTime}</strong></p>
