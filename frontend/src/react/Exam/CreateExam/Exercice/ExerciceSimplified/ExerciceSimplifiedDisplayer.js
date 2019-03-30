@@ -20,7 +20,7 @@ export default class ExerciceSimplifiedDisplayer extends React.PureComponent {
               <div className="column is-11">
                 <p className="title">
                   Exercice {this.props.idQuestion + 1} -{' '}
-                  {this.props.exercices.questions.length} questions
+                  {this.props.exercices.questions ? this.props.exercices.questions.length : 0} questions
                 </p>
               </div>
               <div className="column is-1">

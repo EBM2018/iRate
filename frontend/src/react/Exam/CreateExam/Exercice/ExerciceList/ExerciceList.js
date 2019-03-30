@@ -109,16 +109,17 @@ class ExerciceList extends React.PureComponent {
    *
    * @param {Object} v
    */
-  deleteExercice = v => {
-    let idExercice = v.target.value;
-    this.props.fetchDeleteExercice(
-      this.props.id,
-      this.state.exercices[idExercice]._id,
-      this.state.exercices[idExercice]
+  deleteExercice = async v => {
+    const exercice = this.props.exam.exercices.find(
+      q => q._id === v.target.value
     );
-    const exercices = [...this.state.exercices];
-    exercices.splice(idExercice, 1);
-    this.setState({ exercices });
+    const exerciceId = exercice._id;
+    const listOfExercices = this.props.exam.exercices.filter(
+      e => e._id !== exercice._id
+    );
+    this.setState({ exercices: listOfExercices });
+    await this.props.fetchDeleteExercice(this.props.id, exerciceId, exercice);
+    await this.props.fetchExam(this.props.id);
   };
 
   saveNewExerciceEnter = e => {

@@ -36,7 +36,7 @@ export default class ExerciceDisplayer extends Component {
               <div className="column is-1">
                 <button
                   className="delete is-large"
-                  value={this.props.index}
+                  value={this.props.exercices._id}
                   onClick={this.props.deleteExercice}
                 />
               </div>
