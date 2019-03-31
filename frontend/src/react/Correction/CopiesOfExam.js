@@ -7,15 +7,15 @@ class CopiesOfExam extends Component {
   }
   componentDidMount() {
     const examId = this.props.route.match.params.examId;
-    this.addExamsToState(examId);
+    this.addCopiesToState(examId);
   }
-  async addExamsToState(examId) {
+  async addCopiesToState(examId) {
     const copies = await getCopiesOfExam(examId);
     this.setState({copies: copies})
   }
   render () {
     return (
-      <CopiesOfExamDisplayer 
+      <CopiesOfExamDisplayer
         copies={this.state.copies}
         examId={this.props.route.match.params.examId}>
       </CopiesOfExamDisplayer>

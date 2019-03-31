@@ -58,9 +58,9 @@ class Instructions extends Component {
       if (callResponse.status === 200) {
         const {data} = callResponse;
         const groups = data.map(group => {
-          let classes = group.seances.filter((seance) => {
+          let classes = group.seances/*.filter((seance) => {
             return moment(seance.finishingDate).isAfter();
-          }).map((seance) => {
+          })*/.map((seance) => {
             return {
               _id: seance._id,
               label: seance.label,
