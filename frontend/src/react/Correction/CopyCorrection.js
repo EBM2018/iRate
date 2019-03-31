@@ -5,7 +5,7 @@ import DisplayExerciceWithAnswer from './DisplayExerciceWithAnswer';
 import { Link } from 'react-router-dom';
 class CopyCorrection extends Component {
   state = {
-    exam: false,
+    exam: {},
     copy: false,
   };
   constructor(props) {
@@ -15,7 +15,7 @@ class CopyCorrection extends Component {
   }
   async addExamToState(examId) {
     const exam = await getExam(examId, true);
-    this.setState({exam: exam});
+    this.setState({exam});
   };
   async addCopyToState(copyId) {
     const copy = await getCopy(copyId);
@@ -29,7 +29,7 @@ class CopyCorrection extends Component {
         <div className="content">
           <Link to={`/correction/${this.state.exam._id}`}>
             <div className="button is-outlined tooltip" data-tooltip="revenir à la liste des copies">
-              <i className="fas fa-arrow-left"></i>
+              <i className="fas fa-arrow-left"/>
             </div>
           </Link>
         </div>
@@ -41,7 +41,7 @@ class CopyCorrection extends Component {
                       Instructions : {exam.instruction}
                   </p>
                   <p>
-                      Groupe : {exam.group}
+                      Groupe : {exam.group && exam.group.groupName}
                   </p>
                   <p>
                       {/*  TODO: Waiting for the other group */}
@@ -83,13 +83,13 @@ class CopyCorrection extends Component {
       <section id={`exam-${exam._id}`} className="py-2 exam">
                         { exam.exercices && this.state.copy && exam.exercices.map((exercice, index) => {
                             return (
-                                <div key={exercice._id}>
+                                <div key={exercice._id} className="content">
                                   <DisplayExerciceWithAnswer exercice={exercice} copy={this.state.copy} />
                                 </div>
                             )
                         })}
       </section>
-        
+
       </div>
     )
   }

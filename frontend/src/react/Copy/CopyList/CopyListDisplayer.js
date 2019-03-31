@@ -51,7 +51,7 @@ export default class CopyListDisplayer extends Component {
                     <p className="content">
                       Groupe:{' '} <strong>{exam.group ? exam.group.groupName : 'Pas de groupe assigné'}</strong>
                     </p>
-                    <p className="content">Date: <strong>{exam.session.startingDate.format('DD/MM/YYYY')}</strong></p>
+                    <p className="content">Date: <strong>{moment(exam.session.startingDate).format('DD/MM/YYYY')}</strong></p>
                     <p className="content">
                       De <strong>{moment(exam.session.startingDate).format('HH:mm')}</strong>{' '}
                       à <strong>{moment(exam.session.finishingDate).format('HH:mm')}</strong>
@@ -75,7 +75,7 @@ export default class CopyListDisplayer extends Component {
                     <p className="content">
                       Groupe:{' '} <strong>{exam.group ? exam.group.groupName : 'Pas de groupe assigné'}</strong>
                     </p>
-                    <p className="content">Date: <strong>{exam.session.startingDate.format('DD/MM/YYYY')}</strong></p>
+                    <p className="content">Date: <strong>{moment(exam.session.startingDate).format('DD/MM/YYYY')}</strong></p>
                     <p className="content">
                       De <strong>{moment(exam.session.startingDate).format('HH:mm')}</strong>{' '}
                       à <strong>{moment(exam.session.finishingDate).format('HH:mm')}</strong>
